@@ -2,15 +2,16 @@ using UnityEngine;
 
 public class EnemyState
 {
-    protected Enemy enemy;
+    protected Enemy enemybase;
     protected EnemyStateMachine stateMachine;
     protected bool triggerCalled;
     protected string animBoolName;
     protected float stateTimer;
+    protected Rigidbody2D rb;
 
-    public EnemyState(Enemy _enemy, EnemyStateMachine _stateMachine, string _animBoolName)
+    public EnemyState(Enemy _enemybase, EnemyStateMachine _stateMachine, string _animBoolName)
     {
-        this.enemy = _enemy;
+        this.enemybase = _enemybase;
         this.stateMachine = _stateMachine;
         this.animBoolName = _animBoolName;
     }
@@ -22,12 +23,13 @@ public class EnemyState
     public virtual void Enter() 
     {
         triggerCalled = false;
-        enemy.anim.SetBool(animBoolName, true);
+        rb = enemybase.rb;
+        enemybase.anim.SetBool(animBoolName, true);
     }
 
     public virtual void Exit()
     {
-        enemy.anim.SetBool(animBoolName, false);
+        enemybase.anim.SetBool(animBoolName, false);
     }
 
 

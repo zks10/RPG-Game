@@ -31,7 +31,7 @@ public class Player : Entity
 
     #endregion
 
-    protected override void Awake()
+    public override void Awake()
     {
         base.Awake();
         stateMachine = new PlayerStateMachine();
@@ -46,13 +46,13 @@ public class Player : Entity
         primaryAttackState = new PlayerPrimaryAttackState(this, stateMachine, "Attack");
     }
 
-    protected override void Start()
+    public override void Start()
     {
         base.Start();
         stateMachine.Initialize(idleState);
     }
 
-    protected override void Update()
+    public override void Update()
     {
         base.Update();
         stateMachine.currentState.Update();

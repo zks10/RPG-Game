@@ -17,17 +17,17 @@ public class Entity : MonoBehaviour
     [SerializeField] protected Transform wallCheck;
     [SerializeField] protected float wallCheckDistance;
     [SerializeField] protected LayerMask whatIsGround;
-    protected virtual void Awake()
+    public virtual void Awake()
     {
         
     }
-    protected virtual void Start()
+    public virtual void Start()
     {
         anim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
     }
 
-    protected virtual void Update()
+    public virtual void Update()
     {
 
     }
@@ -42,7 +42,7 @@ public class Entity : MonoBehaviour
     #endregion
 
     # region Flip
-    protected virtual void Flip()
+    public virtual void Flip()
     {
         facingDir = facingDir * -1;
         facingRight = !facingRight;
