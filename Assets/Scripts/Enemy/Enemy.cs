@@ -11,6 +11,7 @@ public class Enemy : Entity
     [Header("Attack Info")]
     public float attackDistance;
     public float attackCooldown;
+    public float viewDistance;
     [HideInInspector] public float lastTimeAttacked;
 
 
@@ -34,7 +35,7 @@ public class Enemy : Entity
     }
 
     public virtual void AnimationFinishTrigger() => stateMachine.currentState.AnimationFinishTrigger();
-    public virtual RaycastHit2D IsPlayerDectected() => Physics2D.Raycast(wallCheck.position, Vector2.right * facingDir, 50, whatIsPlayer);
+    public virtual RaycastHit2D IsPlayerDectected() => Physics2D.Raycast(wallCheck.position, Vector2.right * facingDir, viewDistance, whatIsPlayer);
 
     public override void OnDrawGizmos()
     {

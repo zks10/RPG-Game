@@ -6,7 +6,11 @@ public class Player : Entity
 {
     [Header("Attack Details")]
     public Vector2[] attactMovement;
+
     public bool isBusy { get; private set; }
+
+
+
     [Header("Move Info")]
     public float moveSpeed = 10f;
     public float jumpForce;

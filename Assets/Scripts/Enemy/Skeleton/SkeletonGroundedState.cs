@@ -25,4 +25,4 @@ public class SkeletonGroundedState : EnemyState
         if (enemy.IsPlayerDectected() || Vector2.Distance(player.transform.position, enemy.transform.position) < 2)
             stateMachine.ChangeState(enemy.battleState);
     }
-}
+} 
