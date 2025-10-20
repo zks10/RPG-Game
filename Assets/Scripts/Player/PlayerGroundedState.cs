@@ -24,6 +24,13 @@ public class PlayerGroundedState : PlayerState
             stateMachine.ChangeState(player.primaryAttackState);
         }
 
+        if (Input.GetKeyDown(KeyCode.Mouse1) && player.counterAttackUsageTimer < 0)
+        {
+            player.counterAttackUsageTimer = player.counterAttackCooldown;
+            stateMachine.ChangeState(player.counterAttackState);
+        }
+
+
         if (!player.IsGroundDectected())
         {
             stateMachine.ChangeState(player.airState);

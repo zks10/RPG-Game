@@ -23,7 +23,7 @@ public class EnemySkeleton : Enemy
     public override void Start()
     {
         base.Start();
-        stateMachine.InitializeState(idleState);
+        stateMachine.InitializeState(idleState); 
     }
     
     public override void Update()
@@ -33,5 +33,15 @@ public class EnemySkeleton : Enemy
         if (Input.GetKeyDown(KeyCode.U)) 
             stateMachine.ChangeState(stunnedState);
         
+    }
+
+    public override bool CanBeStunned() 
+    {
+        if (base.CanBeStunned()) 
+        {
+            stateMachine.ChangeState(stunnedState);
+            return true;
+        }
+        return false;
     }
 }

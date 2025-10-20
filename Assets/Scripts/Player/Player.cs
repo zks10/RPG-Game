@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class Player : Entity
 {
-    [Header("Attack Details")]
+    [Header("Attack Info")]
     public Vector2[] attactMovement;
-
     public bool isBusy { get; private set; }
+
+    [Header("Counter Attack Info")]
+    public float counterAttackDuration = .2f;
+    [SerializeField] public float counterAttackCooldown;
+    [HideInInspector] public float counterAttackUsageTimer;
+
 
 
 
@@ -32,6 +37,7 @@ public class Player : Entity
     public PlayerWallSlideState wallSlideState { get; private set; }
     public PlayerWallJumpState wallJumpState { get; private set; }
     public PlayerPrimaryAttackState primaryAttackState { get; private set; }
+    public PlayerCounterAttackState counterAttackState { get; private set; }
 
     #endregion
 
@@ -48,6 +54,7 @@ public class Player : Entity
         wallSlideState = new PlayerWallSlideState(this, stateMachine, "WallSlide");
         wallJumpState = new PlayerWallJumpState(this, stateMachine, "Jump");
         primaryAttackState = new PlayerPrimaryAttackState(this, stateMachine, "Attack");
+        counterAttackState = new PlayerCounterAttackState(this, stateMachine, "CounterAttack");
     }
 
     public override void Start()
@@ -61,6 +68,7 @@ public class Player : Entity
         base.Update();
         stateMachine.currentState.Update();
         CheckForDashInput();
+        counterAttackUsageTimer -= Time.deltaTime;
     }
 
     public IEnumerator BusyFor(float _seconds)
@@ -76,7 +84,7 @@ public class Player : Entity
         if (IsWallDectected())
             return;
         dashUsageTimer -= Time.deltaTime;
-        if (Input.GetKeyDown(KeyCode.Mouse1) && dashUsageTimer < 0)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && dashUsageTimer < 0)
         {
             dashUsageTimer = dashCooldown;
             dashDir = Input.GetAxisRaw("Horizontal");
@@ -87,6 +95,7 @@ public class Player : Entity
             stateMachine.ChangeState(dashState);
         }
     }
+    
     
 
     public void AnimationTrigger() => stateMachine.currentState.AnimationFinishTrigger();
