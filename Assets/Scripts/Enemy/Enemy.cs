@@ -1,9 +1,16 @@
 
 using UnityEngine;
+using System.Collections;
 
 public class Enemy : Entity
-{
+{   
+    
     [SerializeField] protected LayerMask whatIsPlayer;
+    private Transform player;
+    [Header("Stunned Info")]
+    public float stunDuration;
+    public Vector2 stunDirection;
+    
     [Header("Move Info")]
     public float moveSpeed;
     public float idleTime;
@@ -43,5 +50,30 @@ public class Enemy : Entity
 
         Gizmos.color = Color.yellow;
         Gizmos.DrawLine(transform.position, new Vector3(transform.position.x + attackDistance * facingDir, transform.position.y));
+    }
+
+    public override void Damage() {
+        base.Damage();
+        StartCoroutine("HitKnockBack");
+
+    }
+
+    public IEnumerator HitKnockBack() 
+    {
+        isKnocked = true;
+        player = GameObject.Find("Player").transform;
+        float val = (player.position.x - this.transform.position.x);
+        float dir = facingDir;
+        
+        if (val > 0) 
+            dir = -1;
+        else
+            dir = 1;
+
+        rb.linearVelocity = new Vector2(knockbackDirection.x * dir, knockbackDirection.y);
+
+        yield return new WaitForSeconds(knockbackDuration);
+
+        isKnocked = false;
     }
 }

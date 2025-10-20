@@ -88,7 +88,23 @@ public class Player : Entity
         }
     }
     
-    
+
     public void AnimationTrigger() => stateMachine.currentState.AnimationFinishTrigger();
+
+    public IEnumerator HitKnockBack() 
+    {
+        isKnocked = true;
+
+        rb.linearVelocity = new Vector2(knockbackDirection.x * -facingDir, knockbackDirection.y);
+
+        yield return new WaitForSeconds(knockbackDuration);
+
+        isKnocked = false;
+    }
+
+    public override void Damage() {
+        base.Damage();
+        StartCoroutine("HitKnockBack");
+    }
 
 }
