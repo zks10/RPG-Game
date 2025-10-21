@@ -5,7 +5,7 @@ using System.Collections;
 public class Entity : MonoBehaviour
 {
     public int facingDir { get; private set; } = 1;
-    protected bool facingRight = true;
+    public bool facingRight = true;
 
     #region  Components
     public Animator anim { get; private set; }

@@ -13,7 +13,7 @@ public class PlayerAirState : PlayerState
     }
     public override void Exit()
     {
-        base.Exit();
+        base.Exit(); 
     }
     public override void Update()
     {

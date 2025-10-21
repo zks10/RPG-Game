@@ -16,12 +16,14 @@ public class Player : Entity
     [Header("Move Info")]
     public float moveSpeed = 10f;
     public float jumpForce;
+    public float swordReturnImpact;
     
     [Header("Dash Info")]
     public float dashSpeed;
     public float dashDuration;
     public float dashDir { get; private set; }
     public SkillManager skill { get; private set; }
+    public GameObject sword { get; private set; }
 
     #region States
     public PlayerStateMachine stateMachine { get; private set; }
@@ -34,6 +36,8 @@ public class Player : Entity
     public PlayerWallJumpState wallJumpState { get; private set; }
     public PlayerPrimaryAttackState primaryAttackState { get; private set; }
     public PlayerCounterAttackState counterAttackState { get; private set; }
+    public PlayerAimSwordState aimSwordState { get; private set; }
+    public PlayerCatchSwordState catchSwordState { get; private set; }
 
     #endregion
 
@@ -51,6 +55,8 @@ public class Player : Entity
         wallJumpState = new PlayerWallJumpState(this, stateMachine, "Jump");
         primaryAttackState = new PlayerPrimaryAttackState(this, stateMachine, "Attack");
         counterAttackState = new PlayerCounterAttackState(this, stateMachine, "CounterAttack");
+        aimSwordState = new PlayerAimSwordState(this, stateMachine, "AimSword");
+        catchSwordState = new PlayerCatchSwordState(this, stateMachine, "CatchSword");
     }
 
     public override void Start()
@@ -66,6 +72,17 @@ public class Player : Entity
         stateMachine.currentState.Update();
         CheckForDashInput();
         counterAttackUsageTimer -= Time.deltaTime;
+    }
+
+    public void AssignNewSword(GameObject _newSword)
+    {
+        sword = _newSword;
+    }
+
+    public void CatchTheSword()
+    {
+        stateMachine.ChangeState(catchSwordState);
+        Destroy(sword);
     }
 
     public IEnumerator BusyFor(float _seconds)
@@ -92,8 +109,6 @@ public class Player : Entity
         }
     }
     
-    
-
     public void AnimationTrigger() => stateMachine.currentState.AnimationFinishTrigger();
 
     public IEnumerator HitKnockBack() 
