@@ -33,6 +33,7 @@ public class Enemy : Entity
     {
         base.Awake();
         stateMachine = new EnemyStateMachine();
+        CloseCounterAttackWindow(); 
     }
     public override void Start()
     {
@@ -86,7 +87,7 @@ public class Enemy : Entity
     public IEnumerator HitKnockBack() 
     {
         isKnocked = true;
-        player = GameObject.Find("Player").transform;
+        player = PlayerManager.instance.player.transform;
         float val = (player.position.x - this.transform.position.x);
         float dir = facingDir;
         

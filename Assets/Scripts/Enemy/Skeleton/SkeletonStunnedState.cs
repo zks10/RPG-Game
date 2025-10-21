@@ -23,7 +23,7 @@ public class SkeletonStunnedState : EnemyState
     {
         base.Update();
         if (stateTimer < 0) {
-            stateMachine.ChangeState(enemy.idleState);
+            stateMachine.ChangeState(enemy.battleState); 
         }
     }
 }
