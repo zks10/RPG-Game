@@ -6,7 +6,7 @@ public class Enemy : Entity
 {   
     
     [SerializeField] protected LayerMask whatIsPlayer;
-    private Transform player;
+    private Transform player; 
 
     [Header("Stunned Info")]
     public float stunDuration;
@@ -18,6 +18,7 @@ public class Enemy : Entity
     [Header("Move Info")]
     public float moveSpeed;
     public float idleTime;
+    private float defaultSpeed;
     public float battleTime;
     [Header("Attack Info")]
     public float attackDistance;
@@ -33,7 +34,8 @@ public class Enemy : Entity
     {
         base.Awake();
         stateMachine = new EnemyStateMachine();
-        CloseCounterAttackWindow(); 
+        CloseCounterAttackWindow();
+        defaultSpeed = moveSpeed;
     }
     public override void Start()
     {
@@ -46,7 +48,31 @@ public class Enemy : Entity
         stateMachine.currentState.Update();
     }
 
-    public virtual void OpenCounterAttackWindow() 
+    public virtual void FreezeTime(bool _timeFrozen)
+    {
+        if (_timeFrozen)
+        {
+            moveSpeed = 0;
+            anim.speed = 0;
+        }
+        else
+        {
+            moveSpeed = defaultSpeed;
+            anim.speed = 1;
+        }
+    }
+
+    protected virtual IEnumerator FreezeAllFor(float _seconds)
+    {
+        FreezeTime(true);
+
+        yield return new WaitForSeconds(_seconds);
+
+        FreezeTime(false);
+    }
+
+    # region Counter Attack region
+    public virtual void OpenCounterAttackWindow()
     {
         canBeStunned = true;
         counterImage.SetActive(true);
@@ -58,14 +84,16 @@ public class Enemy : Entity
         counterImage.SetActive(false);
     }
 
-    public virtual bool CanBeStunned() {
-        if (canBeStunned) 
+    public virtual bool CanBeStunned()
+    {
+        if (canBeStunned)
         {
             CloseCounterAttackWindow();
             return true;
         }
         return false;
     }
+    #endregion
 
     public virtual void AnimationFinishTrigger() => stateMachine.currentState.AnimationFinishTrigger();
     public virtual RaycastHit2D IsPlayerDectected() => Physics2D.Raycast(wallCheck.position, Vector2.right * facingDir, viewDistance, whatIsPlayer);

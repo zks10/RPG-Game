@@ -76,7 +76,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   returnSpeed: 25
   bounceSpeed: 20
-  pierceAmount: 0
 --- !u!70 &1939116776607626554
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -111,8 +110,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.21025017, y: 0.0056816544}
-  m_Size: {x: 1.1705271, y: 0.30680442}
+  m_Offset: {x: 0.1864117, y: -0.0022126439}
+  m_Size: {x: 0.886027, y: 0.22786401}
   m_Direction: 1
 --- !u!1 &1917465126521960558
 GameObject:

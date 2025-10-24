@@ -11,10 +11,15 @@ public enum SwordType
 public class Sword_Skill : Skill
 {
     public SwordType swordType = SwordType.Regular;
+    [Header("Regular Info")]
+    [SerializeField] private Vector2 launchForce;
+    [SerializeField] private float swordGravity;
 
     [Header("Bounce Info")]
     [SerializeField] private int bounceAmount;
     [SerializeField] private float bounceGravity;
+    [SerializeField] private float bounceSpeed;
+
 
     [Header("Pierce Info")]
     [SerializeField] private int pierceAmount;
@@ -28,8 +33,8 @@ public class Sword_Skill : Skill
 
     [Header("Skill Info")]
     [SerializeField] private GameObject swordPrefab;
-    [SerializeField] private Vector2 launchForce;
-    [SerializeField] private float swordGravity;
+    [SerializeField] private float freezeTimeDuration;
+    [SerializeField] private float returnSpeed;
 
     private Vector2 finalDir;
 
@@ -62,13 +67,13 @@ public class Sword_Skill : Skill
         Sword_Skill_Controller newSwordScript = newSword.GetComponent<Sword_Skill_Controller>();
 
         if (swordType == SwordType.Bounce)
-            newSwordScript.SetUpBounce(true, bounceAmount);
+            newSwordScript.SetUpBounce(true, bounceAmount, bounceSpeed);
         if (swordType == SwordType.Pierce)
             newSwordScript.SetUpPierce(pierceAmount); 
         if (swordType == SwordType.Spin)
             newSwordScript.SetUpSpin(true, maxTravelDistance, spinDuration, hitCooldown); 
             
-        newSwordScript.SetUpSword(finalDir, swordGravity, player);
+        newSwordScript.SetUpSword(finalDir, swordGravity, player, freezeTimeDuration, returnSpeed);
         player.AssignNewSword(newSword);
         DotsActive(false);
     }
@@ -87,6 +92,14 @@ public class Sword_Skill : Skill
                 dots[i].transform.position = DotsPosition(i * spaceBetweenDots);
             }
         }
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+            swordType = SwordType.Regular;
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+            swordType = SwordType.Bounce;
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+            swordType = SwordType.Pierce;
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+            swordType = SwordType.Spin;
     }
 
     #region Aim Region
