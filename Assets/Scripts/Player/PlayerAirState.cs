@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerAirState : PlayerState
 {
+    private bool isRunning;
     public PlayerAirState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
     {
 
@@ -9,7 +10,13 @@ public class PlayerAirState : PlayerState
 
     public override void Enter()
     {
+        isRunning = false;
         base.Enter();
+        if (player.jumpForce != player.defaultJumpForce)
+        {
+            player.SetJump(player.defaultJumpForce);
+            isRunning = true;
+        }
     }
     public override void Exit()
     {
@@ -28,7 +35,11 @@ public class PlayerAirState : PlayerState
         }
         if (xInput != 0)
         {
-            player.SetVelocity(player.moveSpeed * 0.8f * xInput, rb.linearVelocity.y); 
+            if (isRunning)
+                player.SetVelocity(player.moveSpeed * 0.9f * xInput, rb.linearVelocity.y);
+            else
+                player.SetVelocity(player.moveSpeed * 0.8f * xInput, rb.linearVelocity.y);
+            isRunning = false;  
         }
     }
 }

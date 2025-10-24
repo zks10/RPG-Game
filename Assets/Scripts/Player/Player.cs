@@ -14,9 +14,14 @@ public class Player : Entity
     [HideInInspector] public float counterAttackUsageTimer;
 
     [Header("Move Info")]
-    public float moveSpeed = 10f;
+    public float moveSpeed = 8.5f;
+    public float runSpeed = 13f;
     public float jumpForce;
+    [HideInInspector] public float defaultJumpForce;
     public float swordReturnImpact;
+    private float lastTapTime = 0f;
+    private float doubleTapTimeWindow = 0.3f;
+    private int lastTapDirection = 0;
     
     [Header("Dash Info")]
     public float dashSpeed;
@@ -29,6 +34,7 @@ public class Player : Entity
     public PlayerStateMachine stateMachine { get; private set; }
     public PlayerIdleState idleState { get; private set; }
     public PlayerMoveState moveState { get; private set; }
+    public PlayerRunningState runningState { get; private set; }
     public PlayerJumpState jumpState { get; private set; }
     public PlayerAirState airState { get; private set; }
     public PlayerDashState dashState { get; private set; }
@@ -45,9 +51,11 @@ public class Player : Entity
     {
         base.Awake();
         stateMachine = new PlayerStateMachine();
-
+        defaultJumpForce = jumpForce;
+        
         idleState = new PlayerIdleState(this, stateMachine, "Idle");
         moveState = new PlayerMoveState(this, stateMachine, "Move");
+        runningState = new PlayerRunningState(this, stateMachine, "Move");
         jumpState = new PlayerJumpState(this, stateMachine, "Jump");
         airState = new PlayerAirState(this, stateMachine, "Jump");
         dashState = new PlayerDashState(this, stateMachine, "Dash");
@@ -57,6 +65,7 @@ public class Player : Entity
         counterAttackState = new PlayerCounterAttackState(this, stateMachine, "CounterAttack");
         aimSwordState = new PlayerAimSwordState(this, stateMachine, "AimSword");
         catchSwordState = new PlayerCatchSwordState(this, stateMachine, "CatchSword");
+
     }
 
     public override void Start()
@@ -108,6 +117,38 @@ public class Player : Entity
             stateMachine.ChangeState(dashState);
         }
     }
+
+    public bool CheckDoubleTapKeyDown()
+    {
+        int direction = 0;
+
+        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
+            direction = -1;
+        else if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
+            direction = 1;
+
+        if (direction == 0) return false;
+
+        float now = Time.time;
+
+        if (lastTapDirection == direction && now - lastTapTime <= doubleTapTimeWindow)
+        {
+            lastTapTime = 0f;
+            lastTapDirection = 0;
+            return true;
+        }
+
+        lastTapDirection = direction;
+        lastTapTime = now;
+        return false;
+    }
+
+    public void SetJump(float _jumpForce)
+    {
+        jumpForce = _jumpForce;
+    }
+
+
     
     public void AnimationTrigger() => stateMachine.currentState.AnimationFinishTrigger();
 

@@ -23,6 +23,11 @@ public class PlayerIdleState : PlayerGroundedState
         {
             stateMachine.ChangeState(player.moveState);
         }
+        if (player.CheckDoubleTapKeyDown())
+        {
+            stateMachine.ChangeState(player.runningState);
+            return;
+        }
     }
 
 }
