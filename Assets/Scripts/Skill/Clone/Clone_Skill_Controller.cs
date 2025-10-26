@@ -25,11 +25,11 @@ public class Clone_Skill_Controller : MonoBehaviour
                 Destroy(gameObject);
             }
     }
-    public void SetUpClone(Transform newTransform, float cloneDuration, bool canAttack)  
+    public void SetUpClone(Transform newTransform, float cloneDuration, bool canAttack, Vector3 _offset)  
     {
         if (canAttack) 
             anim.SetInteger("AttackNumber", Random.Range(1, 3));
-        transform.position = newTransform.position;
+        transform.position = newTransform.position + _offset;
         cloneTimer = cloneDuration;
 
         FaceClosetTarget();
