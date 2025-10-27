@@ -25,6 +25,7 @@ public class Enemy : Entity
     public float attackCooldown;
     public float viewDistance;
     [HideInInspector] public float lastTimeAttacked;
+    //private bool timeFrozen = false;
 
 
 

@@ -42,7 +42,7 @@ public class Blackhole_Skill_Controller : MonoBehaviour
         if (blackholeTimer < 0)
         {
             blackholeTimer = Mathf.Infinity;
-
+            
             if (targets.Count > 0)
                 ReleaseCloneAttack();
             else
@@ -94,7 +94,7 @@ public class Blackhole_Skill_Controller : MonoBehaviour
             cloneAttackTimer = cloneAttackCooldown;
             int randomIndex = Random.Range(0, targets.Count);
 
-            float xOffset = Random.Range(0, 100) > 50 ? 2 : -2;
+            float xOffset = Random.Range(0, 50) > 50 ? 2 : -2;
 
             SkillManager.instance.clone.CreateClone(targets[randomIndex], new Vector3(xOffset, 0));
             amountOfAttacks--;

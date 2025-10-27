@@ -74,8 +74,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3349447ff28f43b5976e2db40f974f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  returnSpeed: 25
-  bounceSpeed: 20
 --- !u!70 &1939116776607626554
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -189,7 +187,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1875928115
   m_SortingLayer: 3
-  m_SortingOrder: -1
+  m_SortingOrder: 1
   m_Sprite: {fileID: -2004053239, guid: f6b296ee51c42564abe9c05f1c502ecd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

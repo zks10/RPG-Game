@@ -11845,6 +11845,7 @@ GameObject:
   - component: {fileID: 1394310101}
   - component: {fileID: 1394310102}
   - component: {fileID: 1394310103}
+  - component: {fileID: 1394310104}
   m_Layer: 0
   m_Name: SkillsManager
   m_TagString: Untagged
@@ -11960,6 +11961,25 @@ MonoBehaviour:
   amountOfAttacks: 5
   cloneAttackCooldown: 0.35
   blackholeDuration: 3
+--- !u!114 &1394310104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394310097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 160aea60a2dfc4fa09ff06ca40f3a3ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldown: 0
+  crystalPrefab: {fileID: 8796941438468008156, guid: 22f068a4460c14c5b980e58708fb166a, type: 3}
+  crystalDuration: 2
+  canExplode: 1
+  growSpeed: 4
+  canMoveToEnemy: 1
+  moveSpeed: 10
 --- !u!1 &1474383480
 GameObject:
   m_ObjectHideFlags: 0
