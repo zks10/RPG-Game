@@ -28,7 +28,7 @@ public class PlayerBlackholeState : PlayerState
     {
         base.Update();
         if (stateTimer > 0)
-            rb.linearVelocity = new Vector2(0, 10);
+            rb.linearVelocity = new Vector2(0, 11.8f);
 
         if (stateTimer < 0)
         {

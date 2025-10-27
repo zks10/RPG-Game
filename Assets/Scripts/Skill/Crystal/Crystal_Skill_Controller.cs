@@ -11,6 +11,7 @@ public class Crystal_Skill_Controller : MonoBehaviour
     private bool canGrow;
     private float growSpeed;
     private Transform closestTarget;
+    [SerializeField] private LayerMask whatIsEnemy;
     public void SetupCrystal(float _crystalDuration, bool _canExplode, bool _canMove, float _moveSpeed, float _growSpeed, Transform _closestTarget)
     {
         crystalExistTimer = _crystalDuration;
@@ -19,6 +20,18 @@ public class Crystal_Skill_Controller : MonoBehaviour
         moveSpeed = _moveSpeed;
         growSpeed = _growSpeed;
         closestTarget = _closestTarget;
+    }
+
+    public void ChooseRandomEnemy()
+    {
+        float radius = SkillManager.instance.blackhole.GetBlackholeRadius();
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, radius, whatIsEnemy);
+
+        if (colliders.Length > 0)
+        {
+            int random = Random.Range(0, colliders.Length);
+            closestTarget = colliders[random].transform;
+        }
     }
     private void Update()
     {

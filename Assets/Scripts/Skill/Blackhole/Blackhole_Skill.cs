@@ -38,7 +38,7 @@ public class Blackhole_Skill : Skill
     {
         base.Update();
     }
-    
+
     public bool SkillCompleted()
     {
         if (!currentBlackhole)
@@ -51,5 +51,10 @@ public class Blackhole_Skill : Skill
         }
         return false;
 
+    }
+
+    public float GetBlackholeRadius()
+    {
+        return maxSize / 2;
     }
 }
