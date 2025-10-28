@@ -21,12 +21,15 @@ public class Clone_Skill_Controller : MonoBehaviour
     private void Update() 
     {
         cloneTimer -= Time.deltaTime;
-        if (cloneTimer < 0) 
+        if (cloneTimer < 0)
+        {
             sr.color = new Color(1, 1, 1, sr.color.a - (Time.deltaTime * colorLosingSpeed));
 
-            if (sr.color.a <= 0) {
+            if (sr.color.a <= 0)
+            {
                 Destroy(gameObject);
             }
+        }
     }
     public void SetUpClone(Transform newTransform, float cloneDuration, bool canAttack, Vector3 _offset, Transform _closestEnemy, bool _canDuplicateClone, float _chanceToDuplicate)  
     {

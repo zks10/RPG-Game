@@ -11,7 +11,9 @@ public class Entity : MonoBehaviour
     public Animator anim { get; private set; }
     public Rigidbody2D rb { get; private set; }
     public EntityFx fx { get; private set; }
-    public SpriteRenderer sr { get; private set;  }
+    public SpriteRenderer sr { get; private set; }
+    public CharacterStats stats { get; private set; }
+    public CapsuleCollider2D cd { get; private set; }
 
     #endregion
     
@@ -38,6 +40,8 @@ public class Entity : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
         fx = GetComponent<EntityFx>();
+        stats = GetComponent<CharacterStats>();
+        cd = GetComponent<CapsuleCollider2D>();
     }
 
     public virtual void Update()
@@ -100,12 +104,16 @@ public class Entity : MonoBehaviour
         Gizmos.DrawWireSphere(attackCheck.position, attackCheckRadius);
     }
     #endregion
-    
+
     public void MakeTransparent(bool _transparent)
     {
         if (_transparent)
             sr.color = Color.clear;
         else
             sr.color = Color.white;
+    }
+    public virtual void Die()
+    {
+        
     }
 }
