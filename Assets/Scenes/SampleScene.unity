@@ -9602,13 +9602,49 @@ MonoBehaviour:
   strength:
     baseValue: 0
     modifiers: 
+  agility:
+    baseValue: 0
+    modifiers: 
+  intelligence:
+    baseValue: 0
+    modifiers: 
+  vitality:
+    baseValue: 0
+    modifiers: 
   maxHP:
     baseValue: 100
+    modifiers: 
+  currentHP: 0
+  armor:
+    baseValue: 0
+    modifiers: 
+  evasion:
+    baseValue: 0
+    modifiers: 
+  magicResistence:
+    baseValue: 0
+    modifiers: 
+  critRate:
+    baseValue: 0
+    modifiers: 
+  critDamage:
+    baseValue: 0
     modifiers: 
   damage:
     baseValue: 5
     modifiers: 
-  currentHP: 0
+  fireDamage:
+    baseValue: 20
+    modifiers: 
+  iceDamage:
+    baseValue: 0
+    modifiers: 
+  lightingDamage:
+    baseValue: 0
+    modifiers: 
+  isIgnited: 0
+  isFreezed: 0
+  isShocked: 0
 --- !u!1 &1043633389
 GameObject:
   m_ObjectHideFlags: 0
@@ -9740,15 +9776,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   strength:
+    baseValue: 2
+    modifiers: 
+  agility:
+    baseValue: 0
+    modifiers: 
+  intelligence:
+    baseValue: 0
+    modifiers: 
+  vitality:
     baseValue: 0
     modifiers: 
   maxHP:
-    baseValue: 5
-    modifiers: 
-  damage:
-    baseValue: 10
+    baseValue: 40
     modifiers: 
   currentHP: 0
+  armor:
+    baseValue: 0
+    modifiers: 
+  evasion:
+    baseValue: 0
+    modifiers: 
+  magicResistence:
+    baseValue: 0
+    modifiers: 
+  critRate:
+    baseValue: 99
+    modifiers: 
+  critDamage:
+    baseValue: 0
+    modifiers: 
+  damage:
+    baseValue: 13
+    modifiers: 
+  fireDamage:
+    baseValue: 5
+    modifiers: 
+  iceDamage:
+    baseValue: 5
+    modifiers: 
+  lightingDamage:
+    baseValue: 5
+    modifiers: 
+  isIgnited: 0
+  isFreezed: 0
+  isShocked: 0
 --- !u!70 &1043633396
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

@@ -16,13 +16,16 @@ public class Stat
         }
         return finalValue;
     }
-
+    public void SetDefaultValue(int val)
+    {
+        baseValue = val;
+    }
     public void AddModifer(int _modifier)
     {
         modifiers.Add(_modifier);
     }
     public void RemoveModifer(int _modifier)
     {
-        modifiers.RemoveAt(_modifier);
+        modifiers.RemoveAt(_modifier) ;
     }
 }

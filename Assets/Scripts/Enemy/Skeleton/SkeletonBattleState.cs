@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class SkeletonBattleState : EnemyState
 {
+    
     private EnemySkeleton enemy;
     private Transform player;
     private int moveDir;
@@ -29,7 +30,7 @@ public class SkeletonBattleState : EnemyState
     {
         base.Update();
 
-        enemy.SetVelocity(enemy.moveSpeed * moveDir * 2f, rb.linearVelocity.y);
+        enemy.SetVelocity(enemy.moveSpeed * moveDir * 1.35f, rb.linearVelocity.y);
 
         var detection = enemy.IsPlayerDectected();
 
