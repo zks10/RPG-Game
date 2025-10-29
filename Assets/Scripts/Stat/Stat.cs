@@ -20,12 +20,12 @@ public class Stat
     {
         baseValue = val;
     }
-    public void AddModifer(int _modifier)
+    public void AddModifier(int _modifier)
     {
         modifiers.Add(_modifier);
     }
-    public void RemoveModifer(int _modifier)
+    public void RemoveModifier(int _modifier)
     {
-        modifiers.RemoveAt(_modifier) ;
+        modifiers.Remove(_modifier) ;
     }
 }
