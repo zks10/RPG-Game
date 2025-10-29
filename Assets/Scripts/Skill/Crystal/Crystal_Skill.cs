@@ -62,7 +62,7 @@ public class Crystal_Skill : Skill
         currentCrystal = Instantiate(crystalPrefab, player.transform.position, Quaternion.identity);
         Crystal_Skill_Controller currentCrystalScript = currentCrystal.GetComponent<Crystal_Skill_Controller>();
 
-        currentCrystalScript.SetupCrystal(crystalDuration, canExplode, canMoveToEnemy, moveSpeed, growSpeed, FindClosestEnemy(currentCrystal.transform));
+        currentCrystalScript.SetupCrystal(crystalDuration, canExplode, canMoveToEnemy, moveSpeed, growSpeed, FindClosestEnemy(currentCrystal.transform), player);
         
     }
 
@@ -83,7 +83,7 @@ public class Crystal_Skill : Skill
                 
                 crystalLeft.Remove(crystalToSpawn);
 
-                newCrystal.GetComponent<Crystal_Skill_Controller>().SetupCrystal(crystalDuration, canExplode, canMoveToEnemy, moveSpeed, growSpeed, FindClosestEnemy(newCrystal.transform));
+                newCrystal.GetComponent<Crystal_Skill_Controller>().SetupCrystal(crystalDuration, canExplode, canMoveToEnemy, moveSpeed, growSpeed, FindClosestEnemy(newCrystal.transform), player);
             
                 if (crystalLeft.Count <= 0)
                 {

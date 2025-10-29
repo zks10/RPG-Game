@@ -15,16 +15,19 @@ public class Player : Entity
 
     [Header("Move Info")]
     public float moveSpeed = 8.5f;
-    public float runSpeed = 13f;
+    public float runSpeed = 13;
     public float jumpForce;
+    private float defaultMoveSpeed;
+    private float defaultRunSpeed;
     [HideInInspector] public float defaultJumpForce;
     public float swordReturnImpact;
     private float lastTapTime = 0f;
     private float doubleTapTimeWindow = 0.3f;
     private int lastTapDirection = 0;
-    
+
     [Header("Dash Info")]
     public float dashSpeed;
+    private float defaultDashSpeed;
     public float dashDuration;
     public float dashDir { get; private set; }
     public SkillManager skill { get; private set; }
@@ -54,7 +57,10 @@ public class Player : Entity
         base.Awake();
         stateMachine = new PlayerStateMachine();
         defaultJumpForce = jumpForce;
-        
+        defaultMoveSpeed = moveSpeed;
+        defaultDashSpeed = dashSpeed;
+        defaultRunSpeed = runSpeed;
+
         idleState = new PlayerIdleState(this, stateMachine, "Idle");
         moveState = new PlayerMoveState(this, stateMachine, "Move");
         runningState = new PlayerRunningState(this, stateMachine, "Move");
@@ -156,10 +162,10 @@ public class Player : Entity
     {
         jumpForce = _jumpForce;
     }
-    
+
     public void AnimationTrigger() => stateMachine.currentState.AnimationFinishTrigger();
 
-    public IEnumerator HitKnockBack() 
+    public IEnumerator HitKnockBack()
     {
         isKnocked = true;
 
@@ -170,16 +176,35 @@ public class Player : Entity
         isKnocked = false;
     }
 
-    public override void Damage()
+    public override void DamageImpact()
     {
-        base.Damage();
+        base.DamageImpact();
         StartCoroutine("HitKnockBack");
     }
-    
+
     public override void Die()
     {
         base.Die();
         stateMachine.ChangeState(deathState);
     }
 
+    public override void SlowEntityBy(float _slowPercentage, float _slowDuration)
+    {
+        moveSpeed = moveSpeed * (1 - _slowPercentage);
+        jumpForce = jumpForce * (1 - _slowPercentage);
+        dashSpeed = dashSpeed * (1 - _slowPercentage);
+        runSpeed = runSpeed * (1 - _slowPercentage);
+        anim.speed = anim.speed * (1 - _slowPercentage);
+
+        Invoke("ReturnDefaultSpeed", _slowDuration);
+    }
+
+     protected override void ReturnDefaultSpeed()
+    {
+        base.ReturnDefaultSpeed();
+        moveSpeed = defaultMoveSpeed;
+        jumpForce = defaultJumpForce;
+        dashSpeed = defaultDashSpeed;
+        runSpeed = defaultRunSpeed;
+    }
 }

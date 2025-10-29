@@ -30,6 +30,10 @@ public class Entity : MonoBehaviour
     [SerializeField] protected Transform wallCheck;
     [SerializeField] protected float wallCheckDistance;
     [SerializeField] protected LayerMask whatIsGround;
+
+    public System.Action onFlipped;
+
+
     public virtual void Awake()
     {
         
@@ -49,10 +53,19 @@ public class Entity : MonoBehaviour
 
     }
 
-    public virtual void Damage()
+    public virtual void SlowEntityBy(float _slowPercentage, float _slowDuration)
     {
-        fx.StartCoroutine("FlashFX");
-        Debug.Log(gameObject.name + " was damaged!");
+
+    }
+    
+    protected virtual void ReturnDefaultSpeed()
+    {
+        anim.speed = 1;
+    }
+
+    public virtual void DamageImpact()
+    {
+        
     }
 
     #region Velocity
@@ -76,6 +89,9 @@ public class Entity : MonoBehaviour
         facingDir = facingDir * -1;
         facingRight = !facingRight;
         transform.Rotate(0, 180, 0);
+        
+
+        onFlipped?.Invoke();
     }
 
     protected virtual void FlipController(float _x)
@@ -105,13 +121,6 @@ public class Entity : MonoBehaviour
     }
     #endregion
 
-    public void MakeTransparent(bool _transparent)
-    {
-        if (_transparent)
-            sr.color = Color.clear;
-        else
-            sr.color = Color.white;
-    }
     public virtual void Die()
     {
         

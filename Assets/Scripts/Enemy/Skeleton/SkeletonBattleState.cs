@@ -30,7 +30,7 @@ public class SkeletonBattleState : EnemyState
     {
         base.Update();
 
-        enemy.SetVelocity(enemy.moveSpeed * moveDir * 1.35f, rb.linearVelocity.y);
+        enemy.SetVelocity(enemy.battleMoveSpeed * moveDir, rb.linearVelocity.y);
 
         var detection = enemy.IsPlayerDectected();
 

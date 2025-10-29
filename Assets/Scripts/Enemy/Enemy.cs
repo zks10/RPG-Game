@@ -13,12 +13,13 @@ public class Enemy : Entity
     public Vector2 stunDirection;
     protected bool canBeStunned;
     [SerializeField] protected GameObject counterImage;
-     
-    
+
     [Header("Move Info")]
     public float moveSpeed;
+    public float battleMoveSpeed;
     public float idleTime;
-    private float defaultSpeed;
+    private float defaultMoveSpeed;
+    private float defaultBattleMoveSpeed;
     public float battleTime;
     [Header("Attack Info")]
     public float attackDistance;
@@ -34,7 +35,8 @@ public class Enemy : Entity
         base.Awake();
         stateMachine = new EnemyStateMachine();
         CloseCounterAttackWindow();
-        defaultSpeed = moveSpeed;
+        defaultMoveSpeed = moveSpeed;
+        defaultBattleMoveSpeed = battleMoveSpeed;
     }
     public override void Start()
     {
@@ -57,11 +59,13 @@ public class Enemy : Entity
         if (_timeFrozen)
         {
             moveSpeed = 0;
+            battleMoveSpeed = 0;
             anim.speed = 0;
         }
         else
         {
-            moveSpeed = defaultSpeed;
+            moveSpeed = defaultMoveSpeed;
+            battleMoveSpeed = defaultBattleMoveSpeed;
             anim.speed = 1;
         }
     }
@@ -110,20 +114,20 @@ public class Enemy : Entity
         Gizmos.DrawLine(transform.position, new Vector3(transform.position.x + attackDistance * facingDir, transform.position.y));
     }
 
-    public override void Damage() {
-        base.Damage();
+    public override void DamageImpact() {
+        base.DamageImpact();
         StartCoroutine("HitKnockBack");
 
     }
 
-    public IEnumerator HitKnockBack() 
+    public IEnumerator HitKnockBack()
     {
         isKnocked = true;
         player = PlayerManager.instance.player.transform;
         float val = (player.position.x - this.transform.position.x);
         float dir = facingDir;
-        
-        if (val > 0) 
+
+        if (val > 0)
             dir = -1;
         else
             dir = 1;
@@ -133,5 +137,21 @@ public class Enemy : Entity
         yield return new WaitForSeconds(knockbackDuration);
 
         isKnocked = false;
+    }
+    
+    public override void SlowEntityBy(float _slowPercentage, float _slowDuration)
+    {
+        moveSpeed = moveSpeed * (1 - _slowPercentage);
+        battleMoveSpeed = battleMoveSpeed * (1 - _slowPercentage);
+        anim.speed = anim.speed * (1 - _slowPercentage);
+
+        Invoke("ReturnDefaultSpeed", _slowDuration);
+    }
+
+    protected override void ReturnDefaultSpeed()
+    {
+        base.ReturnDefaultSpeed();
+        moveSpeed = defaultMoveSpeed;
+        battleMoveSpeed = defaultBattleMoveSpeed;
     }
 }

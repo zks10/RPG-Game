@@ -87,7 +87,7 @@ public class Blackhole_Skill_Controller : MonoBehaviour
         if (playerCanDisappear)
         {
             playerCanDisappear = false;
-            PlayerManager.instance.player.MakeTransparent(true);
+            PlayerManager.instance.player.fx.MakeTransparent(true);
         }
     }
     private void CloneAttackLogic()
@@ -100,7 +100,7 @@ public class Blackhole_Skill_Controller : MonoBehaviour
             cloneAttackTimer = cloneAttackCooldown;
             int randomIndex = Random.Range(0, targets.Count);
 
-            float xOffset = Random.Range(0, 50) > 50 ? 2 : -2;
+            float xOffset = Random.Range(0, 100) > 50 ? 2 : -2;
 
             if (SkillManager.instance.clone.crystalInsteadOfClone)
             {

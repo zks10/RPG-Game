@@ -10,7 +10,11 @@ public class PlayerIdleState : PlayerGroundedState
     public override void Enter()
     {
         base.Enter();
-        player.SetVelocity(0,0); 
+        player.SetVelocity(0, 0); 
+        if (player.jumpForce != player.defaultJumpForce)
+        {
+            player.SetJump(player.defaultJumpForce);
+        }
     }
     public override void Exit() 
     {
