@@ -145,6 +145,13 @@ public class Enemy : Entity
         battleMoveSpeed = battleMoveSpeed * (1 - _slowPercentage);
         anim.speed = anim.speed * (1 - _slowPercentage);
 
+        if (Random.Range(0, 100) < 20)
+        {
+            moveSpeed = 0;
+            battleMoveSpeed = 0;
+            anim.speed = 0;
+        }
+
         Invoke("ReturnDefaultSpeed", _slowDuration);
     }
 
