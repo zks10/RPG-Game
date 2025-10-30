@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+
 public class Inventory : MonoBehaviour
 {
     public static Inventory instance;
@@ -83,12 +84,10 @@ public class Inventory : MonoBehaviour
         }
        
     }
-    
-
 
     private void UpdateSlotUI()
     {
-        
+
         for (int i = 0; i < equipmentSlot.Length; i++)
         {
             foreach (KeyValuePair<ItemData_Equipment, InventoryItem> item in equipmentDictionary)
@@ -98,7 +97,7 @@ public class Inventory : MonoBehaviour
 
             }
         }
-        
+
         for (int i = 0; i < inventoryItemSlot.Length; i++)
         {
             inventoryItemSlot[i].CleanUp();
@@ -118,6 +117,7 @@ public class Inventory : MonoBehaviour
             stashItemSlot[i].UpdateSlot(stashItem[i]);
         }
     }
+    
     public void AddItem(ItemData _item)
     {
         if (_item.itemType == ItemType.Equipment)
@@ -145,7 +145,7 @@ public class Inventory : MonoBehaviour
             inventoryDictionary.Add(_item, newItem);
         }
     }
-    
+
     private void AddToStash(ItemData _item)
     {
         if (stashDictionary.TryGetValue(_item, out InventoryItem value))
@@ -155,10 +155,11 @@ public class Inventory : MonoBehaviour
             InventoryItem newItem = new InventoryItem(_item);
             stashItem.Add(newItem);
             stashDictionary.Add(_item, newItem);
-            
+
         }
-        
+
     }
+    
     public void RemoveItem(ItemData _item)
     {
         if (inventoryDictionary.TryGetValue(_item, out InventoryItem value))
@@ -189,14 +190,39 @@ public class Inventory : MonoBehaviour
         
     }
 
-    private void Update()
+    public bool CanCraft(ItemData_Equipment _itemToCraft, List<InventoryItem> _requiredMaterials)
     {
-        if (Input.GetKeyDown(KeyCode.L) && inventoryItem.Count > 0)
+        List<InventoryItem> materialsToRemove = new List<InventoryItem>();
+        for (int i = 0; i < _requiredMaterials.Count; i++)
         {
-            ItemData newItem = inventoryItem[inventoryItem.Count - 1].data;
-            RemoveItem(newItem);
+            if (stashDictionary.TryGetValue(_requiredMaterials[i].data, out InventoryItem stashValue))  
+            {
+                if (stashValue.stackSize < _requiredMaterials[i].stackSize)
+                {
+                    Debug.Log("Not enough materials (1)");
+                    return false;
+                }
+                else
+                {
+                    materialsToRemove.Add(stashValue);
+                }
+            }
+            else
+            {
+                Debug.Log("Not enough materials (2)");
+                return false;
+            }
         }
-    }
 
+        for (int i = 0; i < materialsToRemove.Count; i++)
+        {
+            RemoveItem(materialsToRemove[i].data);
+        }
+
+        AddItem(_itemToCraft);
+        Debug.Log("Here is your item " + _itemToCraft.name);
+
+        return true;
+    }
 
 }

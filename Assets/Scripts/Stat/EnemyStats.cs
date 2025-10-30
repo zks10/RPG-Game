@@ -8,11 +8,13 @@ public class EnemyStats : CharacterStats
     [SerializeField] private float percentageModifier = .4f;
 
     private Enemy enemy;
+    private ItemDrop myDropSystem;
     protected override void Start()
     {
         ApplyLevelModify();
         base.Start();
         enemy = GetComponent<Enemy>();
+        myDropSystem = GetComponent<ItemDrop>();
     }
 
     private void Modify(Stat _stat)
@@ -62,7 +64,8 @@ public class EnemyStats : CharacterStats
     protected override void Die()
     {
         base.Die();
-        enemy.Die(); 
+        enemy.Die();
+        myDropSystem.GenerateDrops();
     }
 
 }
