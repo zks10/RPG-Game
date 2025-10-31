@@ -247,5 +247,9 @@ public class Sword_Skill_Controller : MonoBehaviour
     {
         player.stats.DoPhysicalDamage(enemy.GetComponent<CharacterStats>());
         enemy.StartCoroutine("FreezeAllFor", freezeTimeDuration);
+
+        ItemData_Equipment equipAmulet = Inventory.instance.GetEquipementByType(EquipmentType.Amulet);
+        if (equipAmulet != null)
+            equipAmulet.ItemEffect(enemy.transform);
     }
 }

@@ -3,9 +3,10 @@ using UnityEngine;
 public enum ItemType
 {
     Material,
-    Equipment
+    Equipment,
+    Edibles
 }
-[CreateAssetMenu(fileName = "New Item Data", menuName = "Data/Item")]
+[CreateAssetMenu(fileName = "New Item Data", menuName = "Items Data/Materials")]
 public class ItemData : ScriptableObject
 {
     public ItemType itemType;

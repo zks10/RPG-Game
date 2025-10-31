@@ -13,6 +13,7 @@ public enum EquipmentType
 public class ItemData_Equipment : ItemData
 {
     public EquipmentType slotType;
+    public ItemEffect[] itemEffects;
 
     [Header("Major stats")]
     public int strength;
@@ -39,9 +40,16 @@ public class ItemData_Equipment : ItemData
     [Header("Craft Requirements")]
     public List<InventoryItem> craftingMaterials;
 
+    public void ItemEffect(Transform _enemyPosition)
+    {
+        foreach (var item in itemEffects)
+        {
+            item.ExecuteEffect(_enemyPosition);
+        }
+    }
     public void AddModifiers()
     {
-        PlayerStats playerStats = PlayerManager.instance.player.GetComponent<PlayerStats>(); 
+        PlayerStats playerStats = PlayerManager.instance.player.GetComponent<PlayerStats>();
 
         // Major stats
         playerStats.strength.AddModifier(strength);
@@ -92,4 +100,6 @@ public class ItemData_Equipment : ItemData
         playerStats.iceDamage.RemoveModifier(iceDamage);
         playerStats.lightingDamage.RemoveModifier(lightingDamage);
     }
+
+
 }

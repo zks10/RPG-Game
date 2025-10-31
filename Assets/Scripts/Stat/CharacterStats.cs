@@ -84,6 +84,13 @@ public class CharacterStats : MonoBehaviour
         currentHP -= _damage;
         onHealthChanged?.Invoke();
     }
+    public virtual void IncreaseHPBy(int _heal)
+    {
+        currentHP += _heal;
+        if (currentHP > GetMaxHP())
+            currentHP = GetMaxHP();
+        onHealthChanged?.Invoke();
+    }
     public virtual void TakeDamage(int _damage)
     {
         DecreaseHPBy(_damage);
@@ -223,7 +230,7 @@ public class CharacterStats : MonoBehaviour
         if (closestEnemy != null)
         {
             GameObject newShockStrike = Instantiate(shockStrikePrefab, transform.position, Quaternion.identity);
-            newShockStrike.GetComponent<ThunderStrikeController>().Setup(shockStrikeDamage, closestEnemy.GetComponent<CharacterStats>());
+            newShockStrike.GetComponent<ShockStrikeController>().Setup(shockStrikeDamage, closestEnemy.GetComponent<CharacterStats>());
         }
     }
     public void ApplyShock(bool _shock)
