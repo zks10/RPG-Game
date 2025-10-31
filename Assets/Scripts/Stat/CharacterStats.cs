@@ -40,7 +40,7 @@ public class CharacterStats : MonoBehaviour
     private int igniteDamage;
     private int shockStrikeDamage;
     [SerializeField] private GameObject shockStrikePrefab;
-    protected bool isDead;
+    public bool isDead { get; private set; }
 
     protected virtual void Start()
     {
