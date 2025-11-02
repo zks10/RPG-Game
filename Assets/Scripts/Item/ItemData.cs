@@ -4,7 +4,7 @@ public enum ItemType
 {
     Material,
     Equipment,
-    Edibles
+    Edible
 }
 [CreateAssetMenu(fileName = "New Item Data", menuName = "Items Data/Materials")]
 public class ItemData : ScriptableObject

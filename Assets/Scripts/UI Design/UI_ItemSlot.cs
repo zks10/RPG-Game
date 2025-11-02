@@ -40,14 +40,18 @@ public class UI_ItemSlot : MonoBehaviour, IPointerDownHandler
     }
     public virtual void OnPointerDown(PointerEventData eventData)
     {
+        
         if (Input.GetKey(KeyCode.LeftControl))
         {
             Inventory.instance.RemoveItem(item.data);
         }
         if (item == null || item.data == null)
             return;
-            
+
         if (item.data.itemType == ItemType.Equipment)
             Inventory.instance.EquipItem(item.data);
+
+        if (item.data.itemType == ItemType.Edible)
+            Debug.Log("HIHI");
     }
 }

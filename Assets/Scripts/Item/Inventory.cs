@@ -14,14 +14,18 @@ public class Inventory : MonoBehaviour
 
     public List<InventoryItem> equipmentItem;
     public Dictionary<ItemData_Equipment, InventoryItem> equipmentDictionary;
+    public List<InventoryItem> edibleItem;
+    public Dictionary<ItemData_Edible, InventoryItem> edibleDictionary;
 
     [Header("Inventory UI")]
     [SerializeField] private Transform inventorySlotParent;
     [SerializeField] private Transform stashSlotParent;
     [SerializeField] private Transform equipmentSlotParent;
+    [SerializeField] private Transform edibleSlotParent;
     private UI_ItemSlot[] inventoryItemSlot;
     private UI_ItemSlot[] stashItemSlot;
     private UI_ItemSlotEquipment[] equipmentSlot;
+    private UI_ItemSlot[] edibleSlot;
     private void Awake()
     {
         if (instance == null)
@@ -41,9 +45,13 @@ public class Inventory : MonoBehaviour
         equipmentItem = new List<InventoryItem>();
         equipmentDictionary = new Dictionary<ItemData_Equipment, InventoryItem>();
 
+        edibleItem = new List<InventoryItem>();
+        edibleDictionary = new Dictionary<ItemData_Edible, InventoryItem>();
+
         inventoryItemSlot = inventorySlotParent.GetComponentsInChildren<UI_ItemSlot>();
         stashItemSlot = stashSlotParent.GetComponentsInChildren<UI_ItemSlot>();
         equipmentSlot = equipmentSlotParent.GetComponentsInChildren<UI_ItemSlotEquipment>();
+        edibleSlot = edibleSlotParent.GetComponentsInChildren<UI_ItemSlot>();
 
         AddStartingItems();
     }
@@ -115,6 +123,10 @@ public class Inventory : MonoBehaviour
         {
             stashItemSlot[i].CleanUp();
         }
+        for (int i = 0; i < edibleSlot.Length; i++)
+        {
+            edibleSlot[i].CleanUp();
+        }
         // for (int i = 0; i < equipmentSlot.Length; i++)
         // {
         //     equipmentSlot[i].CleanUp();
@@ -128,6 +140,10 @@ public class Inventory : MonoBehaviour
         {
             stashItemSlot[i].UpdateSlot(stashItem[i]);
         }
+        for (int i = 0; i < edibleItem.Count; i++)
+        {
+            edibleSlot[i].UpdateSlot(edibleItem[i]);
+        }
         // for (int i = 0; i < equipmentItem.Count; i++)
         // {
         //     equipmentSlot[i].UpdateSlot(equipmentItem[i]);
@@ -137,29 +153,16 @@ public class Inventory : MonoBehaviour
     public void AddItem(ItemData _item)
     {
         if (_item.itemType == ItemType.Equipment)
-        {
             AddToInventory(_item);
-        } 
         else if (_item.itemType == ItemType.Material)
-        {
             AddToStash(_item);
-        }
-
+        else if (_item.itemType == ItemType.Edible)
+            AddToEdible(_item);
         UpdateSlotUI();
     }
 
     private void AddToInventory(ItemData _item)
     {
-        // if (inventoryDictionary.TryGetValue(_item, out InventoryItem value))
-        // {
-        //     value.AddStack();
-        // }
-        // else
-        // {
-        //     InventoryItem newItem = new InventoryItem(_item);
-        //     inventoryItem.Add(newItem);
-        //     inventoryDictionary.Add(_item, newItem);
-        // }
         InventoryItem newItem = new InventoryItem(_item);
         inventoryItem.Add(newItem);
     }
@@ -173,25 +176,30 @@ public class Inventory : MonoBehaviour
             InventoryItem newItem = new InventoryItem(_item);
             stashItem.Add(newItem);
             stashDictionary.Add(_item, newItem);
-
         }
-
     }
+
+    private void AddToEdible(ItemData _item)
+    {
+        if (!(_item is ItemData_Edible edibleData))
+            return; 
+
+        if (edibleDictionary.TryGetValue(edibleData, out InventoryItem value))
+        {
+            value.AddStack();
+        }
+        else
+        {
+            InventoryItem newItem = new InventoryItem(edibleData);
+            edibleItem.Add(newItem);
+            edibleDictionary.Add(edibleData, newItem);
+        }
+    }
+
     
     public void RemoveItem(ItemData _item)
     {
-        // if (inventoryDictionary.TryGetValue(_item, out InventoryItem value))
-        // {
-        //     if (value.stackSize <= 1)
-        //     {
-        //         inventoryItem.Remove(value);
-        //         inventoryDictionary.Remove(_item);
-        //     }
-        //     else
-        //     {
-        //         value.RemoveStack();
-        //     }
-        // }
+        // --- INVENTORY ---
         for (int i = 0; i < inventoryItem.Count; i++)
         {
             if (inventoryItem[i].data == _item)
@@ -201,21 +209,42 @@ public class Inventory : MonoBehaviour
                 return;
             }
         }
-        if (stashDictionary.TryGetValue(_item, out InventoryItem sValue))
+
+        // --- STASH ---
+        if (stashDictionary.TryGetValue(_item, out InventoryItem stashValue))
         {
-            if (sValue.stackSize <= 1)
+            if (stashValue.stackSize <= 1)
             {
-                stashItem.Remove(sValue);
+                stashItem.Remove(stashValue);
                 stashDictionary.Remove(_item);
             }
             else
             {
-                sValue.RemoveStack();
+                stashValue.RemoveStack();
             }
         }
+
+        // --- EDIBLE (this is the important fix) ---
+        if (_item is ItemData_Edible edibleData)
+        {
+            if (edibleDictionary.TryGetValue(edibleData, out InventoryItem edibleValue))
+            {
+                if (edibleValue.stackSize <= 1)
+                {
+                    edibleItem.Remove(edibleValue);
+                    edibleDictionary.Remove(edibleData);
+                }
+                else
+                {
+                    edibleValue.RemoveStack();
+                }
+            }
+        }
+
         UpdateSlotUI();
-        
     }
+
+
 
     public bool CanCraft(ItemData_Equipment _itemToCraft, List<InventoryItem> _requiredMaterials)
     {
@@ -254,6 +283,7 @@ public class Inventory : MonoBehaviour
 
     public List<InventoryItem> GetEquipmentList() => equipmentItem;
     public List<InventoryItem> GetStashList() => stashItem;
+    public List<InventoryItem> GetEdibleList() => edibleItem;
     public ItemData_Equipment GetEquipementByType(EquipmentType _type)
     {
         ItemData_Equipment equipedItem = null;

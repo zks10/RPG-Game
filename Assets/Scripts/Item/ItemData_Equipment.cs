@@ -9,7 +9,7 @@ public enum EquipmentType
     Flask
 }
 
-[CreateAssetMenu(fileName = "New Item Data", menuName = "Data/Equipment")]
+[CreateAssetMenu(fileName = "New Item Data", menuName = "Items Data/Equipment")]
 public class ItemData_Equipment : ItemData
 {
     public EquipmentType slotType;

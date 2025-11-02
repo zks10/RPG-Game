@@ -1,16 +1,16 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public enum EdiblesType
+public enum EdibleType
 {
     Flask, 
     Fruit
 }
 
 [CreateAssetMenu(fileName = "New Item Data", menuName = "Items Data/Edibles")]
-public class ItemData_Edibles : ItemData
+public class ItemData_Edible : ItemData
 {
-    public EdiblesType slotType;
+    public EdibleType slotType;
     public ItemEffect[] itemEffects;
 
     [Header("Major stats")]
