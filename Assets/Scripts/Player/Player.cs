@@ -98,6 +98,11 @@ public class Player : Entity
         {
             skill.crystal.CanUseSkill();
         }
+
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            Inventory.instance.UseTrinket();
+        }
     }
 
     public void AssignNewSword(GameObject _newSword)

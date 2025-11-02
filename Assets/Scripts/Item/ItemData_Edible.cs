@@ -42,7 +42,7 @@ public class ItemData_Edible : ItemData
     {
         foreach (var item in itemEffects)
         {
-            item.ExecuteEffect(_enemyPosition);
+            item.ExecuteEffect(PlayerManager.instance.player.transform);
         }
     }
 

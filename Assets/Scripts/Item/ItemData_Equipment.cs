@@ -6,13 +6,14 @@ public enum EquipmentType
     Weapon,
     Armor,
     Amulet,
-    Flask
+    Trinket
 }
 
 [CreateAssetMenu(fileName = "New Item Data", menuName = "Items Data/Equipment")]
 public class ItemData_Equipment : ItemData
 {
     public EquipmentType slotType;
+    public float itemCooldown;
     public ItemEffect[] itemEffects;
 
     [Header("Major stats")]

@@ -7,7 +7,6 @@ public class Inventory : MonoBehaviour
     public List<ItemData> startingItems;
 
     public List<InventoryItem> inventoryItem;
-    // public Dictionary<ItemData, InventoryItem> inventoryDictionary;
 
     public List<InventoryItem> stashItem;
     public Dictionary<ItemData, InventoryItem> stashDictionary;
@@ -26,6 +25,9 @@ public class Inventory : MonoBehaviour
     private UI_ItemSlot[] stashItemSlot;
     private UI_ItemSlotEquipment[] equipmentSlot;
     private UI_ItemSlot[] edibleSlot;
+
+    [Header("Items cooldown")]
+    private float lastTimeUsedTrinket;
     private void Awake()
     {
         if (instance == null)
@@ -37,7 +39,6 @@ public class Inventory : MonoBehaviour
     private void Start()
     {
         inventoryItem = new List<InventoryItem>();
-        // inventoryDictionary = new Dictionary<ItemData, InventoryItem>();
         
         stashItem = new List<InventoryItem>();
         stashDictionary = new Dictionary<ItemData, InventoryItem>();
@@ -92,16 +93,16 @@ public class Inventory : MonoBehaviour
 
     public void UnEquipItem(ItemData_Equipment oldEquipment)
     {
-        
+
         if (equipmentDictionary.TryGetValue(oldEquipment, out InventoryItem value))
-        {   
+        {
             equipmentItem.Remove(value);
             equipmentDictionary.Remove(oldEquipment);
             oldEquipment.RemoveModifiers();
         }
-       
-    }
 
+    }
+    
     private void UpdateSlotUI()
     {
 
@@ -196,7 +197,6 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    
     public void RemoveItem(ItemData _item)
     {
         // --- INVENTORY ---
@@ -244,8 +244,6 @@ public class Inventory : MonoBehaviour
         UpdateSlotUI();
     }
 
-
-
     public bool CanCraft(ItemData_Equipment _itemToCraft, List<InventoryItem> _requiredMaterials)
     {
         List<InventoryItem> materialsToRemove = new List<InventoryItem>();
@@ -280,7 +278,6 @@ public class Inventory : MonoBehaviour
 
         return true;
     }
-
     public List<InventoryItem> GetEquipmentList() => equipmentItem;
     public List<InventoryItem> GetStashList() => stashItem;
     public List<InventoryItem> GetEdibleList() => edibleItem;
@@ -296,6 +293,33 @@ public class Inventory : MonoBehaviour
         }
         return equipedItem;
 
+    }
+
+    public void UseTrinket()
+    {
+        ItemData_Equipment currentTrinket = GetEquipementByType(EquipmentType.Trinket);
+
+        if (currentTrinket == null)
+            return;
+
+        bool canUseTrinket = Time.time > lastTimeUsedTrinket + currentTrinket.itemCooldown;
+
+        if (canUseTrinket)
+        {
+            currentTrinket.ItemEffect(null);
+            lastTimeUsedTrinket = Time.time;
+        }
+    }
+
+    public void ConsumeEdibles(ItemData _item)
+    {
+        if (!(_item is ItemData_Edible edibleData))
+            return;
+        
+        ItemData_Edible newEdible = _item as ItemData_Edible;
+        newEdible.ItemEffect(null);
+        RemoveItem(_item);
+        UpdateSlotUI();
     }
 
 }

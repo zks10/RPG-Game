@@ -9,14 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebec0d5402e8f4a3cb5d42d9a54bd54a, type: 3}
-  m_Name: Health Potion
+  m_Script: {fileID: 11500000, guid: 0d620605f89804261b5e018fb4e76874, type: 3}
+  m_Name: Health Trinket
   m_EditorClassIdentifier: 
-  itemType: 2
-  itemName: Health Potion
-  icon: {fileID: -1698851337, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
+  itemType: 1
+  itemName: Health Trinket
+  icon: {fileID: -770765129, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
   dropRate: 0
-  slotType: 0
+  slotType: 3
+  itemCooldown: 10
   itemEffects:
   - {fileID: 11400000, guid: 4b677aa796d404e6a949f8a6a9c727cb, type: 2}
   strength: 0

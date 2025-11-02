@@ -74,6 +74,11 @@ public class CharacterStats : MonoBehaviour
         if (isIgnited)
             ApplyIgniteDamage();
     }
+
+    public virtual void IncreaseStatBy(int _modifier, float _duration, Stat _statToModify)
+    {
+        
+    }
     protected virtual void Die()
     {
         isDead = true;

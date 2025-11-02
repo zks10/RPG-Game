@@ -5239,7 +5239,7 @@ GameObject:
   - component: {fileID: 354177703}
   - component: {fileID: 354177702}
   m_Layer: 5
-  m_Name: 'Equipment slot : Flask'
+  m_Name: 'Equipment slot : Trinket'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13114,7 +13114,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1043633390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16672,6 +16672,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: aa96984aaeafe461f93cd167f82c7056, type: 2}
   - {fileID: 11400000, guid: 3e0e55f7407e54499a860f883b569ec6, type: 2}
   - {fileID: 11400000, guid: 98d5f23689c5742c594336a16bde7b7d, type: 2}
+  - {fileID: 11400000, guid: bd3c85cc6d7bd44678cb705a1711b476, type: 2}
+  - {fileID: 11400000, guid: c981cbe7ddb5748dfb0f5cb1a160cbc1, type: 2}
   - {fileID: 11400000, guid: c981cbe7ddb5748dfb0f5cb1a160cbc1, type: 2}
   inventoryItem: []
   stashItem: []
@@ -17877,7 +17879,7 @@ RectTransform:
   m_Father: {fileID: 270800113}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0.00018310547, y: 1.2100239}
   m_SizeDelta: {x: 0, y: -2.41}
   m_Pivot: {x: 0.5, y: 0.5}
