@@ -16,6 +16,10 @@ MonoBehaviour:
   itemName: Lightning Necklace
   icon: {fileID: -245851270, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
   dropRate: 0
+  slotType: 2
+  itemCooldown: 0
+  itemEffects:
+  - {fileID: 11400000, guid: 85b94c131f5bb4961835e0d3e00d5952, type: 2}
   strength: 0
   agility: 0
   intelligence: 3
@@ -29,8 +33,5 @@ MonoBehaviour:
   damage: 0
   fireDamage: 0
   iceDamage: 0
-  lightingDamage: 20
-  slotType: 2
-  itemEffects:
-  - {fileID: 11400000, guid: 85b94c131f5bb4961835e0d3e00d5952, type: 2}
+  lightningDamage: 20
   craftingMaterials: []

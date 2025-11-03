@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ThunderStrikeController : MonoBehaviour
+public class SpecialSkillController : MonoBehaviour
 {
     protected PlayerStats playerStats;
 
@@ -8,9 +8,8 @@ public class ThunderStrikeController : MonoBehaviour
     {
         if (collision.GetComponent<Enemy>() != null)
         {
-            PlayerStats playerStats = PlayerManager.instance.player.GetComponent<PlayerStats>();
+            playerStats = PlayerManager.instance.player.GetComponent<PlayerStats>();
             playerStats.DoMagicalDamage(collision.GetComponent<EnemyStats>());
         }
     }
-
 }

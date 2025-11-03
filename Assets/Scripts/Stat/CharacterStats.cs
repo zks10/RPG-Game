@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class CharacterStats : MonoBehaviour
 {
@@ -25,7 +26,7 @@ public class CharacterStats : MonoBehaviour
     [Header("Magic Stats")]
     public Stat fireDamage;
     public Stat iceDamage;
-    public Stat lightingDamage;
+    public Stat lightningDamage;
     [SerializeField] private int ailmentDuration = 3;
     public bool isIgnited; // Does damage over time
     public bool isFreezed; // reduce armor by 20% and move slower
@@ -77,7 +78,16 @@ public class CharacterStats : MonoBehaviour
 
     public virtual void IncreaseStatBy(int _modifier, float _duration, Stat _statToModify)
     {
-        
+        StartCoroutine(StatModCoroutine(_modifier, _duration, _statToModify));
+    }
+    public int GetAilmentDuration() => ailmentDuration;
+    private IEnumerator StatModCoroutine(int _modifier, float _duration, Stat _statToModify)
+    {
+        _statToModify.AddModifier(_modifier);
+
+        yield return new WaitForSeconds(_duration);
+
+        _statToModify.RemoveModifier(_modifier);
     }
     protected virtual void Die()
     {
@@ -124,23 +134,23 @@ public class CharacterStats : MonoBehaviour
     {
         int _fireDamage = fireDamage.GetValue();
         int _iceDamage = iceDamage.GetValue();
-        int _lightingDamage = lightingDamage.GetValue();
+        int _lightningDamage = lightningDamage.GetValue();
 
-        int totalMagicalDamage = _fireDamage + _iceDamage + _lightingDamage + intelligence.GetValue();
+        int totalMagicalDamage = _fireDamage + _iceDamage + _lightningDamage + intelligence.GetValue();
         totalMagicalDamage = CheckTargetResistence(_targetStats, totalMagicalDamage);
 
         _targetStats.TakeDamage(totalMagicalDamage);
 
-        if (Mathf.Max(_fireDamage, _iceDamage, _lightingDamage) <= 0)
+        if (Mathf.Max(_fireDamage, _iceDamage, _lightningDamage) <= 0)
             return;
 
-        AttemptToApplyAilments(_targetStats, _fireDamage, _iceDamage, _lightingDamage);
+        AttemptToApplyAilments(_targetStats, _fireDamage, _iceDamage, _lightningDamage);
     }
-    private void AttemptToApplyAilments(CharacterStats _targetStats, int _fireDamage, int _iceDamage, int _lightingDamage)
+    private void AttemptToApplyAilments(CharacterStats _targetStats, int _fireDamage, int _iceDamage, int _lightningDamage)
     {
-        bool canApplyIgnite = _fireDamage > _iceDamage && _fireDamage > _lightingDamage;
-        bool canApplyFreeze = _iceDamage > _fireDamage && _iceDamage > _lightingDamage;
-        bool canApplyShock = _lightingDamage > _fireDamage && _lightingDamage > _iceDamage;
+        bool canApplyIgnite = _fireDamage > _iceDamage && _fireDamage > _lightningDamage;
+        bool canApplyFreeze = _iceDamage > _fireDamage && _iceDamage > _lightningDamage;
+        bool canApplyShock = _lightningDamage > _fireDamage && _lightningDamage > _iceDamage;
 
         while (!canApplyIgnite && !canApplyFreeze && !canApplyShock)
         {
@@ -156,7 +166,7 @@ public class CharacterStats : MonoBehaviour
                 _targetStats.ApplyAilments(canApplyIgnite, canApplyFreeze, canApplyShock);
                 return;
             }
-            if (Random.value >= 2f / 3f && _lightingDamage > 0)
+            if (Random.value >= 2f / 3f && _lightningDamage > 0)
             {
                 canApplyShock = true;
                 _targetStats.ApplyAilments(canApplyIgnite, canApplyFreeze, canApplyShock);
@@ -168,7 +178,7 @@ public class CharacterStats : MonoBehaviour
             _targetStats.SetIgniteDamage(Mathf.RoundToInt(_fireDamage * .2f));
 
         if (canApplyShock)
-            _targetStats.SetShockStrikeDamage(Mathf.RoundToInt(_lightingDamage * .2f));
+            _targetStats.SetShockStrikeDamage(Mathf.RoundToInt(_lightningDamage * .2f));
 
         _targetStats.ApplyAilments(canApplyIgnite, canApplyFreeze, canApplyShock);
     }

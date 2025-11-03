@@ -49,7 +49,7 @@ public class EnemyStats : CharacterStats
         // Magic stats
         Modify(fireDamage);
         Modify(iceDamage);
-        Modify(lightingDamage);
+        Modify(lightningDamage);
     }
 
 

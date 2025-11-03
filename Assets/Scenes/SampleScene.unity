@@ -13068,8 +13068,8 @@ MonoBehaviour:
   iceDamage:
     baseValue: 0
     modifiers: 
-  lightingDamage:
-    baseValue: 10
+  lightningDamage:
+    baseValue: 0
     modifiers: 
   ailmentDuration: 3
   isIgnited: 0
@@ -13275,8 +13275,8 @@ MonoBehaviour:
   iceDamage:
     baseValue: 5
     modifiers: 
-  lightingDamage:
-    baseValue: 6
+  lightningDamage:
+    baseValue: 0
     modifiers: 
   ailmentDuration: 3
   isIgnited: 0
@@ -16665,7 +16665,7 @@ MonoBehaviour:
   startingItems:
   - {fileID: 11400000, guid: 3c010b99932ad4cce80dc4a1b8fdb5b8, type: 2}
   - {fileID: 11400000, guid: 3c010b99932ad4cce80dc4a1b8fdb5b8, type: 2}
-  - {fileID: 11400000, guid: d271b1a278511424281af40e7e57006b, type: 2}
+  - {fileID: 11400000, guid: 0cb70574be61d4ff9a9cf89b81d8c10b, type: 2}
   - {fileID: 11400000, guid: 2c3175f3a279740d098c63e04f80b3aa, type: 2}
   - {fileID: 11400000, guid: 98d5f23689c5742c594336a16bde7b7d, type: 2}
   - {fileID: 11400000, guid: ea62c5a43a8a44e729c2d1fc752c5464, type: 2}
@@ -16673,8 +16673,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3e0e55f7407e54499a860f883b569ec6, type: 2}
   - {fileID: 11400000, guid: 98d5f23689c5742c594336a16bde7b7d, type: 2}
   - {fileID: 11400000, guid: bd3c85cc6d7bd44678cb705a1711b476, type: 2}
+  - {fileID: 11400000, guid: 72f47b1ec5f49464fa2e3423170a9b0e, type: 2}
   - {fileID: 11400000, guid: c981cbe7ddb5748dfb0f5cb1a160cbc1, type: 2}
-  - {fileID: 11400000, guid: c981cbe7ddb5748dfb0f5cb1a160cbc1, type: 2}
+  - {fileID: 11400000, guid: eeb671af943ab4aaea892d6480849ebc, type: 2}
+  - {fileID: 11400000, guid: dc404884772304801bf3c82da4c1c7cb, type: 2}
+  - {fileID: 11400000, guid: 2d8dec255a70a412fa9d07affede3ffe, type: 2}
   inventoryItem: []
   stashItem: []
   equipmentItem: []

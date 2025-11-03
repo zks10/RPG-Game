@@ -9,24 +9,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebec0d5402e8f4a3cb5d42d9a54bd54a, type: 3}
-  m_Name: Health Potion
+  m_Script: {fileID: 11500000, guid: 0d620605f89804261b5e018fb4e76874, type: 3}
+  m_Name: Rogue's Jacket
   m_EditorClassIdentifier: 
-  itemType: 2
-  itemName: Health Potion
-  icon: {fileID: -1698851337, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
+  itemType: 1
+  itemName: Rogue's Jacket
+  icon: {fileID: -273343914, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
   dropRate: 0
-  slotType: 0
+  slotType: 1
+  itemCooldown: 0
   itemEffects:
-  - {fileID: 11400000, guid: 4477284c1fd3f4754b81716244e69665, type: 2}
+  - {fileID: 11400000, guid: 698001c99c1c04cf9bb267be4db566fb, type: 2}
   strength: 0
-  agility: 0
+  agility: 5
   intelligence: 0
   vitality: 0
-  HP: 0
-  armor: 0
-  evasion: 0
-  magicResistence: 0
+  HP: 30
+  armor: 5
+  evasion: 5
+  magicResistence: 5
   critRate: 0
   critDamage: 0
   damage: 0

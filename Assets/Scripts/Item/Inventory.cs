@@ -27,7 +27,10 @@ public class Inventory : MonoBehaviour
     private UI_ItemSlot[] edibleSlot;
 
     [Header("Items cooldown")]
-    private float lastTimeUsedTrinket;
+    private float lastTimeUsedTrinket = Mathf.NegativeInfinity;
+    private float lastTimeUsedArmor = Mathf.NegativeInfinity;
+    private float trinketCooldown;
+    private float armorCooldown;
     private void Awake()
     {
         if (instance == null)
@@ -302,24 +305,41 @@ public class Inventory : MonoBehaviour
         if (currentTrinket == null)
             return;
 
-        bool canUseTrinket = Time.time > lastTimeUsedTrinket + currentTrinket.itemCooldown;
+        bool canUseTrinket = Time.time > lastTimeUsedTrinket + trinketCooldown;
 
         if (canUseTrinket)
         {
+            trinketCooldown = currentTrinket.itemCooldown;
             currentTrinket.ItemEffect(null);
             lastTimeUsedTrinket = Time.time;
         }
+        else
+            Debug.Log("Trinket is in cooldown.");
     }
 
     public void ConsumeEdibles(ItemData _item)
     {
         if (!(_item is ItemData_Edible edibleData))
             return;
-        
+
         ItemData_Edible newEdible = _item as ItemData_Edible;
         newEdible.ItemEffect(null);
         RemoveItem(_item);
         UpdateSlotUI();
+    }
+    
+    public bool CanUseArmor()
+    {
+        ItemData_Equipment currentArmor = GetEquipementByType(EquipmentType.Armor);
+
+        if (Time.time > lastTimeUsedArmor + armorCooldown)
+        {
+            armorCooldown = currentArmor.itemCooldown;
+            lastTimeUsedArmor = Time.time;
+            return true;
+        }
+        Debug.Log("Armor is in cooldown.");
+        return false;
     }
 
 }

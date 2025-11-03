@@ -33,7 +33,7 @@ public class ItemData_Edible : ItemData
     [Header("Magic stats")]
     public int fireDamage;
     public int iceDamage;
-    public int lightingDamage;
+    public int lightningDamage;
 
     [Header("Craft Requirements")]
     public List<InventoryItem> craftingMaterials;
@@ -70,7 +70,7 @@ public class ItemData_Edible : ItemData
         // Magic stats
         playerStats.fireDamage.AddModifier(fireDamage);
         playerStats.iceDamage.AddModifier(iceDamage);
-        playerStats.lightingDamage.AddModifier(lightingDamage);
+        playerStats.lightningDamage.AddModifier(lightningDamage);
     }
 
     public void RemoveModifiers()
@@ -97,7 +97,7 @@ public class ItemData_Edible : ItemData
         // Magic stats
         playerStats.fireDamage.RemoveModifier(fireDamage);
         playerStats.iceDamage.RemoveModifier(iceDamage);
-        playerStats.lightingDamage.RemoveModifier(lightingDamage);
+        playerStats.lightningDamage.RemoveModifier(lightningDamage);
     }
     
 }

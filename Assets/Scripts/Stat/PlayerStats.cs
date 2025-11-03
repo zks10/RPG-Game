@@ -24,4 +24,16 @@ public class PlayerStats : CharacterStats
         player.Die();
         GetComponent<PlayerItemDrop>().GenerateDrops();
     }
+    
+    protected override void DecreaseHPBy(int _damage)
+    {
+        base.DecreaseHPBy(_damage);
+
+        ItemData_Equipment currentArmor = Inventory.instance.GetEquipementByType(EquipmentType.Armor);
+
+        if (currentArmor != null)
+        {
+            currentArmor.ItemEffect(player.transform);
+        }
+    }
 }

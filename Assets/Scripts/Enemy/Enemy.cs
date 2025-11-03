@@ -70,7 +70,9 @@ public class Enemy : Entity
         }
     }
 
-    protected virtual IEnumerator FreezeAllFor(float _seconds)
+    public virtual void FreezeTimeFor(float _seconds) => StartCoroutine(FreezeTimerCoroutine(_seconds));
+
+    protected virtual IEnumerator FreezeTimerCoroutine(float _seconds)
     {
         FreezeTime(true);
 
