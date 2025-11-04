@@ -21,10 +21,12 @@ public class Inventory : MonoBehaviour
     [SerializeField] private Transform stashSlotParent;
     [SerializeField] private Transform equipmentSlotParent;
     [SerializeField] private Transform edibleSlotParent;
+    [SerializeField] private Transform statSlotParent;
     private UI_ItemSlot[] inventoryItemSlot;
     private UI_ItemSlot[] stashItemSlot;
     private UI_ItemSlotEquipment[] equipmentSlot;
     private UI_ItemSlot[] edibleSlot;
+    private UI_StatSlot[] statSlot;
 
     [Header("Items cooldown")]
     private float lastTimeUsedTrinket = Mathf.NegativeInfinity;
@@ -56,6 +58,7 @@ public class Inventory : MonoBehaviour
         stashItemSlot = stashSlotParent.GetComponentsInChildren<UI_ItemSlot>();
         equipmentSlot = equipmentSlotParent.GetComponentsInChildren<UI_ItemSlotEquipment>();
         edibleSlot = edibleSlotParent.GetComponentsInChildren<UI_ItemSlot>();
+        statSlot = statSlotParent.GetComponentsInChildren<UI_StatSlot>();
 
         AddStartingItems();
     }
@@ -131,10 +134,10 @@ public class Inventory : MonoBehaviour
         {
             edibleSlot[i].CleanUp();
         }
-        // for (int i = 0; i < equipmentSlot.Length; i++)
-        // {
-        //     equipmentSlot[i].CleanUp();
-        // }
+        for (int i = 0; i < statSlot.Length; i++)
+        {
+            statSlot[i].UpdateStatValueUI();
+        }
 
         for (int i = 0; i < inventoryItem.Count; i++)
         {
@@ -148,10 +151,8 @@ public class Inventory : MonoBehaviour
         {
             edibleSlot[i].UpdateSlot(edibleItem[i]);
         }
-        // for (int i = 0; i < equipmentItem.Count; i++)
-        // {
-        //     equipmentSlot[i].UpdateSlot(equipmentItem[i]);
-        // }
+        
+       
     }
     
     public void AddItem(ItemData _item)

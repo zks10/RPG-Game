@@ -1,6 +1,24 @@
 using UnityEngine;
 using System.Collections;
 
+public enum StatType
+{
+    strength,
+    agility,
+    intelligence,
+    vitality,
+    damage,
+    critRate,
+    critDamage,
+    HP,
+    armor,
+    evasion,
+    magicResistence,
+    fireDamage,
+    iceDamage,
+    lightningDamage
+}
+
 public class CharacterStats : MonoBehaviour
 {
     private EntityFx fx;
@@ -330,5 +348,26 @@ public class CharacterStats : MonoBehaviour
 
     #endregion
 
-
+    public Stat GetStat(StatType _statType)
+    {
+        switch (_statType)
+        {
+            case StatType.strength: return  strength;
+            case StatType.agility: return  agility;
+            case StatType.intelligence: return  intelligence;
+            case StatType.vitality: return  vitality;
+            case StatType.damage: return  damage;
+            case StatType.critRate: return  critRate;
+            case StatType.critDamage: return  critDamage;
+            case StatType.HP: return  maxHP;
+            case StatType.armor: return  armor;
+            case StatType.evasion: return  evasion;
+            case StatType.magicResistence: return  magicResistence;
+            case StatType.fireDamage: return  fireDamage;
+            case StatType.iceDamage: return  iceDamage;
+            case StatType.lightningDamage: return  lightningDamage;
+            default:
+                return null;
+        }
+    }
 }
