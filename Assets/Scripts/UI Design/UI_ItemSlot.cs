@@ -1,14 +1,20 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.EventSystems; 
-public class UI_ItemSlot : MonoBehaviour, IPointerDownHandler
+public class UI_ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private Image itemImage;
     [SerializeField] private TextMeshProUGUI itemText;
 
+    private UI ui;
     public InventoryItem item;
 
+    public void Start()
+    {
+        ui = GetComponentInParent<UI>();
+    }
     public void UpdateSlot(InventoryItem _newItem)
     {
         item = _newItem;
@@ -48,7 +54,7 @@ public class UI_ItemSlot : MonoBehaviour, IPointerDownHandler
 
         if (Inventory.instance == null)
             return;
-        
+
         if (Input.GetKey(KeyCode.LeftControl))
             Inventory.instance.RemoveItem(item.data);
         else if (item.data.itemType == ItemType.Equipment)
@@ -57,4 +63,18 @@ public class UI_ItemSlot : MonoBehaviour, IPointerDownHandler
             Inventory.instance.ConsumeEdibles(item.data);
     }
 
+    public virtual void OnPointerEnter(PointerEventData eventData)
+    {
+        if (item == null || item.data == null)
+            return;
+        ui.itemToolTip.ShowToolTip(item.data as ItemData_Equipment);
+    }
+    
+    public virtual void OnPointerExit(PointerEventData eventData)
+    {
+        if (item == null || item.data == null)
+            return;
+         ui.itemToolTip.HideToolTip();
+    }
+    
 }

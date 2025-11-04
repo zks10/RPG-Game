@@ -41,6 +41,8 @@ public class ItemData_Equipment : ItemData
     [Header("Craft Requirements")]
     public List<InventoryItem> craftingMaterials;
 
+    private int minDescriptionLength;
+
     public void ItemEffect(Transform _enemyPosition)
     {
         foreach (var item in itemEffects)
@@ -48,6 +50,7 @@ public class ItemData_Equipment : ItemData
             item.ExecuteEffect(_enemyPosition);
         }
     }
+
     public void AddModifiers()
     {
         PlayerStats playerStats = PlayerManager.instance.player.GetComponent<PlayerStats>();
@@ -102,5 +105,54 @@ public class ItemData_Equipment : ItemData
         playerStats.lightningDamage.RemoveModifier(lightningDamage);
     }
 
+    public override string GetDescription()
+    {
+        sb.Length = 0;
+        minDescriptionLength = 0;
 
+        // Major stats
+        AddItemToDescription(strength, "Strength");
+        AddItemToDescription(agility, "Agility");
+        AddItemToDescription(intelligence, "Intelligence");
+        AddItemToDescription(vitality, "Vitality");
+
+        // Defensive stats
+        AddItemToDescription(HP, "HP");
+        AddItemToDescription(armor, "Armor");
+        AddItemToDescription(evasion, "Evasion");
+        AddItemToDescription(magicResistence, "Magic Resistance");
+
+        // Attack stats
+        AddItemToDescription(critRate, "Crit Rate");
+        AddItemToDescription(critDamage, "Crit Damage");
+        AddItemToDescription(damage, "Damage");
+
+        // Magic stats
+        AddItemToDescription(fireDamage, "Fire Damage");
+        AddItemToDescription(iceDamage, "Ice Damage");
+        AddItemToDescription(lightningDamage, "Lightning Damage");
+
+        if (minDescriptionLength < 3)
+        {
+            for (int i = 0; i < 3 - minDescriptionLength; i++)
+            {
+                sb.AppendLine();
+                sb.Append("");
+            }
+        }
+        return sb.ToString();
+    }
+
+    private void AddItemToDescription(int _value, string _name)
+    {
+        if (_value != 0)
+        {
+            if (sb.Length > 0)
+                sb.AppendLine();
+            if (_value > 0)
+                sb.AppendLine($"+ {_value } {_name}");
+
+            minDescriptionLength++;
+        }
+    }
 }

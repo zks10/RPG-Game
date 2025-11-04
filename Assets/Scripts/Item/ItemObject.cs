@@ -25,6 +25,11 @@ public class ItemObject : MonoBehaviour
     }
     public void PickUpItem()
     {
+        if (!Inventory.instance.CanAddEquipItem() && itemData.itemType == ItemType.Equipment)
+        {
+            rb.linearVelocity = new Vector2(0, 7);
+            return;
+        }
         Inventory.instance.AddItem(itemData);
         Destroy(gameObject);
     }
@@ -38,6 +43,8 @@ public class ItemObject : MonoBehaviour
     private void Update()
     {
         if (player == null || player.isDead)
+            return;
+        if (!Inventory.instance.CanAddEquipItem() && itemData.itemType == ItemType.Equipment)
             return;
         MagneticMovingToPlayer();
     }
