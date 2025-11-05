@@ -4,9 +4,11 @@ public class UI : MonoBehaviour
 {
     [SerializeField] private GameObject characterUI;
     public UI_ItemToolTip itemToolTip;
+    public UI_StatToolTip statToolTip;
     void Start()
     {
         itemToolTip.GetComponentInChildren<UI_ItemToolTip>();
+        statToolTip.GetComponentInChildren<UI_StatToolTip>();
     }
 
     // Update is called once per frame

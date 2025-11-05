@@ -352,22 +352,50 @@ public class CharacterStats : MonoBehaviour
     {
         switch (_statType)
         {
-            case StatType.strength: return  strength;
-            case StatType.agility: return  agility;
-            case StatType.intelligence: return  intelligence;
-            case StatType.vitality: return  vitality;
-            case StatType.damage: return  damage;
-            case StatType.critRate: return  critRate;
-            case StatType.critDamage: return  critDamage;
-            case StatType.HP: return  maxHP;
-            case StatType.armor: return  armor;
-            case StatType.evasion: return  evasion;
-            case StatType.magicResistence: return  magicResistence;
-            case StatType.fireDamage: return  fireDamage;
-            case StatType.iceDamage: return  iceDamage;
-            case StatType.lightningDamage: return  lightningDamage;
+            case StatType.strength: return strength;
+            case StatType.agility: return agility;
+            case StatType.intelligence: return intelligence;
+            case StatType.vitality: return vitality;
+            case StatType.damage: return damage;
+            case StatType.critRate: return critRate;
+            case StatType.critDamage: return critDamage;
+            case StatType.HP: return maxHP;
+            case StatType.armor: return armor;
+            case StatType.evasion: return evasion;
+            case StatType.magicResistence: return magicResistence;
+            case StatType.fireDamage: return fireDamage;
+            case StatType.iceDamage: return iceDamage;
+            case StatType.lightningDamage: return lightningDamage;
             default:
                 return null;
         }
     }
+    
+    public int GetCalculatedStatValue(StatType statType)
+    {
+        switch (statType)
+        {
+            case StatType.HP:
+                return GetMaxHP();
+
+            case StatType.damage:
+                return damage.GetValue() + strength.GetValue();
+
+            case StatType.critDamage:
+                return critDamage.GetValue() + strength.GetValue();
+
+            case StatType.critRate:
+                return critRate.GetValue() + agility.GetValue();
+
+            case StatType.evasion:
+                return evasion.GetValue() + agility.GetValue();
+
+            case StatType.magicResistence:
+                return magicResistence.GetValue() + (intelligence.GetValue() * 3);
+
+            default:
+                return GetStat(statType)?.GetValue() ?? 0;
+        }
+    }
+
 }
