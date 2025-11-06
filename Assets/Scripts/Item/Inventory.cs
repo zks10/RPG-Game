@@ -19,11 +19,13 @@ public class Inventory : MonoBehaviour
     [Header("Inventory UI")]
     [SerializeField] private Transform inventorySlotParent;
     [SerializeField] private Transform stashSlotParent;
+    [SerializeField] private Transform stashCraftSlotParent;
     [SerializeField] private Transform equipmentSlotParent;
     [SerializeField] private Transform edibleSlotParent;
     [SerializeField] private Transform statSlotParent;
     private UI_ItemSlot[] inventoryItemSlot;
     private UI_ItemSlot[] stashItemSlot;
+    private UI_ItemSlot[] stashCraftSlot;
     private UI_ItemSlotEquipment[] equipmentSlot;
     private UI_ItemSlot[] edibleSlot;
     private UI_StatSlot[] statSlot;
@@ -56,6 +58,7 @@ public class Inventory : MonoBehaviour
 
         inventoryItemSlot = inventorySlotParent.GetComponentsInChildren<UI_ItemSlot>();
         stashItemSlot = stashSlotParent.GetComponentsInChildren<UI_ItemSlot>();
+        stashCraftSlot = stashCraftSlotParent.GetComponentsInChildren<UI_ItemSlot>();
         equipmentSlot = equipmentSlotParent.GetComponentsInChildren<UI_ItemSlotEquipment>();
         edibleSlot = edibleSlotParent.GetComponentsInChildren<UI_ItemSlot>();
         statSlot = statSlotParent.GetComponentsInChildren<UI_StatSlot>();
@@ -67,7 +70,8 @@ public class Inventory : MonoBehaviour
     {
         for (int i = 0; i < startingItems.Count; i++)
         {
-            AddItem(startingItems[i]);
+            if (startingItems[i] != null)
+                AddItem(startingItems[i]);
         }
     }
     public void EquipItem(ItemData _item)
@@ -111,49 +115,53 @@ public class Inventory : MonoBehaviour
     
     private void UpdateSlotUI()
     {
-
+        // --- Equipment Slots ---
         for (int i = 0; i < equipmentSlot.Length; i++)
         {
             foreach (KeyValuePair<ItemData_Equipment, InventoryItem> item in equipmentDictionary)
             {
                 if (item.Key.slotType == equipmentSlot[i].slotType)
                     equipmentSlot[i].UpdateSlot(item.Value);
-
             }
         }
 
+        // --- Cleanup all slots first ---
         for (int i = 0; i < inventoryItemSlot.Length; i++)
-        {
             inventoryItemSlot[i].CleanUp();
-        }
-        for (int i = 0; i < stashItemSlot.Length; i++)
-        {
-            stashItemSlot[i].CleanUp();
-        }
-        for (int i = 0; i < edibleSlot.Length; i++)
-        {
-            edibleSlot[i].CleanUp();
-        }
-        for (int i = 0; i < statSlot.Length; i++)
-        {
-            statSlot[i].UpdateStatValueUI();
-        }
 
-        for (int i = 0; i < inventoryItem.Count; i++)
-        {
+        for (int i = 0; i < stashItemSlot.Length; i++)
+            stashItemSlot[i].CleanUp();
+
+        for (int i = 0; i < stashCraftSlot.Length; i++)
+            stashCraftSlot[i].CleanUp();
+
+        for (int i = 0; i < edibleSlot.Length; i++)
+            edibleSlot[i].CleanUp();
+
+        for (int i = 0; i < statSlot.Length; i++)
+            statSlot[i].UpdateStatValueUI();
+
+
+        // --- Inventory Items ---
+        for (int i = 0; i < inventoryItem.Count && i < inventoryItemSlot.Length; i++)
             inventoryItemSlot[i].UpdateSlot(inventoryItem[i]);
-        }
-        for (int i = 0; i < stashItem.Count; i++)
-        {
+
+
+        // --- Stash Items (shared between both stash UIs) ---
+        int stashCount = stashItem.Count;
+
+        for (int i = 0; i < stashCount && i < stashItemSlot.Length; i++)
             stashItemSlot[i].UpdateSlot(stashItem[i]);
-        }
-        for (int i = 0; i < edibleItem.Count; i++)
-        {
+
+        for (int i = 0; i < stashCount && i < stashCraftSlot.Length; i++)
+            stashCraftSlot[i].UpdateSlot(stashItem[i]);
+
+
+        // --- Edible Items ---
+        for (int i = 0; i < edibleItem.Count && i < edibleSlot.Length; i++)
             edibleSlot[i].UpdateSlot(edibleItem[i]);
-        }
-        
-       
     }
+
     
     public void AddItem(ItemData _item)
     {
@@ -254,7 +262,7 @@ public class Inventory : MonoBehaviour
             return false;
         return true;
     }
-    public bool CanCraft(ItemData_Equipment _itemToCraft, List<InventoryItem> _requiredMaterials)
+    public bool CanCraftEquipment(ItemData_Equipment _itemToCraft, List<InventoryItem> _requiredMaterials)
     {
         List<InventoryItem> materialsToRemove = new List<InventoryItem>();
         for (int i = 0; i < _requiredMaterials.Count; i++)
@@ -263,7 +271,7 @@ public class Inventory : MonoBehaviour
             {
                 if (stashValue.stackSize < _requiredMaterials[i].stackSize)
                 {
-                    Debug.Log("Not enough materials (1)");
+                    Debug.Log("Not enough materials");
                     return false;
                 }
                 else
@@ -273,15 +281,22 @@ public class Inventory : MonoBehaviour
             }
             else
             {
-                Debug.Log("Not enough materials (2)");
+                Debug.Log("Not enough materials");
                 return false;
             }
         }
 
-        for (int i = 0; i < materialsToRemove.Count; i++)
+        for (int i = 0; i < _requiredMaterials.Count; i++)
         {
-            RemoveItem(materialsToRemove[i].data);
+            ItemData materialData = _requiredMaterials[i].data;
+            int amountToRemove = _requiredMaterials[i].stackSize;
+
+            for (int j = 0; j < amountToRemove; j++)
+            {
+                RemoveItem(materialData);
+            }
         }
+
 
         AddItem(_itemToCraft);
         Debug.Log("Here is your item " + _itemToCraft.name);

@@ -14,7 +14,6 @@ public class UI_StatToolTip : MonoBehaviour
     {
         rectTransform = GetComponent<RectTransform>();
         canvas = GetComponentInParent<Canvas>();
-        gameObject.SetActive(false);
     }
 
     public void ShowStatToolTip(string _text)

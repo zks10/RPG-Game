@@ -2,21 +2,54 @@ using UnityEngine;
 
 public class UI : MonoBehaviour
 {
-    [SerializeField] private GameObject characterUI;
+    // [SerializeField] private GameObject characterUI; 0
+    // [SerializeField] private GameObject skillUI; 1
+    // [SerializeField] private GameObject craftUI; 2
+    // [SerializeField] private GameObject optionsUI; 3
+    [SerializeField] private GameObject[] menuUI = new GameObject[4];
+    private int menuIdx = 0;
+    private bool openMenu;
+
     public UI_ItemToolTip itemToolTip;
     public UI_StatToolTip statToolTip;
+    public UI_CraftWindow craftWindow;
     void Start()
     {
-        itemToolTip.GetComponentInChildren<UI_ItemToolTip>();
-        statToolTip.GetComponentInChildren<UI_StatToolTip>();
+        SwitchTo(null);
+        openMenu = false;
+        itemToolTip.gameObject.SetActive(false);
+        statToolTip.gameObject.SetActive(false);
     }
 
-    // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            openMenu = !openMenu;
+            SwitchWithKeyTo(menuUI[menuIdx]);
+        }
 
+        if (openMenu)
+        {
+            if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                menuIdx = (menuIdx + 1) % menuUI.Length;
+                SwitchWithKeyTo(menuUI[menuIdx]);
+            }
+
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                menuIdx = (menuIdx - 1 + menuUI.Length) % menuUI.Length;
+                
+                SwitchWithKeyTo(menuUI[menuIdx]);
+            }
+        }
+        
+
+       
+        
     }
-    
+
     public void SwitchTo(GameObject menu)
     {
         for (int i = 0; i < transform.childCount; i++)
@@ -28,5 +61,16 @@ public class UI : MonoBehaviour
         {
             menu.SetActive(true);
         }
+        
+    }
+    
+    public void SwitchWithKeyTo(GameObject _menu)
+    {
+        if (_menu != null && _menu.activeSelf)
+        {
+            _menu.SetActive(false);
+            return;
+        }
+        SwitchTo(_menu);
     }
 }

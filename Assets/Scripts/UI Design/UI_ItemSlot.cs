@@ -4,13 +4,13 @@ using TMPro;
 using UnityEngine.UI;
 public class UI_ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
 {
-    [SerializeField] private Image itemImage;
-    [SerializeField] private TextMeshProUGUI itemText;
+    [SerializeField] protected Image itemImage;
+    [SerializeField] protected TextMeshProUGUI itemText;
 
-    private UI ui;
+    protected UI ui;
     public InventoryItem item;
 
-    public void Start()
+    protected virtual void Start()
     {
         ui = GetComponentInParent<UI>();
     }
@@ -60,6 +60,8 @@ public class UI_ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
             Inventory.instance.EquipItem(item.data);
         else if (item.data.itemType == ItemType.Edible)
             Inventory.instance.ConsumeEdibles(item.data);
+
+        ui.itemToolTip.HideToolTip();
     }
 
     public virtual void OnPointerEnter(PointerEventData eventData)
