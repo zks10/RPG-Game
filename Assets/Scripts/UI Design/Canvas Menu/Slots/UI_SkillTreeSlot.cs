@@ -1,14 +1,19 @@
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using TMPro;
 using System.Collections;
-using UnityEngine.UI; 
-public class UI_ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
+
+public class UI_SkillTreeSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    protected UI ui;
-    public InventoryItem item;
-    [SerializeField] protected Image itemImage;
-    [SerializeField] protected TextMeshProUGUI itemText;
+    private UI ui;
+    [SerializeField] private string skillName;
+    [TextArea]
+    [SerializeField] private string skillDescription;
+    [SerializeField] private Color lockedSkillColor;
+    public bool unlocked;
+    [SerializeField] private UI_SkillTreeSlot[] shouldBeUnlocked;
+    [SerializeField] private UI_SkillTreeSlot[] shouldBeLocked;
+    private Image skillImage;
 
     private bool isHovering = false;
     private bool isTooltipVisible = false;
@@ -19,75 +24,41 @@ public class UI_ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
     [SerializeField] private float slideDistance = 10f;
     [SerializeField] private float hoverDelay = 0.2f;
 
-    protected virtual void Start()
+    private void OnValidate()
     {
+        gameObject.name = "Skill Name Slot - " + skillName;
+    }
+
+    private void Start()
+    {
+        skillImage = GetComponent<Image>();
+        skillImage.color = lockedSkillColor;
         ui = GetComponentInParent<UI>();
+        GetComponent<Button>().onClick.AddListener(() => UnlockSkillSlot());
     }
-    public void UpdateSlot(InventoryItem _newItem)
+
+    public void UnlockSkillSlot()
     {
-        item = _newItem;
-        itemImage.color = Color.white;
-
-        if (item != null)
+        foreach (var s in shouldBeUnlocked)
         {
-            itemImage.sprite = item.data.icon;
-
-            if (item.stackSize > 1)
+            if (!s.unlocked)
             {
-                itemText.text = item.stackSize.ToString();
-            }
-            else
-            {
-                itemText.text = "";
+                Debug.Log("Cannot unlock skill: prerequisite not met.");
+                return;
             }
         }
-    }
 
-    public void CleanUp()
-    {
-        item = null;
-        itemImage.sprite = null;
-        itemImage.color = Color.clear;
-        itemText.text = "";
-
-        // Stop any tooltip coroutines
-        if (hoverDelayCoroutine != null)
+        foreach (var s in shouldBeLocked)
         {
-            StopCoroutine(hoverDelayCoroutine);
-            hoverDelayCoroutine = null;
+            if (s.unlocked)
+            {
+                Debug.Log("Cannot unlock skill: conflicting skill is active.");
+                return;
+            }
         }
 
-        if (fadeCoroutine != null)
-        {
-            StopCoroutine(fadeCoroutine);
-            fadeCoroutine = null;
-        }
-
-        if (ui != null && ui.itemToolTip != null)
-            ui.itemToolTip.HideItemToolTip();
-
-        isTooltipVisible = false;
-    }
-
-    public virtual void OnPointerDown(PointerEventData eventData)
-    {
-        if (item == null)
-            return;
-
-        if (item.data == null)
-            return;
-
-        if (Inventory.instance == null)
-            return;
-
-        if (Input.GetKey(KeyCode.LeftControl))
-            Inventory.instance.RemoveItem(item.data);
-        else if (item.data.itemType == ItemType.Equipment)
-            Inventory.instance.EquipItem(item.data);
-        else if (item.data.itemType == ItemType.Edible)
-            Inventory.instance.ConsumeEdibles(item.data);
-
-        ui.itemToolTip.HideItemToolTip();
+        unlocked = true;
+        skillImage.color = Color.white;
     }
 
     private void Update()
@@ -125,16 +96,10 @@ public class UI_ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
 
         if (isHovering && controlHeld)
         {
+            // 🧩 FIX: Immediately stop any previous fade-out to avoid conflicts
             StopOtherFadeIfRunning();
 
-            // ✅ Safety checks
-            if (ui == null || ui.itemToolTip == null || item == null || item.data == null)
-            {
-                hoverDelayCoroutine = null;
-                yield break;
-            }
-
-            ui.itemToolTip.ShowItemToolTip(item.data as ItemData_Equipment);
+            ui.skillToolTip.ShowSkillToolTip(skillDescription, skillName);
             StartFadeAndSlideTooltip(1f);
             isTooltipVisible = true;
         }
@@ -142,21 +107,16 @@ public class UI_ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
         hoverDelayCoroutine = null;
     }
 
-
-    public virtual void OnPointerEnter(PointerEventData eventData)
+    public void OnPointerEnter(PointerEventData eventData)
     {
-        if (item == null || item.data == null)
-            return;
-
         isHovering = true;
 
+        // 🧩 FIX: if another tooltip is mid-fade-out, stop it right away
         StopOtherFadeIfRunning();
     }
 
-    public virtual void OnPointerExit(PointerEventData eventData)
+    public void OnPointerExit(PointerEventData eventData)
     {
-        if (item == null || item.data == null)
-            return;
         isHovering = false;
 
         if (hoverDelayCoroutine != null)
@@ -171,6 +131,8 @@ public class UI_ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
             isTooltipVisible = false;
         }
     }
+
+    // === Fade + Slide Animation ===
     private void StartFadeAndSlideTooltip(float targetAlpha)
     {
         if (fadeCoroutine != null)
@@ -181,14 +143,14 @@ public class UI_ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
 
     private IEnumerator FadeAndSlideTooltipCoroutine(float targetAlpha)
     {
-        var tooltip = ui.itemToolTip;
+        var tooltip = ui.skillToolTip;
         CanvasGroup canvasGroup = tooltip.GetComponent<CanvasGroup>();
         RectTransform rectTransform = tooltip.GetComponent<RectTransform>();
 
         if (canvasGroup == null || rectTransform == null)
         {
             if (targetAlpha == 0f)
-                tooltip.HideItemToolTip();
+                tooltip.HideSkillToolTip();
             yield break;
         }
 
@@ -198,7 +160,7 @@ public class UI_ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
 
         if (targetAlpha > 0f)
         {
-            tooltip.ShowItemToolTip(item.data as ItemData_Equipment);
+            tooltip.ShowSkillToolTip(skillDescription, skillName);
             canvasGroup.blocksRaycasts = false;
         }
 
@@ -215,7 +177,7 @@ public class UI_ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
         canvasGroup.alpha = targetAlpha;
 
         if (targetAlpha == 0f)
-            tooltip.HideItemToolTip();
+            tooltip.HideSkillToolTip();
     }
 
     private void StopOtherFadeIfRunning()
@@ -225,10 +187,9 @@ public class UI_ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
             StopCoroutine(fadeCoroutine);
 
         // Force tooltip to visible if it's mid-fade-out
-        var tooltip = ui.itemToolTip;
+        var tooltip = ui.skillToolTip;
         CanvasGroup cg = tooltip.GetComponent<CanvasGroup>();
         if (cg != null && cg.alpha < 1f)
             cg.alpha = 1f;
     }
-    
 }

@@ -1,14 +1,18 @@
 using UnityEngine;
-using UnityEngine.EventSystems;
 using TMPro;
+using UnityEngine.EventSystems; 
 using System.Collections;
-using UnityEngine.UI; 
-public class UI_ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
+
+
+public class UI_StatSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    protected UI ui;
-    public InventoryItem item;
-    [SerializeField] protected Image itemImage;
-    [SerializeField] protected TextMeshProUGUI itemText;
+    private UI ui; 
+    [SerializeField] private string statName;
+    [SerializeField] private StatType statType;    
+    [SerializeField] private TextMeshProUGUI statValueText;
+    [SerializeField] private TextMeshProUGUI statNameText;
+    [TextArea]
+    [SerializeField] private string statDescription;
 
     private bool isHovering = false;
     private bool isTooltipVisible = false;
@@ -19,77 +23,29 @@ public class UI_ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
     [SerializeField] private float slideDistance = 10f;
     [SerializeField] private float hoverDelay = 0.2f;
 
-    protected virtual void Start()
+    private void OnValidate()
+    {
+        gameObject.name = "Stat - " + statName;
+
+        if (statNameText != null)
+            statNameText.text = statName;
+    }
+
+    public void UpdateStatValueUI()
+    {
+        PlayerStats playerStats = PlayerManager.instance.player.GetComponent<PlayerStats>();
+
+        if (playerStats != null)
+        {
+            statValueText.text = playerStats.GetCalculatedStatValue(statType).ToString();
+        }
+    }
+
+    private void Start()
     {
         ui = GetComponentInParent<UI>();
+        UpdateStatValueUI();
     }
-    public void UpdateSlot(InventoryItem _newItem)
-    {
-        item = _newItem;
-        itemImage.color = Color.white;
-
-        if (item != null)
-        {
-            itemImage.sprite = item.data.icon;
-
-            if (item.stackSize > 1)
-            {
-                itemText.text = item.stackSize.ToString();
-            }
-            else
-            {
-                itemText.text = "";
-            }
-        }
-    }
-
-    public void CleanUp()
-    {
-        item = null;
-        itemImage.sprite = null;
-        itemImage.color = Color.clear;
-        itemText.text = "";
-
-        // Stop any tooltip coroutines
-        if (hoverDelayCoroutine != null)
-        {
-            StopCoroutine(hoverDelayCoroutine);
-            hoverDelayCoroutine = null;
-        }
-
-        if (fadeCoroutine != null)
-        {
-            StopCoroutine(fadeCoroutine);
-            fadeCoroutine = null;
-        }
-
-        if (ui != null && ui.itemToolTip != null)
-            ui.itemToolTip.HideItemToolTip();
-
-        isTooltipVisible = false;
-    }
-
-    public virtual void OnPointerDown(PointerEventData eventData)
-    {
-        if (item == null)
-            return;
-
-        if (item.data == null)
-            return;
-
-        if (Inventory.instance == null)
-            return;
-
-        if (Input.GetKey(KeyCode.LeftControl))
-            Inventory.instance.RemoveItem(item.data);
-        else if (item.data.itemType == ItemType.Equipment)
-            Inventory.instance.EquipItem(item.data);
-        else if (item.data.itemType == ItemType.Edible)
-            Inventory.instance.ConsumeEdibles(item.data);
-
-        ui.itemToolTip.HideItemToolTip();
-    }
-
     private void Update()
     {
         bool controlHeld = Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl);
@@ -125,38 +81,26 @@ public class UI_ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
 
         if (isHovering && controlHeld)
         {
+            // 🧩 FIX: Immediately stop any previous fade-out to avoid conflicts
             StopOtherFadeIfRunning();
 
-            // ✅ Safety checks
-            if (ui == null || ui.itemToolTip == null || item == null || item.data == null)
-            {
-                hoverDelayCoroutine = null;
-                yield break;
-            }
-
-            ui.itemToolTip.ShowItemToolTip(item.data as ItemData_Equipment);
+            ui.statToolTip.ShowStatToolTip(statDescription);
             StartFadeAndSlideTooltip(1f);
             isTooltipVisible = true;
         }
 
         hoverDelayCoroutine = null;
     }
-
-
-    public virtual void OnPointerEnter(PointerEventData eventData)
+    public void OnPointerEnter(PointerEventData eventData)
     {
-        if (item == null || item.data == null)
-            return;
-
         isHovering = true;
 
+        // 🧩 FIX: if another tooltip is mid-fade-out, stop it right away
         StopOtherFadeIfRunning();
     }
 
-    public virtual void OnPointerExit(PointerEventData eventData)
+    public void OnPointerExit(PointerEventData eventData)
     {
-        if (item == null || item.data == null)
-            return;
         isHovering = false;
 
         if (hoverDelayCoroutine != null)
@@ -181,14 +125,14 @@ public class UI_ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
 
     private IEnumerator FadeAndSlideTooltipCoroutine(float targetAlpha)
     {
-        var tooltip = ui.itemToolTip;
+        var tooltip = ui.statToolTip;
         CanvasGroup canvasGroup = tooltip.GetComponent<CanvasGroup>();
         RectTransform rectTransform = tooltip.GetComponent<RectTransform>();
 
         if (canvasGroup == null || rectTransform == null)
         {
             if (targetAlpha == 0f)
-                tooltip.HideItemToolTip();
+                tooltip.HideStatToolTip();
             yield break;
         }
 
@@ -198,7 +142,7 @@ public class UI_ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
 
         if (targetAlpha > 0f)
         {
-            tooltip.ShowItemToolTip(item.data as ItemData_Equipment);
+            tooltip.ShowStatToolTip(statDescription);
             canvasGroup.blocksRaycasts = false;
         }
 
@@ -215,7 +159,7 @@ public class UI_ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
         canvasGroup.alpha = targetAlpha;
 
         if (targetAlpha == 0f)
-            tooltip.HideItemToolTip();
+            tooltip.HideStatToolTip();
     }
 
     private void StopOtherFadeIfRunning()
@@ -225,10 +169,9 @@ public class UI_ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
             StopCoroutine(fadeCoroutine);
 
         // Force tooltip to visible if it's mid-fade-out
-        var tooltip = ui.itemToolTip;
+        var tooltip = ui.statToolTip;
         CanvasGroup cg = tooltip.GetComponent<CanvasGroup>();
         if (cg != null && cg.alpha < 1f)
             cg.alpha = 1f;
     }
-    
 }

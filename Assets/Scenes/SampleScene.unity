@@ -899,6 +899,9 @@ MonoBehaviour:
   statValueText: {fileID: 83840113}
   statNameText: {fileID: 2031789706}
   statDescription: Magic Damage - Electroc Elemental Damage
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
 --- !u!114 &83840113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1014,22 +1017,6 @@ PrefabInstance:
     - target: {fileID: 882018877597753641, guid: a76d62919410a475ab88bff5340bf239, type: 3}
       propertyPath: m_Name
       value: ItemSlot (5)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.b
-      value: 0.81960785
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.g
-      value: 0.81960785
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.r
-      value: 0.81960785
       objectReference: {fileID: 0}
     - target: {fileID: 3760688654461288623, guid: a76d62919410a475ab88bff5340bf239, type: 3}
       propertyPath: m_Pivot.x
@@ -1708,6 +1695,9 @@ MonoBehaviour:
   shouldBeUnlocked:
   - {fileID: 553934504}
   shouldBeLocked: []
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
 --- !u!114 &138362387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1806,7 +1796,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 364, y: -65}
+  m_AnchoredPosition: {x: 364, y: -65.00001}
   m_SizeDelta: {x: 75, y: 71}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &143645852
@@ -2200,22 +2190,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ItemSlot (13)
       objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.b
-      value: 0.81960785
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.g
-      value: 0.81960785
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.r
-      value: 0.81960785
-      objectReference: {fileID: 0}
     - target: {fileID: 3760688654461288623, guid: a76d62919410a475ab88bff5340bf239, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2545,6 +2519,7 @@ GameObject:
   - component: {fileID: 218964359}
   - component: {fileID: 218964364}
   - component: {fileID: 218964363}
+  - component: {fileID: 218964365}
   m_Layer: 5
   m_Name: ItemToolTip
   m_TagString: Untagged
@@ -2564,6 +2539,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8e19338a2ec84634a02f2a1fe868a64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  offset: {x: 20, y: 0}
+  followSpeed: 20
   itemNameText: {fileID: 257779886}
   itemTypeText: {fileID: 2060853290}
   itemDescription: {fileID: 1052788492}
@@ -2584,11 +2561,11 @@ RectTransform:
   - {fileID: 1052788494}
   m_Father: {fileID: 1924554603}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -249}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 96, y: -108}
   m_SizeDelta: {x: 350, y: 254.95999}
-  m_Pivot: {x: 0.5, y: 1}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &218964361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2603,7 +2580,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2667,6 +2644,18 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 1
   m_ReverseArrangement: 0
+--- !u!225 &218964365
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 218964358}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &231505195
 GameObject:
   m_ObjectHideFlags: 0
@@ -6869,6 +6858,9 @@ MonoBehaviour:
   - {fileID: 2110531995}
   shouldBeLocked:
   - {fileID: 307532471}
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
 --- !u!114 &253931684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6967,7 +6959,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -483.1, y: -264.8}
+  m_AnchoredPosition: {x: -483.10004, y: -264.8}
   m_SizeDelta: {x: 75, y: 71}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &257779883
@@ -7162,6 +7154,9 @@ MonoBehaviour:
   statValueText: {fileID: 260634278}
   statNameText: {fileID: 1589228204}
   statDescription: Increases Magical (fire/ice/electric) Damage and Resistence
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
 --- !u!114 &260634278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7434,10 +7429,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ItemSlot (4)
       objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3760688654461288623, guid: a76d62919410a475ab88bff5340bf239, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -7691,7 +7682,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -301.1, y: -264.8}
+  m_AnchoredPosition: {x: -301.09998, y: -264.8}
   m_SizeDelta: {x: 75, y: 71}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &307532471
@@ -7715,6 +7706,9 @@ MonoBehaviour:
   - {fileID: 2110531995}
   shouldBeLocked:
   - {fileID: 253931683}
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
 --- !u!114 &307532472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8045,6 +8039,9 @@ MonoBehaviour:
   statValueText: {fileID: 312255666}
   statNameText: {fileID: 1516862641}
   statDescription: Increases Physical Damage and Crit. Damage
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
 --- !u!114 &312255666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8347,11 +8344,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ae8359b4d396483db01b7bcc7caa7a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemImage: {fileID: 354177703}
-  itemText: {fileID: 762219977}
   item:
     data: {fileID: 0}
     stackSize: 0
+  itemImage: {fileID: 354177703}
+  itemText: {fileID: 762219977}
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
   slotType: 3
 --- !u!114 &354177703
 MonoBehaviour:
@@ -8618,6 +8618,9 @@ MonoBehaviour:
   unlocked: 0
   shouldBeUnlocked: []
   shouldBeLocked: []
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
 --- !u!114 &371670702
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8716,7 +8719,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -492.69794, y: 104.63201}
+  m_AnchoredPosition: {x: -492.698, y: 104.63202}
   m_SizeDelta: {x: 75, y: 71}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &374477691 stripped
@@ -9355,11 +9358,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ae8359b4d396483db01b7bcc7caa7a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemImage: {fileID: 410118785}
-  itemText: {fileID: 1871645787}
   item:
     data: {fileID: 0}
     stackSize: 0
+  itemImage: {fileID: 410118785}
+  itemText: {fileID: 1871645787}
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
   slotType: 1
 --- !u!114 &410118785
 MonoBehaviour:
@@ -9992,6 +9998,9 @@ MonoBehaviour:
   shouldBeUnlocked:
   - {fileID: 371670701}
   shouldBeLocked: []
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
 --- !u!114 &468187526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10090,7 +10099,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -339.6, y: 104.63201}
+  m_AnchoredPosition: {x: -339.6, y: 104.63202}
   m_SizeDelta: {x: 75, y: 71}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &470085434
@@ -10202,6 +10211,7 @@ GameObject:
   - component: {fileID: 471842705}
   - component: {fileID: 471842704}
   - component: {fileID: 471842706}
+  - component: {fileID: 471842707}
   m_Layer: 5
   m_Name: StatToolTip
   m_TagString: Untagged
@@ -10279,9 +10289,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b059d5ca605642d18a60a7598d6a10e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: {fileID: 2096429438}
   offset: {x: 10, y: -10}
   followSpeed: 20
+  description: {fileID: 2096429438}
+--- !u!225 &471842707
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 471842702}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!224 &477511128 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3760688654461288623, guid: a76d62919410a475ab88bff5340bf239, type: 3}
@@ -10765,22 +10787,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ItemSlot (3)
       objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.b
-      value: 0.81960785
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.g
-      value: 0.81960785
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.r
-      value: 0.81960785
-      objectReference: {fileID: 0}
     - target: {fileID: 3760688654461288623, guid: a76d62919410a475ab88bff5340bf239, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -11174,7 +11180,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -646, y: -307.3}
+  m_AnchoredPosition: {x: -646, y: -307.29996}
   m_SizeDelta: {x: 75, y: 71}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &540693706
@@ -11196,6 +11202,9 @@ MonoBehaviour:
   shouldBeUnlocked:
   - {fileID: 1263963799}
   shouldBeLocked: []
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
 --- !u!114 &540693707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15378,6 +15387,9 @@ MonoBehaviour:
   unlocked: 0
   shouldBeUnlocked: []
   shouldBeLocked: []
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
 --- !u!114 &553934505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15476,7 +15488,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 364, y: 69}
+  m_AnchoredPosition: {x: 364, y: 66.89999}
   m_SizeDelta: {x: 75, y: 71}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &556543969
@@ -15876,6 +15888,9 @@ MonoBehaviour:
   shouldBeUnlocked:
   - {fileID: 138362386}
   shouldBeLocked: []
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
 --- !u!114 &564738650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15969,22 +15984,6 @@ PrefabInstance:
     - target: {fileID: 882018877597753641, guid: a76d62919410a475ab88bff5340bf239, type: 3}
       propertyPath: m_Name
       value: ItemSlot (9)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.b
-      value: 0.81960785
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.g
-      value: 0.81960785
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.r
-      value: 0.81960785
       objectReference: {fileID: 0}
     - target: {fileID: 3760688654461288623, guid: a76d62919410a475ab88bff5340bf239, type: 3}
       propertyPath: m_Pivot.x
@@ -16226,10 +16225,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ItemSlot (6)
       objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3760688654461288623, guid: a76d62919410a475ab88bff5340bf239, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -16353,6 +16348,9 @@ MonoBehaviour:
   unlocked: 0
   shouldBeUnlocked: []
   shouldBeLocked: []
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
 --- !u!114 &581002866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16451,7 +16449,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 574, y: 69}
+  m_AnchoredPosition: {x: 574, y: 66.89999}
   m_SizeDelta: {x: 75, y: 71}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &581492996
@@ -16465,10 +16463,6 @@ PrefabInstance:
     - target: {fileID: 882018877597753641, guid: a76d62919410a475ab88bff5340bf239, type: 3}
       propertyPath: m_Name
       value: ItemSlot (17)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.a
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3760688654461288623, guid: a76d62919410a475ab88bff5340bf239, type: 3}
       propertyPath: m_Pivot.x
@@ -16593,8 +16587,10 @@ MonoBehaviour:
   unlocked: 0
   shouldBeUnlocked:
   - {fileID: 827017617}
-  shouldBeLocked:
-  - {fileID: 1435131961}
+  shouldBeLocked: []
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
 --- !u!114 &586114713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16693,7 +16689,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 152, y: -44}
+  m_AnchoredPosition: {x: 151.99995, y: -43.00003}
   m_SizeDelta: {x: 75, y: 71}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &594937387
@@ -17226,7 +17222,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 152, y: -308.4}
+  m_AnchoredPosition: {x: 152, y: -306.90002}
   m_SizeDelta: {x: 75, y: 71}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &615783691
@@ -17249,6 +17245,9 @@ MonoBehaviour:
   shouldBeUnlocked:
   - {fileID: 641170327}
   shouldBeLocked: []
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
 --- !u!114 &615783692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17581,22 +17580,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ItemSlot (12)
       objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.b
-      value: 0.81960785
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.g
-      value: 0.81960785
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.r
-      value: 0.81960785
-      objectReference: {fileID: 0}
     - target: {fileID: 3760688654461288623, guid: a76d62919410a475ab88bff5340bf239, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -17693,22 +17676,6 @@ PrefabInstance:
     - target: {fileID: 882018877597753641, guid: a76d62919410a475ab88bff5340bf239, type: 3}
       propertyPath: m_Name
       value: ItemSlot (14)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.b
-      value: 0.81960785
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.g
-      value: 0.81960785
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.r
-      value: 0.81960785
       objectReference: {fileID: 0}
     - target: {fileID: 3760688654461288623, guid: a76d62919410a475ab88bff5340bf239, type: 3}
       propertyPath: m_Pivot.x
@@ -17842,6 +17809,9 @@ MonoBehaviour:
   shouldBeUnlocked:
   - {fileID: 586114712}
   shouldBeLocked: []
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
 --- !u!114 &641170328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17940,7 +17910,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 152, y: -174}
+  m_AnchoredPosition: {x: 152, y: -175}
   m_SizeDelta: {x: 75, y: 71}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &646047756
@@ -18055,10 +18025,6 @@ PrefabInstance:
     - target: {fileID: 882018877597753641, guid: a76d62919410a475ab88bff5340bf239, type: 3}
       propertyPath: m_Name
       value: ItemSlot (14)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.a
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3760688654461288623, guid: a76d62919410a475ab88bff5340bf239, type: 3}
       propertyPath: m_Pivot.x
@@ -18189,6 +18155,9 @@ MonoBehaviour:
   unlocked: 0
   shouldBeUnlocked: []
   shouldBeLocked: []
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
 --- !u!114 &667328050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18287,7 +18256,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -64, y: -174.8}
+  m_AnchoredPosition: {x: -64.5, y: -174.79999}
   m_SizeDelta: {x: 75, y: 71}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &671076418
@@ -18520,6 +18489,9 @@ MonoBehaviour:
   shouldBeUnlocked:
   - {fileID: 898520166}
   shouldBeLocked: []
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
 --- !u!114 &675618075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18783,6 +18755,9 @@ MonoBehaviour:
   statValueText: {fileID: 685717476}
   statNameText: {fileID: 320170119}
   statDescription: Damage dealt with physical attacks
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
 --- !u!114 &685717476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19811,22 +19786,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ItemSlot (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.b
-      value: 0.81960785
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.g
-      value: 0.81960785
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.r
-      value: 0.81960785
-      objectReference: {fileID: 0}
     - target: {fileID: 3760688654461288623, guid: a76d62919410a475ab88bff5340bf239, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -20334,10 +20293,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ItemSlot (11)
       objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3760688654461288623, guid: a76d62919410a475ab88bff5340bf239, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -20434,10 +20389,6 @@ PrefabInstance:
     - target: {fileID: 882018877597753641, guid: a76d62919410a475ab88bff5340bf239, type: 3}
       propertyPath: m_Name
       value: ItemSlot (16)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.a
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3760688654461288623, guid: a76d62919410a475ab88bff5340bf239, type: 3}
       propertyPath: m_Pivot.x
@@ -20956,6 +20907,9 @@ MonoBehaviour:
   statValueText: {fileID: 825561631}
   statNameText: {fileID: 1249974094}
   statDescription: Increases the critical hit damage
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
 --- !u!114 &825561631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21093,6 +21047,9 @@ MonoBehaviour:
   unlocked: 0
   shouldBeUnlocked: []
   shouldBeLocked: []
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
 --- !u!114 &827017618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21191,7 +21148,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 45, y: 67}
+  m_AnchoredPosition: {x: 45, y: 66.99999}
   m_SizeDelta: {x: 75, y: 71}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &828925452 stripped
@@ -21352,6 +21309,9 @@ MonoBehaviour:
   statValueText: {fileID: 861887792}
   statNameText: {fileID: 793278449}
   statDescription: Reduces incoming magic or elemental damage
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
 --- !u!114 &861887792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21781,6 +21741,9 @@ MonoBehaviour:
   shouldBeUnlocked:
   - {fileID: 581002865}
   shouldBeLocked: []
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
 --- !u!114 &898520167
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21879,7 +21842,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 574, y: -63.8}
+  m_AnchoredPosition: {x: 574, y: -64.29997}
   m_SizeDelta: {x: 75, y: 71}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &898834777
@@ -22279,22 +22242,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ItemSlot (8)
       objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.b
-      value: 0.81960785
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.g
-      value: 0.81960785
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.r
-      value: 0.81960785
-      objectReference: {fileID: 0}
     - target: {fileID: 3760688654461288623, guid: a76d62919410a475ab88bff5340bf239, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -22432,11 +22379,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ae8359b4d396483db01b7bcc7caa7a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemImage: {fileID: 920039412}
-  itemText: {fileID: 1197436079}
   item:
     data: {fileID: 0}
     stackSize: 0
+  itemImage: {fileID: 920039412}
+  itemText: {fileID: 1197436079}
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
   slotType: 2
 --- !u!114 &920039412
 MonoBehaviour:
@@ -22512,7 +22462,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -186.5, y: 104.63201}
+  m_AnchoredPosition: {x: -186.49998, y: 104.63202}
   m_SizeDelta: {x: 75, y: 71}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &923826665
@@ -22532,9 +22482,11 @@ MonoBehaviour:
   lockedSkillColor: {r: 0.5568628, g: 0.4745098, b: 0.4745098, a: 1}
   unlocked: 0
   shouldBeUnlocked:
-  - {fileID: 371670701}
   - {fileID: 468187525}
   shouldBeLocked: []
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
 --- !u!114 &923826666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22840,6 +22792,9 @@ MonoBehaviour:
   statValueText: {fileID: 948993069}
   statNameText: {fileID: 556543971}
   statDescription: Chance of landing a critical hit
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
 --- !u!114 &948993069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22950,22 +22905,6 @@ PrefabInstance:
     - target: {fileID: 882018877597753641, guid: a76d62919410a475ab88bff5340bf239, type: 3}
       propertyPath: m_Name
       value: ItemSlot (11)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.b
-      value: 0.81960785
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.g
-      value: 0.81960785
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.r
-      value: 0.81960785
       objectReference: {fileID: 0}
     - target: {fileID: 3760688654461288623, guid: a76d62919410a475ab88bff5340bf239, type: 3}
       propertyPath: m_Pivot.x
@@ -24778,10 +24717,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ItemSlot (13)
       objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3760688654461288623, guid: a76d62919410a475ab88bff5340bf239, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -24879,10 +24814,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ItemSlot (12)
       objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3760688654461288623, guid: a76d62919410a475ab88bff5340bf239, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -24979,22 +24910,6 @@ PrefabInstance:
     - target: {fileID: 882018877597753641, guid: a76d62919410a475ab88bff5340bf239, type: 3}
       propertyPath: m_Name
       value: ItemSlot (17)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.b
-      value: 0.81960785
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.g
-      value: 0.81960785
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.r
-      value: 0.81960785
       objectReference: {fileID: 0}
     - target: {fileID: 3760688654461288623, guid: a76d62919410a475ab88bff5340bf239, type: 3}
       propertyPath: m_Pivot.x
@@ -25402,7 +25317,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Sword Throw
+  m_text: Dash - "Actually I am here"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 84bdc42b70bb5e54aa18bb33c1fa834e, type: 2}
   m_sharedMaterial: {fileID: -8065883861848785263, guid: 84bdc42b70bb5e54aa18bb33c1fa834e, type: 2}
@@ -25467,7 +25382,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -78.72443, y: 4.751255, z: -77.460365, w: -11.420622}
+  m_margin: {x: -1.0961456, y: -0.16192347, z: -17.803932, w: -20.168272}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -25497,8 +25412,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 153}
-  m_SizeDelta: {x: 200, y: 50.418}
+  m_AnchoredPosition: {x: -8, y: 140}
+  m_SizeDelta: {x: 350.063, y: 27.644}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1197436077
 GameObject:
@@ -25914,6 +25829,9 @@ MonoBehaviour:
   statValueText: {fileID: 1230420944}
   statNameText: {fileID: 714605758}
   statDescription: Increases Evasion and Crit. Rate
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
 --- !u!114 &1230420944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26694,6 +26612,9 @@ MonoBehaviour:
   unlocked: 0
   shouldBeUnlocked: []
   shouldBeLocked: []
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
 --- !u!114 &1263963800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27059,7 +26980,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -645.8, y: -34.8}
+  m_AnchoredPosition: {x: -645.8, y: -34.799988}
   m_SizeDelta: {x: 75, y: 71}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1272282100
@@ -27084,6 +27005,9 @@ MonoBehaviour:
   shouldBeLocked:
   - {fileID: 1529938309}
   - {fileID: 2143222831}
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
 --- !u!114 &1272282101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27343,7 +27267,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -64, y: -308}
+  m_AnchoredPosition: {x: -64.5, y: -307.49997}
   m_SizeDelta: {x: 75, y: 71}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1330998801
@@ -27365,6 +27289,9 @@ MonoBehaviour:
   shouldBeUnlocked:
   - {fileID: 667328049}
   shouldBeLocked: []
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
 --- !u!114 &1330998802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27534,10 +27461,6 @@ PrefabInstance:
     - target: {fileID: 882018877597753641, guid: a76d62919410a475ab88bff5340bf239, type: 3}
       propertyPath: m_Name
       value: ItemSlot (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.a
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3760688654461288623, guid: a76d62919410a475ab88bff5340bf239, type: 3}
       propertyPath: m_Pivot.x
@@ -28013,6 +27936,9 @@ MonoBehaviour:
   statValueText: {fileID: 1368742726}
   statNameText: {fileID: 418040648}
   statDescription: Total amount of health a character
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
 --- !u!114 &1368742726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28400,10 +28326,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ItemSlot (7)
       objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3760688654461288623, guid: a76d62919410a475ab88bff5340bf239, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -28545,6 +28467,9 @@ MonoBehaviour:
   statValueText: {fileID: 1392907814}
   statNameText: {fileID: 468107778}
   statDescription: Magic Damage - Fire Elemental Damage
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
 --- !u!114 &1392907814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29197,10 +29122,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ItemSlot (5)
       objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3760688654461288623, guid: a76d62919410a475ab88bff5340bf239, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -29325,8 +29246,10 @@ MonoBehaviour:
   unlocked: 0
   shouldBeUnlocked:
   - {fileID: 827017617}
-  shouldBeLocked:
-  - {fileID: 586114712}
+  shouldBeLocked: []
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
 --- !u!114 &1435131962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29425,7 +29348,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -64, y: -55.2}
+  m_AnchoredPosition: {x: -64.5, y: -55.20002}
   m_SizeDelta: {x: 75, y: 71}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &1451493049 stripped
@@ -29779,22 +29702,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ItemSlot (6)
       objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.b
-      value: 0.81960785
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.g
-      value: 0.81960785
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.r
-      value: 0.81960785
-      objectReference: {fileID: 0}
     - target: {fileID: 3760688654461288623, guid: a76d62919410a475ab88bff5340bf239, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -30032,10 +29939,6 @@ PrefabInstance:
     - target: {fileID: 882018877597753641, guid: a76d62919410a475ab88bff5340bf239, type: 3}
       propertyPath: m_Name
       value: ItemSlot (9)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.a
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3760688654461288623, guid: a76d62919410a475ab88bff5340bf239, type: 3}
       propertyPath: m_Pivot.x
@@ -30336,6 +30239,9 @@ MonoBehaviour:
   shouldBeLocked:
   - {fileID: 2143222831}
   - {fileID: 1272282100}
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
 --- !u!114 &1529938310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30434,7 +30340,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -339.6, y: -34.8}
+  m_AnchoredPosition: {x: -339.6, y: -34.799988}
   m_SizeDelta: {x: 75, y: 71}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1535113882
@@ -30615,10 +30521,6 @@ PrefabInstance:
     - target: {fileID: 882018877597753641, guid: a76d62919410a475ab88bff5340bf239, type: 3}
       propertyPath: m_Name
       value: ItemSlot (15)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.a
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3760688654461288623, guid: a76d62919410a475ab88bff5340bf239, type: 3}
       propertyPath: m_Pivot.x
@@ -30801,10 +30703,6 @@ PrefabInstance:
     - target: {fileID: 882018877597753641, guid: a76d62919410a475ab88bff5340bf239, type: 3}
       propertyPath: m_Name
       value: ItemSlot (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.a
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3760688654461288623, guid: a76d62919410a475ab88bff5340bf239, type: 3}
       propertyPath: m_Pivot.x
@@ -31075,22 +30973,6 @@ PrefabInstance:
     - target: {fileID: 882018877597753641, guid: a76d62919410a475ab88bff5340bf239, type: 3}
       propertyPath: m_Name
       value: ItemSlot (7)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.b
-      value: 0.81960785
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.g
-      value: 0.81960785
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.r
-      value: 0.81960785
       objectReference: {fileID: 0}
     - target: {fileID: 3760688654461288623, guid: a76d62919410a475ab88bff5340bf239, type: 3}
       propertyPath: m_Pivot.x
@@ -31791,10 +31673,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ItemSlot (8)
       objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3760688654461288623, guid: a76d62919410a475ab88bff5340bf239, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -31891,22 +31769,6 @@ PrefabInstance:
     - target: {fileID: 882018877597753641, guid: a76d62919410a475ab88bff5340bf239, type: 3}
       propertyPath: m_Name
       value: ItemSlot (15)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.b
-      value: 0.81960785
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.g
-      value: 0.81960785
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.r
-      value: 0.81960785
       objectReference: {fileID: 0}
     - target: {fileID: 3760688654461288623, guid: a76d62919410a475ab88bff5340bf239, type: 3}
       propertyPath: m_Pivot.x
@@ -32532,6 +32394,9 @@ MonoBehaviour:
   statValueText: {fileID: 1666543539}
   statNameText: {fileID: 498584662}
   statDescription: Magic Damage - Ice Elemental Damage
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
 --- !u!114 &1666543539
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33304,6 +33169,9 @@ MonoBehaviour:
   statValueText: {fileID: 1716563880}
   statNameText: {fileID: 92542522}
   statDescription: Increases Max Health
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
 --- !u!114 &1716563880
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33956,6 +33824,9 @@ MonoBehaviour:
   statValueText: {fileID: 1798634851}
   statNameText: {fileID: 1578804636}
   statDescription: Increases the chance to dodge or avoid attacks
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
 --- !u!114 &1798634851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34476,22 +34347,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ItemSlot (4)
       objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.b
-      value: 0.81960785
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.g
-      value: 0.81960785
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.r
-      value: 0.81960785
-      objectReference: {fileID: 0}
     - target: {fileID: 3760688654461288623, guid: a76d62919410a475ab88bff5340bf239, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -34889,6 +34744,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingItems:
+  - {fileID: 11400000, guid: bd3c85cc6d7bd44678cb705a1711b476, type: 2}
   - {fileID: 11400000, guid: 3c010b99932ad4cce80dc4a1b8fdb5b8, type: 2}
   - {fileID: 11400000, guid: 3c010b99932ad4cce80dc4a1b8fdb5b8, type: 2}
   - {fileID: 11400000, guid: 0cb70574be61d4ff9a9cf89b81d8c10b, type: 2}
@@ -34898,7 +34754,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: aa96984aaeafe461f93cd167f82c7056, type: 2}
   - {fileID: 11400000, guid: 3e0e55f7407e54499a860f883b569ec6, type: 2}
   - {fileID: 11400000, guid: 98d5f23689c5742c594336a16bde7b7d, type: 2}
-  - {fileID: 11400000, guid: bd3c85cc6d7bd44678cb705a1711b476, type: 2}
   - {fileID: 11400000, guid: 72f47b1ec5f49464fa2e3423170a9b0e, type: 2}
   - {fileID: 11400000, guid: c981cbe7ddb5748dfb0f5cb1a160cbc1, type: 2}
   - {fileID: 11400000, guid: eeb671af943ab4aaea892d6480849ebc, type: 2}
@@ -35484,7 +35339,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -35697,7 +35552,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -49}
+  m_AnchoredPosition: {x: 0, y: -59}
   m_SizeDelta: {x: 1500, y: 843}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1951176210
@@ -35930,6 +35785,9 @@ MonoBehaviour:
   statValueText: {fileID: 1961966907}
   statNameText: {fileID: 945952939}
   statDescription: Reduces incoming physical damage.
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
 --- !u!114 &1961966907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36248,10 +36106,6 @@ PrefabInstance:
     - target: {fileID: 882018877597753641, guid: a76d62919410a475ab88bff5340bf239, type: 3}
       propertyPath: m_Name
       value: ItemSlot (10)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.a
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3760688654461288623, guid: a76d62919410a475ab88bff5340bf239, type: 3}
       propertyPath: m_Pivot.x
@@ -37548,10 +37402,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ItemSlot
       objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3760688654461288623, guid: a76d62919410a475ab88bff5340bf239, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -37784,10 +37634,6 @@ PrefabInstance:
     - target: {fileID: 882018877597753641, guid: a76d62919410a475ab88bff5340bf239, type: 3}
       propertyPath: m_Name
       value: ItemSlot (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.a
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3760688654461288623, guid: a76d62919410a475ab88bff5340bf239, type: 3}
       propertyPath: m_Pivot.x
@@ -38221,22 +38067,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ItemSlot (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.b
-      value: 0.81960785
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.g
-      value: 0.81960785
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.r
-      value: 0.81960785
-      objectReference: {fileID: 0}
     - target: {fileID: 3760688654461288623, guid: a76d62919410a475ab88bff5340bf239, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -38541,22 +38371,6 @@ PrefabInstance:
     - target: {fileID: 882018877597753641, guid: a76d62919410a475ab88bff5340bf239, type: 3}
       propertyPath: m_Name
       value: ItemSlot (16)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.b
-      value: 0.81960785
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.g
-      value: 0.81960785
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.r
-      value: 0.81960785
       objectReference: {fileID: 0}
     - target: {fileID: 3760688654461288623, guid: a76d62919410a475ab88bff5340bf239, type: 3}
       propertyPath: m_Pivot.x
@@ -38932,22 +38746,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ItemSlot (10)
       objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.b
-      value: 0.81960785
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.g
-      value: 0.81960785
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.r
-      value: 0.81960785
-      objectReference: {fileID: 0}
     - target: {fileID: 3760688654461288623, guid: a76d62919410a475ab88bff5340bf239, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -39147,6 +38945,9 @@ MonoBehaviour:
   shouldBeUnlocked:
   - {fileID: 1263963799}
   shouldBeLocked: []
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
 --- !u!114 &2110531996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39398,6 +39199,7 @@ GameObject:
   - component: {fileID: 2117165208}
   - component: {fileID: 2117165207}
   - component: {fileID: 2117165205}
+  - component: {fileID: 2117165209}
   m_Layer: 5
   m_Name: SkillToolTip
   m_TagString: Untagged
@@ -39417,10 +39219,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52ef2b8eabe0546c2a9975ea01b7a8d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  offset: {x: 10, y: -10}
+  followSpeed: 20
   skillText: {fileID: 1942612787}
   skillName: {fileID: 1192612743}
-  offset: {x: 20, y: -10}
-  followSpeed: 20
 --- !u!224 &2117165206
 RectTransform:
   m_ObjectHideFlags: 0
@@ -39439,7 +39241,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 753.64453, y: -401.07898}
+  m_AnchoredPosition: {x: 1599, y: -197}
   m_SizeDelta: {x: 407.225, y: 368.487}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2117165207
@@ -39456,7 +39258,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -39480,6 +39282,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2117165204}
   m_CullTransparentMesh: 1
+--- !u!225 &2117165209
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2117165204}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &2124731685
 GameObject:
   m_ObjectHideFlags: 0
@@ -39746,6 +39560,9 @@ MonoBehaviour:
   shouldBeLocked:
   - {fileID: 1529938309}
   - {fileID: 1272282100}
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
 --- !u!114 &2143222832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39844,7 +39661,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -491.9, y: -34.8}
+  m_AnchoredPosition: {x: -491.90002, y: -34.799988}
   m_SizeDelta: {x: 75, y: 71}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &2147292853 stripped
@@ -40141,22 +39958,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ItemSlot
       objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.b
-      value: 0.81960785
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.g
-      value: 0.81960785
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494636342292032853, guid: a76d62919410a475ab88bff5340bf239, type: 3}
-      propertyPath: m_Color.r
-      value: 0.81960785
-      objectReference: {fileID: 0}
     - target: {fileID: 3760688654461288623, guid: a76d62919410a475ab88bff5340bf239, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -40270,11 +40071,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ae8359b4d396483db01b7bcc7caa7a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemImage: {fileID: 1452401720455349535}
-  itemText: {fileID: 2647413074511744575}
   item:
     data: {fileID: 0}
     stackSize: 0
+  itemImage: {fileID: 1452401720455349535}
+  itemText: {fileID: 2647413074511744575}
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
   slotType: 0
 --- !u!1 &7135253940809058480
 GameObject:

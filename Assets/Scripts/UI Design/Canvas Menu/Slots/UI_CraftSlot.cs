@@ -37,10 +37,9 @@ public class UI_CraftSlot : UI_ItemSlot, IPointerEnterHandler, IPointerExitHandl
 
     public override void OnPointerDown(PointerEventData eventData)
     {
-        base.OnPointerDown(eventData); // just in case UI_ItemSlot has logic
+        //base.OnPointerDown(eventData); // just in case UI_ItemSlot has logic
         ui.craftWindow.SetUpCraftWindow(item.data as ItemData_Equipment);
 
-        // Optional: brief click visual feedback
         SetColor(clickColor);
         CancelInvoke(nameof(ResetVisuals));
         Invoke(nameof(ResetVisuals), 0.15f);
