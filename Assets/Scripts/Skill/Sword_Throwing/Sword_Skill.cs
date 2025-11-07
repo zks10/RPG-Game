@@ -92,14 +92,14 @@ public class Sword_Skill : Skill
                 dots[i].transform.position = DotsPosition(i * spaceBetweenDots);
             }
         }
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-            swordType = SwordType.Regular;
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-            swordType = SwordType.Bounce;
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-            swordType = SwordType.Pierce;
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-            swordType = SwordType.Spin;
+        // if (Input.GetKeyDown(KeyCode.Alpha1))
+        //     swordType = SwordType.Regular;
+        // if (Input.GetKeyDown(KeyCode.Alpha2))
+        //     swordType = SwordType.Bounce;
+        // if (Input.GetKeyDown(KeyCode.Alpha3))
+        //     swordType = SwordType.Pierce;
+        // if (Input.GetKeyDown(KeyCode.Alpha4))
+        //     swordType = SwordType.Spin;
     }
 
     #region Aim Region
