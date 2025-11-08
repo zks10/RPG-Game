@@ -40,4 +40,10 @@ public class UI_SkillToolTip : UI_ToolTip
     {
         base.ShowInstantlyAtMouse();
     }
+
+    public override void HideToolTips()
+    {
+        base.HideToolTips();
+        HideSkillToolTip();
+    }
 }

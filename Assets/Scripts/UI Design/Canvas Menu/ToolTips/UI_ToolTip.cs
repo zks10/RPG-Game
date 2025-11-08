@@ -31,8 +31,6 @@ public class UI_ToolTip : MonoBehaviour
         float screenW = Screen.width;
         float screenH = Screen.height;
 
-        Debug.Log($"MousePos: {mousePos}, TooltipSize: {tooltipSize}, Offset: {offset}");
-
         if (mousePos.x + tooltipSize.x + offset.x > screenW)
         {
             targetPos.x = mousePos.x - tooltipSize.x - offset.x;
@@ -43,7 +41,6 @@ public class UI_ToolTip : MonoBehaviour
             targetPos.y = mousePos.y + tooltipSize.y - offset.y;
         }
 
-        Debug.Log("Target Position: " + targetPos);
 
         rectTransform.position = targetPos;
     }
@@ -55,5 +52,9 @@ public class UI_ToolTip : MonoBehaviour
     {
         
     }
+
+    public virtual void HideToolTips() { }
+
+    //public virtual void ShowToolTips() { }
 
 }

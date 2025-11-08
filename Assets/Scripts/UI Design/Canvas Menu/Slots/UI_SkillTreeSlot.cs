@@ -3,9 +3,8 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections;
 
-public class UI_SkillTreeSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class UI_SkillTreeSlot : UI_Slots
 {
-    private UI ui;
     [SerializeField] private string skillName;
     [TextArea]
     [SerializeField] private string skillDescription;
@@ -13,28 +12,24 @@ public class UI_SkillTreeSlot : MonoBehaviour, IPointerEnterHandler, IPointerExi
     public bool unlocked;
     [SerializeField] private UI_SkillTreeSlot[] shouldBeUnlocked;
     [SerializeField] private UI_SkillTreeSlot[] shouldBeLocked;
+
     private Image skillImage;
-
-    private bool isHovering = false;
-    private bool isTooltipVisible = false;
-    private Coroutine fadeCoroutine;
-    private Coroutine hoverDelayCoroutine;
-
-    [SerializeField] private float fadeDuration = 0.25f;
-    [SerializeField] private float slideDistance = 10f;
-    [SerializeField] private float hoverDelay = 0.2f;
 
     private void OnValidate()
     {
         gameObject.name = "Skill Name Slot - " + skillName;
     }
 
-    private void Start()
+    private void Awake()
     {
+        GetComponent<Button>().onClick.AddListener(UnlockSkillSlot);
+    }
+
+    protected override void Start()
+    {
+        base.Start();
         skillImage = GetComponent<Image>();
         skillImage.color = lockedSkillColor;
-        ui = GetComponentInParent<UI>();
-        GetComponent<Button>().onClick.AddListener(() => UnlockSkillSlot());
     }
 
     public void UnlockSkillSlot()
@@ -61,135 +56,42 @@ public class UI_SkillTreeSlot : MonoBehaviour, IPointerEnterHandler, IPointerExi
         skillImage.color = Color.white;
     }
 
-    private void Update()
+    public override void ShowToolTip()
     {
-        bool controlHeld = Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl);
-
-        if (isHovering && controlHeld)
-        {
-            // Start hover delay if not already visible
-            if (!isTooltipVisible && hoverDelayCoroutine == null)
-                hoverDelayCoroutine = StartCoroutine(HoverDelayShow());
-        }
-        else
-        {
-            // Cancel hover delay if user stops hovering or releases control
-            if (hoverDelayCoroutine != null)
-            {
-                StopCoroutine(hoverDelayCoroutine);
-                hoverDelayCoroutine = null;
-            }
-
-            if (isTooltipVisible)
-            {
-                StartFadeAndSlideTooltip(0f);
-                isTooltipVisible = false;
-            }
-        }
+        base.ShowToolTip();
+        ui.skillToolTip.ShowSkillToolTip(skillDescription, skillName);
     }
 
-    private IEnumerator HoverDelayShow()
+    public override void OnPointerEnter(PointerEventData eventData)
     {
-        yield return new WaitForSeconds(hoverDelay);
-
-        bool controlHeld = Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl);
-
-        if (isHovering && controlHeld)
-        {
-            // 🧩 FIX: Immediately stop any previous fade-out to avoid conflicts
-            StopOtherFadeIfRunning();
-
-            ui.skillToolTip.ShowSkillToolTip(skillDescription, skillName);
-            StartFadeAndSlideTooltip(1f);
-            isTooltipVisible = true;
-        }
-
-        hoverDelayCoroutine = null;
+        base.OnPointerEnter(eventData);
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
+    public override void OnPointerExit(PointerEventData eventData)
     {
-        isHovering = true;
-
-        // 🧩 FIX: if another tooltip is mid-fade-out, stop it right away
-        StopOtherFadeIfRunning();
+        base.OnPointerExit(eventData);
     }
 
-    public void OnPointerExit(PointerEventData eventData)
+    public override void AssignToolTip()
     {
-        isHovering = false;
-
-        if (hoverDelayCoroutine != null)
-        {
-            StopCoroutine(hoverDelayCoroutine);
-            hoverDelayCoroutine = null;
-        }
-
-        if (isTooltipVisible)
-        {
-            StartFadeAndSlideTooltip(0f);
-            isTooltipVisible = false;
-        }
+        base.AssignToolTip();
+        tooltip = ui.skillToolTip;
     }
 
-    // === Fade + Slide Animation ===
-    private void StartFadeAndSlideTooltip(float targetAlpha)
+    public override void HideToolTip()
     {
-        if (fadeCoroutine != null)
-            StopCoroutine(fadeCoroutine);
-
-        fadeCoroutine = StartCoroutine(FadeAndSlideTooltipCoroutine(targetAlpha));
+        base.HideToolTip();
+        tooltip.HideSkillToolTip();
     }
 
-    private IEnumerator FadeAndSlideTooltipCoroutine(float targetAlpha)
+    public override void ToolTipShowToolTip()
     {
-        var tooltip = ui.skillToolTip;
-        CanvasGroup canvasGroup = tooltip.GetComponent<CanvasGroup>();
-        RectTransform rectTransform = tooltip.GetComponent<RectTransform>();
-
-        if (canvasGroup == null || rectTransform == null)
-        {
-            if (targetAlpha == 0f)
-                tooltip.HideSkillToolTip();
-            yield break;
-        }
-
-        float startAlpha = canvasGroup.alpha;
-        Vector3 startPos = rectTransform.anchoredPosition;
-        Vector3 targetPos = new Vector3(startPos.x, startPos.y + (targetAlpha > 0 ? slideDistance : -slideDistance), startPos.z);
-
-        if (targetAlpha > 0f)
-        {
-            tooltip.ShowSkillToolTip(skillDescription, skillName);
-            canvasGroup.blocksRaycasts = false;
-        }
-
-        float time = 0f;
-        while (time < fadeDuration)
-        {
-            time += Time.deltaTime;
-            float t = time / fadeDuration;
-            canvasGroup.alpha = Mathf.Lerp(startAlpha, targetAlpha, t);
-            rectTransform.anchoredPosition = Vector3.Lerp(startPos, targetPos, t);
-            yield return null;
-        }
-
-        canvasGroup.alpha = targetAlpha;
-
-        if (targetAlpha == 0f)
-            tooltip.HideSkillToolTip();
+        base.ToolTipShowToolTip();
+        tooltip.ShowSkillToolTip(skillDescription, skillName);
     }
 
-    private void StopOtherFadeIfRunning()
+    public override IEnumerator FadeAndSlideTooltipCoroutine(float targetAlpha)
     {
-        // If another slot was fading out the tooltip, stop it
-        if (fadeCoroutine != null)
-            StopCoroutine(fadeCoroutine);
-
-        // Force tooltip to visible if it's mid-fade-out
-        var tooltip = ui.skillToolTip;
-        CanvasGroup cg = tooltip.GetComponent<CanvasGroup>();
-        if (cg != null && cg.alpha < 1f)
-            cg.alpha = 1f;
+        yield return base.FadeAndSlideTooltipCoroutine(targetAlpha);
     }
 }

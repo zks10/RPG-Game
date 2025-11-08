@@ -38,4 +38,15 @@ public class UI_StatToolTip : UI_ToolTip
     {
         base.ShowInstantlyAtMouse();
     }
+
+    public override void HideToolTips()
+    {
+        base.HideToolTips();
+        HideStatToolTip();
+    }
+    // public override void ShowToolTips()
+    // {
+    //     base.ShowToolTips();
+    //     HideStatToolTip();
+    // }
 }

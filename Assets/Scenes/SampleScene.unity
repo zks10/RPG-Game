@@ -1688,6 +1688,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f95b6c12abe641f98bee4c50daf32b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
   skillName: Dash - "Here I am"
   skillDescription: Leave a mirage while you dashing.
   lockedSkillColor: {r: 0.5568628, g: 0.4745098, b: 0.4745098, a: 1}
@@ -1695,9 +1698,6 @@ MonoBehaviour:
   shouldBeUnlocked:
   - {fileID: 553934504}
   shouldBeLocked: []
-  fadeDuration: 0.25
-  slideDistance: 10
-  hoverDelay: 0.2
 --- !u!114 &138362387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6849,6 +6849,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f95b6c12abe641f98bee4c50daf32b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
   skillName: Multiple Mirage
   skillDescription: Spawn several mirages to overwhelm enemies with synchronized
     attacks.
@@ -6858,9 +6861,6 @@ MonoBehaviour:
   - {fileID: 2110531995}
   shouldBeLocked:
   - {fileID: 307532471}
-  fadeDuration: 0.25
-  slideDistance: 10
-  hoverDelay: 0.2
 --- !u!114 &253931684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7697,6 +7697,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f95b6c12abe641f98bee4c50daf32b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
   skillName: Crystal Mirage
   skillDescription: Your mirages shatter into explosive crystals upon disappearing,
     damaging nearby foes.
@@ -7706,9 +7709,6 @@ MonoBehaviour:
   - {fileID: 2110531995}
   shouldBeLocked:
   - {fileID: 253931683}
-  fadeDuration: 0.25
-  slideDistance: 10
-  hoverDelay: 0.2
 --- !u!114 &307532472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8612,15 +8612,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f95b6c12abe641f98bee4c50daf32b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
   skillName: Sword Throw
   skillDescription: Launch your sword to hit enemy.
   lockedSkillColor: {r: 0.5568628, g: 0.4745098, b: 0.4745098, a: 1}
   unlocked: 0
   shouldBeUnlocked: []
   shouldBeLocked: []
-  fadeDuration: 0.25
-  slideDistance: 10
-  hoverDelay: 0.2
 --- !u!114 &371670702
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9991,6 +9991,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f95b6c12abe641f98bee4c50daf32b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
   skillName: Time Stop
   skillDescription: Freeze time temporarily, halting enemy movement.
   lockedSkillColor: {r: 0.5568628, g: 0.4745098, b: 0.4745098, a: 1}
@@ -9998,9 +10001,6 @@ MonoBehaviour:
   shouldBeUnlocked:
   - {fileID: 371670701}
   shouldBeLocked: []
-  fadeDuration: 0.25
-  slideDistance: 10
-  hoverDelay: 0.2
 --- !u!114 &468187526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11195,6 +11195,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f95b6c12abe641f98bee4c50daf32b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
   skillName: Black Hole Ability
   skillDescription: Trap enemies in black hole and dealing high value damage.
   lockedSkillColor: {r: 0.5568628, g: 0.4745098, b: 0.4745098, a: 1}
@@ -11202,9 +11205,6 @@ MonoBehaviour:
   shouldBeUnlocked:
   - {fileID: 1263963799}
   shouldBeLocked: []
-  fadeDuration: 0.25
-  slideDistance: 10
-  hoverDelay: 0.2
 --- !u!114 &540693707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15380,6 +15380,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f95b6c12abe641f98bee4c50daf32b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
   skillName: Dash
   skillDescription: Burst forward at high speed, covering short distances quickly
     with invincibility.
@@ -15387,9 +15390,6 @@ MonoBehaviour:
   unlocked: 0
   shouldBeUnlocked: []
   shouldBeLocked: []
-  fadeDuration: 0.25
-  slideDistance: 10
-  hoverDelay: 0.2
 --- !u!114 &553934505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15881,6 +15881,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f95b6c12abe641f98bee4c50daf32b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
   skillName: Dash - "Actually I am here"
   skillDescription: Generate a Mirage after dashing.
   lockedSkillColor: {r: 0.5568628, g: 0.4745098, b: 0.4745098, a: 1}
@@ -15888,9 +15891,6 @@ MonoBehaviour:
   shouldBeUnlocked:
   - {fileID: 138362386}
   shouldBeLocked: []
-  fadeDuration: 0.25
-  slideDistance: 10
-  hoverDelay: 0.2
 --- !u!114 &564738650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16342,15 +16342,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f95b6c12abe641f98bee4c50daf32b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
   skillName: Counter Attack
   skillDescription: Block an attack and immediately retaliate with a powerful strike.
   lockedSkillColor: {r: 0.5568628, g: 0.4745098, b: 0.4745098, a: 1}
   unlocked: 0
   shouldBeUnlocked: []
   shouldBeLocked: []
-  fadeDuration: 0.25
-  slideDistance: 10
-  hoverDelay: 0.2
 --- !u!114 &581002866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16581,6 +16581,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f95b6c12abe641f98bee4c50daf32b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
   skillName: Explosion
   skillDescription: Detonate energy around you, dealing massive area-of-effect damage.
   lockedSkillColor: {r: 0.5568628, g: 0.4745098, b: 0.4745098, a: 1}
@@ -16588,9 +16591,6 @@ MonoBehaviour:
   shouldBeUnlocked:
   - {fileID: 827017617}
   shouldBeLocked: []
-  fadeDuration: 0.25
-  slideDistance: 10
-  hoverDelay: 0.2
 --- !u!114 &586114713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17237,6 +17237,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f95b6c12abe641f98bee4c50daf32b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
   skillName: Crystal Machine Gun
   skillDescription: Fire a rapid stream of crystal projectiles that deal sustained
     ranged damage.
@@ -17245,9 +17248,6 @@ MonoBehaviour:
   shouldBeUnlocked:
   - {fileID: 641170327}
   shouldBeLocked: []
-  fadeDuration: 0.25
-  slideDistance: 10
-  hoverDelay: 0.2
 --- !u!114 &615783692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17799,6 +17799,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f95b6c12abe641f98bee4c50daf32b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
   skillName: Controlled Destruction
   skillDescription: 'Crystal starts to automatically move to enemy.
 
@@ -17809,9 +17812,6 @@ MonoBehaviour:
   shouldBeUnlocked:
   - {fileID: 586114712}
   shouldBeLocked: []
-  fadeDuration: 0.25
-  slideDistance: 10
-  hoverDelay: 0.2
 --- !u!114 &641170328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18148,6 +18148,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f95b6c12abe641f98bee4c50daf32b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
   skillName: Dodge
   skillDescription: Quickly evade incoming attacks with chance, becoming briefly
     invulnerable.
@@ -18155,9 +18158,6 @@ MonoBehaviour:
   unlocked: 0
   shouldBeUnlocked: []
   shouldBeLocked: []
-  fadeDuration: 0.25
-  slideDistance: 10
-  hoverDelay: 0.2
 --- !u!114 &667328050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18482,6 +18482,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f95b6c12abe641f98bee4c50daf32b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
   skillName: Counter Attack with Mirage
   skillDescription: Upon countering, summon a mirage that mimics your counterstrike.
   lockedSkillColor: {r: 0.5568628, g: 0.4745098, b: 0.4745098, a: 1}
@@ -18489,9 +18492,6 @@ MonoBehaviour:
   shouldBeUnlocked:
   - {fileID: 898520166}
   shouldBeLocked: []
-  fadeDuration: 0.25
-  slideDistance: 10
-  hoverDelay: 0.2
 --- !u!114 &675618075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21041,15 +21041,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f95b6c12abe641f98bee4c50daf32b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
   skillName: Crystal
   skillDescription: Summon a crystal that can absorb or redirect enemy projectiles.
   lockedSkillColor: {r: 0.5568628, g: 0.4745098, b: 0.4745098, a: 1}
   unlocked: 0
   shouldBeUnlocked: []
   shouldBeLocked: []
-  fadeDuration: 0.25
-  slideDistance: 10
-  hoverDelay: 0.2
 --- !u!114 &827017618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21734,6 +21734,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f95b6c12abe641f98bee4c50daf32b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
   skillName: Restore with counter attack
   skillDescription: Regain a portion of health or energy when successfully countering.
   lockedSkillColor: {r: 0.5568628, g: 0.4745098, b: 0.4745098, a: 1}
@@ -21741,9 +21744,6 @@ MonoBehaviour:
   shouldBeUnlocked:
   - {fileID: 581002865}
   shouldBeLocked: []
-  fadeDuration: 0.25
-  slideDistance: 10
-  hoverDelay: 0.2
 --- !u!114 &898520167
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22477,6 +22477,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f95b6c12abe641f98bee4c50daf32b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
   skillName: Vulnerability
   skillDescription: Increases the damage enemies take for a short period.
   lockedSkillColor: {r: 0.5568628, g: 0.4745098, b: 0.4745098, a: 1}
@@ -22484,9 +22487,6 @@ MonoBehaviour:
   shouldBeUnlocked:
   - {fileID: 468187525}
   shouldBeLocked: []
-  fadeDuration: 0.25
-  slideDistance: 10
-  hoverDelay: 0.2
 --- !u!114 &923826666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23820,6 +23820,7 @@ MonoBehaviour:
   isFreezed: 0
   isShocked: 0
   shockStrikePrefab: {fileID: 306659972789318923, guid: ac92c6dc7054d4ee1998ad61387283a4, type: 3}
+  hasThorn: 0
 --- !u!114 &1038971347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24027,6 +24028,7 @@ MonoBehaviour:
   isFreezed: 0
   isShocked: 0
   shockStrikePrefab: {fileID: 306659972789318923, guid: ac92c6dc7054d4ee1998ad61387283a4, type: 3}
+  hasThorn: 0
   level: 6
   percentageModifier: 0
 --- !u!70 &1043633396
@@ -26605,6 +26607,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f95b6c12abe641f98bee4c50daf32b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
   skillName: Time Mirage
   skillDescription: Create a time-clone that mimics your recent actions for a few
     seconds.
@@ -26612,9 +26617,6 @@ MonoBehaviour:
   unlocked: 0
   shouldBeUnlocked: []
   shouldBeLocked: []
-  fadeDuration: 0.25
-  slideDistance: 10
-  hoverDelay: 0.2
 --- !u!114 &1263963800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26995,6 +26997,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f95b6c12abe641f98bee4c50daf32b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
   skillName: Chain Saw Sword
   skillDescription: Activate a spinning blade that continuously damages enemies in
     front of you.
@@ -27005,9 +27010,6 @@ MonoBehaviour:
   shouldBeLocked:
   - {fileID: 1529938309}
   - {fileID: 2143222831}
-  fadeDuration: 0.25
-  slideDistance: 10
-  hoverDelay: 0.2
 --- !u!114 &1272282101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27282,6 +27284,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f95b6c12abe641f98bee4c50daf32b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
   skillName: Dodge Mirage
   skillDescription: Perform a dodge that leaves behind a mirage to distract enemies.
   lockedSkillColor: {r: 0.5568628, g: 0.4745098, b: 0.4745098, a: 1}
@@ -27289,9 +27294,6 @@ MonoBehaviour:
   shouldBeUnlocked:
   - {fileID: 667328049}
   shouldBeLocked: []
-  fadeDuration: 0.25
-  slideDistance: 10
-  hoverDelay: 0.2
 --- !u!114 &1330998802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28604,6 +28606,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown: 1
+  dashUnlocked: 0
+  dashUnlockButton: {fileID: 553934504}
+  cloneOnDashUnlocked: 0
+  cloneOnDashUnlockButton: {fileID: 138362386}
+  cloneOnArrivalUnlocked: 0
+  cloneOnArrivalUnlockkButton: {fileID: 564738649}
 --- !u!114 &1394310099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29239,6 +29247,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f95b6c12abe641f98bee4c50daf32b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
   skillName: Mirage Blink
   skillDescription: Instantly teleport a short distance, leaving a mirage at your
     previous location.
@@ -29247,9 +29258,6 @@ MonoBehaviour:
   shouldBeUnlocked:
   - {fileID: 827017617}
   shouldBeLocked: []
-  fadeDuration: 0.25
-  slideDistance: 10
-  hoverDelay: 0.2
 --- !u!114 &1435131962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30229,6 +30237,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f95b6c12abe641f98bee4c50daf32b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
   skillName: Bouncy Sowrd
   skillDescription: Throw a sword that ricochets between multiple enemies, dealing
     reduced damage per bounce.
@@ -30239,9 +30250,6 @@ MonoBehaviour:
   shouldBeLocked:
   - {fileID: 2143222831}
   - {fileID: 1272282100}
-  fadeDuration: 0.25
-  slideDistance: 10
-  hoverDelay: 0.2
 --- !u!114 &1529938310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34761,6 +34769,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4e77ab55df5b0452f8832b50b7b9f5d2, type: 2}
   - {fileID: 11400000, guid: 4e77ab55df5b0452f8832b50b7b9f5d2, type: 2}
   - {fileID: 11400000, guid: 98d5f23689c5742c594336a16bde7b7d, type: 2}
+  - {fileID: 11400000, guid: 280738d4b2cbb428ba10d7483744bb21, type: 2}
   inventoryItem: []
   stashItem: []
   equipmentItem: []
@@ -35552,7 +35561,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -59}
+  m_AnchoredPosition: {x: 0, y: 43}
   m_SizeDelta: {x: 1500, y: 843}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1951176210
@@ -35569,7 +35578,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -38938,6 +38947,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f95b6c12abe641f98bee4c50daf32b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
   skillName: Aggresive Mirage
   skillDescription: Summon a mirage that relentlessly attacks nearby enemies.
   lockedSkillColor: {r: 0.5568628, g: 0.4745098, b: 0.4745098, a: 1}
@@ -38945,9 +38957,6 @@ MonoBehaviour:
   shouldBeUnlocked:
   - {fileID: 1263963799}
   shouldBeLocked: []
-  fadeDuration: 0.25
-  slideDistance: 10
-  hoverDelay: 0.2
 --- !u!114 &2110531996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39550,6 +39559,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f95b6c12abe641f98bee4c50daf32b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
   skillName: Pierce Sword
   skillDescription: A powerful thrust that pierces through multiple enemies in a
     straight line.
@@ -39560,9 +39572,6 @@ MonoBehaviour:
   shouldBeLocked:
   - {fileID: 1529938309}
   - {fileID: 1272282100}
-  fadeDuration: 0.25
-  slideDistance: 10
-  hoverDelay: 0.2
 --- !u!114 &2143222832
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -60,6 +60,7 @@ public class CharacterStats : MonoBehaviour
     private int shockStrikeDamage;
     [SerializeField] private GameObject shockStrikePrefab;
     public bool isDead { get; private set; }
+    public bool hasThorn;
 
     protected virtual void Start()
     {
@@ -397,5 +398,18 @@ public class CharacterStats : MonoBehaviour
                 return GetStat(statType)?.GetValue() ?? 0;
         }
     }
+
+    public void ReflectDamage(CharacterStats attacker, int originalDamage)
+    {
+        if (attacker == null)
+            return;
+
+        float reflectPercent = 0.5f; // 50%
+        int reflectedDamage = Mathf.RoundToInt(originalDamage * reflectPercent);
+
+        attacker.TakeDamage(reflectedDamage);
+
+    }
+
 
 }

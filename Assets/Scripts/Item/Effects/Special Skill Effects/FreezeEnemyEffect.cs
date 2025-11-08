@@ -4,7 +4,7 @@ using UnityEngine;
 public class FreezeEnemyEffect : ItemEffect
 {
     [SerializeField] private float duration;
-     [SerializeField] private float freezeRadius;
+    [SerializeField] private float freezeRadius;
 
     public override void ExecuteEffect(Transform _transform)
     {

@@ -52,4 +52,10 @@ public class UI_ItemToolTip : UI_ToolTip
     {
         base.ShowInstantlyAtMouse();
     }
+
+    public override void HideToolTips()
+    {
+        base.HideToolTips();
+        HideItemToolTip();
+    }
 }

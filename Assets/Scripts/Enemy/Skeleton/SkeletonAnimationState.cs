@@ -16,7 +16,13 @@ public class SkeletonAnimationTrigger : MonoBehaviour
             if (hit.GetComponent<Player>() != null)
             {
                 PlayerStats _target = hit.GetComponent<PlayerStats>();
-                skeleton.stats.DoPhysicalDamage(_target);
+                if (_target != null)
+                    skeleton.stats.DoPhysicalDamage(_target);
+
+                var armor = Inventory.instance.GetEquipementByType(EquipmentType.Armor);
+                if (armor == null)
+                    return; 
+                armor.ItemEffect(skeleton.transform);
             }
         }
     }

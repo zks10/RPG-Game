@@ -18,7 +18,8 @@ MonoBehaviour:
   dropRate: 0
   slotType: 1
   itemCooldown: 0
-  itemEffects: []
+  itemEffects:
+  - {fileID: 11400000, guid: 1934400b47feb47f7846cb51f1dbbe47, type: 2}
   strength: 0
   agility: 0
   intelligence: 0
