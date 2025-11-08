@@ -34,19 +34,6 @@ public class Clone_Skill : Skill
             SetUpClone(_clonePosition, cloneDuration, canAttack, _offset, FindClosestEnemy(player.transform), canDuplicateClone, chanceToDuplicate, player);
     }
 
-    public void CreateCloneOnDashStart()
-    {
-        if (createCloneOnDashStart)
-            CreateClone(player.transform, Vector3.zero);
-
-    }
-
-    public void CreateCloneOnDashEnd()
-    {
-        if (createCloneOnDashEnd)
-            CreateClone(player.transform, Vector3.zero);
-    }
-
     public void CreateCloneOnCounterAttack(Transform _enemyTransform)
     {
         if (createCloneOnCounterAttack)

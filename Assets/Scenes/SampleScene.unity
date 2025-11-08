@@ -234,10 +234,10 @@ RectTransform:
   - {fileID: 1796842334}
   m_Father: {fileID: 863844760}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 450, y: -50}
+  m_SizeDelta: {x: 300, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &14575307
 MonoBehaviour:
@@ -894,14 +894,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fe745613a51940e39f08278ce1a3234, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
   statName: Electric Damage
   statType: 13
   statValueText: {fileID: 83840113}
   statNameText: {fileID: 2031789706}
   statDescription: Magic Damage - Electroc Elemental Damage
-  fadeDuration: 0.25
-  slideDistance: 10
-  hoverDelay: 0.2
 --- !u!114 &83840113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1692,6 +1692,7 @@ MonoBehaviour:
   slideDistance: 10
   hoverDelay: 0.2
   skillName: Dash - "Here I am"
+  skillPrice: 200
   skillDescription: Leave a mirage while you dashing.
   lockedSkillColor: {r: 0.5568628, g: 0.4745098, b: 0.4745098, a: 1}
   unlocked: 0
@@ -2309,10 +2310,10 @@ RectTransform:
   - {fileID: 129333022}
   m_Father: {fileID: 863844760}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 1050, y: -50}
+  m_SizeDelta: {x: 300, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &206367749
 MonoBehaviour:
@@ -6853,6 +6854,7 @@ MonoBehaviour:
   slideDistance: 10
   hoverDelay: 0.2
   skillName: Multiple Mirage
+  skillPrice: 0
   skillDescription: Spawn several mirages to overwhelm enemies with synchronized
     attacks.
   lockedSkillColor: {r: 0.5568628, g: 0.4745098, b: 0.4745098, a: 1}
@@ -7149,14 +7151,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fe745613a51940e39f08278ce1a3234, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
   statName: Intelligence
   statType: 2
   statValueText: {fileID: 260634278}
   statNameText: {fileID: 1589228204}
   statDescription: Increases Magical (fire/ice/electric) Damage and Resistence
-  fadeDuration: 0.25
-  slideDistance: 10
-  hoverDelay: 0.2
 --- !u!114 &260634278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7701,6 +7703,7 @@ MonoBehaviour:
   slideDistance: 10
   hoverDelay: 0.2
   skillName: Crystal Mirage
+  skillPrice: 0
   skillDescription: Your mirages shatter into explosive crystals upon disappearing,
     damaging nearby foes.
   lockedSkillColor: {r: 0.5568628, g: 0.4745098, b: 0.4745098, a: 1}
@@ -8034,14 +8037,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fe745613a51940e39f08278ce1a3234, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
   statName: Strength
   statType: 0
   statValueText: {fileID: 312255666}
   statNameText: {fileID: 1516862641}
   statDescription: Increases Physical Damage and Crit. Damage
-  fadeDuration: 0.25
-  slideDistance: 10
-  hoverDelay: 0.2
 --- !u!114 &312255666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8344,14 +8347,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ae8359b4d396483db01b7bcc7caa7a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
   item:
     data: {fileID: 0}
     stackSize: 0
   itemImage: {fileID: 354177703}
   itemText: {fileID: 762219977}
-  fadeDuration: 0.25
-  slideDistance: 10
-  hoverDelay: 0.2
   slotType: 3
 --- !u!114 &354177703
 MonoBehaviour:
@@ -8616,6 +8619,7 @@ MonoBehaviour:
   slideDistance: 10
   hoverDelay: 0.2
   skillName: Sword Throw
+  skillPrice: 0
   skillDescription: Launch your sword to hit enemy.
   lockedSkillColor: {r: 0.5568628, g: 0.4745098, b: 0.4745098, a: 1}
   unlocked: 0
@@ -9358,14 +9362,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ae8359b4d396483db01b7bcc7caa7a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
   item:
     data: {fileID: 0}
     stackSize: 0
   itemImage: {fileID: 410118785}
   itemText: {fileID: 1871645787}
-  fadeDuration: 0.25
-  slideDistance: 10
-  hoverDelay: 0.2
   slotType: 1
 --- !u!114 &410118785
 MonoBehaviour:
@@ -9995,6 +9999,7 @@ MonoBehaviour:
   slideDistance: 10
   hoverDelay: 0.2
   skillName: Time Stop
+  skillPrice: 0
   skillDescription: Freeze time temporarily, halting enemy movement.
   lockedSkillColor: {r: 0.5568628, g: 0.4745098, b: 0.4745098, a: 1}
   unlocked: 0
@@ -11009,7 +11014,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0.11035798, y: 0.000000033116486, z: 0.0000000036771284, w: 0.9938919}
-  m_LocalPosition: {x: -29.514275, y: -1.4052918, z: -9.971593}
+  m_LocalPosition: {x: -33.544273, y: -1.4052918, z: -9.971593}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11199,6 +11204,7 @@ MonoBehaviour:
   slideDistance: 10
   hoverDelay: 0.2
   skillName: Black Hole Ability
+  skillPrice: 0
   skillDescription: Trap enemies in black hole and dealing high value damage.
   lockedSkillColor: {r: 0.5568628, g: 0.4745098, b: 0.4745098, a: 1}
   unlocked: 0
@@ -15384,6 +15390,7 @@ MonoBehaviour:
   slideDistance: 10
   hoverDelay: 0.2
   skillName: Dash
+  skillPrice: 100
   skillDescription: Burst forward at high speed, covering short distances quickly
     with invincibility.
   lockedSkillColor: {r: 0.5568628, g: 0.4745098, b: 0.4745098, a: 1}
@@ -15885,6 +15892,7 @@ MonoBehaviour:
   slideDistance: 10
   hoverDelay: 0.2
   skillName: Dash - "Actually I am here"
+  skillPrice: 400
   skillDescription: Generate a Mirage after dashing.
   lockedSkillColor: {r: 0.5568628, g: 0.4745098, b: 0.4745098, a: 1}
   unlocked: 0
@@ -16346,6 +16354,7 @@ MonoBehaviour:
   slideDistance: 10
   hoverDelay: 0.2
   skillName: Counter Attack
+  skillPrice: 0
   skillDescription: Block an attack and immediately retaliate with a powerful strike.
   lockedSkillColor: {r: 0.5568628, g: 0.4745098, b: 0.4745098, a: 1}
   unlocked: 0
@@ -16585,6 +16594,7 @@ MonoBehaviour:
   slideDistance: 10
   hoverDelay: 0.2
   skillName: Explosion
+  skillPrice: 0
   skillDescription: Detonate energy around you, dealing massive area-of-effect damage.
   lockedSkillColor: {r: 0.5568628, g: 0.4745098, b: 0.4745098, a: 1}
   unlocked: 0
@@ -17241,6 +17251,7 @@ MonoBehaviour:
   slideDistance: 10
   hoverDelay: 0.2
   skillName: Crystal Machine Gun
+  skillPrice: 0
   skillDescription: Fire a rapid stream of crystal projectiles that deal sustained
     ranged damage.
   lockedSkillColor: {r: 0.5568628, g: 0.4745098, b: 0.4745098, a: 1}
@@ -17803,6 +17814,7 @@ MonoBehaviour:
   slideDistance: 10
   hoverDelay: 0.2
   skillName: Controlled Destruction
+  skillPrice: 0
   skillDescription: 'Crystal starts to automatically move to enemy.
 
     You can
@@ -18152,6 +18164,7 @@ MonoBehaviour:
   slideDistance: 10
   hoverDelay: 0.2
   skillName: Dodge
+  skillPrice: 0
   skillDescription: Quickly evade incoming attacks with chance, becoming briefly
     invulnerable.
   lockedSkillColor: {r: 0.5568628, g: 0.4745098, b: 0.4745098, a: 1}
@@ -18486,6 +18499,7 @@ MonoBehaviour:
   slideDistance: 10
   hoverDelay: 0.2
   skillName: Counter Attack with Mirage
+  skillPrice: 0
   skillDescription: Upon countering, summon a mirage that mimics your counterstrike.
   lockedSkillColor: {r: 0.5568628, g: 0.4745098, b: 0.4745098, a: 1}
   unlocked: 0
@@ -18664,7 +18678,7 @@ Transform:
   m_GameObject: {fileID: 682133537}
   serializedVersion: 2
   m_LocalRotation: {x: -0.11035797, y: 0.000000033116486, z: 0.0000000036771282, w: 0.99389195}
-  m_LocalPosition: {x: -29.514275, y: -1.4052918, z: -9.971593}
+  m_LocalPosition: {x: -33.544273, y: -1.4052918, z: -9.971593}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -18750,14 +18764,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fe745613a51940e39f08278ce1a3234, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
   statName: Physical Damage
   statType: 4
   statValueText: {fileID: 685717476}
   statNameText: {fileID: 320170119}
   statDescription: Damage dealt with physical attacks
-  fadeDuration: 0.25
-  slideDistance: 10
-  hoverDelay: 0.2
 --- !u!114 &685717476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20902,14 +20916,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fe745613a51940e39f08278ce1a3234, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
   statName: Crit Damage
   statType: 6
   statValueText: {fileID: 825561631}
   statNameText: {fileID: 1249974094}
   statDescription: Increases the critical hit damage
-  fadeDuration: 0.25
-  slideDistance: 10
-  hoverDelay: 0.2
 --- !u!114 &825561631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21045,6 +21059,7 @@ MonoBehaviour:
   slideDistance: 10
   hoverDelay: 0.2
   skillName: Crystal
+  skillPrice: 0
   skillDescription: Summon a crystal that can absorb or redirect enemy projectiles.
   lockedSkillColor: {r: 0.5568628, g: 0.4745098, b: 0.4745098, a: 1}
   unlocked: 0
@@ -21304,14 +21319,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fe745613a51940e39f08278ce1a3234, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
   statName: Magic Resist.
   statType: 10
   statValueText: {fileID: 861887792}
   statNameText: {fileID: 793278449}
   statDescription: Reduces incoming magic or elemental damage
-  fadeDuration: 0.25
-  slideDistance: 10
-  hoverDelay: 0.2
 --- !u!114 &861887792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21641,7 +21656,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &898250666
 RectTransform:
   m_ObjectHideFlags: 0
@@ -21738,6 +21753,7 @@ MonoBehaviour:
   slideDistance: 10
   hoverDelay: 0.2
   skillName: Restore with counter attack
+  skillPrice: 0
   skillDescription: Regain a portion of health or energy when successfully countering.
   lockedSkillColor: {r: 0.5568628, g: 0.4745098, b: 0.4745098, a: 1}
   unlocked: 0
@@ -22379,14 +22395,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ae8359b4d396483db01b7bcc7caa7a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
   item:
     data: {fileID: 0}
     stackSize: 0
   itemImage: {fileID: 920039412}
   itemText: {fileID: 1197436079}
-  fadeDuration: 0.25
-  slideDistance: 10
-  hoverDelay: 0.2
   slotType: 2
 --- !u!114 &920039412
 MonoBehaviour:
@@ -22481,6 +22497,7 @@ MonoBehaviour:
   slideDistance: 10
   hoverDelay: 0.2
   skillName: Vulnerability
+  skillPrice: 0
   skillDescription: Increases the damage enemies take for a short period.
   lockedSkillColor: {r: 0.5568628, g: 0.4745098, b: 0.4745098, a: 1}
   unlocked: 0
@@ -22787,14 +22804,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fe745613a51940e39f08278ce1a3234, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
   statName: Crit Rate
   statType: 5
   statValueText: {fileID: 948993069}
   statNameText: {fileID: 556543971}
   statDescription: Chance of landing a critical hit
-  fadeDuration: 0.25
-  slideDistance: 10
-  hoverDelay: 0.2
 --- !u!114 &948993069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23168,10 +23185,10 @@ RectTransform:
   - {fileID: 1635209626}
   m_Father: {fileID: 863844760}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 1350, y: -50}
+  m_SizeDelta: {x: 300, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &977621033
 MonoBehaviour:
@@ -23662,7 +23679,7 @@ Transform:
   m_GameObject: {fileID: 1038971340}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -17.98, y: -5.53, z: 0}
+  m_LocalPosition: {x: -22.01, y: -5.53, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -23859,7 +23876,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1043633390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23887,6 +23904,9 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 64
+  whatIsWall:
+    serializedVersion: 2
+    m_Bits: 8
   stunDuration: 1
   stunDirection: {x: 7, y: 12}
   counterImage: {fileID: 371036203}
@@ -23907,7 +23927,7 @@ Transform:
   m_GameObject: {fileID: 1043633389}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -15.83, y: -5.26, z: 0}
+  m_LocalPosition: {x: -10.87, y: -5.26, z: 0}
   m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -25587,10 +25607,10 @@ RectTransform:
   - {fileID: 1466736523}
   m_Father: {fileID: 863844760}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 750, y: -50}
+  m_SizeDelta: {x: 300, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1203255594
 MonoBehaviour:
@@ -25826,14 +25846,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fe745613a51940e39f08278ce1a3234, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
   statName: Agility
   statType: 1
   statValueText: {fileID: 1230420944}
   statNameText: {fileID: 714605758}
   statDescription: Increases Evasion and Crit. Rate
-  fadeDuration: 0.25
-  slideDistance: 10
-  hoverDelay: 0.2
 --- !u!114 &1230420944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26611,6 +26631,7 @@ MonoBehaviour:
   slideDistance: 10
   hoverDelay: 0.2
   skillName: Time Mirage
+  skillPrice: 0
   skillDescription: Create a time-clone that mimics your recent actions for a few
     seconds.
   lockedSkillColor: {r: 0.5568628, g: 0.4745098, b: 0.4745098, a: 1}
@@ -27001,6 +27022,7 @@ MonoBehaviour:
   slideDistance: 10
   hoverDelay: 0.2
   skillName: Chain Saw Sword
+  skillPrice: 0
   skillDescription: Activate a spinning blade that continuously damages enemies in
     front of you.
   lockedSkillColor: {r: 0.5568628, g: 0.4745098, b: 0.4745098, a: 1}
@@ -27288,6 +27310,7 @@ MonoBehaviour:
   slideDistance: 10
   hoverDelay: 0.2
   skillName: Dodge Mirage
+  skillPrice: 0
   skillDescription: Perform a dodge that leaves behind a mirage to distract enemies.
   lockedSkillColor: {r: 0.5568628, g: 0.4745098, b: 0.4745098, a: 1}
   unlocked: 0
@@ -27933,14 +27956,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fe745613a51940e39f08278ce1a3234, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
   statName: HP
   statType: 7
   statValueText: {fileID: 1368742726}
   statNameText: {fileID: 418040648}
   statDescription: Total amount of health a character
-  fadeDuration: 0.25
-  slideDistance: 10
-  hoverDelay: 0.2
 --- !u!114 &1368742726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28464,14 +28487,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fe745613a51940e39f08278ce1a3234, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
   statName: Fire Damage
   statType: 11
   statValueText: {fileID: 1392907814}
   statNameText: {fileID: 468107778}
   statDescription: Magic Damage - Fire Elemental Damage
-  fadeDuration: 0.25
-  slideDistance: 10
-  hoverDelay: 0.2
 --- !u!114 &1392907814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28654,10 +28677,10 @@ MonoBehaviour:
   cooldown: 1.5
   clonePrefab: {fileID: 3849542969374647729, guid: 99e9ea372cb814649ac81b105c25344b, type: 3}
   cloneDuration: 0
-  canAttack: 1
+  canAttack: 0
   createCloneOnDashStart: 0
-  createCloneOnDashEnd: 1
-  createCloneOnCounterAttack: 1
+  createCloneOnDashEnd: 0
+  createCloneOnCounterAttack: 0
   canDuplicateClone: 0
   chanceToDuplicate: 35
   crystalInsteadOfClone: 0
@@ -28728,12 +28751,12 @@ MonoBehaviour:
   cooldown: 0
   crystalPrefab: {fileID: 8796941438468008156, guid: 22f068a4460c14c5b980e58708fb166a, type: 3}
   crystalDuration: 3.5
-  cloneInsteadOfCrystal: 1
-  canExplode: 1
+  cloneInsteadOfCrystal: 0
+  canExplode: 0
   growSpeed: 4
-  canMoveToEnemy: 1
+  canMoveToEnemy: 0
   moveSpeed: 10
-  canUseMultiStacks: 1
+  canUseMultiStacks: 0
   amountOfStacks: 3
   multiStackCooldown: 3
   useTimeWindow: 2.5
@@ -29251,6 +29274,7 @@ MonoBehaviour:
   slideDistance: 10
   hoverDelay: 0.2
   skillName: Mirage Blink
+  skillPrice: 0
   skillDescription: Instantly teleport a short distance, leaving a mirage at your
     previous location.
   lockedSkillColor: {r: 0.5568628, g: 0.4745098, b: 0.4745098, a: 1}
@@ -30241,6 +30265,7 @@ MonoBehaviour:
   slideDistance: 10
   hoverDelay: 0.2
   skillName: Bouncy Sowrd
+  skillPrice: 0
   skillDescription: Throw a sword that ricochets between multiple enemies, dealing
     reduced damage per bounce.
   lockedSkillColor: {r: 0.5568628, g: 0.4745098, b: 0.4745098, a: 1}
@@ -32397,14 +32422,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fe745613a51940e39f08278ce1a3234, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
   statName: Ice Damage
   statType: 12
   statValueText: {fileID: 1666543539}
   statNameText: {fileID: 498584662}
   statDescription: Magic Damage - Ice Elemental Damage
-  fadeDuration: 0.25
-  slideDistance: 10
-  hoverDelay: 0.2
 --- !u!114 &1666543539
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33172,14 +33197,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fe745613a51940e39f08278ce1a3234, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
   statName: Vitality
   statType: 3
   statValueText: {fileID: 1716563880}
   statNameText: {fileID: 92542522}
   statDescription: Increases Max Health
-  fadeDuration: 0.25
-  slideDistance: 10
-  hoverDelay: 0.2
 --- !u!114 &1716563880
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33827,14 +33852,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fe745613a51940e39f08278ce1a3234, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
   statName: Evasion
   statType: 9
   statValueText: {fileID: 1798634851}
   statNameText: {fileID: 1578804636}
   statDescription: Increases the chance to dodge or avoid attacks
-  fadeDuration: 0.25
-  slideDistance: 10
-  hoverDelay: 0.2
 --- !u!114 &1798634851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35789,14 +35814,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fe745613a51940e39f08278ce1a3234, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
   statName: Armor
   statType: 8
   statValueText: {fileID: 1961966907}
   statNameText: {fileID: 945952939}
   statDescription: Reduces incoming physical damage.
-  fadeDuration: 0.25
-  slideDistance: 10
-  hoverDelay: 0.2
 --- !u!114 &1961966907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36369,6 +36394,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1038971341}
+  currency: 1000
 --- !u!4 &1981040316
 Transform:
   m_ObjectHideFlags: 0
@@ -38194,7 +38220,7 @@ RectTransform:
   m_Father: {fileID: 270800113}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0.00018310547, y: 1.2100239}
   m_SizeDelta: {x: 0, y: -2.41}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -38951,6 +38977,7 @@ MonoBehaviour:
   slideDistance: 10
   hoverDelay: 0.2
   skillName: Aggresive Mirage
+  skillPrice: 0
   skillDescription: Summon a mirage that relentlessly attacks nearby enemies.
   lockedSkillColor: {r: 0.5568628, g: 0.4745098, b: 0.4745098, a: 1}
   unlocked: 0
@@ -39563,6 +39590,7 @@ MonoBehaviour:
   slideDistance: 10
   hoverDelay: 0.2
   skillName: Pierce Sword
+  skillPrice: 0
   skillDescription: A powerful thrust that pierces through multiple enemies in a
     straight line.
   lockedSkillColor: {r: 0.5568628, g: 0.4745098, b: 0.4745098, a: 1}
@@ -40080,14 +40108,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ae8359b4d396483db01b7bcc7caa7a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeDuration: 0.25
+  slideDistance: 10
+  hoverDelay: 0.2
   item:
     data: {fileID: 0}
     stackSize: 0
   itemImage: {fileID: 1452401720455349535}
   itemText: {fileID: 2647413074511744575}
-  fadeDuration: 0.25
-  slideDistance: 10
-  hoverDelay: 0.2
   slotType: 0
 --- !u!1 &7135253940809058480
 GameObject:

@@ -3,9 +3,11 @@ using UnityEngine;
 using System.Collections;
 
 public class Enemy : Entity
-{   
-    
+{
+
     [SerializeField] protected LayerMask whatIsPlayer;
+    [SerializeField] protected LayerMask whatIsWall;
+
     private Transform player; 
 
     [Header("Stunned Info")]
@@ -106,8 +108,20 @@ public class Enemy : Entity
     #endregion
 
     public virtual void AnimationFinishTrigger() => stateMachine.currentState.AnimationFinishTrigger();
-    public virtual RaycastHit2D IsPlayerDectected() => Physics2D.Raycast(wallCheck.position, Vector2.right * facingDir, viewDistance, whatIsPlayer);
+    public virtual RaycastHit2D IsPlayerDectected()
+    {
+        RaycastHit2D playerHit = Physics2D.Raycast(wallCheck.position, Vector2.right * facingDir, viewDistance, whatIsPlayer);
 
+        if (playerHit)
+        {
+            RaycastHit2D wallHit = Physics2D.Raycast(wallCheck.position, Vector2.right * facingDir, playerHit.distance, whatIsWall);
+
+            if (!wallHit)
+                return playerHit;
+        }
+
+        return default;
+    }
     public override void OnDrawGizmos()
     {
         base.OnDrawGizmos();

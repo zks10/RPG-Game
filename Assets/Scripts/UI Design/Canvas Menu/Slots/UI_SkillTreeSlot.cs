@@ -6,6 +6,7 @@ using System.Collections;
 public class UI_SkillTreeSlot : UI_Slots
 {
     [SerializeField] private string skillName;
+    [SerializeField] private int skillPrice;
     [TextArea]
     [SerializeField] private string skillDescription;
     [SerializeField] private Color lockedSkillColor;
@@ -33,6 +34,9 @@ public class UI_SkillTreeSlot : UI_Slots
 
     public void UnlockSkillSlot()
     {
+        if (!PlayerManager.instance.HaveEnoughMoney(skillPrice))
+            return;
+
         foreach (var s in shouldBeUnlocked)
         {
             if (!s.unlocked)
@@ -55,6 +59,12 @@ public class UI_SkillTreeSlot : UI_Slots
         skillImage.color = Color.white;
     }
 
+
+
+
+
+
+    # region UI of tool tips
     public override void ShowToolTip()
     {
         base.ShowToolTip();
@@ -98,4 +108,6 @@ public class UI_SkillTreeSlot : UI_Slots
     {
         base.StopOtherFadeIfRunning();
     }
+    #endregion
+
 }
