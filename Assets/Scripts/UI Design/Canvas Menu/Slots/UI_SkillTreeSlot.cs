@@ -12,7 +12,6 @@ public class UI_SkillTreeSlot : UI_Slots
     public bool unlocked;
     [SerializeField] private UI_SkillTreeSlot[] shouldBeUnlocked;
     [SerializeField] private UI_SkillTreeSlot[] shouldBeLocked;
-
     private Image skillImage;
 
     private void OnValidate()
@@ -81,17 +80,22 @@ public class UI_SkillTreeSlot : UI_Slots
     public override void HideToolTip()
     {
         base.HideToolTip();
-        tooltip.HideSkillToolTip();
+        tooltip.HideToolTips();
     }
 
     public override void ToolTipShowToolTip()
     {
         base.ToolTipShowToolTip();
-        tooltip.ShowSkillToolTip(skillDescription, skillName);
+        tooltip.ShowToolTips(skillDescription, skillName);
     }
 
     public override IEnumerator FadeAndSlideTooltipCoroutine(float targetAlpha)
     {
         yield return base.FadeAndSlideTooltipCoroutine(targetAlpha);
+    }
+
+    public override void StopOtherFadeIfRunning()
+    {
+        base.StopOtherFadeIfRunning();
     }
 }

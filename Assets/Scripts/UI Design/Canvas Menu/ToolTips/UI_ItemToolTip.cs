@@ -58,4 +58,8 @@ public class UI_ItemToolTip : UI_ToolTip
         base.HideToolTips();
         HideItemToolTip();
     }
+    public override void ShowToolTips(ItemData_Equipment item)
+    {
+        ShowItemToolTip(item);
+    }
 }

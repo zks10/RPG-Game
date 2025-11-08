@@ -44,9 +44,8 @@ public class UI_StatToolTip : UI_ToolTip
         base.HideToolTips();
         HideStatToolTip();
     }
-    // public override void ShowToolTips()
-    // {
-    //     base.ShowToolTips();
-    //     HideStatToolTip();
-    // }
+    public override void ShowToolTips(string description)
+    {
+        ShowStatToolTip(description);
+    }
 }

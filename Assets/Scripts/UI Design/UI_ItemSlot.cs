@@ -3,25 +3,14 @@ using UnityEngine.EventSystems;
 using TMPro;
 using System.Collections;
 using UnityEngine.UI; 
-public class UI_ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
+public class UI_ItemSlot : UI_Slots, IPointerDownHandler
 {
-    protected UI ui;
     public InventoryItem item;
     [SerializeField] protected Image itemImage;
     [SerializeField] protected TextMeshProUGUI itemText;
-
-    private bool isHovering = false;
-    private bool isTooltipVisible = false;
-    private Coroutine fadeCoroutine;
-    private Coroutine hoverDelayCoroutine;
-
-    [SerializeField] private float fadeDuration = 0.25f;
-    [SerializeField] private float slideDistance = 10f;
-    [SerializeField] private float hoverDelay = 0.2f;
-
-    protected virtual void Start()
+    protected override void Start()
     {
-        ui = GetComponentInParent<UI>();
+        base.Start();
     }
     public void UpdateSlot(InventoryItem _newItem)
     {
@@ -90,145 +79,48 @@ public class UI_ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
         ui.itemToolTip.HideItemToolTip();
     }
 
-    private void Update()
+    public override void ShowToolTip()
     {
-        bool controlHeld = Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl);
-
-        if (isHovering && controlHeld)
-        {
-            // Start hover delay if not already visible
-            if (!isTooltipVisible && hoverDelayCoroutine == null)
-                hoverDelayCoroutine = StartCoroutine(HoverDelayShow());
-        }
-        else
-        {
-            // Cancel hover delay if user stops hovering or releases control
-            if (hoverDelayCoroutine != null)
-            {
-                StopCoroutine(hoverDelayCoroutine);
-                hoverDelayCoroutine = null;
-            }
-
-            if (isTooltipVisible)
-            {
-                StartFadeAndSlideTooltip(0f);
-                isTooltipVisible = false;
-            }
-        }
+        base.ShowToolTip();
+        ui.itemToolTip.ShowItemToolTip(item.data as ItemData_Equipment);
     }
 
-    private IEnumerator HoverDelayShow()
+    public override void OnPointerEnter(PointerEventData eventData)
     {
-        yield return new WaitForSeconds(hoverDelay);
-
-        bool controlHeld = Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl);
-
-        if (isHovering && controlHeld)
-        {
-            StopOtherFadeIfRunning();
-
-            // ✅ Safety checks
-            if (ui == null || ui.itemToolTip == null || item == null || item.data == null)
-            {
-                hoverDelayCoroutine = null;
-                yield break;
-            }
-
-            ui.itemToolTip.ShowItemToolTip(item.data as ItemData_Equipment);
-            StartFadeAndSlideTooltip(1f);
-            isTooltipVisible = true;
-        }
-
-        hoverDelayCoroutine = null;
+        base.OnPointerEnter(eventData);
     }
 
-
-    public virtual void OnPointerEnter(PointerEventData eventData)
+    public override void OnPointerExit(PointerEventData eventData)
     {
-        if (item == null || item.data == null)
-            return;
-
-        isHovering = true;
-
-        StopOtherFadeIfRunning();
+        base.OnPointerExit(eventData);
     }
 
-    public virtual void OnPointerExit(PointerEventData eventData)
+    public override void AssignToolTip()
     {
-        if (item == null || item.data == null)
-            return;
-        isHovering = false;
-
-        if (hoverDelayCoroutine != null)
-        {
-            StopCoroutine(hoverDelayCoroutine);
-            hoverDelayCoroutine = null;
-        }
-
-        if (isTooltipVisible)
-        {
-            StartFadeAndSlideTooltip(0f);
-            isTooltipVisible = false;
-        }
-    }
-    private void StartFadeAndSlideTooltip(float targetAlpha)
-    {
-        if (fadeCoroutine != null)
-            StopCoroutine(fadeCoroutine);
-
-        fadeCoroutine = StartCoroutine(FadeAndSlideTooltipCoroutine(targetAlpha));
+        base.AssignToolTip();
+        tooltip = ui.itemToolTip;
     }
 
-    private IEnumerator FadeAndSlideTooltipCoroutine(float targetAlpha)
+    public override void HideToolTip()
     {
-        var tooltip = ui.itemToolTip;
-        CanvasGroup canvasGroup = tooltip.GetComponent<CanvasGroup>();
-        RectTransform rectTransform = tooltip.GetComponent<RectTransform>();
-
-        if (canvasGroup == null || rectTransform == null)
-        {
-            if (targetAlpha == 0f)
-                tooltip.HideItemToolTip();
-            yield break;
-        }
-
-        float startAlpha = canvasGroup.alpha;
-        Vector3 startPos = rectTransform.anchoredPosition;
-        Vector3 targetPos = new Vector3(startPos.x, startPos.y + (targetAlpha > 0 ? slideDistance : -slideDistance), startPos.z);
-
-        if (targetAlpha > 0f)
-        {
-            tooltip.ShowItemToolTip(item.data as ItemData_Equipment);
-            canvasGroup.blocksRaycasts = false;
-        }
-
-        float time = 0f;
-        while (time < fadeDuration)
-        {
-            time += Time.deltaTime;
-            float t = time / fadeDuration;
-            canvasGroup.alpha = Mathf.Lerp(startAlpha, targetAlpha, t);
-            rectTransform.anchoredPosition = Vector3.Lerp(startPos, targetPos, t);
-            yield return null;
-        }
-
-        canvasGroup.alpha = targetAlpha;
-
-        if (targetAlpha == 0f)
-            tooltip.HideItemToolTip();
+        base.HideToolTip();
+        tooltip.HideToolTips();
     }
 
-    private void StopOtherFadeIfRunning()
+    public override void ToolTipShowToolTip()
     {
-        // If another slot was fading out the tooltip, stop it
-        if (fadeCoroutine != null)
-            StopCoroutine(fadeCoroutine);
+        base.ToolTipShowToolTip();
+        tooltip.ShowToolTips(item.data as ItemData_Equipment);
+    }
 
-        // Force tooltip to visible if it's mid-fade-out
-        var tooltip = ui.itemToolTip;
-        CanvasGroup cg = tooltip.GetComponent<CanvasGroup>();
-        if (cg != null && cg.alpha < 1f)
-            cg.alpha = 1f;
+    public override IEnumerator FadeAndSlideTooltipCoroutine(float targetAlpha)
+    {
+        yield return base.FadeAndSlideTooltipCoroutine(targetAlpha);
+    }
+
+    public override void StopOtherFadeIfRunning()
+    {
+        base.StopOtherFadeIfRunning();
     }
     
 }

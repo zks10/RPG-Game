@@ -15,7 +15,7 @@ public class UI_Slots : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     [SerializeField] private float slideDistance = 10f;
     [SerializeField] private float hoverDelay = 0.2f;
 
-    protected UI_SkillToolTip tooltip;
+    protected UI_ToolTip tooltip;
 
     protected virtual void Start()
     {

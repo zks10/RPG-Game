@@ -46,4 +46,8 @@ public class UI_SkillToolTip : UI_ToolTip
         base.HideToolTips();
         HideSkillToolTip();
     }
+    public override void ShowToolTips(string skillDesc, string skillName)
+    {
+        ShowSkillToolTip(skillDesc, skillName);
+    }
 }

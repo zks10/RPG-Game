@@ -55,6 +55,9 @@ public class UI_ToolTip : MonoBehaviour
 
     public virtual void HideToolTips() { }
 
-    //public virtual void ShowToolTips() { }
+    public virtual void ShowToolTips() { } 
+    public virtual void ShowToolTips(string description) { }
+    public virtual void ShowToolTips(ItemData_Equipment item) { }
+    public virtual void ShowToolTips(string skillDesc, string skillName) { }
 
 }
