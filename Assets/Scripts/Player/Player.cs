@@ -99,7 +99,7 @@ public class Player : Entity
             skill.crystal.CanUseSkill();
         }
 
-        if (Input.GetKeyDown(KeyCode.M))
+        if (Input.GetKeyDown(KeyCode.T))
         {
             Inventory.instance.UseTrinket();
         }

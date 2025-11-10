@@ -7,7 +7,7 @@ public class UI : MonoBehaviour
     // [SerializeField] private GameObject craftUI; 2
     // [SerializeField] private GameObject optionsUI; 3
     [SerializeField] private GameObject[] menuUI = new GameObject[4];
-    private int menuIdx = 0;
+    private int menuIdx;
     private bool openMenu;
 
     public UI_ItemToolTip itemToolTip;
@@ -18,6 +18,7 @@ public class UI : MonoBehaviour
     {
         SwitchTo(null);
         openMenu = false;
+
         itemToolTip.gameObject.SetActive(false);
         statToolTip.gameObject.SetActive(false);
     }
@@ -27,7 +28,11 @@ public class UI : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.M))
         {
             openMenu = !openMenu;
-            SwitchWithKeyTo(menuUI[menuIdx]);
+
+            if (openMenu)
+                SwitchWithKeyTo(menuUI[menuIdx]);
+            else
+                SwitchWithKeyTo(null);
         }
 
         if (openMenu)

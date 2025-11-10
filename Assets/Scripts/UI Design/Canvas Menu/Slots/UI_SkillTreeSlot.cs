@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.Events;
+
 using System.Collections;
 
 public class UI_SkillTreeSlot : UI_Slots
@@ -14,6 +16,8 @@ public class UI_SkillTreeSlot : UI_Slots
     [SerializeField] private UI_SkillTreeSlot[] shouldBeUnlocked;
     [SerializeField] private UI_SkillTreeSlot[] shouldBeLocked;
     private Image skillImage;
+    public UnityEvent onSkillUnlocked;
+
 
     private void OnValidate()
     {
@@ -54,9 +58,10 @@ public class UI_SkillTreeSlot : UI_Slots
                 return;
             }
         }
-
+        PlayerManager.instance.UpdateCurrency(skillPrice);
         unlocked = true;
         skillImage.color = Color.white;
+        onSkillUnlocked?.Invoke();
     }
 
 

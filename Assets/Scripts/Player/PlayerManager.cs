@@ -13,13 +13,16 @@ public class PlayerManager : MonoBehaviour
         else
             instance = this;
     }
-    
+
     public bool HaveEnoughMoney(int _price)
     {
         if (_price > currency)
             return false;
-
-        currency -= _price;
         return true;
+    }
+    
+    public void UpdateCurrency(int _price)
+    {
+        currency -= _price;
     }
 }

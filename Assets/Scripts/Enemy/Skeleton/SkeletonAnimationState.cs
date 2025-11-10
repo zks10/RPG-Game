@@ -29,4 +29,6 @@ public class SkeletonAnimationTrigger : MonoBehaviour
 
     private void OpenCounterAttackWindow() => skeleton.OpenCounterAttackWindow();
     private void CloseCounterAttackWindow() => skeleton.CloseCounterAttackWindow();
+    private void DetectPlayerImage() => skeleton.DetectPlayerImage();
+    private void StartWalking() => skeleton.StartWalking();
 }

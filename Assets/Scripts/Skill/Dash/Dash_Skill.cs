@@ -15,13 +15,14 @@ public class Dash_Skill : Skill
     public bool cloneOnArrivalUnlocked;
     [SerializeField] private UI_SkillTreeSlot cloneOnArrivalUnlockkButton;
 
+
     protected override void Start() 
     {
         base.Start();
 
-        dashUnlockButton.GetComponent<Button>().onClick.AddListener(UnlockDash);
-        cloneOnDashUnlockButton.GetComponent<Button>().onClick.AddListener(UnlockDashClone);
-        cloneOnArrivalUnlockkButton.GetComponent<Button>().onClick.AddListener(UnlockCloneOnArrival);
+        dashUnlockButton.onSkillUnlocked.AddListener(UnlockDash);
+        cloneOnDashUnlockButton.onSkillUnlocked.AddListener(UnlockDashClone);
+        cloneOnArrivalUnlockkButton.onSkillUnlocked.AddListener(UnlockCloneOnArrival);
     }
     public override void UseSkill()
     {

@@ -26,7 +26,7 @@ public class PlayerGroundedState : PlayerState
         if (Input.GetKeyDown(KeyCode.Mouse1) && HasNoSword())
             stateMachine.ChangeState(player.aimSwordState);
 
-        if (Input.GetKeyDown(KeyCode.Q) && player.counterAttackUsageTimer < 0)
+        if (Input.GetKeyDown(KeyCode.Q) && player.counterAttackUsageTimer < 0 && player.skill.counterAttack.counterAttackUnlocked)
         {
             player.counterAttackUsageTimer = player.counterAttackCooldown;
             stateMachine.ChangeState(player.counterAttackState);

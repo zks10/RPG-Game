@@ -28,6 +28,7 @@ public class Enemy : Entity
     public float attackCooldown;
     public float viewDistance;
     [HideInInspector] public float lastTimeAttacked;
+    [SerializeField] protected GameObject detectPlayerImage;
     //private bool timeFrozen = false;
     public EnemyStateMachine stateMachine { get; private set; }
     public string lastAnimBoolName { get; private set; }
@@ -90,10 +91,20 @@ public class Enemy : Entity
         counterImage.SetActive(true);
     }
 
-    public virtual void CloseCounterAttackWindow() 
+    public virtual void CloseCounterAttackWindow()
     {
         canBeStunned = false;
         counterImage.SetActive(false);
+    }
+    
+    public virtual void DetectPlayerImage()
+    {
+        detectPlayerImage.SetActive(true);
+    }
+
+    public virtual void StartWalking() 
+    {
+        detectPlayerImage.SetActive(false);
     }
 
     public virtual bool CanBeStunned()

@@ -33,13 +33,15 @@ public class PlayerCounterAttackState : PlayerState
                     stateTimer = 10;
                     player.counterAttackUsageTimer = 0;
                     player.anim.SetBool("SucessfulCounterAttack", true);
+
+                    player.skill.counterAttack.UseSkill();
                     // If only one counter clone
                     // if (canCreateClone)
                     // {
                     //     canCreateClone = false;
-                    //     player.skill.clone.CreateCloneOnCounterAttack(hit.transform);
+                    //     player.skill.coounterAttack.MakeMirageOnCounterAttack(hit.transform);
                     // }
-                    player.skill.clone.CreateCloneOnCounterAttack(hit.transform);
+                    player.skill.clone.CreateCloneWithDelay(hit.transform);
                 }
             }
         }
