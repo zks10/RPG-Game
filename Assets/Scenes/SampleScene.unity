@@ -8585,9 +8585,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 371036203}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.27, z: 0}
-  m_LocalScale: {x: 0.79, y: 0.79, z: 0.79}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.26999986, z: 0}
+  m_LocalScale: {x: 0.78999996, y: 0.78999996, z: 0.78999996}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1043633391}
@@ -24037,7 +24037,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1043633390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24097,9 +24097,9 @@ Transform:
   - {fileID: 1824624171}
   - {fileID: 1535113883}
   - {fileID: 927296570}
-  - {fileID: 371036205}
   - {fileID: 1354800434}
   - {fileID: 1091480680}
+  - {fileID: 371036205}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &1043633393
@@ -24901,7 +24901,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1091480680
 Transform:
   m_ObjectHideFlags: 0
@@ -28890,11 +28890,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown: 1
-  dashUnlocked: 0
   dashUnlockButton: {fileID: 553934504}
-  cloneOnDashUnlocked: 0
   cloneOnDashUnlockButton: {fileID: 138362386}
-  cloneOnArrivalUnlocked: 0
   cloneOnArrivalUnlockkButton: {fileID: 564738649}
 --- !u!114 &1394310099
 MonoBehaviour:
@@ -29011,15 +29008,16 @@ MonoBehaviour:
   cooldown: 0
   crystalPrefab: {fileID: 8796941438468008156, guid: 22f068a4460c14c5b980e58708fb166a, type: 3}
   crystalDuration: 3.5
-  cloneInsteadOfCrystal: 0
-  canExplode: 0
+  unlockCrystalButton: {fileID: 827017617}
+  unlockCloneInsteadlButton: {fileID: 1435131961}
+  unlockExplosiveButton: {fileID: 586114712}
   growSpeed: 4
-  canMoveToEnemy: 0
+  unlockMovingCrystalButton: {fileID: 641170327}
   moveSpeed: 10
-  canUseMultiStacks: 0
+  unlockMultiStackCrystalButton: {fileID: 615783691}
   amountOfStacks: 3
   multiStackCooldown: 3
-  useTimeWindow: 2.5
+  useTimeWindow: 2
   crystalLeft:
   - {fileID: 8796941438468008156, guid: 22f068a4460c14c5b980e58708fb166a, type: 3}
   - {fileID: 8796941438468008156, guid: 22f068a4460c14c5b980e58708fb166a, type: 3}
@@ -38503,7 +38501,7 @@ RectTransform:
   m_Father: {fileID: 270800113}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0.00018310547, y: 1.2100239}
   m_SizeDelta: {x: 0, y: -2.41}
   m_Pivot: {x: 0.5, y: 0.5}

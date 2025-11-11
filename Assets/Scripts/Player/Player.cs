@@ -94,7 +94,7 @@ public class Player : Entity
         CheckForDashInput();
         counterAttackUsageTimer -= Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F) && skill.crystal.crystalUnlocked)
         {
             skill.crystal.CanUseSkill();
         }
