@@ -12,7 +12,6 @@ public class UI_CraftSlot : UI_ItemSlot, IPointerEnterHandler, IPointerExitHandl
     public float hoverScale = 1.05f;
 
     private Vector3 originalScale;
-    private bool isHovered = false;
 
     protected override void Start()
     {
@@ -48,16 +47,14 @@ public class UI_CraftSlot : UI_ItemSlot, IPointerEnterHandler, IPointerExitHandl
         // AudioManager.Play("CraftSlotClick");
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
+    public override void OnPointerEnter(PointerEventData eventData)
     {
-        isHovered = true;
         SetColor(hoverColor);
         transform.localScale = originalScale * hoverScale;
     }
 
-    public void OnPointerExit(PointerEventData eventData)
+    public override void OnPointerExit(PointerEventData eventData)
     {
-        isHovered = false;
         ResetVisuals();
     }
 

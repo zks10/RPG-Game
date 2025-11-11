@@ -13,6 +13,7 @@ public class Clone_Skill_Controller : MonoBehaviour
     private int facingDir = 1;
     private float chanceToDuplicate;
     private Player player;
+    private float attackMultiplier;
 
     private void Awake() 
     {
@@ -32,7 +33,7 @@ public class Clone_Skill_Controller : MonoBehaviour
             }
         }
     }
-    public void SetUpClone(Transform newTransform, float cloneDuration, bool canAttack, Vector3 _offset, Transform _closestEnemy, bool _canDuplicateClone, float _chanceToDuplicate, Player _player)  
+    public void SetUpClone(Transform newTransform, float cloneDuration, bool canAttack, Vector3 _offset, Transform _closestEnemy, bool _canDuplicateClone, float _chanceToDuplicate, Player _player, float _attackMultiplier)  
     {
         if (canAttack) 
             anim.SetInteger("AttackNumber", Random.Range(1, 3));
@@ -42,6 +43,7 @@ public class Clone_Skill_Controller : MonoBehaviour
         canDuplicateClone = _canDuplicateClone;
         chanceToDuplicate = _chanceToDuplicate;
         player = _player;
+        attackMultiplier = _attackMultiplier;
 
         FaceClosetTarget();
     }
@@ -59,13 +61,24 @@ public class Clone_Skill_Controller : MonoBehaviour
         {
             if (hit.GetComponent<Enemy>() != null)
             {
-                player.stats.DoPhysicalDamage(hit.GetComponent<CharacterStats>());
+                //player.stats.DoPhysicalDamage(hit.GetComponent<CharacterStats>());
+                PlayerStats playerStats = player.GetComponent<PlayerStats>();
+                EnemyStats enemyStats = hit.GetComponent<EnemyStats>();
+
+                playerStats.CloneDoDamage(enemyStats, attackMultiplier);
+
+                if (player.skill.clone.canApplyOnHitEffect)
+                {
+                    ItemData_Equipment weapon = Inventory.instance.GetEquipementByType(EquipmentType.Weapon);
+                    if (weapon != null)
+                        weapon.ItemEffect(hit.transform); 
+                }
                 
                 if (canDuplicateClone)
                 {
                     if (Random.Range(0, 100) < chanceToDuplicate)
                     {
-                        SkillManager.instance.clone.CreateClone(hit.transform, new Vector3(1 * facingDir, 0));
+                        SkillManager.instance.clone.CreateClone(hit.transform, new Vector3(.5f * facingDir, 0));
                     }
                 }
             }

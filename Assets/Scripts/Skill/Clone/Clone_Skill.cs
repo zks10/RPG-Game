@@ -4,21 +4,79 @@ using System.Collections;
 public class Clone_Skill : Skill
 {
     [Header("Clone Info")]
+    [SerializeField] private float attackMultiplier;
     [SerializeField] private GameObject clonePrefab;
     [SerializeField] private float cloneDuration;
     [Space]
-    [SerializeField] private bool canAttack;
-    [SerializeField] private bool createCloneOnDashStart;
-    [SerializeField] private bool createCloneOnDashEnd;
+    [Header("Clone Attack")]
+    [SerializeField] private UI_SkillTreeSlot cloneAttackUnlockButton;
+    [SerializeField] private float cloneAttackMultiplier;
+    public bool canAttack { get; private set; }
 
-    [Header("Chance to Duplicate")]
+    [Header("Aggressive Clone")]
+    [SerializeField] private UI_SkillTreeSlot aggressiveCloneUnlockButton;
+    [SerializeField] private float aggressiveCloneAttackMultiplier;
+    public bool canApplyOnHitEffect { get; private set; }
+
+
+    [Header("Multiple Clone")]
+    [SerializeField] private UI_SkillTreeSlot multipleCloneUnlockButton;
+    [SerializeField] private float multipleCloneAttackMultiplier;
     [SerializeField] private bool canDuplicateClone;
     [SerializeField] private float chanceToDuplicate;
 
     [Header("Crystal Instead of Clone")]
-    public  bool crystalInsteadOfClone;
+    [SerializeField] private UI_SkillTreeSlot crystalInsteadUnlockButton;
+    public bool crystalInsteadOfClone { get; private set; }
 
+    protected override void Start()
+    {
+        base.Start();
+        cloneAttackUnlockButton.onSkillUnlocked.AddListener(CloneAttackUnlock);
+        aggressiveCloneUnlockButton.onSkillUnlocked.AddListener(AggressiveCloneUnlock);
+        multipleCloneUnlockButton.onSkillUnlocked.AddListener(MultipleCloneUnlock);
+        crystalInsteadUnlockButton.onSkillUnlocked.AddListener(CrystalInsteadUnlock);
 
+    }
+
+    #region Unlock Region
+    private void CloneAttackUnlock()
+    {
+        if (cloneAttackUnlockButton.unlocked)
+        {
+            canAttack = true;
+            attackMultiplier = cloneAttackMultiplier;
+        }
+    }
+
+    private void AggressiveCloneUnlock()
+    {
+        if (aggressiveCloneUnlockButton.unlocked)
+        {
+            canApplyOnHitEffect = true;
+            attackMultiplier = aggressiveCloneAttackMultiplier;
+        }
+    }
+
+    private void MultipleCloneUnlock()
+    {
+        if (multipleCloneUnlockButton.unlocked)
+        {
+            Debug.Log("HI");
+            canDuplicateClone = true;
+            attackMultiplier = multipleCloneAttackMultiplier;
+        }
+    }
+
+    private void CrystalInsteadUnlock()
+    {
+        if (crystalInsteadUnlockButton.unlocked)
+        {
+            crystalInsteadOfClone = true;
+        }
+    }
+
+    #endregion
 
     public void CreateClone(Transform _clonePosition, Vector3 _offset)
     {
@@ -30,7 +88,8 @@ public class Clone_Skill : Skill
         GameObject newClone = Instantiate(clonePrefab);
 
         newClone.GetComponent<Clone_Skill_Controller>().
-            SetUpClone(_clonePosition, cloneDuration, canAttack, _offset, FindClosestEnemy(player.transform), canDuplicateClone, chanceToDuplicate, player);
+            SetUpClone(_clonePosition, cloneDuration, canAttack, _offset, FindClosestEnemy(player.transform),
+                canDuplicateClone, chanceToDuplicate, player, attackMultiplier);
     }
 
     public void CreateCloneWithDelay(Transform _enemyTransform)

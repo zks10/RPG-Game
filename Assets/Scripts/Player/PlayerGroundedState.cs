@@ -32,7 +32,7 @@ public class PlayerGroundedState : PlayerState
             stateMachine.ChangeState(player.counterAttackState);
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && player.skill.blackhole.blackholeUnlock)
             stateMachine.ChangeState(player.blackholeState);
             
         if (!player.IsGroundDectected())

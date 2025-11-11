@@ -296,7 +296,7 @@ public class CharacterStats : MonoBehaviour
     {
         
     }
-    private bool TargetCanAvoidAttack(CharacterStats _targetStats)
+    protected bool TargetCanAvoidAttack(CharacterStats _targetStats)
     {
         int totalEvasion = _targetStats.evasion.GetValue() + _targetStats.agility.GetValue();
 
@@ -310,7 +310,7 @@ public class CharacterStats : MonoBehaviour
         }
         return false;
     }
-    private int CheckTargetsArmor(CharacterStats _targetStats, int totalDamage)
+    protected int CheckTargetsArmor(CharacterStats _targetStats, int totalDamage)
     {
         if (_targetStats.isFreezed)
             totalDamage -= Mathf.RoundToInt(_targetStats.armor.GetValue() * .8f);
@@ -326,7 +326,7 @@ public class CharacterStats : MonoBehaviour
         totalMagicalDamage = Mathf.Clamp(totalMagicalDamage, 0, int.MaxValue);
         return totalMagicalDamage;
     }
-    private bool CanCrit()
+    protected bool CanCrit()
     {
         int totalCritRate = critRate.GetValue() + agility.GetValue();
 
@@ -336,7 +336,7 @@ public class CharacterStats : MonoBehaviour
         }
         return false;
     }
-    private int CalculateCriticalDamage(int _damage)
+    protected int CalculateCriticalDamage(int _damage)
     {
         float totalCritDamage = (critDamage.GetValue() + strength.GetValue()) * .01f;
 
