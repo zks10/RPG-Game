@@ -24,7 +24,7 @@ public class PlayerStats : CharacterStats
         player.Die();
         GetComponent<PlayerItemDrop>().GenerateDrops();
     }
-    
+
     protected override void DecreaseHPBy(int _damage)
     {
         base.DecreaseHPBy(_damage);
@@ -35,5 +35,10 @@ public class PlayerStats : CharacterStats
         {
             currentArmor.ItemEffect(player.transform);
         }
+    }
+    
+    public override void OnEvasion()
+    {
+        player.skill.dodge.CreateMirageOnDodge();
     }
 }

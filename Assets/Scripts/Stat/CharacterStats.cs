@@ -280,6 +280,11 @@ public class CharacterStats : MonoBehaviour
 
     #region Stats and Calculation
     public int GetMaxHP() => maxHP.GetValue() + vitality.GetValue() * 5;
+
+    public virtual void OnEvasion()
+    {
+        
+    }
     private bool TargetCanAvoidAttack(CharacterStats _targetStats)
     {
         int totalEvasion = _targetStats.evasion.GetValue() + _targetStats.agility.GetValue();
@@ -289,7 +294,7 @@ public class CharacterStats : MonoBehaviour
 
         if (Random.Range(0, 100) < totalEvasion)
         {
-            Debug.Log("Missed attack");
+            _targetStats.OnEvasion();
             return true;
         }
         return false;

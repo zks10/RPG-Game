@@ -9,6 +9,7 @@ public class SkillManager : MonoBehaviour
     public Blackhole_Skill blackhole { get; private set; }
     public Crystal_Skill crystal { get; private set; }
     public CounterAttack_Skill counterAttack { get; private set; }
+    public Dodge_Skill dodge { get; private set; }
     
     private void Awake() 
     {
@@ -26,5 +27,6 @@ public class SkillManager : MonoBehaviour
         blackhole = GetComponent<Blackhole_Skill>();
         crystal = GetComponent<Crystal_Skill>();
         counterAttack = GetComponent<CounterAttack_Skill>();
+        dodge = GetComponent<Dodge_Skill>();
     }
 }

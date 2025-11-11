@@ -138,8 +138,7 @@ public class Inventory : MonoBehaviour
         for (int i = 0; i < edibleSlot.Length; i++)
             edibleSlot[i].CleanUp();
 
-        for (int i = 0; i < statSlot.Length; i++)
-            statSlot[i].UpdateStatValueUI();
+        UpdateStatUI();
 
 
         // --- Inventory Items ---
@@ -162,7 +161,12 @@ public class Inventory : MonoBehaviour
             edibleSlot[i].UpdateSlot(edibleItem[i]);
     }
 
-    
+    public void UpdateStatUI()
+    {
+        for (int i = 0; i < statSlot.Length; i++)
+            statSlot[i].UpdateStatValueUI();
+    }
+
     public void AddItem(ItemData _item)
     {
         if (_item.itemType == ItemType.Equipment && CanAddEquipItem())
