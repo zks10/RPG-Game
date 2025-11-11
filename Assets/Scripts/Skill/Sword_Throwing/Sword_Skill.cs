@@ -16,25 +16,40 @@ public class Sword_Skill : Skill
     [SerializeField] private float swordGravity;
 
     [Header("Bounce Info")]
+    [SerializeField] private UI_SkillTreeSlot bounceSwordUnlockButton;
+    public bool bounceSwordUnlock { get; private set; }
     [SerializeField] private int bounceAmount;
     [SerializeField] private float bounceGravity;
     [SerializeField] private float bounceSpeed;
 
 
     [Header("Pierce Info")]
+    [SerializeField] private UI_SkillTreeSlot pierceSwordUnlockButton;
+    public bool pierceSwordUnlock { get; private set; }
     [SerializeField] private int pierceAmount;
     [SerializeField] private float pierceGravity;
 
     [Header("Spin Info")]
+    [SerializeField] private UI_SkillTreeSlot spinSwordUnlockButton;
+    public bool spinSwordUnlock { get; private set; }
     [SerializeField] private float hitCooldown = .35f;
     [SerializeField] private float maxTravelDistance = 7;
     [SerializeField] private float spinDuration = 2;
     [SerializeField] private float spinGravity = 1;
 
     [Header("Skill Info")]
+    [SerializeField] private UI_SkillTreeSlot swordUnlockButton;
+    public bool swordUnlock { get; private set; }
     [SerializeField] private GameObject swordPrefab;
     [SerializeField] private float freezeTimeDuration;
     [SerializeField] private float returnSpeed;
+
+    [Header("Passive Skills")]
+    [SerializeField] private UI_SkillTreeSlot timeStopUnlockButton;
+    public bool timeStopUnlock { get; private set; }
+    [SerializeField] private UI_SkillTreeSlot volunerableUnlockButton;
+    public bool volunerableUnlock { get; private set; }
+
 
     private Vector2 finalDir;
 
@@ -50,7 +65,66 @@ public class Sword_Skill : Skill
         base.Start();
         GenerateDots();
         SetUpGravity();
+        swordUnlockButton.onSkillUnlocked.AddListener(SwordUnlock);
+        bounceSwordUnlockButton.onSkillUnlocked.AddListener(BounceSwordUnlock);
+        pierceSwordUnlockButton.onSkillUnlocked.AddListener(PierceSwordUnlock);
+        spinSwordUnlockButton.onSkillUnlocked.AddListener(SpinSwordUnlock);
+        timeStopUnlockButton.onSkillUnlocked.AddListener(TimeStopUnlock);
+        volunerableUnlockButton.onSkillUnlocked.AddListener(VolunerableUnlock);
     }
+
+    #region Unlock Region
+    private void SwordUnlock()
+    {
+        if (swordUnlockButton.unlocked)
+        {
+            swordType = SwordType.Regular;
+            swordUnlock = true;
+        }
+    }
+
+    private void BounceSwordUnlock()
+    {
+        if (bounceSwordUnlockButton.unlocked)
+        {
+            swordType = SwordType.Bounce;
+            bounceSwordUnlock = true;
+        }
+    }
+
+    private void PierceSwordUnlock()
+    {
+        if (pierceSwordUnlockButton.unlocked)
+        {
+            swordType = SwordType.Pierce;
+            pierceSwordUnlock = true;
+        }
+    }
+
+    private void SpinSwordUnlock()
+    {
+        if (spinSwordUnlockButton.unlocked)
+        {
+            swordType = SwordType.Spin;
+            spinSwordUnlock = true;
+        }
+    }
+
+    private void TimeStopUnlock()
+    {
+        if (timeStopUnlockButton.unlocked)
+            timeStopUnlock = true;
+    }
+
+    private void VolunerableUnlock()
+    {
+        if (volunerableUnlockButton.unlocked)
+            volunerableUnlock = true;
+    }
+
+
+
+    #endregion
 
     private void SetUpGravity()
     {

@@ -60,7 +60,7 @@ public class CharacterStats : MonoBehaviour
     private int shockStrikeDamage;
     [SerializeField] private GameObject shockStrikePrefab;
     public bool isDead { get; private set; }
-    public bool hasThorn;
+    public bool isVolunerable { get; private set; }
 
     protected virtual void Start()
     {
@@ -100,6 +100,15 @@ public class CharacterStats : MonoBehaviour
         StartCoroutine(StatModCoroutine(_modifier, _duration, _statToModify));
     }
     public int GetAilmentDuration() => ailmentDuration;
+
+    private IEnumerator VolunerableForCoroutine(float _duration)
+    {
+        isVolunerable = true;
+        yield return new WaitForSeconds(_duration);
+        isVolunerable = false;
+    }
+    
+    public void MakeVolunerableFor(float _duration) =>  StartCoroutine(VolunerableForCoroutine(_duration));
     private IEnumerator StatModCoroutine(int _modifier, float _duration, Stat _statToModify)
     {
         _statToModify.AddModifier(_modifier);
@@ -115,6 +124,8 @@ public class CharacterStats : MonoBehaviour
 
     protected virtual void DecreaseHPBy(int _damage)
     {
+        if (isVolunerable)
+            _damage = Mathf.RoundToInt(_damage * 1.1f);
         currentHP -= _damage;
         onHealthChanged?.Invoke();
     }
