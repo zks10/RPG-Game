@@ -33,7 +33,7 @@ public class Inventory : MonoBehaviour
     [Header("Items cooldown")]
     private float lastTimeUsedTrinket = Mathf.NegativeInfinity;
     private float lastTimeUsedArmor = Mathf.NegativeInfinity;
-    private float trinketCooldown;
+    public float trinketCooldown { get; private set; }
     private float armorCooldown;
     private void Awake()
     {
@@ -310,7 +310,7 @@ public class Inventory : MonoBehaviour
     public List<InventoryItem> GetEquipmentList() => equipmentItem;
     public List<InventoryItem> GetStashList() => stashItem;
     public List<InventoryItem> GetEdibleList() => edibleItem;
-    public ItemData_Equipment GetEquipementByType(EquipmentType _type)
+    public ItemData_Equipment GetEquipmentByType(EquipmentType _type)
     {
         ItemData_Equipment equipedItem = null;
 
@@ -326,7 +326,7 @@ public class Inventory : MonoBehaviour
 
     public void UseTrinket()
     {
-        ItemData_Equipment currentTrinket = GetEquipementByType(EquipmentType.Trinket);
+        ItemData_Equipment currentTrinket = GetEquipmentByType(EquipmentType.Trinket);
 
         if (currentTrinket == null)
             return;
@@ -336,6 +336,7 @@ public class Inventory : MonoBehaviour
         if (canUseTrinket)
         {
             trinketCooldown = currentTrinket.itemCooldown;
+            Debug.Log(trinketCooldown);
             currentTrinket.ItemEffect(null);
             lastTimeUsedTrinket = Time.time;
         }
@@ -356,7 +357,7 @@ public class Inventory : MonoBehaviour
     
     public bool CanUseArmor()
     {
-        ItemData_Equipment currentArmor = GetEquipementByType(EquipmentType.Armor);
+        ItemData_Equipment currentArmor = GetEquipmentByType(EquipmentType.Armor);
 
         if (Time.time > lastTimeUsedArmor + armorCooldown)
         {

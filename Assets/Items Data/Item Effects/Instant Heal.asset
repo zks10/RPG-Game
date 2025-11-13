@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68815d35550614df5bffbb3bdee0e67a, type: 3}
   m_Name: Instant Heal
   m_EditorClassIdentifier: 
-  healPercentage: 0.3
+  healPercentage: 0.2

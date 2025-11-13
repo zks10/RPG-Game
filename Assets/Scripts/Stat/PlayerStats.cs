@@ -29,7 +29,7 @@ public class PlayerStats : CharacterStats
     {
         base.DecreaseHPBy(_damage);
 
-        ItemData_Equipment currentArmor = Inventory.instance.GetEquipementByType(EquipmentType.Armor);
+        ItemData_Equipment currentArmor = Inventory.instance.GetEquipmentByType(EquipmentType.Armor);
 
         if (currentArmor != null)
         {

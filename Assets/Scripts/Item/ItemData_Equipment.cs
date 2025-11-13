@@ -13,8 +13,12 @@ public enum EquipmentType
 public class ItemData_Equipment : ItemData
 {
     public EquipmentType slotType;
+
+    [Header("Unique Effect")]
     public float itemCooldown;
     public ItemEffect[] itemEffects;
+    [TextArea]
+    [SerializeField] public string itemEffectDescription;
 
     [Header("Major stats")]
     public int strength;

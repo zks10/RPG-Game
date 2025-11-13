@@ -6,6 +6,7 @@ public class UI_ItemToolTip : UI_ToolTip
     [SerializeField] private TextMeshProUGUI itemNameText;
     [SerializeField] private TextMeshProUGUI itemTypeText;
     [SerializeField] private TextMeshProUGUI itemDescription;
+    [SerializeField] private TextMeshProUGUI itemEffectDescription;
 
     protected override void Awake()
     {
@@ -19,6 +20,8 @@ public class UI_ItemToolTip : UI_ToolTip
         itemNameText.text = item.itemName;
         itemTypeText.text = item.slotType.ToString();
         itemDescription.text = item.GetDescription();
+        itemEffectDescription.text = item.itemEffectDescription;
+
 
         gameObject.SetActive(true);
         Canvas.ForceUpdateCanvases();

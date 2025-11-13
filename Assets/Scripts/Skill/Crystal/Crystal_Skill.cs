@@ -7,6 +7,7 @@ public class Crystal_Skill : Skill
     [SerializeField] private GameObject crystalPrefab;
     [SerializeField] private float crystalDuration;
     private GameObject currentCrystal;
+    public bool waitTeleport { get; private set; }
 
     [Header("Crystal Simple")]
     [SerializeField] private UI_SkillTreeSlot unlockCrystalButton;
@@ -31,13 +32,14 @@ public class Crystal_Skill : Skill
     [SerializeField] private UI_SkillTreeSlot unlockMultiStackCrystalButton;
     public bool canUseMultiStacks { get; private set; }
     [SerializeField] private int amountOfStacks;
-    [SerializeField] private float multiStackCooldown;
+    [SerializeField] public float multiStackCooldown;
     [SerializeField] private float useTimeWindow;
     [SerializeField] private List<GameObject> crystalLeft = new List<GameObject>();
 
     protected override void Start()
     {
         base.Start();
+        waitTeleport = false;
         unlockCrystalButton.onSkillUnlocked.AddListener(UnlockCrystal);
         unlockCloneInsteadlButton.onSkillUnlocked.AddListener(UnlockCloneInstead);
         unlockExplosiveButton.onSkillUnlocked.AddListener(UnlockExplosive);
@@ -77,6 +79,37 @@ public class Crystal_Skill : Skill
     }
     #endregion
 
+    public override bool CanUseSkill()
+    {
+        if (cooldownTimer <= 0)
+        {
+            if ((crystalUnlocked || cloneInsteadOfCrystal) && !canMoveToEnemy && !canUseMultiStacks)
+            {
+                if (waitTeleport && currentCrystal != null)
+                {
+                    UseSkill();
+                    cooldownTimer = cooldown;
+                    waitTeleport = false;
+                    return true;
+                }
+                
+                if (!waitTeleport)
+                {
+                    UseSkill();
+                    waitTeleport = true;
+                    return true;
+                }
+            }
+            else
+            {
+                UseSkill();
+                cooldownTimer = cooldown; 
+                return true;
+            }
+        }
+        return false;
+    }
+
     public override void UseSkill()
     {
         base.UseSkill();
@@ -115,8 +148,19 @@ public class Crystal_Skill : Skill
         Crystal_Skill_Controller currentCrystalScript = currentCrystal.GetComponent<Crystal_Skill_Controller>();
 
         currentCrystalScript.SetupCrystal(crystalDuration, canExplode, canMoveToEnemy, moveSpeed, growSpeed, FindClosestEnemy(currentCrystal.transform), player);
-        
+
     }
+    public void OnCrystalDestroyed()
+    {
+        if (waitTeleport)
+        {
+            waitTeleport = false;
+            cooldownTimer = cooldown; 
+        }
+
+        currentCrystal = null;
+    }
+
 
     public void CurrentCrystalChooseRandomTarget() => currentCrystal.GetComponent<Crystal_Skill_Controller>().ChooseRandomEnemy();
 
@@ -161,7 +205,9 @@ public class Crystal_Skill : Skill
     {
         if (cooldownTimer > 0)
             return;
+        cooldown = multiStackCooldown;
         cooldownTimer = multiStackCooldown;
+
         RefillCrystal();
     }
 

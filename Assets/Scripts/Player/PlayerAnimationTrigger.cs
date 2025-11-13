@@ -20,7 +20,7 @@ public class PlayerAnimationTrigger : MonoBehaviour
                 if (_target != null)
                     player.stats.DoPhysicalDamage(_target);
 
-                ItemData_Equipment weapon = Inventory.instance.GetEquipementByType(EquipmentType.Weapon);
+                ItemData_Equipment weapon = Inventory.instance.GetEquipmentByType(EquipmentType.Weapon);
                 if (weapon == null)
                     return; 
                 weapon.ItemEffect(_target.transform);

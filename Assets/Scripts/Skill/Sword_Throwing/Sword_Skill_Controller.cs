@@ -254,7 +254,7 @@ public class Sword_Skill_Controller : MonoBehaviour
         if (player.skill.sword.volunerableUnlock)
             enemyStats.MakeVolunerableFor(freezeTimeDuration); 
 
-        ItemData_Equipment equipAmulet = Inventory.instance.GetEquipementByType(EquipmentType.Amulet);
+        ItemData_Equipment equipAmulet = Inventory.instance.GetEquipmentByType(EquipmentType.Amulet);
         if (equipAmulet != null)
             equipAmulet.ItemEffect(enemy.transform);
     }

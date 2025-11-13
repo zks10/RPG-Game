@@ -29,6 +29,7 @@ public class CounterAttack_Skill : Skill
     protected override void Start()
     {
         base.Start();
+        cooldown = player.counterAttackCooldown;
         counterAttackUnlockButton.onSkillUnlocked.AddListener(UnlockCoutnerAttack);
         restoreCounterAttackButton.onSkillUnlocked.AddListener(UnlockCoutnerAttackRestore);
         mirageCounterAttackButton.onSkillUnlocked.AddListener(UnlockMirageCoutnerAttack);

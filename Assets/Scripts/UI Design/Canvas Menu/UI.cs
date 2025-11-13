@@ -7,6 +7,7 @@ public class UI : MonoBehaviour
     // [SerializeField] private GameObject craftUI; 2
     // [SerializeField] private GameObject optionsUI; 3
     [SerializeField] private GameObject[] menuUI = new GameObject[4];
+    [SerializeField] private GameObject inGameUI;
     private int menuIdx;
     private bool openMenu;
 
@@ -16,7 +17,7 @@ public class UI : MonoBehaviour
     public UI_CraftWindow craftWindow;
     void Start()
     {
-        SwitchTo(null);
+        SwitchTo(inGameUI);
         openMenu = false;
 
         itemToolTip.gameObject.SetActive(false);
@@ -32,7 +33,7 @@ public class UI : MonoBehaviour
             if (openMenu)
                 SwitchWithKeyTo(menuUI[menuIdx]);
             else
-                SwitchWithKeyTo(null);
+                SwitchWithKeyTo(inGameUI);
         }
 
         if (openMenu)
@@ -69,14 +70,26 @@ public class UI : MonoBehaviour
         }
         
     }
-    
+
     public void SwitchWithKeyTo(GameObject _menu)
     {
         if (_menu != null && _menu.activeSelf)
         {
             _menu.SetActive(false);
+            CheckForInGameUI();
             return;
         }
         SwitchTo(_menu);
+    }
+    
+    private void CheckForInGameUI()
+    {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            if (transform.GetChild(i).gameObject.activeSelf)
+                return;
+        }
+
+        SwitchTo(inGameUI);
     }
 }

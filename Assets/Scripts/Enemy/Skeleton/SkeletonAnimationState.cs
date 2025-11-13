@@ -19,7 +19,7 @@ public class SkeletonAnimationTrigger : MonoBehaviour
                 if (_target != null)
                     skeleton.stats.DoPhysicalDamage(_target);
 
-                var armor = Inventory.instance.GetEquipementByType(EquipmentType.Armor);
+                var armor = Inventory.instance.GetEquipmentByType(EquipmentType.Armor);
                 if (armor == null)
                     return; 
                 armor.ItemEffect(skeleton.transform);

@@ -70,7 +70,7 @@ public class Crystal_Skill_Controller : MonoBehaviour
             {
                 player.stats.DoMagicalDamage(hit.GetComponent<CharacterStats>());
 
-                ItemData_Equipment equipAmulet = Inventory.instance.GetEquipementByType(EquipmentType.Amulet);
+                ItemData_Equipment equipAmulet = Inventory.instance.GetEquipmentByType(EquipmentType.Amulet);
                 if (equipAmulet != null)
                     equipAmulet.ItemEffect(hit.transform);
                 
@@ -89,5 +89,16 @@ public class Crystal_Skill_Controller : MonoBehaviour
         else
             SelfDestroy();
     }
-    public void SelfDestroy() => Destroy(gameObject);
+    public void SelfDestroy()
+    {
+        if (player != null)
+        {
+            var crystalSkill = SkillManager.instance.crystal;
+            if (crystalSkill != null)
+                crystalSkill.OnCrystalDestroyed();
+        }
+
+        Destroy(gameObject);
+    }
+
 }

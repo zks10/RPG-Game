@@ -99,7 +99,7 @@ public class Player : Entity
             skill.crystal.CanUseSkill();
         }
 
-        if (Input.GetKeyDown(KeyCode.T))
+        if (Input.GetKeyDown(KeyCode.R))
         {
             Inventory.instance.UseTrinket();
         }
@@ -132,7 +132,7 @@ public class Player : Entity
         if (!skill.dash.dashUnlocked)
             return;
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && SkillManager.instance.dash.CanUseSkill())
+        if ((Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))  && SkillManager.instance.dash.CanUseSkill())
         {
             dashDir = Input.GetAxisRaw("Horizontal");
             if (dashDir == 0)

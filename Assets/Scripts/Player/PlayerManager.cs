@@ -20,9 +20,11 @@ public class PlayerManager : MonoBehaviour
             return false;
         return true;
     }
-    
+
     public void UpdateCurrency(int _price)
     {
         currency -= _price;
     }
+    
+    public int GetCurrentCurrency() { return currency; }
 }
