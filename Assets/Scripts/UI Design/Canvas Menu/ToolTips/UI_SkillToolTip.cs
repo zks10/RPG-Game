@@ -4,6 +4,7 @@ public class UI_SkillToolTip : UI_ToolTip
 {
     [SerializeField] private TextMeshProUGUI skillText;
     [SerializeField] private TextMeshProUGUI skillName;
+    [SerializeField] private TextMeshProUGUI skillPrice;
 
 
     protected override void Awake()
@@ -11,10 +12,11 @@ public class UI_SkillToolTip : UI_ToolTip
         base.Awake();
     }
 
-    public void ShowSkillToolTip(string _skillDescription, string _skillName)
+    public void ShowSkillToolTip(string _skillDescription, string _skillName, int _skillPrice)
     {
         skillText.text = _skillDescription;
         skillName.text = _skillName;
+        skillPrice.text = "Cost: " + _skillPrice;
         
         gameObject.SetActive(true);
         UpdatePosition(true);
@@ -46,8 +48,8 @@ public class UI_SkillToolTip : UI_ToolTip
         base.HideToolTips();
         HideSkillToolTip();
     }
-    public override void ShowToolTips(string skillDesc, string skillName)
+    public override void ShowToolTips(string skillDesc, string skillName, int skillPricce)
     {
-        ShowSkillToolTip(skillDesc, skillName);
+        ShowSkillToolTip(skillDesc, skillName, skillPricce);
     }
 }

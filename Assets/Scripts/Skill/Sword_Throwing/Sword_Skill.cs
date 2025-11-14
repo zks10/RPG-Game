@@ -76,7 +76,7 @@ public class Sword_Skill : Skill
     #region Unlock Region
     private void SwordUnlock()
     {
-        if (swordUnlockButton.unlocked)
+        if (swordUnlockButton.unlocked && !swordUnlock)
         {
             swordType = SwordType.Regular;
             swordUnlock = true;
@@ -85,7 +85,7 @@ public class Sword_Skill : Skill
 
     private void BounceSwordUnlock()
     {
-        if (bounceSwordUnlockButton.unlocked)
+        if (bounceSwordUnlockButton.unlocked && !bounceSwordUnlock)
         {
             swordType = SwordType.Bounce;
             bounceSwordUnlock = true;
@@ -94,7 +94,7 @@ public class Sword_Skill : Skill
 
     private void PierceSwordUnlock()
     {
-        if (pierceSwordUnlockButton.unlocked)
+        if (pierceSwordUnlockButton.unlocked && !pierceSwordUnlock)
         {
             swordType = SwordType.Pierce;
             pierceSwordUnlock = true;
@@ -103,7 +103,7 @@ public class Sword_Skill : Skill
 
     private void SpinSwordUnlock()
     {
-        if (spinSwordUnlockButton.unlocked)
+        if (spinSwordUnlockButton.unlocked && !spinSwordUnlock)
         {
             swordType = SwordType.Spin;
             spinSwordUnlock = true;
@@ -112,13 +112,13 @@ public class Sword_Skill : Skill
 
     private void TimeStopUnlock()
     {
-        if (timeStopUnlockButton.unlocked)
+        if (timeStopUnlockButton.unlocked && !timeStopUnlock)
             timeStopUnlock = true;
     }
 
     private void VolunerableUnlock()
     {
-        if (volunerableUnlockButton.unlocked)
+        if (volunerableUnlockButton.unlocked && !volunerableUnlock)
             volunerableUnlock = true;
     }
 

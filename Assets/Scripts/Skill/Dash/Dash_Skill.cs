@@ -30,18 +30,18 @@ public class Dash_Skill : Skill
     }
 
     private void UnlockDash() { 
-        if (dashUnlockButton.unlocked)
+        if (dashUnlockButton.unlocked && !dashUnlocked)
             dashUnlocked = true;
     }
 
     private void UnlockDashClone() {
-        if (cloneOnDashUnlockButton.unlocked)
+        if (cloneOnDashUnlockButton.unlocked && !cloneOnDashUnlocked)
             cloneOnDashUnlocked = true;
     }
 
     private void UnlockCloneOnArrival()
     {
-        if (cloneOnArrivalUnlockkButton.unlocked)
+        if (cloneOnArrivalUnlockkButton.unlocked && !cloneOnArrivalUnlocked)
             cloneOnArrivalUnlocked = true;
     }
     

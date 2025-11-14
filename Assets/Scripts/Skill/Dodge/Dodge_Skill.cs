@@ -20,10 +20,8 @@ public class Dodge_Skill : Skill
     }
     private void UnlockDodge()
     {
-        if (unlockDodgeButton.unlocked)
+        if (unlockDodgeButton.unlocked && !dodgeUnlocked)
         {
-            if (dodgeUnlocked)
-                return;
             player.stats.evasion.AddModifier(evasionAmount);
             Inventory.instance.UpdateStatUI();
             dodgeUnlocked = true;
@@ -32,7 +30,7 @@ public class Dodge_Skill : Skill
 
     private void UnlockMirageDodge()
     {
-        if (unlockMirageDodgeButton.unlocked)
+        if (unlockMirageDodgeButton.unlocked && !mirageDodgeUnlocked)
             mirageDodgeUnlocked = true;
     }
 

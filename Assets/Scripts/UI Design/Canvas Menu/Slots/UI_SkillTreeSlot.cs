@@ -40,6 +40,9 @@ public class UI_SkillTreeSlot : UI_Slots
     {
         if (!PlayerManager.instance.HaveEnoughMoney(skillPrice))
             return;
+        
+        if (unlocked)
+            return;
 
         foreach (var s in shouldBeUnlocked)
         {
@@ -73,7 +76,7 @@ public class UI_SkillTreeSlot : UI_Slots
     public override void ShowToolTip()
     {
         base.ShowToolTip();
-        ui.skillToolTip.ShowSkillToolTip(skillDescription, skillName);
+        ui.skillToolTip.ShowSkillToolTip(skillDescription, skillName, skillPrice);
     }
 
     public override void OnPointerEnter(PointerEventData eventData)
@@ -101,7 +104,7 @@ public class UI_SkillTreeSlot : UI_Slots
     public override void ToolTipShowToolTip()
     {
         base.ToolTipShowToolTip();
-        tooltip.ShowToolTips(skillDescription, skillName);
+        tooltip.ShowToolTips(skillDescription, skillName, skillPrice);
     }
 
     public override IEnumerator FadeAndSlideTooltipCoroutine(float targetAlpha)

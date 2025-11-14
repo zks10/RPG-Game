@@ -42,7 +42,7 @@ public class Clone_Skill : Skill
     #region Unlock Region
     private void CloneAttackUnlock()
     {
-        if (cloneAttackUnlockButton.unlocked)
+        if (cloneAttackUnlockButton.unlocked && !canAttack)
         {
             canAttack = true;
             attackMultiplier = cloneAttackMultiplier;
@@ -51,7 +51,7 @@ public class Clone_Skill : Skill
 
     private void AggressiveCloneUnlock()
     {
-        if (aggressiveCloneUnlockButton.unlocked)
+        if (aggressiveCloneUnlockButton.unlocked && !canApplyOnHitEffect)
         {
             canApplyOnHitEffect = true;
             attackMultiplier = aggressiveCloneAttackMultiplier;
@@ -60,9 +60,8 @@ public class Clone_Skill : Skill
 
     private void MultipleCloneUnlock()
     {
-        if (multipleCloneUnlockButton.unlocked)
+        if (multipleCloneUnlockButton.unlocked && !canDuplicateClone)
         {
-            Debug.Log("HI");
             canDuplicateClone = true;
             attackMultiplier = multipleCloneAttackMultiplier;
         }
@@ -70,7 +69,7 @@ public class Clone_Skill : Skill
 
     private void CrystalInsteadUnlock()
     {
-        if (crystalInsteadUnlockButton.unlocked)
+        if (crystalInsteadUnlockButton.unlocked && !crystalInsteadOfClone)
         {
             crystalInsteadOfClone = true;
         }

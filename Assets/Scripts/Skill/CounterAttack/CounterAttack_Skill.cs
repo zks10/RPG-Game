@@ -37,19 +37,19 @@ public class CounterAttack_Skill : Skill
 
     private void UnlockCoutnerAttack()
     {
-        if (counterAttackUnlockButton.unlocked)
+        if (counterAttackUnlockButton.unlocked && !counterAttackUnlocked)
             counterAttackUnlocked = true;
     }
 
     private void UnlockCoutnerAttackRestore()
     {
-        if (restoreCounterAttackButton.unlocked)
+        if (restoreCounterAttackButton.unlocked && !restoreCounterAttackUnlocked)
             restoreCounterAttackUnlocked = true;
     }
 
     private void UnlockMirageCoutnerAttack()
     {
-        if (mirageCounterAttackButton.unlocked)
+        if (mirageCounterAttackButton.unlocked && !mirageCounterAttackUnlocked)
             mirageCounterAttackUnlocked = true;
     }
 

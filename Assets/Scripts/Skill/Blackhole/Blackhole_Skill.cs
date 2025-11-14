@@ -23,7 +23,7 @@ public class Blackhole_Skill : Skill
     
     private void UnlockBlackHole()
     {
-        if (blackholeUnlockButton.unlocked)
+        if (blackholeUnlockButton.unlocked && !blackholeUnlock)
             blackholeUnlock = true;
     }
     public override void UseSkill()

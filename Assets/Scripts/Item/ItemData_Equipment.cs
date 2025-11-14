@@ -136,6 +136,7 @@ public class ItemData_Equipment : ItemData
         AddItemToDescription(iceDamage, "Ice Damage");
         AddItemToDescription(lightningDamage, "Lightning Damage");
 
+
         if (minDescriptionLength < 3)
         {
             for (int i = 0; i < 3 - minDescriptionLength; i++)
