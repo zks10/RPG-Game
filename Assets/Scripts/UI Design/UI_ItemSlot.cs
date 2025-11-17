@@ -82,6 +82,11 @@ public class UI_ItemSlot : UI_Slots, IPointerDownHandler
     public override void ShowToolTip()
     {
         base.ShowToolTip();
+        if (item == null) 
+        {
+            tooltip = null;
+            return;
+        }
         ui.itemToolTip.ShowItemToolTip(item.data as ItemData_Equipment);
     }
 
@@ -110,6 +115,11 @@ public class UI_ItemSlot : UI_Slots, IPointerDownHandler
     public override void ToolTipShowToolTip()
     {
         base.ToolTipShowToolTip();
+        if (item == null) 
+        {
+            tooltip = null;
+            return;
+        }
         tooltip.ShowToolTips(item.data as ItemData_Equipment);
     }
 

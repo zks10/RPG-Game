@@ -1,7 +1,8 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEditor;
 
-public class Inventory : MonoBehaviour
+public class Inventory : MonoBehaviour, ISaveManager
 {
     public static Inventory instance;
     public List<ItemData> startingItems;
@@ -35,6 +36,9 @@ public class Inventory : MonoBehaviour
     private float lastTimeUsedArmor = Mathf.NegativeInfinity;
     public float trinketCooldown { get; private set; }
     private float armorCooldown;
+
+    [Header("Database")]
+    public List<InventoryItem> loadedItems; 
     private void Awake()
     {
         if (instance == null)
@@ -68,12 +72,33 @@ public class Inventory : MonoBehaviour
 
     private void AddStartingItems()
     {
-        for (int i = 0; i < startingItems.Count; i++)
+        if (loadedItems.Count > 0)
         {
-            if (startingItems[i] != null)
-                AddItem(startingItems[i]);
+            foreach (InventoryItem loadedItem in loadedItems)
+            {
+                switch (loadedItem.data.itemType)
+                {
+                    case ItemType.Equipment:
+                        AddItem(loadedItem.data); // Each equipment is always one per slot
+                        break;
+                    case ItemType.Material:
+                    case ItemType.Edible:
+                        // Use stack size for stackable items
+                        for (int i = 0; i < loadedItem.stackSize; i++)
+                            AddItem(loadedItem.data);
+                        break;
+                }
+            }
+            return;
+        }
+
+        foreach (ItemData item in startingItems)
+        {
+            if (item != null)
+                AddItem(item);
         }
     }
+
     public void EquipItem(ItemData _item)
     {
         ItemData_Equipment newEquipment = _item as ItemData_Equipment;
@@ -367,6 +392,88 @@ public class Inventory : MonoBehaviour
         }
         Debug.Log("Armor is in cooldown.");
         return false;
+    }
+
+    // public void LoadData(GameData _data)
+    // {
+    //    foreach(KeyValuePair<string, int> pair in _data.inventory)
+    //     {
+    //         foreach(var item in GetItemDataBase())
+    //         {
+    //             if (item != null && item.itemId == pair.Key)
+    //             {
+    //                 InventoryItem itemToLoad = new InventoryItem(item);
+    //                 itemToLoad.stackSize = pair.Value;
+
+    //                 loadedItems.Add(itemToLoad);
+    //             }
+    //         }
+    //     }
+    // }
+
+    public void LoadData(GameData _data)
+    {
+
+        foreach (KeyValuePair<string, int> pair in _data.inventory)
+        {
+            foreach (var item in GetItemDataBase())
+            {
+                if (item != null && item.itemId == pair.Key)
+                {
+                    for (int i = 0; i < pair.Value; i++)
+                    {
+                        InventoryItem loadedItem = new InventoryItem(item);
+                        loadedItem.stackSize = pair.Value;
+                        loadedItems.Add(loadedItem);
+                    }
+                }
+            }
+        }
+
+    }
+
+    // public void SaveData(ref GameData _data)
+    // {
+    //     _data.inventory.Clear();
+
+    //     foreach (InventoryItem item in inventoryItem)
+    //     {
+    //         _data.inventory.Add(item.data.itemId, item.stackSize);
+    //     } 
+    // }
+    public void SaveData(ref GameData _data)
+    {
+        _data.inventory.Clear();
+
+        Dictionary<string, int> counts = new Dictionary<string, int>();
+
+        foreach (InventoryItem item in inventoryItem)
+        {
+            string id = item.data.itemId;
+
+            if (!counts.ContainsKey(id))
+                counts[id] = 0;
+
+            counts[id]++;
+        }
+
+        // Write final result into saved data
+        foreach (var pair in counts)
+            _data.inventory.Add(pair.Key, pair.Value);
+    }
+
+    private List<ItemData> GetItemDataBase()
+    {
+        List<ItemData> itemDatabase = new List<ItemData>();
+        string[] assetNames = AssetDatabase.FindAssets("", new[] {"Assets/Items Data/Equipment"});
+
+        foreach(string SOName in assetNames)
+        {
+            var SOPath = AssetDatabase.GUIDToAssetPath(SOName);
+            var itemData = AssetDatabase.LoadAssetAtPath<ItemData>(SOPath);
+            itemDatabase.Add(itemData);
+        }
+        return itemDatabase;
     }
 
 }
