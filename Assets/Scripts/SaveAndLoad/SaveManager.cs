@@ -21,7 +21,7 @@ public class SaveManager : MonoBehaviour
     private void Start()
     {
         dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
-        //Debug.Log("Persistent path: " + Application.persistentDataPath);
+        //Debug.Log("Persistent path: " + Application.persistentDataPath); /Users/kevinzhu/Library/Application Support/DefaultCompany/RPG
         saveManagers = FindAllSaveManagers();
         LoadGame();
     }

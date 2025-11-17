@@ -39,6 +39,7 @@ public class Inventory : MonoBehaviour, ISaveManager
 
     [Header("Database")]
     public List<InventoryItem> loadedItems; 
+    public List<ItemData_Equipment> loadedEquipment;
     private void Awake()
     {
         if (instance == null)
@@ -72,6 +73,10 @@ public class Inventory : MonoBehaviour, ISaveManager
 
     private void AddStartingItems()
     {
+        foreach(ItemData_Equipment item in loadedEquipment)
+        {
+            EquipItem(item);
+        }
         if (loadedItems.Count > 0)
         {
             foreach (InventoryItem loadedItem in loadedItems)
@@ -393,35 +398,27 @@ public class Inventory : MonoBehaviour, ISaveManager
         Debug.Log("Armor is in cooldown.");
         return false;
     }
-
-    // public void LoadData(GameData _data)
-    // {
-    //    foreach(KeyValuePair<string, int> pair in _data.inventory)
-    //     {
-    //         foreach(var item in GetItemDataBase())
-    //         {
-    //             if (item != null && item.itemId == pair.Key)
-    //             {
-    //                 InventoryItem itemToLoad = new InventoryItem(item);
-    //                 itemToLoad.stackSize = pair.Value;
-
-    //                 loadedItems.Add(itemToLoad);
-    //             }
-    //         }
-    //     }
-    // }
-
     public void LoadData(GameData _data)
     {
-
         foreach (KeyValuePair<string, int> pair in _data.inventory)
         {
             foreach (var item in GetItemDataBase())
             {
                 if (item != null && item.itemId == pair.Key)
                 {
-                    for (int i = 0; i < pair.Value; i++)
+                    // Check the type of item
+                    if (item.itemType == ItemType.Equipment)
                     {
+                        // Non-stackable, add one item per saved count (should normally be 1)
+                        for (int i = 0; i < pair.Value; i++)
+                        {
+                            InventoryItem loadedItem = new InventoryItem(item);
+                            loadedItems.Add(loadedItem);
+                        }
+                    }
+                    else
+                    {
+                        // Stackable (Material or Edible), add one InventoryItem with stackSize = pair.Value
                         InventoryItem loadedItem = new InventoryItem(item);
                         loadedItem.stackSize = pair.Value;
                         loadedItems.Add(loadedItem);
@@ -430,20 +427,22 @@ public class Inventory : MonoBehaviour, ISaveManager
             }
         }
 
+        foreach (string loadedItemId in _data.equipmentId)
+        {
+            foreach (var item in GetItemDataBase())
+            {
+                if (item != null && loadedItemId == item.itemId)
+                {
+                    loadedEquipment.Add(item as ItemData_Equipment);
+                }
+            }
+        }
     }
 
-    // public void SaveData(ref GameData _data)
-    // {
-    //     _data.inventory.Clear();
-
-    //     foreach (InventoryItem item in inventoryItem)
-    //     {
-    //         _data.inventory.Add(item.data.itemId, item.stackSize);
-    //     } 
-    // }
     public void SaveData(ref GameData _data)
     {
         _data.inventory.Clear();
+        _data.equipmentId.Clear();
 
         Dictionary<string, int> counts = new Dictionary<string, int>();
 
@@ -457,15 +456,28 @@ public class Inventory : MonoBehaviour, ISaveManager
             counts[id]++;
         }
 
-        // Write final result into saved data
         foreach (var pair in counts)
             _data.inventory.Add(pair.Key, pair.Value);
+        
+        
+        foreach (KeyValuePair<ItemData, InventoryItem> pair in stashDictionary)
+        {
+            _data.inventory.Add(pair.Key.itemId, pair.Value.stackSize);
+        } 
+        foreach (KeyValuePair<ItemData_Edible, InventoryItem> pair in edibleDictionary)
+        {
+            _data.inventory.Add(pair.Key.itemId, pair.Value.stackSize);
+        } 
+        foreach (KeyValuePair<ItemData_Equipment, InventoryItem> pair in equipmentDictionary)
+        {
+            _data.equipmentId.Add(pair.Key.itemId);
+        } 
     }
 
     private List<ItemData> GetItemDataBase()
     {
         List<ItemData> itemDatabase = new List<ItemData>();
-        string[] assetNames = AssetDatabase.FindAssets("", new[] {"Assets/Items Data/Equipment"});
+        string[] assetNames = AssetDatabase.FindAssets("", new[] {"Assets/Items Data/Items"});
 
         foreach(string SOName in assetNames)
         {
