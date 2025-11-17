@@ -5,27 +5,34 @@ using System.Collections.Generic;
 public class SaveManager : MonoBehaviour
 {
     public static SaveManager instance;
+
     [SerializeField] private string fileName;
+    [SerializeField] private bool encryptData;
+
     private GameData gameData;
     private List<ISaveManager> saveManagers;
     private FileDataHandler dataHandler;
 
-    public void Awake()
+    [ContextMenu("Delete Save File")]
+    private void DeleteSaveData()
     {
-        if (instance != null) 
+        dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, encryptData);
+        dataHandler.DeleteData();
+    }
+
+    private void Awake()
+    {
+        if (instance != null)
             Destroy(instance.gameObject);
         else
             instance = this;
-        dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
-                //Debug.Log("Persistent path: " + Application.persistentDataPath); /Users/kevinzhu/Library/Application Support/DefaultCompany/RPG
+
+        dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, encryptData);
 
         saveManagers = FindAllSaveManagers();
         LoadGame();
     }
 
-    private void Start()
-    {
-    }
     public void NewGame()
     {
         gameData = new GameData();
@@ -34,10 +41,10 @@ public class SaveManager : MonoBehaviour
     public void LoadGame()
     {
         gameData = dataHandler.Load();
-        if (this.gameData == null)
-        {
+
+        if (gameData == null)
             NewGame();
-        }
+
         foreach (ISaveManager saveManager in saveManagers)
         {
             saveManager.LoadData(gameData);
@@ -50,6 +57,7 @@ public class SaveManager : MonoBehaviour
         {
             saveManager.SaveData(ref gameData);
         }
+
         dataHandler.Save(gameData);
     }
 
@@ -58,18 +66,10 @@ public class SaveManager : MonoBehaviour
         SaveGame();
     }
 
-    // private List<ISaveManager> FindAllSaveManagers ()
-    // {
-    //     IEnumerable<ISaveManager> saveManagers = FindObjectsOfType<MonoBehaviour>(true).OfType<ISaveManager>();
-    //     return new List<ISaveManager>(saveManagers);
-    // }
     private List<ISaveManager> FindAllSaveManagers()
     {
-        // The second parameter allows you to include inactive objects
         MonoBehaviour[] monoBehaviours = FindObjectsByType<MonoBehaviour>(FindObjectsInactive.Include, FindObjectsSortMode.None);
-
         IEnumerable<ISaveManager> saveManagers = monoBehaviours.OfType<ISaveManager>();
         return new List<ISaveManager>(saveManagers);
     }
-
 }

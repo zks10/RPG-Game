@@ -57,6 +57,12 @@ public class UI : MonoBehaviour
         
     }
 
+    public void SwitchToIndex(int index)
+    {
+        menuIdx = index;               // sync index
+        SwitchTo(menuUI[index]);       // show the correct menu
+    }
+
     public void SwitchTo(GameObject menu)
     {
         for (int i = 0; i < transform.childCount; i++)
