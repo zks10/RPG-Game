@@ -24,6 +24,12 @@ public class Dash_Skill : Skill
         cloneOnDashUnlockButton.onSkillUnlocked.AddListener(UnlockDashClone);
         cloneOnArrivalUnlockkButton.onSkillUnlocked.AddListener(UnlockCloneOnArrival);
     }
+    protected override void CheckUnlock()
+    {
+        UnlockDash();
+        UnlockDashClone();
+        UnlockCloneOnArrival();
+    }
     public override void UseSkill()
     {
         base.UseSkill();

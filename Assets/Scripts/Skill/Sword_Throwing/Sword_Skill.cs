@@ -72,7 +72,15 @@ public class Sword_Skill : Skill
         timeStopUnlockButton.onSkillUnlocked.AddListener(TimeStopUnlock);
         volunerableUnlockButton.onSkillUnlocked.AddListener(VolunerableUnlock);
     }
-
+    protected override void CheckUnlock()
+    {
+        SwordUnlock();
+        BounceSwordUnlock();
+        PierceSwordUnlock();
+        SpinSwordUnlock();
+        TimeStopUnlock();
+        VolunerableUnlock();
+    }
     #region Unlock Region
     private void SwordUnlock()
     {

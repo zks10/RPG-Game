@@ -31,7 +31,6 @@ public class Blackhole_Skill : Skill
         base.UseSkill();
 
         GameObject newBlackhole = Instantiate(blackHolePrefab, player.transform.position, Quaternion.identity);
-
         currentBlackhole = newBlackhole.GetComponent<Blackhole_Skill_Controller>();
         currentBlackhole.SetupBlackhole(maxSize, growSpeed, shrinkSpeed, amountOfAttacks, cloneAttackCooldown, blackholeDuration);
     }
@@ -42,6 +41,10 @@ public class Blackhole_Skill : Skill
         blackholeUnlockButton.onSkillUnlocked.AddListener(UnlockBlackHole);
     }
 
+    protected override void CheckUnlock()
+    {
+        UnlockBlackHole();
+    }
     protected override void Update()
     {
         base.Update();

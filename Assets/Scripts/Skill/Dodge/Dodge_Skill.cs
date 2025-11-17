@@ -18,6 +18,12 @@ public class Dodge_Skill : Skill
         unlockDodgeButton.onSkillUnlocked.AddListener(UnlockDodge);
         unlockMirageDodgeButton.onSkillUnlocked.AddListener(UnlockMirageDodge);
     }
+
+    protected override void CheckUnlock()
+    {
+        UnlockDodge();
+        UnlockMirageDodge();
+    }
     private void UnlockDodge()
     {
         if (unlockDodgeButton.unlocked && !dodgeUnlocked)

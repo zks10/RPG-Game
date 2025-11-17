@@ -5,6 +5,7 @@ public class PlayerBlackholeState : PlayerState
     private float flyTime = .4f;
     private bool skillUsed;
     private float defaultGravity;
+    private float blackHoleJumpHeight = 9f;
     public PlayerBlackholeState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
     {
 
@@ -28,7 +29,7 @@ public class PlayerBlackholeState : PlayerState
     {
         base.Update();
         if (stateTimer > 0)
-            rb.linearVelocity = new Vector2(0, 11.8f);
+            rb.linearVelocity = new Vector2(0, blackHoleJumpHeight);
 
         if (stateTimer < 0)
         {

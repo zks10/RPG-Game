@@ -16,14 +16,15 @@ public class SaveManager : MonoBehaviour
             Destroy(instance.gameObject);
         else
             instance = this;
+        dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
+                //Debug.Log("Persistent path: " + Application.persistentDataPath); /Users/kevinzhu/Library/Application Support/DefaultCompany/RPG
+
+        saveManagers = FindAllSaveManagers();
+        LoadGame();
     }
 
     private void Start()
     {
-        dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
-        //Debug.Log("Persistent path: " + Application.persistentDataPath); /Users/kevinzhu/Library/Application Support/DefaultCompany/RPG
-        saveManagers = FindAllSaveManagers();
-        LoadGame();
     }
     public void NewGame()
     {
@@ -57,14 +58,18 @@ public class SaveManager : MonoBehaviour
         SaveGame();
     }
 
+    // private List<ISaveManager> FindAllSaveManagers ()
+    // {
+    //     IEnumerable<ISaveManager> saveManagers = FindObjectsOfType<MonoBehaviour>(true).OfType<ISaveManager>();
+    //     return new List<ISaveManager>(saveManagers);
+    // }
     private List<ISaveManager> FindAllSaveManagers()
     {
-        var monoBehaviours = FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None);
+        // The second parameter allows you to include inactive objects
+        MonoBehaviour[] monoBehaviours = FindObjectsByType<MonoBehaviour>(FindObjectsInactive.Include, FindObjectsSortMode.None);
 
         IEnumerable<ISaveManager> saveManagers = monoBehaviours.OfType<ISaveManager>();
-
         return new List<ISaveManager>(saveManagers);
     }
-
 
 }

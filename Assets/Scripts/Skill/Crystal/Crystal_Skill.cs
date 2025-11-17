@@ -46,7 +46,14 @@ public class Crystal_Skill : Skill
         unlockMovingCrystalButton.onSkillUnlocked.AddListener(UnlockMovingCrystal);
         unlockMultiStackCrystalButton.onSkillUnlocked.AddListener(UnlockMultiStackCrystal);
     }
-
+    protected override void CheckUnlock()
+    {
+        UnlockCrystal();
+        UnlockCloneInstead();
+        UnlockExplosive();
+        UnlockMovingCrystal();
+        UnlockMultiStackCrystal();
+    }
     #region Unlock Region
     private void UnlockCrystal()
     {
