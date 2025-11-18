@@ -340,19 +340,31 @@ public class Inventory : MonoBehaviour, ISaveManager
     public List<InventoryItem> GetEquipmentList() => equipmentItem;
     public List<InventoryItem> GetStashList() => stashItem;
     public List<InventoryItem> GetEdibleList() => edibleItem;
+    // public ItemData_Equipment GetEquipmentByType(EquipmentType _type)
+    // {
+    //     ItemData_Equipment equipedItem = null;
+
+    //     foreach (KeyValuePair<ItemData_Equipment, InventoryItem> item in equipmentDictionary)
+    //     {
+    //         if (item.Key.slotType == _type)
+    //             equipedItem = item.Key;
+ 
+    //     }
+    //     return equipedItem;
+
+    // }
     public ItemData_Equipment GetEquipmentByType(EquipmentType _type)
     {
-        ItemData_Equipment equipedItem = null;
+        if (equipmentDictionary == null)
+            return null;
 
-        foreach (KeyValuePair<ItemData_Equipment, InventoryItem> item in equipmentDictionary)
-        {
+        foreach (var item in equipmentDictionary)
             if (item.Key.slotType == _type)
-                equipedItem = item.Key;
+                return item.Key;
 
-        }
-        return equipedItem;
-
+        return null;
     }
+
 
     public void UseTrinket()
     {

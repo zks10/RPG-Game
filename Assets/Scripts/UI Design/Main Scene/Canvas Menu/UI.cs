@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class UI : MonoBehaviour
 {
@@ -8,6 +9,12 @@ public class UI : MonoBehaviour
     // [SerializeField] private GameObject optionsUI; 3
     [SerializeField] private GameObject[] menuUI = new GameObject[4];
     [SerializeField] private GameObject inGameUI;
+    
+    [Header("End Screen")]
+    [SerializeField] private UI_FadeScreen fadeScreen;
+    [SerializeField] private GameObject endText;
+    [SerializeField] private GameObject restartButton;
+
     private int menuIdx;
     private bool openMenu;
 
@@ -65,9 +72,12 @@ public class UI : MonoBehaviour
 
     public void SwitchTo(GameObject menu)
     {
+
         for (int i = 0; i < transform.childCount; i++)
         {
-            transform.GetChild(i).gameObject.SetActive(false);
+            bool isFadedScreen = transform.GetChild(i).GetComponent<UI_FadeScreen>() != null;
+            if (!isFadedScreen)
+                transform.GetChild(i).gameObject.SetActive(false);
         }
 
         if (menu != null)
@@ -98,4 +108,21 @@ public class UI : MonoBehaviour
 
         SwitchTo(inGameUI);
     }
+
+    public void SwitchOnEndScreen()
+    {
+        SwitchTo(null);
+        fadeScreen.FadeOut();
+        StartCoroutine(EndScreenCoroutine());
+    }
+
+    public IEnumerator EndScreenCoroutine()
+    {
+        yield return new WaitForSeconds(1);
+        endText.SetActive(true);
+        yield return new WaitForSeconds(2);
+        restartButton.SetActive(true);
+    }
+
+    public void RestartGame() => GameManager.instance.RestartScene();
 }
