@@ -340,6 +340,7 @@ public class Inventory : MonoBehaviour, ISaveManager
     public List<InventoryItem> GetEquipmentList() => equipmentItem;
     public List<InventoryItem> GetStashList() => stashItem;
     public List<InventoryItem> GetEdibleList() => edibleItem;
+    
     // public ItemData_Equipment GetEquipmentByType(EquipmentType _type)
     // {
     //     ItemData_Equipment equipedItem = null;

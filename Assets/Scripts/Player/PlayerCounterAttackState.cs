@@ -41,7 +41,8 @@ public class PlayerCounterAttackState : PlayerState
                     //     canCreateClone = false;
                     //     player.skill.coounterAttack.MakeMirageOnCounterAttack(hit.transform);
                     // }
-                    player.skill.clone.CreateCloneWithDelay(hit.transform);
+                    if (player.skill.counterAttack.mirageCounterAttackUnlocked)
+                        player.skill.clone.CreateCloneWithDelay(hit.transform);
                 }
             }
         }

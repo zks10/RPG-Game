@@ -22,6 +22,11 @@ public class UI : MonoBehaviour
     public UI_StatToolTip statToolTip;
     public UI_SkillToolTip skillToolTip;
     public UI_CraftWindow craftWindow;
+
+    private void Awake()
+    {
+        fadeScreen.gameObject.SetActive(true);
+    }
     void Start()
     {
         SwitchTo(inGameUI);

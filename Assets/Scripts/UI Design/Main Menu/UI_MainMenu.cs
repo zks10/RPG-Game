@@ -8,7 +8,13 @@ public class UI_MainMenu : MonoBehaviour
     [SerializeField] private string sceneName = "MainScene";
     [SerializeField] private Button continueButton;
     [SerializeField] private UI_FadeScreen fadeScreen;
+    [SerializeField] private GameObject confirmationPopUp;
     
+    private void Awake()
+    {
+        fadeScreen.gameObject.SetActive(true);
+        confirmationPopUp.SetActive(true);
+    }
     private void Start()
     {
         // Disable Continue if no save

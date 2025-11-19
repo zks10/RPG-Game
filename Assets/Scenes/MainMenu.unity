@@ -2848,6 +2848,7 @@ MonoBehaviour:
   sceneName: MainScene
   continueButton: {fileID: 674524475}
   fadeScreen: {fileID: 2117652127}
+  confirmationPopUp: {fileID: 1839020705}
 --- !u!1 &1839020705
 GameObject:
   m_ObjectHideFlags: 0
@@ -3184,6 +3185,10 @@ PrefabInstance:
     - target: {fileID: 341027077537899189, guid: d74c528b660b24aff9772f4d6262ec90, type: 3}
       propertyPath: m_Name
       value: DarkScreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 341027077537899189, guid: d74c528b660b24aff9772f4d6262ec90, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8650549872664324218, guid: d74c528b660b24aff9772f4d6262ec90, type: 3}
       propertyPath: m_Pivot.x
