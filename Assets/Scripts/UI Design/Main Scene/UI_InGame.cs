@@ -18,35 +18,51 @@ public class UI_InGame : MonoBehaviour
 
     [Header("Currency")]
     [SerializeField] private TextMeshProUGUI currentSouls;
+    [SerializeField] private float soulsAmount = 0;
+    [SerializeField] private float increaseRate = 200;
 
     private SkillManager skills;
     private bool crystalUICoolingDown = false;
+
 
     private void Start()
     {
         if (playerStats != null)
         {
             playerStats.onHealthChanged += UpdateHealthUI;
-            slider.maxValue = playerStats.GetMaxHP();
             UpdateHealthUI();
         }
-
         skills = SkillManager.instance;
         UpdateSkillUIVisibility(); // show only unlocked skills
+        UpdateSoulsUI();
+
     }
 
     private void Update()
     {
+        UpdateSoulsUI();
         UpdateHealthUI();
         UpdateImageCooldownUI();
-        currentSouls.text = PlayerManager.instance.GetCurrentCurrency().ToString("#,#");
 
-        // Optional: If skills can unlock mid-game, keep updating visibility
         UpdateSkillUIVisibility();
+
+    }
+
+    private void UpdateSoulsUI()
+    {
+        if (soulsAmount < PlayerManager.instance.GetCurrentCurrency())
+        {
+            soulsAmount += increaseRate * Time.deltaTime;
+        }
+        else
+            soulsAmount = PlayerManager.instance.GetCurrentCurrency();
+        currentSouls.text = ((int)soulsAmount).ToString();
+
     }
 
     private void UpdateHealthUI()
     {
+        slider.maxValue = playerStats.GetMaxHP();
         slider.value = playerStats.currentHP;
         hpText.text = playerStats.currentHP + " / " + playerStats.GetCalculatedStatValue(StatType.HP).ToString();
     }
@@ -108,7 +124,7 @@ public class UI_InGame : MonoBehaviour
         }
     }
 
-    // 🔹 New Method: Toggle visibility of skill UI elements based on unlocks or equipment
+    
     private void UpdateSkillUIVisibility()
     {
         if (skills == null) return;

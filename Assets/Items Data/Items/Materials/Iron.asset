@@ -15,4 +15,5 @@ MonoBehaviour:
   itemType: 0
   itemName: Iron
   icon: {fileID: 1025795234, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
-  dropRate: 38.9
+  itemId: 98d5f23689c5742c594336a16bde7b7d
+  dropRate: 40

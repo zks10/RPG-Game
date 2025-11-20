@@ -21,7 +21,8 @@ public class Checkpoint : MonoBehaviour
     {
         if (collision.GetComponent<Player>() != null)
         {
-            ActivateCheckpoint();
+            if (!activeStatus)
+                ActivateCheckpoint();
         }
     }
 

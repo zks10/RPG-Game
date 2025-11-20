@@ -4,7 +4,7 @@ public class PlayerManager : MonoBehaviour, ISaveManager
 {
     public static PlayerManager instance;
     public Player player;
-    public int currency;
+    public int currency = 0;
 
     private void Awake()
     {

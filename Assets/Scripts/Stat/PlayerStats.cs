@@ -23,6 +23,9 @@ public class PlayerStats : CharacterStats
         base.Die();
         player.Die();
         GetComponent<PlayerItemDrop>().GenerateDrops();
+        GameManager.instance.lostCurrencyAmount = PlayerManager.instance.currency;
+        PlayerManager.instance.currency = 0;
+
     }
 
     protected override void DecreaseHPBy(int _damage)

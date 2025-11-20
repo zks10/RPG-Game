@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class EnemyStats : CharacterStats
 {
+    [SerializeField] private GameObject soulOrbPrefab;
+    [SerializeField] private int minCoins = 3;
+    [SerializeField] private int maxCoins = 6;
+
     [Header("Level Details")]
     [SerializeField] private int level = 1; 
     [Range(0f, 1f)]
@@ -9,8 +13,11 @@ public class EnemyStats : CharacterStats
 
     private Enemy enemy;
     private ItemDrop myDropSystem;
+    public Stat soulDropAmount;
+
     protected override void Start()
     {
+        soulDropAmount.SetDefaultValue(100);
         ApplyLevelModify();
         base.Start();
         enemy = GetComponent<Enemy>();
@@ -29,6 +36,7 @@ public class EnemyStats : CharacterStats
 
     private void ApplyLevelModify()
     {
+        Modify(soulDropAmount);
         // Major stats
         Modify(strength);
         Modify(agility);
@@ -65,7 +73,34 @@ public class EnemyStats : CharacterStats
     {
         base.Die();
         enemy.Die();
+
+        //PlayerManager.instance.currency += soulDropAmount.GetValue();
+        SpawnSoulOrbs();
         myDropSystem.GenerateDrops();
     }
+
+    private void SpawnSoulOrbs()
+    {
+        int totalSouls = soulDropAmount.GetValue();
+        int coinCount = Random.Range(minCoins, maxCoins + 1);
+        int soulsPerCoin = Mathf.Max(1, totalSouls / coinCount);
+
+        for (int i = 0; i < coinCount; i++)
+        {
+            GameObject orbObj = Instantiate(soulOrbPrefab, transform.position, Quaternion.identity);
+
+            Rigidbody2D rb = orbObj.GetComponent<Rigidbody2D>();
+            rb.gravityScale = 1;
+
+            // pop-out force
+            rb.linearVelocity = new Vector2(
+                Random.Range(-3f, 3f),
+                Random.Range(10f, 13f)
+            );
+
+            orbObj.GetComponent<SoulOrb>().Init(soulsPerCoin);
+        }
+    }
+
 
 }

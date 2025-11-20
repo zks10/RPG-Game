@@ -63,16 +63,12 @@ public class UI : MonoBehaviour
                 SwitchWithKeyTo(menuUI[menuIdx]);
             }
         }
-        
-
-       
-        
     }
 
     public void SwitchToIndex(int index)
     {
-        menuIdx = index;               // sync index
-        SwitchTo(menuUI[index]);       // show the correct menu
+        menuIdx = index;              
+        SwitchTo(menuUI[index]);     
     }
 
     public void SwitchTo(GameObject menu)
@@ -107,7 +103,7 @@ public class UI : MonoBehaviour
     {
         for (int i = 0; i < transform.childCount; i++)
         {
-            if (transform.GetChild(i).gameObject.activeSelf)
+            if (transform.GetChild(i).gameObject.activeSelf && transform.GetChild(i).GetComponent<UI_FadeScreen>() == null)
                 return;
         }
 
