@@ -88,7 +88,7 @@ public class EnemyStats : CharacterStats
         for (int i = 0; i < coinCount; i++)
         {
             GameObject orbObj = Instantiate(soulOrbPrefab, transform.position, Quaternion.identity);
-
+            AudioManager.instance.PlaySFX(10, transform);
             Rigidbody2D rb = orbObj.GetComponent<Rigidbody2D>();
             rb.gravityScale = 1;
 

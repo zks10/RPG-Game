@@ -8,7 +8,7 @@ public class ItemObject : MonoBehaviour
     private Player player;
     [SerializeField] private float magnetRange = 0.1f;  
     [SerializeField] private float moveSpeed = 5f;  
-
+    
     private void SetupVisuals()
     {
         if (itemData == null)
@@ -30,6 +30,8 @@ public class ItemObject : MonoBehaviour
             rb.linearVelocity = new Vector2(0, 7);
             return;
         }
+
+        AudioManager.instance.PlaySFX(12, transform);
         Inventory.instance.AddItem(itemData);
         Destroy(gameObject);
     }
@@ -46,7 +48,8 @@ public class ItemObject : MonoBehaviour
             return;
         if (!Inventory.instance.CanAddEquipItem() && itemData.itemType == ItemType.Equipment)
             return;
-        MagneticMovingToPlayer();
+        if (Inventory.instance.CanAddEquipItem() || itemData.itemType != ItemType.Equipment)
+            MagneticMovingToPlayer();   
     }
 
     private void MagneticMovingToPlayer()

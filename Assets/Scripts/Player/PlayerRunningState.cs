@@ -11,12 +11,14 @@ public class PlayerRunningState : PlayerGroundedState
     {
         player.SetJump(player.jumpForce + 2);
         base.Enter();
+        AudioManager.instance.PlaySFX(7);
     }
     public override void Exit()
     {
         base.Exit();
         if (player.jumpForce > player.defaultJumpForce + 2)
             player.SetJump(player.defaultJumpForce + 2);
+        AudioManager.instance.StopSFX(7);
     }
     public override void Update()
     {

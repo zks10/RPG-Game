@@ -10,10 +10,14 @@ public class SkeletonIdleState : SkeletonGroundedState
     {
         base.Enter();
         stateTimer = enemy.idleTime;
+
+        int randomIdle = Random.Range(3, 6);
+        AudioManager.instance.PlaySFX(randomIdle, enemy.transform);
     }
     public override void Exit()
     {
         base.Exit();
+
     }
     public override void Update()
     {

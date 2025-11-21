@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : Entity
 {
+    public bool canPickItem { get; private set; }
     [Header("Attack Info")]
     public Vector2[] attactMovement;
     public bool isBusy { get; private set; }
@@ -56,6 +57,7 @@ public class Player : Entity
     public override void Awake()
     {
         base.Awake();
+        canPickItem = true;
         stateMachine = new PlayerStateMachine();
         defaultJumpForce = jumpForce;
         defaultMoveSpeed = moveSpeed;
@@ -210,7 +212,7 @@ public class Player : Entity
         Invoke("ReturnDefaultSpeed", _slowDuration);
     }
 
-     protected override void ReturnDefaultSpeed()
+    protected override void ReturnDefaultSpeed()
     {
         base.ReturnDefaultSpeed();
         moveSpeed = defaultMoveSpeed;
@@ -218,4 +220,6 @@ public class Player : Entity
         dashSpeed = defaultDashSpeed;
         runSpeed = defaultRunSpeed;
     }
+
+    public void SetCanPickItm(bool _val) => canPickItem = _val;
 }

@@ -13,10 +13,19 @@ public class PlayerPrimaryAttackState : PlayerState
     public override void Enter()
     {
         base.Enter();
-        xInput = 0;
-
         if (comboCounter > 2 || Time.time >= lastTimeAttacked + comboWindow)
             comboCounter = 0;
+        if (comboCounter == 0)
+        {
+            AudioManager.instance.PlaySFX(1);// attack sound effect
+        } 
+        else
+        {
+            AudioManager.instance.PlaySFX(2);
+        }
+        xInput = 0;
+
+
 
         player.anim.SetInteger("ComboCounter", comboCounter);
 

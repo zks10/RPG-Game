@@ -126,7 +126,7 @@ public class Inventory : MonoBehaviour, ISaveManager
         equipmentItem.Add(newItem);
         equipmentDictionary.Add(newEquipment, newItem);
         newEquipment.AddModifiers();
-
+        AudioManager.instance.PlaySFX(11, null);
         RemoveItem(_item);
         UpdateSlotUI();
     }

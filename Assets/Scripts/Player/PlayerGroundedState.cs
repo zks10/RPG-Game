@@ -33,7 +33,12 @@ public class PlayerGroundedState : PlayerState
         }
 
         if (Input.GetKeyDown(KeyCode.E) && player.skill.blackhole.blackholeUnlock)
+        {
+            if (player.skill.blackhole.cooldownTimer > 0)
+                return;
+            
             stateMachine.ChangeState(player.blackholeState);
+        }
             
         if (!player.IsGroundDectected())
         {

@@ -18,12 +18,14 @@ public class PlayerBlackholeState : PlayerState
         stateTimer = flyTime;
         defaultGravity = rb.gravityScale;
         rb.gravityScale = 0;
+        player.SetCanPickItm(false);
     }
     public override void Exit()
     {
         base.Exit();
         rb.gravityScale = defaultGravity;
         player.fx.MakeTransparent(false);
+        player.SetCanPickItm(true);
     }
     public override void Update()
     {
