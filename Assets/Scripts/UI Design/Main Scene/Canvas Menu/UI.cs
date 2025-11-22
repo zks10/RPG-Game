@@ -76,8 +76,10 @@ public class UI : MonoBehaviour, ISaveManager
 
     public void SwitchToIndex(int index)
     {
-        menuIdx = index;              
+        menuIdx = index;
+        AudioManager.instance.PlaySFX(14, null);              
         SwitchTo(menuUI[index]);     
+
     }
 
     public void SwitchTo(GameObject menu)
