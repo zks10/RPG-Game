@@ -33,6 +33,7 @@ public class PlayerCounterAttackState : PlayerState
                     stateTimer = 10;
                     player.counterAttackUsageTimer = 0;
                     player.anim.SetBool("SucessfulCounterAttack", true);
+                    AudioManager.instance.PlaySFX(0);
 
                     player.skill.counterAttack.UseSkill();
                     // If only one counter clone

@@ -11,10 +11,10 @@ public class GameData
     public List<string> equipmentId;
     public SerializableDictionary<string, bool> checkpoints;
     public string lastCheckpointId;
-
     public float lostPosCurrencyX;
     public float lostPosCurrencyY;
     public int lostCurrencyAmount;
+    public SerializableDictionary<string, float> volumeSettings;
 
 
     public GameData()
@@ -29,6 +29,7 @@ public class GameData
         equipmentId = new List<string>();
         checkpoints = new SerializableDictionary<string, bool>();
         lastCheckpointId = string.Empty;
+        volumeSettings = new SerializableDictionary<string, float>();
 
     }
 }

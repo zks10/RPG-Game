@@ -1,7 +1,9 @@
 using UnityEngine;
+using UnityEngine.Audio;
 using System.Collections;
+using System.Collections.Generic;
 
-public class UI : MonoBehaviour
+public class UI : MonoBehaviour, ISaveManager
 {
     // [SerializeField] private GameObject characterUI; 0
     // [SerializeField] private GameObject skillUI; 1
@@ -23,6 +25,8 @@ public class UI : MonoBehaviour
     public UI_SkillToolTip skillToolTip;
     public UI_CraftWindow craftWindow;
 
+    [SerializeField] private UI_VolumeSlider[] volumeSettings;
+
     private void Awake()
     {
         fadeScreen.gameObject.SetActive(true);
@@ -34,6 +38,11 @@ public class UI : MonoBehaviour
 
         itemToolTip.gameObject.SetActive(false);
         statToolTip.gameObject.SetActive(false);
+        
+        foreach (UI_VolumeSlider vs in volumeSettings)
+        {
+            vs.SliderValue(vs.slider.value);
+        }
     }
 
     void Update()
@@ -126,4 +135,28 @@ public class UI : MonoBehaviour
     }
 
     public void RestartGame() => GameManager.instance.RestartScene();
+
+    public void LoadData(GameData _data)
+    {
+        foreach (KeyValuePair<string, float> pair in _data.volumeSettings)
+        {
+            foreach (UI_VolumeSlider item in volumeSettings)
+            {
+                if (item.parameter == pair.Key)
+                {
+                    item.LoadSlider(pair.Value);
+                }
+            }
+        }
+    }
+
+    public void SaveData(ref GameData _data)
+    {
+        _data.volumeSettings.Clear();
+
+        foreach(UI_VolumeSlider item in volumeSettings)
+        {
+            _data.volumeSettings.Add(item.parameter, item.slider.value);
+        }
+    }
 }
