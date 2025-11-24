@@ -68,6 +68,7 @@ public class UI_SkillTreeSlot : UI_Slots, ISaveManager
         unlocked = true;
         skillImage.color = Color.white;
         onSkillUnlocked?.Invoke();
+        AudioManager.instance.PlaySFX(17, null);
     }
 
     public void LoadData(GameData _data)

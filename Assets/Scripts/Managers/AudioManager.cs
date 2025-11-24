@@ -6,6 +6,7 @@ using System.Collections;
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
+    private bool isQuitting = false;
 
     [Header("General SFX Settings")]
     [SerializeField] private float sfxMinimalDistance = 10f;
@@ -40,6 +41,11 @@ public class AudioManager : MonoBehaviour
         if (!bgm[bgmIndex].isPlaying)
             PlayBGM(bgmIndex);
     }
+    private void OnApplicationQuit()
+    {
+        isQuitting = true;
+    }
+
     public void PlaySFX(int index, Transform source = null)
     {
         if (index < 0 || index >= sfx.Length) return;
@@ -107,13 +113,21 @@ public class AudioManager : MonoBehaviour
         ------------------------------------------------------------------------- */
     public void PlaySFXWithTime(int _idx, float _duration)
     {
+        if (isQuitting || this == null) return;
+        if (!gameObject) return;
+
         StartCoroutine(FadeInSFX(sfx[_idx], _duration));
     }
 
+
     public void StopSFXWithTime(int _idx, float _duration)
     {
+        if (isQuitting || this == null) return;
+        if (!gameObject) return;
+
         StartCoroutine(FadeOutSFX(sfx[_idx], _duration));
     }
+
     private IEnumerator FadeInSFX(AudioSource audio, float duration)
     {
         if (audio == null) yield break;

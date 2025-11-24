@@ -33,8 +33,8 @@ public class Sword_Skill_Controller : MonoBehaviour
     private float hitTimer;
     private float hitCooldown;
     private bool firstHit;
-    private float spinXDirection;
-    // private float spinYDirection;
+    private Vector2 launchDirection;
+
     private float destorySwordDistance = 20;
 
     private void Awake()
@@ -61,8 +61,7 @@ public class Sword_Skill_Controller : MonoBehaviour
         if (pierceAmount <= 0)
             anim.SetBool("Rotation", true);
 
-        spinXDirection = Mathf.Clamp(rb.linearVelocity.x, -1, 1);
-        // spinYDirection = Mathf.Clamp(rb.linearVelocity.y, -1, 1);
+        launchDirection = _dir.normalized;
         Invoke("DestroyMe", 2);
     }
 
@@ -144,7 +143,8 @@ public class Sword_Skill_Controller : MonoBehaviour
             {
                 spinTimer -= Time.deltaTime;
 
-                transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x + spinXDirection, transform.position.y), 1.5f * Time.deltaTime);
+                transform.position += (Vector3)(launchDirection * 1.5f * Time.deltaTime);
+                
                 if (spinTimer < 0)
                 {
                     isReturn = true;

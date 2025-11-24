@@ -15,14 +15,14 @@ public class PlayerPrimaryAttackState : PlayerState
         base.Enter();
         if (comboCounter > 2 || Time.time >= lastTimeAttacked + comboWindow)
             comboCounter = 0;
-        if (comboCounter == 0)
-        {
-            AudioManager.instance.PlaySFX(1);// attack sound effect
-        } 
-        else
-        {
-            AudioManager.instance.PlaySFX(2);
-        }
+        // if (comboCounter == 0)
+        // {
+        //     AudioManager.instance.PlaySFX(1);// attack sound effect
+        // } 
+        // else
+        // {
+        //     AudioManager.instance.PlaySFX(2);
+        // }
         xInput = 0;
 
 

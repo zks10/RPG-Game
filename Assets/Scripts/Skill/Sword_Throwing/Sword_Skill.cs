@@ -13,6 +13,7 @@ public class Sword_Skill : Skill
     public SwordType swordType = SwordType.Regular;
     [Header("Regular Info")]
     [SerializeField] private Vector2 launchForce;
+    [SerializeField] private float defaultGravity;
     [SerializeField] private float swordGravity;
 
     [Header("Bounce Info")]
@@ -88,6 +89,7 @@ public class Sword_Skill : Skill
         {
             swordType = SwordType.Regular;
             swordUnlock = true;
+            SetUpGravity();
         }
     }
 
@@ -97,6 +99,7 @@ public class Sword_Skill : Skill
         {
             swordType = SwordType.Bounce;
             bounceSwordUnlock = true;
+            SetUpGravity();
         }
     }
 
@@ -106,6 +109,7 @@ public class Sword_Skill : Skill
         {
             swordType = SwordType.Pierce;
             pierceSwordUnlock = true;
+            SetUpGravity();
         }
     }
 
@@ -115,6 +119,7 @@ public class Sword_Skill : Skill
         {
             swordType = SwordType.Spin;
             spinSwordUnlock = true;
+            SetUpGravity();
         }
     }
 
@@ -136,12 +141,15 @@ public class Sword_Skill : Skill
 
     private void SetUpGravity()
     {
+
         if (swordType == SwordType.Bounce)
             swordGravity = bounceGravity;
         else if (swordType == SwordType.Pierce)
             swordGravity = pierceGravity;
         else if (swordType == SwordType.Spin)
             swordGravity = spinGravity;
+        else
+            swordGravity = defaultGravity;
     }
     public void CreateSword()
     {

@@ -5,6 +5,7 @@
 public class GameData 
 {
     public int currency;
+    public int currentHP;
 
     public SerializableDictionary<string, bool> skillTree;
     public SerializableDictionary<string, int> inventory;
@@ -24,6 +25,7 @@ public class GameData
         this.lostCurrencyAmount = 0;
         
         this.currency = 0;
+        this.currentHP = 0;
         skillTree = new SerializableDictionary<string, bool>();
         inventory = new SerializableDictionary<string, int>();
         equipmentId = new List<string>();

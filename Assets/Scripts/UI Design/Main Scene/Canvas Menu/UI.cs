@@ -49,8 +49,10 @@ public class UI : MonoBehaviour, ISaveManager
     {
         if (Input.GetKeyDown(KeyCode.M))
         {
+            
             openMenu = !openMenu;
 
+            AudioManager.instance.PlaySFX(16,null);
             if (openMenu)
                 SwitchWithKeyTo(menuUI[menuIdx]);
             else

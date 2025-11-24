@@ -138,6 +138,7 @@ public class Inventory : MonoBehaviour, ISaveManager
         {
             equipmentItem.Remove(value);
             equipmentDictionary.Remove(oldEquipment);
+            AudioManager.instance.PlaySFX(11, null);
             oldEquipment.RemoveModifiers();
         }
 

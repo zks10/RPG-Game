@@ -16,7 +16,6 @@ public class GameManager : MonoBehaviour, ISaveManager
     [SerializeField] private float lostPosY;
     public int lostCurrencyAmount;
 
-
     private void Awake()
     {
         if (instance != null)
