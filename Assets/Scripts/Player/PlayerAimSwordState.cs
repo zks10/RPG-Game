@@ -11,7 +11,7 @@ public class PlayerAimSwordState : PlayerState
     {
         base.Enter();
         
-
+        AudioManager.instance.PlaySFX(21, player.transform);
         player.skill.sword.DotsActive(true); 
     }
     public override void Exit()

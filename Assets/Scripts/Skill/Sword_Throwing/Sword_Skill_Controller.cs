@@ -34,6 +34,8 @@ public class Sword_Skill_Controller : MonoBehaviour
     private float hitCooldown;
     private bool firstHit;
     private Vector2 launchDirection;
+    private bool spinSoundPlaying;
+
 
     private float destorySwordDistance = 20;
 
@@ -103,9 +105,9 @@ public class Sword_Skill_Controller : MonoBehaviour
                 player.CatchTheSword();
         }
 
-
         BounceLogic();
         SpinLogic();
+
 
     }
 
@@ -135,23 +137,24 @@ public class Sword_Skill_Controller : MonoBehaviour
     {
         if (isSpinning)
         {
+            transform.position += (Vector3)(launchDirection * 1.5f * Time.deltaTime);
+
             if (Vector2.Distance(player.transform.position, transform.position) > maxTravelDistance && !wasStopped)
                 StopWhenSpinning();
             
-
             if (wasStopped)
             {
                 spinTimer -= Time.deltaTime;
 
-                transform.position += (Vector3)(launchDirection * 1.5f * Time.deltaTime);
-                
                 if (spinTimer < 0)
                 {
                     isReturn = true;
                     isSpinning = false;
+                    AudioManager.instance.StopSFX(23); 
                 }
 
                 hitTimer -= Time.deltaTime;
+
                 if (hitTimer < 0)
                 {
                     hitTimer = hitCooldown;
@@ -160,19 +163,24 @@ public class Sword_Skill_Controller : MonoBehaviour
                     foreach (var hit in colliders)
                     {
                         if (hit.GetComponent<Enemy>() != null)
+                        {
                             SwordSkillDamage(hit.GetComponent<Enemy>());
-                        
+                        }
                     }
                 }
             }
         }
     }
+
     public void ReturnSword()
     {
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
         transform.parent = null;
         isReturn = true;
         firstHit = false;
+        spinSoundPlaying = false;
+        AudioManager.instance.StopSFX(23);
+
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -241,6 +249,11 @@ public class Sword_Skill_Controller : MonoBehaviour
         wasStopped = true;
         rb.constraints = RigidbodyConstraints2D.FreezePosition;
         spinTimer = spinDuration;
+        if (!spinSoundPlaying)
+        {
+            AudioManager.instance.PlaySFX(23, null);
+            spinSoundPlaying = true;
+        }
     }
     
     private void SwordSkillDamage(Enemy enemy)

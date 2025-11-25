@@ -13,7 +13,7 @@ public class HealthBarUI : MonoBehaviour
         myTransform = GetComponent<RectTransform>();
         entity = GetComponentInParent<Entity>();
         slider = GetComponentInChildren<Slider>();
-        myStats = GetComponentInParent<CharacterStats>();
+        myStats = entity.GetComponent<CharacterStats>();
         entity.onFlipped += FlipUI;
         myStats.onHealthChanged += UpdateHealthUI;
         slider.maxValue = myStats.GetMaxHP();

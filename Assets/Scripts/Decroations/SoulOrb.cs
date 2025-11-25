@@ -13,6 +13,9 @@ public class SoulOrb : MonoBehaviour
 
     private bool homing = false;
 
+    public float homingDelay = 0.5f; 
+    private float timer = 0f; 
+
     public void Init(int amount)
     {
         rb = GetComponent<Rigidbody2D>();
@@ -26,7 +29,11 @@ public class SoulOrb : MonoBehaviour
 
     void FixedUpdate()
     {
+        timer += Time.fixedDeltaTime;
         if (player == null)
+            return;
+        
+        if (timer < homingDelay)
             return;
 
         float dist = Vector2.Distance(transform.position, player.position);

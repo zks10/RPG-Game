@@ -10,6 +10,7 @@ public class PlayerGroundedState : PlayerState
     public override void Enter()
     {
         base.Enter();
+        player.hasDoubleJumped = false;
     }
     public override void Exit()
     {
@@ -45,7 +46,7 @@ public class PlayerGroundedState : PlayerState
             stateMachine.ChangeState(player.airState);
         }
 
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) && player.IsGroundDectected())
+        if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && player.IsGroundDectected())
         {
             stateMachine.ChangeState(player.jumpState);
         }

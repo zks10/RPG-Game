@@ -50,6 +50,7 @@ public class UI_TabSwitcher : MonoBehaviour
             panels[i].SetActive(i == index);
 
         currentIndex = index;
+        AudioManager.instance.PlaySFX(14, null); 
     }
 
     /// <summary>

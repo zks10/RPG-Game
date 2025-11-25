@@ -10,6 +10,7 @@ public class SkillManager : MonoBehaviour
     public Crystal_Skill crystal { get; private set; }
     public CounterAttack_Skill counterAttack { get; private set; }
     public Dodge_Skill dodge { get; private set; }
+    public DoubleJumpSkill dJump { get; private set; }
     
     private void Awake() 
     {
@@ -28,5 +29,6 @@ public class SkillManager : MonoBehaviour
         crystal = GetComponent<Crystal_Skill>();
         counterAttack = GetComponent<CounterAttack_Skill>();
         dodge = GetComponent<Dodge_Skill>();
+        dJump = GetComponent<DoubleJumpSkill>();
     }
 }

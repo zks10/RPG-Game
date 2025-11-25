@@ -140,31 +140,6 @@ public class Enemy : Entity
         Gizmos.color = Color.yellow;
         Gizmos.DrawLine(transform.position, new Vector3(transform.position.x + attackDistance * facingDir, transform.position.y));
     }
-
-    public override void DamageImpact() {
-        base.DamageImpact();
-        StartCoroutine("HitKnockBack");
-
-    }
-
-    public IEnumerator HitKnockBack()
-    {
-        isKnocked = true;
-        player = PlayerManager.instance.player.transform;
-        float val = (player.position.x - this.transform.position.x);
-        float dir = facingDir;
-
-        if (val > 0)
-            dir = -1;
-        else
-            dir = 1;
-
-        rb.linearVelocity = new Vector2(knockbackDirection.x * dir, knockbackDirection.y);
-
-        yield return new WaitForSeconds(knockbackDuration);
-
-        isKnocked = false;
-    }
     
     public override void SlowEntityBy(float _slowPercentage, float _slowDuration)
     {

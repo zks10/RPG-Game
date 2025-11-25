@@ -11,6 +11,7 @@ public class PlayerJumpState : PlayerState
     public override void Enter()
     {
         base.Enter();
+        AudioManager.instance.PlaySFX(19, player.transform);
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, player.jumpForce);
     }
     public override void Exit()

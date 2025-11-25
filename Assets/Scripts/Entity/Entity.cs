@@ -1,6 +1,6 @@
 
 using UnityEngine;
-
+using System.Collections;
 
 public class Entity : MonoBehaviour
 {
@@ -21,6 +21,7 @@ public class Entity : MonoBehaviour
     [SerializeField] protected Vector2 knockbackDirection;
     [SerializeField] protected float knockbackDuration;
     protected bool isKnocked;
+    public int knockbackDir { get; private set; }
 
     [Header("Collision Info")]
     public Transform attackCheck;
@@ -65,9 +66,25 @@ public class Entity : MonoBehaviour
 
     public virtual void DamageImpact()
     {
-        
+        StartCoroutine("HitKnockBack");
+    }
+    public virtual IEnumerator HitKnockBack()
+    {
+        isKnocked = true;
+        rb.linearVelocity = new Vector2(knockbackDirection.x * knockbackDir, knockbackDirection.y);
+
+        yield return new WaitForSeconds(knockbackDuration);
+
+        isKnocked = false;
     }
 
+    public virtual void SetUpKnockBackDir(Transform _damageDir)
+    {
+        if (_damageDir.position.x > transform.position.x )
+            knockbackDir = -1;
+        else 
+            knockbackDir = 1;
+    }
     #region Velocity
     public virtual void SetVelocity(float _xVelocity, float _yVelocity)
     {

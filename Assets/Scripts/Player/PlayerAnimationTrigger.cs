@@ -34,6 +34,7 @@ public class PlayerAnimationTrigger : MonoBehaviour
 
     private void ThrowSword()
     {
+        AudioManager.instance.PlaySFX(22, player.transform);
         SkillManager.instance.sword.CreateSword();
     }
     

@@ -21,6 +21,11 @@ public class Player : Entity
     private float defaultMoveSpeed;
     private float defaultRunSpeed;
     [HideInInspector] public float defaultJumpForce;
+
+    [Header("Double Jump")]
+    public bool canDoubleJump;     
+    public bool hasDoubleJumped;  
+
     public float swordReturnImpact;
     private float lastTapTime = 0f;
     private float doubleTapTimeWindow = 0.3f;
@@ -177,16 +182,6 @@ public class Player : Entity
 
     public void AnimationTrigger() => stateMachine.currentState.AnimationFinishTrigger();
 
-    public IEnumerator HitKnockBack()
-    {
-        isKnocked = true;
-
-        rb.linearVelocity = new Vector2(knockbackDirection.x * -facingDir, knockbackDirection.y);
-
-        yield return new WaitForSeconds(knockbackDuration);
-
-        isKnocked = false;
-    }
 
     public override void DamageImpact()
     {

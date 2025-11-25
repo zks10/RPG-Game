@@ -6,8 +6,11 @@ public class ItemObject : MonoBehaviour
     [SerializeField] private ItemData itemData;
 
     private Player player;
-    [SerializeField] private float magnetRange = 0.1f;  
+    [SerializeField] private float magnetRange = 2f;  
     [SerializeField] private float moveSpeed = 5f;  
+
+    [SerializeField] private float pickupDelay = 0.5f; 
+    private float timer = 0f; 
     
     private void SetupVisuals()
     {
@@ -44,10 +47,15 @@ public class ItemObject : MonoBehaviour
 
     private void Update()
     {
+        timer += Time.deltaTime; // count delay time
+        if (timer < pickupDelay) 
+            return;
+            
         if (player == null || player.isDead)
             return;
         if (!Inventory.instance.CanAddEquipItem() && itemData.itemType == ItemType.Equipment)
             return;
+
         if (Inventory.instance.CanAddEquipItem() || itemData.itemType != ItemType.Equipment)
             MagneticMovingToPlayer();   
     }
@@ -66,6 +74,11 @@ public class ItemObject : MonoBehaviour
                 player.transform.position,
                 currentSpeed * Time.deltaTime
             );
+            
+            if (Vector2.Distance(transform.position, player.transform.position) < 0.2f)
+            {
+                PickUpItem();
+            }
         }
     }
 }

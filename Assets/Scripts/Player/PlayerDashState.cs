@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerDashState : PlayerState
 {
+    private bool prevHasDoubleJumped;
     public PlayerDashState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
     {
 
@@ -10,8 +11,9 @@ public class PlayerDashState : PlayerState
     public override void Enter()
     {
         base.Enter();
+        prevHasDoubleJumped = player.hasDoubleJumped;
         player.skill.dash.CloneOnDashStart();
-
+        AudioManager.instance.PlaySFX(20, player.transform);
         stateTimer = player.dashDuration;
     }
     public override void Exit()
@@ -19,6 +21,7 @@ public class PlayerDashState : PlayerState
         base.Exit();
         player.skill.dash.CloneOnDashEnd();
         player.SetVelocity(0, rb.linearVelocity.y);
+        player.hasDoubleJumped = prevHasDoubleJumped;
     }
     public override void Update()
     {
@@ -31,7 +34,10 @@ public class PlayerDashState : PlayerState
 
         if (stateTimer < 0)
         {
-            stateMachine.ChangeState(player.idleState);
+            if (player.IsGroundDectected())
+                stateMachine.ChangeState(player.idleState);
+            else
+                stateMachine.ChangeState(player.airState); 
         }
 
     }

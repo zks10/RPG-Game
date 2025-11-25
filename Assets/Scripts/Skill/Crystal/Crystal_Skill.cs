@@ -95,6 +95,7 @@ public class Crystal_Skill : Skill
                 if (waitTeleport && currentCrystal != null)
                 {
                     UseSkill();
+                    AudioManager.instance.PlaySFX(24, player.transform);
                     cooldownTimer = cooldown;
                     waitTeleport = false;
                     return true;
@@ -103,6 +104,7 @@ public class Crystal_Skill : Skill
                 if (!waitTeleport)
                 {
                     UseSkill();
+                    AudioManager.instance.PlaySFX(25, player.transform);
                     waitTeleport = true;
                     return true;
                 }
@@ -136,6 +138,7 @@ public class Crystal_Skill : Skill
             Vector2 playerPos = player.transform.position;
             player.transform.position = currentCrystal.transform.position;
             currentCrystal.transform.position = playerPos;
+
 
             if (cloneInsteadOfCrystal)
             {
