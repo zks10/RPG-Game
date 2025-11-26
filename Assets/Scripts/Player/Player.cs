@@ -183,12 +183,6 @@ public class Player : Entity
     public void AnimationTrigger() => stateMachine.currentState.AnimationFinishTrigger();
 
 
-    public override void DamageImpact()
-    {
-        base.DamageImpact();
-        StartCoroutine("HitKnockBack");
-    }
-
     public override void Die()
     {
         base.Die();
@@ -217,4 +211,9 @@ public class Player : Entity
     }
 
     public void SetCanPickItm(bool _val) => canPickItem = _val;
+
+    protected override void SetUpZeroKnockBackPower()
+    {
+        knockbackPower = new Vector2(0, 0);
+    }
 }

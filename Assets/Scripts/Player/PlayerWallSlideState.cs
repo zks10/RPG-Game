@@ -10,10 +10,12 @@ public class PlayerWallSlideState : PlayerState
     public override void Enter()
     {
         base.Enter();
+        //AudioManager.instance.PlaySFX(26, player.transform);
     }
     public override void Exit()
     {
         base.Exit();
+        //AudioManager.instance.StopSFX(26);
     }
     public override void Update()
     {
@@ -27,6 +29,11 @@ public class PlayerWallSlideState : PlayerState
         if (yInput < 0)
         {
             player.SetVelocity(0, rb.linearVelocity.y);
+            // AudioManager.instance.StopSFX(26);
+            // float slideSpeed = Mathf.Abs(rb.velocity.y);
+            // float pitch = Mathf.Clamp(0.8f + slideSpeed / 10f, 0.8f, 2f);
+            // AudioManager.instance.PlaySFX(26, player.transform, pitch);
+
         }
         else
         {
@@ -40,7 +47,7 @@ public class PlayerWallSlideState : PlayerState
 
         if ( !player.IsWallDectected())
         {
-            stateMachine.ChangeState(player.idleState);
+            stateMachine.ChangeState(player.airState);
         }
     }
 }

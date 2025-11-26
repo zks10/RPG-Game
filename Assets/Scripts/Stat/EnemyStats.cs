@@ -1,5 +1,9 @@
 using UnityEngine;
 
+public enum EnemyType
+{
+    Skeleton
+}
 public class EnemyStats : CharacterStats
 {
     [SerializeField] private GameObject soulOrbPrefab;
@@ -10,6 +14,9 @@ public class EnemyStats : CharacterStats
     [SerializeField] private int level = 1; 
     [Range(0f, 1f)]
     [SerializeField] private float percentageModifier = .4f;
+
+    [Header("Enemy Type")]
+    [SerializeField] private EnemyType enemyType;
 
     private Enemy enemy;
     private ItemDrop myDropSystem;
@@ -68,6 +75,12 @@ public class EnemyStats : CharacterStats
     public override void TakeDamage(int _damage)
     {
         base.TakeDamage(_damage);
+
+        if (enemyType == EnemyType.Skeleton)
+        {
+            int randomIdx = Random.Range(30, 33); 
+            AudioManager.instance.PlaySFX(randomIdx, enemy.transform);
+        }
     }
     protected override void Die()
     {

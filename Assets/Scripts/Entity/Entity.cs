@@ -18,7 +18,7 @@ public class Entity : MonoBehaviour
     #endregion
     
     [Header("Knockback Info")]
-    [SerializeField] protected Vector2 knockbackDirection;
+    [SerializeField] protected Vector2 knockbackPower;
     [SerializeField] protected float knockbackDuration;
     protected bool isKnocked;
     public int knockbackDir { get; private set; }
@@ -68,14 +68,17 @@ public class Entity : MonoBehaviour
     {
         StartCoroutine("HitKnockBack");
     }
+
+    public void SetUpKnockBackPower(Vector2 _knockBackPower) => knockbackPower = _knockBackPower;
     public virtual IEnumerator HitKnockBack()
     {
         isKnocked = true;
-        rb.linearVelocity = new Vector2(knockbackDirection.x * knockbackDir, knockbackDirection.y);
+        rb.linearVelocity = new Vector2(knockbackPower.x * knockbackDir, knockbackPower.y);
 
         yield return new WaitForSeconds(knockbackDuration);
 
         isKnocked = false;
+        SetUpZeroKnockBackPower();
     }
 
     public virtual void SetUpKnockBackDir(Transform _damageDir)
@@ -85,6 +88,9 @@ public class Entity : MonoBehaviour
         else 
             knockbackDir = 1;
     }
+
+    protected virtual void SetUpZeroKnockBackPower() { }
+
     #region Velocity
     public virtual void SetVelocity(float _xVelocity, float _yVelocity)
     {

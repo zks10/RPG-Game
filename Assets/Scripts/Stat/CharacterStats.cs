@@ -61,6 +61,8 @@ public class CharacterStats : MonoBehaviour
     [SerializeField] private GameObject shockStrikePrefab;
     public bool isDead { get; private set; }
     public bool isVolunerable { get; private set; }
+    public Transform lastDamageSource { get; private set; }
+
 
     protected virtual void Start()
     {
@@ -124,6 +126,9 @@ public class CharacterStats : MonoBehaviour
 
     protected virtual void DecreaseHPBy(int _damage)
     {
+        if (isDead) 
+            return; 
+            
         if (isVolunerable)
             _damage = Mathf.RoundToInt(_damage * 1.1f);
         currentHP -= _damage;
@@ -136,6 +141,12 @@ public class CharacterStats : MonoBehaviour
             currentHP = GetMaxHP();
         onHealthChanged?.Invoke();
     }
+    public virtual void TakeDamage(int _damage, Transform _damageSource)
+    {
+        lastDamageSource = _damageSource;
+        TakeDamage(_damage);
+    }
+
     public virtual void TakeDamage(int _damage)
     {
         DecreaseHPBy(_damage);
@@ -169,7 +180,7 @@ public class CharacterStats : MonoBehaviour
         int totalMagicalDamage = _fireDamage + _iceDamage + _lightningDamage + intelligence.GetValue();
         totalMagicalDamage = CheckTargetResistence(_targetStats, totalMagicalDamage);
 
-        _targetStats.TakeDamage(totalMagicalDamage);
+        _targetStats.TakeDamage(totalMagicalDamage, transform);
 
         if (Mathf.Max(_fireDamage, _iceDamage, _lightningDamage) <= 0)
             return;
@@ -362,7 +373,7 @@ public class CharacterStats : MonoBehaviour
             totalPhysicalDamage = CalculateCriticalDamage(totalPhysicalDamage);
 
         totalPhysicalDamage = CheckTargetsArmor(_targetStats, totalPhysicalDamage);
-        _targetStats.TakeDamage(totalPhysicalDamage);
+        _targetStats.TakeDamage(totalPhysicalDamage, transform);
     }
 
     #endregion

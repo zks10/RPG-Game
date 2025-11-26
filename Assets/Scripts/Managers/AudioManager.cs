@@ -46,7 +46,7 @@ public class AudioManager : MonoBehaviour
         isQuitting = true;
     }
 
-    public void PlaySFX(int index, Transform source = null)
+    public void PlaySFX(int index, Transform source = null, float _pitch = 0.99f)
     {
         if (index < 0 || index >= sfx.Length) return;
 
@@ -63,8 +63,10 @@ public class AudioManager : MonoBehaviour
             if (dist > sfxMinimalDistance)
                 return;
         }
-
-        sfx[index].pitch = Random.Range(0.9f, 1.1f);
+        if (_pitch == 0.99f)
+            sfx[index].pitch = Random.Range(0.9f, 1.1f);
+        else 
+            sfx[index].pitch = _pitch;
         sfx[index].Play();
     }
 

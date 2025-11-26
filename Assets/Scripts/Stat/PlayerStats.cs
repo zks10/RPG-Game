@@ -17,6 +17,8 @@ public class PlayerStats : CharacterStats
     public override void TakeDamage(int _damage)
     {
         base.TakeDamage(_damage);
+        //int randomIdx = Random.Range(27, 30);
+        AudioManager.instance.PlaySFX(27, player.transform);
     }
     protected override void Die()
     {
@@ -27,10 +29,35 @@ public class PlayerStats : CharacterStats
         PlayerManager.instance.currency = 0;
 
     }
+    private void GetSiginificantDamage(int _damage)
+    {
+        if (_damage > GetMaxHP() * 0.3f)
+        {
+            if (lastDamageSource != null)
+            {
+                // 1 = knock to the right, -1 = knock to the left
+                int _knockDir = transform.position.x > lastDamageSource.position.x ? 1 : -1;
+                Debug.Log(_knockDir);
+                // Start with horizontal knockback via knockDir only
+                Vector2 dir = new Vector2(_knockDir, 0f);
+
+                // Add vertical arc
+                dir.y = 0.6f;
+
+                // Normalize so magnitude stays consistent
+                // dir = dir.normalized;
+
+                float force = 10f;
+                player.SetUpKnockBackPower(dir * force);
+            }
+        }
+    }
 
     protected override void DecreaseHPBy(int _damage)
     {
         base.DecreaseHPBy(_damage);
+
+        // GetSiginificantDamage(_damage);
 
         ItemData_Equipment currentArmor = Inventory.instance.GetEquipmentByType(EquipmentType.Armor);
 
