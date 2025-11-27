@@ -26,6 +26,8 @@ public class Enemy : Entity
     [Header("Attack Info")]
     public float attackDistance;
     public float attackCooldown;
+    // public float minAttackCooldown;
+    // public float maxAttackCooldown;
     public float viewDistance;
     [HideInInspector] public float lastTimeAttacked;
     [SerializeField] protected GameObject detectPlayerImage;
@@ -88,13 +90,13 @@ public class Enemy : Entity
     public virtual void OpenCounterAttackWindow()
     {
         canBeStunned = true;
-        counterImage.SetActive(true);
+        // counterImage.SetActive(true);
     }
 
     public virtual void CloseCounterAttackWindow()
     {
         canBeStunned = false;
-        counterImage.SetActive(false);
+        // counterImage.SetActive(false);
     }
     
     public virtual void DetectPlayerImage()

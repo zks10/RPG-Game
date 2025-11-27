@@ -27,7 +27,7 @@ public class AudioManager : MonoBehaviour
         else
             instance = this;
 
-        Invoke("AllowSFX", 1);
+        Invoke("AllowSFX", 0.3f);
     }
 
     private void Update()

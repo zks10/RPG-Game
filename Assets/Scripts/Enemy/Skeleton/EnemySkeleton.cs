@@ -51,4 +51,13 @@ public class EnemySkeleton : Enemy
         base.Die();
         stateMachine.ChangeState(deadState);
     }
+
+    public void Footstep()
+    {
+        int[] footstepIndexes = { 33, 34, 35, 36 };
+        int sfxIndex = footstepIndexes[Random.Range(0, footstepIndexes.Length)];
+
+        AudioManager.instance.PlaySFX(sfxIndex, transform);
+    }
+
 }

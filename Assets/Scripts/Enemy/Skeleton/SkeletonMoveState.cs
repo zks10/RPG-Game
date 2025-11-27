@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class SkeletonMoveState : SkeletonGroundedState
 {
+
+
     public SkeletonMoveState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName, EnemySkeleton _enemy) : base(_enemyBase, _stateMachine, _animBoolName, _enemy)
     {
        
@@ -26,4 +28,6 @@ public class SkeletonMoveState : SkeletonGroundedState
             stateMachine.ChangeState(enemy.idleState);
         }
     }
+
+
 }

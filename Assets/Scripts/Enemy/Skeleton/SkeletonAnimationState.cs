@@ -10,7 +10,7 @@ public class SkeletonAnimationTrigger : MonoBehaviour
     private void AttackTrigger()
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(skeleton.attackCheck.position, skeleton.attackCheckRadius);
-
+        AudioManager.instance.PlaySFX(37, skeleton.transform);
         foreach (var hit in colliders)
         {
             if (hit.GetComponent<Player>() != null)
@@ -31,4 +31,6 @@ public class SkeletonAnimationTrigger : MonoBehaviour
     private void CloseCounterAttackWindow() => skeleton.CloseCounterAttackWindow();
     private void DetectPlayerImage() => skeleton.DetectPlayerImage();
     private void StartWalking() => skeleton.StartWalking();
+    private void Footstep() => skeleton.Footstep();
+
 }
