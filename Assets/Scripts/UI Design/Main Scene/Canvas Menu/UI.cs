@@ -98,6 +98,14 @@ public class UI : MonoBehaviour, ISaveManager
         {
             menu.SetActive(true);
         }
+
+        if (GameManager.instance != null)
+        {
+            if (menu == inGameUI)
+                GameManager.instance.PauseGame(false);
+            else
+                GameManager.instance.PauseGame(true);
+        }
         
     }
 

@@ -51,7 +51,7 @@ public class Entity : MonoBehaviour
 
     public virtual void Update()
     {
-
+        
     }
 
     public virtual void SlowEntityBy(float _slowPercentage, float _slowDuration)

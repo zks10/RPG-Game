@@ -97,6 +97,8 @@ public class Player : Entity
     public override void Update()
     {
         base.Update();
+        if (Time.timeScale == 0) 
+            return;
         stateMachine.currentState.Update();
         CheckForDashInput();
         counterAttackUsageTimer -= Time.deltaTime;
