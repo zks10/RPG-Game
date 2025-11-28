@@ -41,15 +41,27 @@ public class GameManager : MonoBehaviour, ISaveManager
     public void LoadData(GameData _data)
     {
         StartCoroutine(LoadWithDelay(_data));
-
     }
 
     public void SaveData(ref GameData _data)
     {
         //_data.lastCheckpointId = FindClosestCheckpoint().id; use closest (not like this way)
         _data.lostCurrencyAmount = lostCurrencyAmount;
-        _data.lostPosCurrencyX = player.position.x;
-        _data.lostPosCurrencyY = player.position.y - 0.505f;
+        if (PlayerManager.instance.player.stats.diedInVoid)
+        {
+            Transform cp = GetCheckpointById(lastCheckpointId);
+
+            float offsetX = 1.5f;
+            float offsetY = -1.69f;
+
+            _data.lostPosCurrencyX = cp.position.x + offsetX;
+            _data.lostPosCurrencyY = cp.position.y + offsetY;
+        }
+        else
+        {
+            _data.lostPosCurrencyX = player.position.x;
+            _data.lostPosCurrencyY = player.position.y - 0.505f;
+        }
 
         if (lastCheckpointId != null)
             _data.lastCheckpointId = lastCheckpointId;
@@ -61,6 +73,17 @@ public class GameManager : MonoBehaviour, ISaveManager
         }
 
     }
+
+    private Transform GetCheckpointById(string id)
+    {
+        foreach (Checkpoint cp in checkpoints)
+        {
+            if (cp.id == id)
+                return cp.transform;
+        }
+        return player; // fallback
+    }
+
     
 
     private void LoadCheckpoints(GameData _data)

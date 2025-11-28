@@ -1,12 +1,14 @@
 using UnityEngine;
 
-public class PlayerStats : CharacterStats
+public class PlayerStats : CharacterStats, ISaveManager
 {
     private Player player;
+
     protected override void Start()
     {
         base.Start();
         player = GetComponent<Player>();
+        player.stats.diedInVoid = false;
     }
 
     protected override void Update()
@@ -14,6 +16,15 @@ public class PlayerStats : CharacterStats
         base.Update();
     }
 
+    public void LoadData(GameData _data)
+    {
+        currentHP = _data.currentHP;
+    }
+
+    public void SaveData(ref GameData _data)
+    {
+        _data.currentHP = this.currentHP;
+    }
     public override void TakeDamage(int _damage)
     {
         base.TakeDamage(_damage);
@@ -30,12 +41,6 @@ public class PlayerStats : CharacterStats
 
     }
 
-    protected override void DieOutSide()
-    {
-        base.DieOutSide();
-        GameObject.Find("UI_Manager").GetComponent<UI>().SwitchOnEndScreen();
-        Die();
-    }
     private void GetSiginificantDamage(int _damage)
     {
         if (_damage > GetMaxHP() * 0.3f)

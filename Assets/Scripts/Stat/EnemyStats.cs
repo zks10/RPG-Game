@@ -24,6 +24,8 @@ public class EnemyStats : CharacterStats
 
     protected override void Start()
     {
+        currentHP = GetMaxHP();
+        critDamage.SetDefaultValue(150);
         soulDropAmount.SetDefaultValue(100);
         ApplyLevelModify();
         base.Start();
@@ -93,9 +95,8 @@ public class EnemyStats : CharacterStats
         
         Destroy(gameObject, 1.5f);
     }
-    protected override void DieOutSide()
+    public void DieOutSide()
     {
-        base.DieOutSide();
         enemy.Die();
         Destroy(gameObject, 1.5f);
     }

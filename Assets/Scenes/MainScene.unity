@@ -2114,7 +2114,7 @@ MonoBehaviour:
   slideDistance: 10
   hoverDelay: 0.2
   skillName: Dash - "Here I am"
-  skillPrice: 200
+  skillPrice: 0
   skillDescription: Leave a mirage while you dashing.
   lockedSkillColor: {r: 0.5568628, g: 0.4745098, b: 0.4745098, a: 1}
   unlocked: 0
@@ -17719,7 +17719,7 @@ MonoBehaviour:
   slideDistance: 10
   hoverDelay: 0.2
   skillName: Dash
-  skillPrice: 100
+  skillPrice: 0
   skillDescription: Burst forward at high speed, covering short distances quickly
     with invincibility.
   lockedSkillColor: {r: 0.5568628, g: 0.4745098, b: 0.4745098, a: 1}
@@ -18428,7 +18428,7 @@ MonoBehaviour:
   slideDistance: 10
   hoverDelay: 0.2
   skillName: Dash - "Actually I am here"
-  skillPrice: 400
+  skillPrice: 0
   skillDescription: Generate a Mirage after dashing.
   lockedSkillColor: {r: 0.5568628, g: 0.4745098, b: 0.4745098, a: 1}
   unlocked: 0
@@ -29722,7 +29722,7 @@ MonoBehaviour:
     baseValue: 0
     modifiers: 
   maxHP:
-    baseValue: 10
+    baseValue: 50
     modifiers: 
   currentHP: 0
   armor:

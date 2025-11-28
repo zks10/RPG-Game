@@ -63,16 +63,23 @@ public class CharacterStats : MonoBehaviour
     public bool isDead { get; private set; }
     public bool isVolunerable { get; private set; }
     public Transform lastDamageSource { get; private set; }
-    public bool fallInVoid;
+    public bool diedInVoid { get; set; }
 
 
-    protected virtual void Start()
+
+    protected virtual void Awake()
     {
-        currentHP = GetMaxHP();
+        if (currentHP <= 0)
+            currentHP = GetMaxHP();
         critDamage.SetDefaultValue(150);
         fx = GetComponent<EntityFx>();
 
     }
+    protected virtual void Start()
+    {
+        
+    }
+
     protected virtual void Update()
     {
         igniteTimer -= Time.deltaTime;
@@ -129,13 +136,6 @@ public class CharacterStats : MonoBehaviour
         onDeath?.Invoke();
     }
 
-    public void KillEntity() => DieOutSide();
-    protected virtual void DieOutSide()
-    {
-        if (isDead) return;
-        fallInVoid = true;
-        isDead = true;
-    }
 
     protected virtual void DecreaseHPBy(int _damage)
     {

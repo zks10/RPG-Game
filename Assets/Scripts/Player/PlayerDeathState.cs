@@ -11,7 +11,7 @@ public class PlayerDeathState : PlayerState
     {
         base.Enter();
         player.anim.updateMode = AnimatorUpdateMode.UnscaledTime;
-        if (!player.stats.fallInVoid)
+        if (!player.stats.diedInVoid)
             GameObject.Find("UI_Manager").GetComponent<UI>().SwitchOnEndScreen();
     }
     public override void Exit()

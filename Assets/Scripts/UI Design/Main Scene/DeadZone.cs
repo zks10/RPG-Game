@@ -15,7 +15,7 @@ public class DeadZone : MonoBehaviour
         EnemyStats enemyStats = collision.GetComponent<EnemyStats>();
         if (enemyStats != null)
         {
-            enemyStats.KillEntity();  
+            enemyStats.DieOutSide();  
         }
 
         Destroy(collision.gameObject);
@@ -27,8 +27,7 @@ public class DeadZone : MonoBehaviour
         ui.SwitchOnEndScreen();
 
         yield return new WaitForSecondsRealtime(1.3f);
-
-        playerStats.fallInVoid = true;
+        playerStats.diedInVoid = true; 
 
         playerStats.Die();
     }

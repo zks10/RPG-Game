@@ -47,8 +47,15 @@ public class ShockStrikeController : MonoBehaviour
     
     private void DamageAndSelfDestroy()
     {
+        if (targetStats == null || targetStats.Equals(null))
+        {
+            Destroy(gameObject);   // safely destroy the strike effect
+            return;
+        }
+
         targetStats.ApplyShock(true);
         targetStats.TakeDamage(strikeDamage);
+
         Destroy(gameObject, .4f);
     }
 }
