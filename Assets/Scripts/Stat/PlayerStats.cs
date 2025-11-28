@@ -20,7 +20,7 @@ public class PlayerStats : CharacterStats
         //int randomIdx = Random.Range(27, 30);
         AudioManager.instance.PlaySFX(27, player.transform);
     }
-    protected override void Die()
+    public override void Die()
     {
         base.Die();
         player.Die();
@@ -28,6 +28,13 @@ public class PlayerStats : CharacterStats
         GameManager.instance.lostCurrencyAmount = PlayerManager.instance.currency;
         PlayerManager.instance.currency = 0;
 
+    }
+
+    protected override void DieOutSide()
+    {
+        base.DieOutSide();
+        GameObject.Find("UI_Manager").GetComponent<UI>().SwitchOnEndScreen();
+        Die();
     }
     private void GetSiginificantDamage(int _damage)
     {

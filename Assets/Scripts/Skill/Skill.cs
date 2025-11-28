@@ -46,6 +46,7 @@ public class Skill : MonoBehaviour
         {
             if (hit.GetComponent<Enemy>() != null)
             {
+                if (hit.GetComponent<EnemyStats>().isDead) continue;
                 float distToEnemy = Vector2.Distance(_checkTransform.transform.position, hit.transform.position);
 
                 if (distToEnemy < closestDist)

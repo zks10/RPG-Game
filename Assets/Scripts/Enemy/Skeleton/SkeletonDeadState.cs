@@ -35,7 +35,6 @@ public class SkeletonDeadState : EnemyState
             {
                 // enemy.anim.SetBool(enemy.lastAnimBoolName, true);
                 // enemy.anim.speed = 0;
-                // enemy.cd.enabled = false;
                 // rb.linearVelocity = new Vector2(0, 10);
             }
         }

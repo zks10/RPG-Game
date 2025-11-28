@@ -16,6 +16,7 @@ public class PlayerAnimationTrigger : MonoBehaviour
         {
             if (hit.GetComponent<Enemy>() != null)
             {
+                if (hit.GetComponent<EnemyStats>().isDead) continue;
                 EnemyStats _target = hit.GetComponent<EnemyStats>();
                 if (_target != null)
                     player.stats.DoPhysicalDamage(_target);

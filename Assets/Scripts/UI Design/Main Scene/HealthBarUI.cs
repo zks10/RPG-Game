@@ -16,6 +16,7 @@ public class HealthBarUI : MonoBehaviour
         myStats = entity.GetComponent<CharacterStats>();
         entity.onFlipped += FlipUI;
         myStats.onHealthChanged += UpdateHealthUI;
+        myStats.onDeath += DisableHealthBar;
         slider.maxValue = myStats.GetMaxHP();
         UpdateHealthUI();
     }
@@ -28,6 +29,10 @@ public class HealthBarUI : MonoBehaviour
     {
         entity.onFlipped -= FlipUI;
         myStats.onHealthChanged -= UpdateHealthUI;
+        myStats.onDeath -= DisableHealthBar;
     }
-    
+    private void DisableHealthBar()
+    {
+        gameObject.SetActive(false); 
+    }
 }

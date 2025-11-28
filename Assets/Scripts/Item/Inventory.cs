@@ -46,6 +46,8 @@ public class Inventory : MonoBehaviour, ISaveManager
             instance = this;
         else
             Destroy(gameObject);
+        
+        statSlot = statSlotParent.GetComponentsInChildren<UI_StatSlot>();
     }
 
     private void Start()

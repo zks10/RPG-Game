@@ -68,6 +68,7 @@ public class Crystal_Skill_Controller : MonoBehaviour
         {
             if (hit.GetComponent<Enemy>() != null)
             {
+                if (hit.GetComponent<EnemyStats>().isDead) continue;
                 player.stats.DoMagicalDamage(hit.GetComponent<CharacterStats>());
                 hit.GetComponent<Entity>().SetUpKnockBackDir(transform);
 

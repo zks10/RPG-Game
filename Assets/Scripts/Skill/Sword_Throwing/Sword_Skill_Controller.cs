@@ -164,6 +164,7 @@ public class Sword_Skill_Controller : MonoBehaviour
                     {
                         if (hit.GetComponent<Enemy>() != null)
                         {
+                            if (hit.GetComponent<EnemyStats>().isDead) continue;
                             SwordSkillDamage(hit.GetComponent<Enemy>());
                         }
                     }
@@ -211,6 +212,7 @@ public class Sword_Skill_Controller : MonoBehaviour
                 {
                     if (hit.GetComponent<Enemy>() != null)
                     {
+                        if (hit.GetComponent<EnemyStats>().isDead) continue;
                         enemyTarget.Add(hit.transform);
                     }
                 }

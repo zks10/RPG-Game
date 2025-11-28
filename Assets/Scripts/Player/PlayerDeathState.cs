@@ -10,11 +10,14 @@ public class PlayerDeathState : PlayerState
     public override void Enter()
     {
         base.Enter();
-        GameObject.Find("Canvas").GetComponent<UI>().SwitchOnEndScreen();
+        player.anim.updateMode = AnimatorUpdateMode.UnscaledTime;
+        if (!player.stats.fallInVoid)
+            GameObject.Find("UI_Manager").GetComponent<UI>().SwitchOnEndScreen();
     }
     public override void Exit()
     {
         base.Exit();
+        
     }
     public override void Update()
     {

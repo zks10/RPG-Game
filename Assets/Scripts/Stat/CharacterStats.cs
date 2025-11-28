@@ -32,6 +32,7 @@ public class CharacterStats : MonoBehaviour
     public Stat maxHP;
     public int currentHP;
     public System.Action onHealthChanged;
+    public System.Action onDeath;
     public Stat armor;
     public Stat evasion;
     public Stat magicResistence;
@@ -62,6 +63,7 @@ public class CharacterStats : MonoBehaviour
     public bool isDead { get; private set; }
     public bool isVolunerable { get; private set; }
     public Transform lastDamageSource { get; private set; }
+    public bool fallInVoid;
 
 
     protected virtual void Start()
@@ -119,8 +121,19 @@ public class CharacterStats : MonoBehaviour
 
         _statToModify.RemoveModifier(_modifier);
     }
-    protected virtual void Die()
+    public virtual void Die()
     {
+        if (isDead) return;
+
+        isDead = true;
+        onDeath?.Invoke();
+    }
+
+    public void KillEntity() => DieOutSide();
+    protected virtual void DieOutSide()
+    {
+        if (isDead) return;
+        fallInVoid = true;
         isDead = true;
     }
 
@@ -271,6 +284,7 @@ public class CharacterStats : MonoBehaviour
         {
             if (hit.GetComponent<Enemy>() != null && Vector2.Distance(hit.transform.position, transform.position) > 1)
             {
+                if (hit.GetComponent<EnemyStats>().isDead) continue;
                 float dist = Vector2.Distance(hit.transform.position, transform.position);
                 if (dist < closeDist)
                 {
@@ -440,5 +454,6 @@ public class CharacterStats : MonoBehaviour
 
     }
 
+   
 
 }

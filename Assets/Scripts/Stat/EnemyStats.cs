@@ -82,7 +82,7 @@ public class EnemyStats : CharacterStats
             AudioManager.instance.PlaySFX(randomIdx, enemy.transform);
         }
     }
-    protected override void Die()
+    public override void Die()
     {
         base.Die();
         enemy.Die();
@@ -90,6 +90,14 @@ public class EnemyStats : CharacterStats
         //PlayerManager.instance.currency += soulDropAmount.GetValue();
         SpawnSoulOrbs();
         myDropSystem.GenerateDrops();
+        
+        Destroy(gameObject, 1.5f);
+    }
+    protected override void DieOutSide()
+    {
+        base.DieOutSide();
+        enemy.Die();
+        Destroy(gameObject, 1.5f);
     }
 
     private void SpawnSoulOrbs()

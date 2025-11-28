@@ -40,6 +40,7 @@ public class Player : Entity
     public GameObject sword { get; private set; }
 
     public bool isDead { get; private set; }
+
     #region States
     public PlayerStateMachine stateMachine { get; private set; }
     public PlayerIdleState idleState { get; private set; }

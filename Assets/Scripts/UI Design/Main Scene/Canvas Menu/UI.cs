@@ -103,8 +103,9 @@ public class UI : MonoBehaviour, ISaveManager
         {
             if (menu == inGameUI)
                 GameManager.instance.PauseGame(false);
-            else
+            else if (menu != null)
                 GameManager.instance.PauseGame(true);
+
         }
         
     }
@@ -140,11 +141,13 @@ public class UI : MonoBehaviour, ISaveManager
 
     public IEnumerator EndScreenCoroutine()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSecondsRealtime(1f);
         endText.SetActive(true);
-        yield return new WaitForSeconds(2);
+
+        yield return new WaitForSecondsRealtime(2f);
         restartButton.SetActive(true);
     }
+
 
     public void RestartGame() => GameManager.instance.RestartScene();
 

@@ -32,7 +32,7 @@ public class EntityFx : MonoBehaviour
         sr.material = hitMat;
         Color currentColor = sr.color;
         sr.color = Color.white; 
-        yield return new WaitForSeconds(.2f);
+        yield return new WaitForSecondsRealtime(.2f);
         sr.color = currentColor;
         sr.material = originalMat;
     }

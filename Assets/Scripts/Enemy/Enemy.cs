@@ -165,4 +165,9 @@ public class Enemy : Entity
         moveSpeed = defaultMoveSpeed;
         battleMoveSpeed = defaultBattleMoveSpeed;
     }
+
+    public override void Die()
+    {
+        base.Die();
+    }
 }

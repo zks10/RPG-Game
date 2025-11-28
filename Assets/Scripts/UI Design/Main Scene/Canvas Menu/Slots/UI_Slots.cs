@@ -49,7 +49,7 @@ public class UI_Slots : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public virtual IEnumerator HoverDelayShow()
     {
-        yield return new WaitForSeconds(hoverDelay);
+        yield return new WaitForSecondsRealtime(hoverDelay);
 
         bool controlHeld = Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl);
 
@@ -134,7 +134,7 @@ public class UI_Slots : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         float time = 0f;
         while (time < fadeDuration)
         {
-            time += Time.deltaTime;
+            time += Time.unscaledDeltaTime;
             float t = time / fadeDuration;
             canvasGroup.alpha = Mathf.Lerp(startAlpha, targetAlpha, t);
             rectTransform.anchoredPosition = Vector3.Lerp(startPos, targetPos, t);

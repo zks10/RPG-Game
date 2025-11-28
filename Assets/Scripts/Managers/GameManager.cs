@@ -61,6 +61,7 @@ public class GameManager : MonoBehaviour, ISaveManager
         }
 
     }
+    
 
     private void LoadCheckpoints(GameData _data)
     {
