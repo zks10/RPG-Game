@@ -42,6 +42,7 @@ public class UI_InGame : MonoBehaviour
     {
         UpdateSoulsUI();
         UpdateHealthUI();
+
         UpdateImageCooldownUI();
 
         UpdateSkillUIVisibility();
@@ -69,10 +70,10 @@ public class UI_InGame : MonoBehaviour
 
     private void UpdateImageCooldownUI()
     {
-        if ((Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)) && skills.dash.dashUnlocked)
+        if ((Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)) && skills.dash.dashUnlocked && skills.dash.cooldownTimer > 0)
             SetCoolDownOf(dashImage);
 
-        if (Input.GetKeyDown(KeyCode.Q) && skills.counterAttack.counterAttackUnlocked)
+        if (Input.GetKeyDown(KeyCode.Q) && skills.counterAttack.counterAttackUnlocked && PlayerManager.instance.player.counterAttackUsageTimer > 0)
             SetCoolDownOf(counterAttackImage);
 
         UpdateCrystalCooldownUI();
@@ -80,8 +81,11 @@ public class UI_InGame : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse1) && skills.sword.swordUnlock)
             SetCoolDownOf(swordThrowImage);
 
-        if (Input.GetKeyDown(KeyCode.E) && skills.blackhole.blackholeUnlock)
+        if (Input.GetKeyDown(KeyCode.E) && skills.blackhole.blackholeUnlock && skills.blackhole.IsSkillUsable())
+        {
             SetCoolDownOf(blackHoleImage);
+        }
+
 
         if (Input.GetKeyDown(KeyCode.R) && Inventory.instance.GetEquipmentByType(EquipmentType.Trinket) != null)
             SetCoolDownOf(trinketImage);

@@ -90,12 +90,14 @@ public class Clone_Skill_Controller : MonoBehaviour
 
     private void FaceClosetTarget() 
     {
-        if (closestEnemy != null)  
+        if (closestEnemy == null) 
+            return;
+
+        if (transform.position.x > closestEnemy.position.x)
         {
-            if (transform.position.x > closestEnemy.position.x) {
-                facingDir = -1;
-                transform.Rotate(0, 180, 0);
-            }
+            facingDir = -1;
+            transform.rotation = Quaternion.Euler(0, 180, 0);
         }
     }
+
 }

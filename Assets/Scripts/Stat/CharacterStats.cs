@@ -62,6 +62,7 @@ public class CharacterStats : MonoBehaviour
     [SerializeField] private GameObject shockStrikePrefab;
     public bool isDead { get; private set; }
     public bool isVolunerable { get; private set; }
+    public bool isInvencible { get; private set; }
     public Transform lastDamageSource { get; private set; }
     public bool diedInVoid { get; set; }
 
@@ -69,8 +70,7 @@ public class CharacterStats : MonoBehaviour
 
     protected virtual void Awake()
     {
-        if (currentHP <= 0)
-            currentHP = GetMaxHP();
+        currentHP = GetMaxHP();
         critDamage.SetDefaultValue(150);
         fx = GetComponent<EntityFx>();
 
@@ -162,6 +162,8 @@ public class CharacterStats : MonoBehaviour
 
     public virtual void TakeDamage(int _damage)
     {
+        if (isInvencible) 
+            return; 
         DecreaseHPBy(_damage);
         GetComponent<Entity>().DamageImpact();
         fx.StartCoroutine("FlashFX");
@@ -170,6 +172,7 @@ public class CharacterStats : MonoBehaviour
             Die();
     }
 
+    public void MakeInvencible(bool _invencible) => isInvencible = _invencible;
 
     #region Magical Damage and Ailments
     public void SetIgniteDamage(int _damage) => igniteDamage = _damage;

@@ -11,6 +11,7 @@ public class PlayerDashState : PlayerState
     public override void Enter()
     {
         base.Enter();
+        player.stats.MakeInvencible(true);
         prevHasDoubleJumped = player.hasDoubleJumped;
         player.skill.dash.CloneOnDashStart();
         AudioManager.instance.PlaySFX(20, player.transform);
@@ -19,9 +20,11 @@ public class PlayerDashState : PlayerState
     public override void Exit()
     {
         base.Exit();
+        player.stats.MakeInvencible(false);
         player.skill.dash.CloneOnDashEnd();
         player.SetVelocity(0, rb.linearVelocity.y);
         player.hasDoubleJumped = prevHasDoubleJumped;
+        player.isSkillActive = false;
     }
     public override void Update()
     {
@@ -34,7 +37,9 @@ public class PlayerDashState : PlayerState
 
         if (stateTimer < 0)
         {
-            if (player.IsGroundDectected())
+            if (player.isDead)
+                stateMachine.ChangeState(player.deathState);
+            else if (player.IsGroundDectected())
                 stateMachine.ChangeState(player.idleState);
             else
                 stateMachine.ChangeState(player.airState); 

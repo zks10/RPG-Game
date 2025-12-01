@@ -22,6 +22,8 @@ public class Enemy : Entity
     public float idleTime;
     private float defaultMoveSpeed;
     private float defaultBattleMoveSpeed;
+    protected bool isFrozen;    
+
     public float battleTime;
     [Header("Attack Info")]
     public float attackDistance;
@@ -61,6 +63,7 @@ public class Enemy : Entity
 
     public virtual void FreezeTime(bool _timeFrozen)
     {
+        isFrozen = _timeFrozen;
         if (_timeFrozen)
         {
             moveSpeed = 0;
@@ -74,7 +77,12 @@ public class Enemy : Entity
             anim.speed = 1;
         }
     }
-
+    public override void DamageImpact()
+    {
+        if (isFrozen)
+            return;
+        base.DamageImpact();
+    }
     public virtual void FreezeTimeFor(float _seconds) => StartCoroutine(FreezeTimerCoroutine(_seconds));
 
     protected virtual IEnumerator FreezeTimerCoroutine(float _seconds)

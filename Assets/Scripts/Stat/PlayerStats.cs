@@ -9,6 +9,8 @@ public class PlayerStats : CharacterStats, ISaveManager
         base.Start();
         player = GetComponent<Player>();
         player.stats.diedInVoid = false;
+        if (currentHP <= 0)
+            currentHP = GetMaxHP();
     }
 
     protected override void Update()
@@ -29,7 +31,8 @@ public class PlayerStats : CharacterStats, ISaveManager
     {
         base.TakeDamage(_damage);
         //int randomIdx = Random.Range(27, 30);
-        AudioManager.instance.PlaySFX(27, player.transform);
+        if (!isInvencible)
+            AudioManager.instance.PlaySFX(27, player.transform);
     }
     public override void Die()
     {

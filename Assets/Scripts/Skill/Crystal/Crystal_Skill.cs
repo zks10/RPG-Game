@@ -88,6 +88,8 @@ public class Crystal_Skill : Skill
 
     public override bool CanUseSkill()
     {
+        if (PlayerManager.instance.player.isSkillActive)
+            return false;
         if (cooldownTimer <= 0)
         {
             if ((crystalUnlocked || cloneInsteadOfCrystal) && !canMoveToEnemy && !canUseMultiStacks)
@@ -121,7 +123,7 @@ public class Crystal_Skill : Skill
 
     public override void UseSkill()
     {
-        base.UseSkill();
+        //base.UseSkill();
 
         if (canUseMultiCrystal())
             return;
@@ -169,6 +171,8 @@ public class Crystal_Skill : Skill
         }
 
         currentCrystal = null;
+        
+        PlayerManager.instance.player.isSkillActive = false;
     }
 
 

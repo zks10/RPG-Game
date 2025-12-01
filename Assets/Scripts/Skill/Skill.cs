@@ -22,7 +22,7 @@ public class Skill : MonoBehaviour
     }
     public virtual bool CanUseSkill() 
     {
-        if (cooldownTimer < 0) 
+        if (IsSkillUsable()) 
         {
             UseSkill();
             cooldownTimer = cooldown;
@@ -33,7 +33,7 @@ public class Skill : MonoBehaviour
 
     public virtual void UseSkill()
     {
-
+        player.isSkillActive = true;
     }
     protected virtual Transform FindClosestEnemy(Transform _checkTransform)
     {
@@ -58,4 +58,10 @@ public class Skill : MonoBehaviour
         }
         return closestEnemy;
     }
+
+    public virtual bool IsSkillUsable()
+    {
+        return cooldownTimer <= 0 && !player.isSkillActive;
+    }
+
 }

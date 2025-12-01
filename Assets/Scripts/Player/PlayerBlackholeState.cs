@@ -19,6 +19,7 @@ public class PlayerBlackholeState : PlayerState
         defaultGravity = rb.gravityScale;
         rb.gravityScale = 0;
         player.SetCanPickItm(false);
+        AudioManager.instance.PlaySFX(13, player.transform);
     }
     public override void Exit()
     {
@@ -26,16 +27,18 @@ public class PlayerBlackholeState : PlayerState
         rb.gravityScale = defaultGravity;
         player.fx.MakeTransparent(false);
         player.SetCanPickItm(true);
+        player.isSkillActive = false;
     }
     public override void Update()
     {
         base.Update();
+        
         if (stateTimer > 0)
             rb.linearVelocity = new Vector2(0, blackHoleJumpHeight);
 
         if (stateTimer < 0)
         {
-            rb.linearVelocity = new Vector2(0, -.1f);
+            rb.linearVelocity = Vector2.zero;
             if (!skillUsed)
             {
                 if (player.skill.blackhole.CanUseSkill())
