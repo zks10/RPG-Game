@@ -40,7 +40,7 @@ public class Player : Entity
     public float dashDuration;
     public float dashDir { get; private set; }
     public SkillManager skill { get; private set; }
-    public GameObject sword;
+    [HideInInspector] public GameObject sword;
 
     public bool isDead { get; private set; }
 

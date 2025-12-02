@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerDashState : PlayerState
 {
     private bool prevHasDoubleJumped;
+
     public PlayerDashState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
     {
 
@@ -44,6 +45,6 @@ public class PlayerDashState : PlayerState
             else
                 stateMachine.ChangeState(player.airState); 
         }
-
+        player.fx.CreateAfterImage();
     }
 }
