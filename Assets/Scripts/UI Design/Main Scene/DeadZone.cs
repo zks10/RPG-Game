@@ -28,7 +28,7 @@ public class DeadZone : MonoBehaviour
 
         yield return new WaitForSecondsRealtime(1.3f);
         playerStats.diedInVoid = true; 
-
+        playerStats.currentHP = playerStats.GetMaxHP();
         playerStats.Die();
     }
 }

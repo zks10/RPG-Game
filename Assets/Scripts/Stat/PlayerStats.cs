@@ -8,9 +8,10 @@ public class PlayerStats : CharacterStats, ISaveManager
     {
         base.Start();
         player = GetComponent<Player>();
-        player.stats.diedInVoid = false;
         if (currentHP <= 0)
             currentHP = GetMaxHP();
+        player.stats.diedInVoid = false;
+
     }
 
     protected override void Update()

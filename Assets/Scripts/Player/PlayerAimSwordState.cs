@@ -23,8 +23,14 @@ public class PlayerAimSwordState : PlayerState
     {
         base.Update();
 
+        if (player.swordOut)
+        {
+            stateMachine.ChangeState(player.idleState);
+            return;
+        }
         if (Input.GetKeyUp(KeyCode.Mouse1))
             stateMachine.ChangeState(player.idleState);
+
         AimFlip();
 
     }

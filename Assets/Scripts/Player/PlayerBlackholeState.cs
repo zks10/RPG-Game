@@ -27,7 +27,7 @@ public class PlayerBlackholeState : PlayerState
         rb.gravityScale = defaultGravity;
         player.fx.MakeTransparent(false);
         player.SetCanPickItm(true);
-        player.isSkillActive = false;
+        player.SetSkillActive(false);
     }
     public override void Update()
     {

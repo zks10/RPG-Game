@@ -23,9 +23,13 @@ public class PlayerGroundedState : PlayerState
         if (Input.GetKeyDown(KeyCode.Mouse0))
             stateMachine.ChangeState(player.primaryAttackState);
 
-
-        if (Input.GetKeyDown(KeyCode.Mouse1) && HasNoSword() && player.skill.sword.swordUnlock)
-            stateMachine.ChangeState(player.aimSwordState);
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            if (!player.swordOut && player.skill.sword.swordUnlock)
+                stateMachine.ChangeState(player.aimSwordState);
+            else if (player.swordOut)
+                player.sword.GetComponent<Sword_Skill_Controller>().ReturnSword();
+        }
 
         if (Input.GetKeyDown(KeyCode.Q) && player.counterAttackUsageTimer < 0 && player.skill.counterAttack.counterAttackUnlocked)
         {
@@ -52,15 +56,7 @@ public class PlayerGroundedState : PlayerState
         }
     }
 
-    private bool HasNoSword()
-    {
-        if (!player.sword)
-            return true;
-
-        player.sword.GetComponent<Sword_Skill_Controller>().ReturnSword();
-        return false;
-    }
-        
+    private bool HasNoSword() => !player.swordOut;
     
 
 }

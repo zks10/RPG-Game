@@ -64,7 +64,7 @@ public class CharacterStats : MonoBehaviour
     public bool isVolunerable { get; private set; }
     public bool isInvencible { get; private set; }
     public Transform lastDamageSource { get; private set; }
-    public bool diedInVoid { get; set; }
+    public bool diedInVoid { get; set; } = false;
 
 
 
@@ -379,6 +379,8 @@ public class CharacterStats : MonoBehaviour
     #region Physical Damage
     public virtual void DoPhysicalDamage(CharacterStats _targetStats)
     {
+        bool critStrike = false;
+
         if (TargetCanAvoidAttack(_targetStats))
             return;
             
@@ -387,8 +389,12 @@ public class CharacterStats : MonoBehaviour
         int totalPhysicalDamage = damage.GetValue() + strength.GetValue();
 
         if (CanCrit())
+        {
             totalPhysicalDamage = CalculateCriticalDamage(totalPhysicalDamage);
+            critStrike = true;
+        }
 
+        fx.CreateHitFX(_targetStats.transform, critStrike);
         totalPhysicalDamage = CheckTargetsArmor(_targetStats, totalPhysicalDamage);
         _targetStats.TakeDamage(totalPhysicalDamage, transform);
     }

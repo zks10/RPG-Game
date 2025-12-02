@@ -33,7 +33,7 @@ public class Skill : MonoBehaviour
 
     public virtual void UseSkill()
     {
-        player.isSkillActive = true;
+        player.SetSkillActive(true);
     }
     protected virtual Transform FindClosestEnemy(Transform _checkTransform)
     {

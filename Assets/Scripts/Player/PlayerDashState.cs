@@ -24,7 +24,7 @@ public class PlayerDashState : PlayerState
         player.skill.dash.CloneOnDashEnd();
         player.SetVelocity(0, rb.linearVelocity.y);
         player.hasDoubleJumped = prevHasDoubleJumped;
-        player.isSkillActive = false;
+        player.SetSkillActive(false);
     }
     public override void Update()
     {

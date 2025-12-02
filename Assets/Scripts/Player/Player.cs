@@ -5,7 +5,9 @@ using UnityEngine;
 public class Player : Entity
 {
     public bool canPickItem { get; private set; }
-    public bool isSkillActive;
+    public bool isSkillActive { get; private set; }
+    public bool swordOut;
+
     [Header("Attack Info")]
     public Vector2[] attactMovement;
     public bool isBusy { get; private set; }
@@ -38,7 +40,7 @@ public class Player : Entity
     public float dashDuration;
     public float dashDir { get; private set; }
     public SkillManager skill { get; private set; }
-    public GameObject sword { get; private set; }
+    public GameObject sword;
 
     public bool isDead { get; private set; }
 
@@ -102,8 +104,7 @@ public class Player : Entity
         if (Time.timeScale == 0) 
             return;
         stateMachine.currentState.Update();
-        if (CanUseOtherSkills())
-            CheckForDashInput();
+        CheckForDashInput();
         counterAttackUsageTimer -= Time.deltaTime;
 
         if (Input.GetKeyDown(KeyCode.F) && skill.crystal.crystalUnlocked)
@@ -120,26 +121,26 @@ public class Player : Entity
     public void AssignNewSword(GameObject _newSword)
     {
         sword = _newSword;
+        swordOut = true;
     }
 
-    public bool CanUseOtherSkills()
-    {
-        // If the player is in blackhole or busy with other "locked" skills, return false
-        if (stateMachine.currentState == blackholeState || isBusy)
-            return false;
-
-        return true;
-    }
+    public void SetSkillActive(bool _val) => isSkillActive = _val;
 
     public void CatchTheSword()
     {
         if (stateMachine.currentState == blackholeState)
         {
             Destroy(sword);
+            sword = null;
+            swordOut = false;
             return;
         }
+        swordOut = false;
         stateMachine.ChangeState(catchSwordState);
         Destroy(sword);
+        sword = null;
+        swordOut = false;
+
     }
 
     public IEnumerator BusyFor(float _seconds)

@@ -144,7 +144,7 @@ public class Blackhole_Skill_Controller : MonoBehaviour
         canShrink = true;
         cloneAttackRelease = false;
         enemiesWithHotkey.Clear();
-        PlayerManager.instance.player.isSkillActive = false;
+        PlayerManager.instance.player.SetSkillActive(false);
 
     }
     private void DestroyHotKeys()

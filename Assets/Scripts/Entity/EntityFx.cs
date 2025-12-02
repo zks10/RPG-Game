@@ -18,7 +18,11 @@ public class EntityFx : MonoBehaviour
     [SerializeField] private ParticleSystem chillFx;
     [SerializeField] private ParticleSystem shockFx;
 
-
+    [Header("Hit FX")]
+    [SerializeField] private GameObject[] hitFXPrefab;
+    [Space]
+    
+    [SerializeField] private ParticleSystem dustFX;
     private void Start()
     {
         sr = GetComponentInChildren<SpriteRenderer>();
@@ -97,5 +101,40 @@ public class EntityFx : MonoBehaviour
             sr.color = freezeColor[0];
         else
             sr.color = freezeColor[1];
+    }
+
+    public void CreateHitFX(Transform _target, bool _crit)
+    {
+        float zRot = Random.Range(-90, 90);
+        float xPos = Random.Range(-0.5f, 0.5f);
+        float yPos = Random.Range(-0.5f, 0.5f);
+
+        GameObject hitPrefab = hitFXPrefab[0];
+        Vector3 hitFXRot = new Vector3(0, 0, zRot);
+
+        if (_crit)
+        {
+            hitPrefab = hitFXPrefab[1];
+            float yOffset = 0;
+            zRot = Random.Range(-45, 45);
+
+            if (GetComponent<Entity>().facingDir == -1)
+                yOffset = 180;
+            
+            hitFXRot = new Vector3(0, yOffset, zRot);
+
+        }
+
+        GameObject newHitFX = Instantiate(hitPrefab, _target.position + new Vector3(xPos, yPos), Quaternion.identity);
+
+        newHitFX.transform.Rotate(hitFXRot);
+
+        Destroy(newHitFX, .5f);
+    }
+
+    public void PlayDustFX()
+    {
+        if (dustFX != null) 
+            dustFX.Play();
     }
 }

@@ -15,6 +15,8 @@ public class PlayerCatchSwordState : PlayerState
 
         sword = player.sword.transform;
 
+        player.fx.PlayDustFX();
+
         catchSword();
 
         rb.linearVelocity = new Vector2(player.swordReturnImpact * -player.facingDir, rb.linearVelocity.y);

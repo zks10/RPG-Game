@@ -172,7 +172,7 @@ public class Crystal_Skill : Skill
 
         currentCrystal = null;
         
-        PlayerManager.instance.player.isSkillActive = false;
+        PlayerManager.instance.player.SetSkillActive(false);
     }
 
 

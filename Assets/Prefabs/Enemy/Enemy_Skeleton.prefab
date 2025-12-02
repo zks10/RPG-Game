@@ -15444,6 +15444,9 @@ MonoBehaviour:
   igniteFx: {fileID: 2006064580145103265}
   chillFx: {fileID: 5994802893829585247}
   shockFx: {fileID: 5482074077723600419}
+  hitFXPrefab:
+  - {fileID: 3241925214596764580, guid: cf74b1294553d4d9e9bad6f3d9bd26b5, type: 3}
+  - {fileID: 1618415174000780705, guid: 5cbdf75e18f404fdc973a4f33fb3d6d5, type: 3}
 --- !u!114 &540670499546952169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15494,7 +15497,7 @@ MonoBehaviour:
     baseValue: 5
     modifiers: 
   iceDamage:
-    baseValue: 5
+    baseValue: 0
     modifiers: 
   lightningDamage:
     baseValue: 0

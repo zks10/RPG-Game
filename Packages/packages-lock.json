@@ -119,7 +119,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.cinemachine": {
-      "version": "3.1.4",
+      "version": "3.1.5",
       "depth": 1,
       "source": "registry",
       "dependencies": {
@@ -177,7 +177,7 @@
         "com.unity.sequences": "2.1.3",
         "com.unity.formats.fbx": "5.1.5",
         "com.unity.formats.alembic": "2.4.1",
-        "com.unity.cinemachine": "3.1.4",
+        "com.unity.cinemachine": "3.1.5",
         "com.unity.recorder": "5.1.3"
       }
     },

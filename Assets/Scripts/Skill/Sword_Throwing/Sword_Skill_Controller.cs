@@ -49,8 +49,13 @@ public class Sword_Skill_Controller : MonoBehaviour
     
     private void DestroyMe()
     {
-        if(Vector2.Distance(transform.position, player.transform.position) > destorySwordDistance)
+        if (Vector2.Distance(transform.position, player.transform.position) > destorySwordDistance)
+        {
+            player.swordOut = false;
+            player.sword = null;
+
             Destroy(gameObject);
+        }
     }
 
     public void SetUpSword(Vector2 _dir, float _gravity, Player _player, float _freezeTimeDuration, float _returnSpeed)
@@ -240,6 +245,7 @@ public class Sword_Skill_Controller : MonoBehaviour
         cd.enabled = false;
         rb.bodyType = RigidbodyType2D.Kinematic;
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        GetComponentInChildren<ParticleSystem>().Play();
         if (isBouncing && enemyTarget.Count > 0)
             return;
         anim.SetBool("Rotation", false);
