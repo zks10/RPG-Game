@@ -17,6 +17,8 @@ public class PlayerCatchSwordState : PlayerState
 
         player.fx.PlayDustFX();
 
+        player.fx.ScreenShake(player.fx.catchSwordShake);
+
         catchSword();
 
         rb.linearVelocity = new Vector2(player.swordReturnImpact * -player.facingDir, rb.linearVelocity.y);

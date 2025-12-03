@@ -19,6 +19,7 @@ public class PlayerCounterAttackState : PlayerState
     public override void Exit()
     {
         base.Exit();
+        player.SetSkillActive(false);
     }
     public override void Update()
     {
@@ -36,6 +37,8 @@ public class PlayerCounterAttackState : PlayerState
                     stateTimer = 10;
                     player.counterAttackUsageTimer = 0;
                     player.anim.SetBool("SucessfulCounterAttack", true);
+                    player.MarkCounterSuccess();
+                    player.fx.ScreenShake(player.fx.counterAttackShake);
                     AudioManager.instance.PlaySFX(0);
 
                     player.skill.counterAttack.UseSkill();
@@ -47,7 +50,9 @@ public class PlayerCounterAttackState : PlayerState
                     // }
                     if (player.skill.counterAttack.mirageCounterAttackUnlocked)
                         player.skill.clone.CreateCloneWithDelay(hit.transform);
-                }
+                } 
+                else 
+                    player.ResetCounterSuccess();
             }
         }
         if (stateTimer < 0 || triggerCalled) {

@@ -4,6 +4,7 @@ using TMPro;
 
 public class UI_InGame : MonoBehaviour
 {
+    private Player player;
     [SerializeField] private PlayerStats playerStats;
     [SerializeField] private Slider slider;
     [SerializeField] private TextMeshProUGUI hpText;
@@ -35,6 +36,8 @@ public class UI_InGame : MonoBehaviour
         skills = SkillManager.instance;
         UpdateSkillUIVisibility(); // show only unlocked skills
         UpdateSoulsUI();
+        player = PlayerManager.instance.player;
+        player.onCounterAttackSuccess += OnCounterAttackSuccess;
 
     }
 
@@ -73,15 +76,19 @@ public class UI_InGame : MonoBehaviour
         if ((Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)) && skills.dash.dashUnlocked && skills.dash.cooldownTimer > 0)
             SetCoolDownOf(dashImage);
 
-        if (Input.GetKeyDown(KeyCode.Q) && skills.counterAttack.counterAttackUnlocked && PlayerManager.instance.player.counterAttackUsageTimer > 0)
+        if (Input.GetKeyDown(KeyCode.Q) && skills.counterAttack.counterAttackUnlocked && !player.lastCounterSuccessful && player.IsGroundDectected())
+        {
             SetCoolDownOf(counterAttackImage);
+            player.ResetCounterSuccess();
+        }
+
 
         UpdateCrystalCooldownUI();
 
         if (Input.GetKeyDown(KeyCode.Mouse1) && skills.sword.swordUnlock)
             SetCoolDownOf(swordThrowImage);
 
-        if (Input.GetKeyDown(KeyCode.E) && skills.blackhole.blackholeUnlock && skills.blackhole.IsSkillUsable() && PlayerManager.instance.player.IsGroundDectected())
+        if (Input.GetKeyDown(KeyCode.E) && skills.blackhole.blackholeUnlock && skills.blackhole.IsSkillUsable() && player.IsGroundDectected())
         {
             SetCoolDownOf(blackHoleImage);
         }
@@ -155,5 +162,11 @@ public class UI_InGame : MonoBehaviour
             bool hasTrinketEquipped = Inventory.instance.GetEquipmentByType(EquipmentType.Trinket) != null;
             trinketImage.transform.parent.gameObject.SetActive(hasTrinketEquipped);
         }
+    }
+
+    private void OnCounterAttackSuccess()
+    {
+        // Cancel cooldown UI for counter attack
+        counterAttackImage.fillAmount = 0;
     }
 }

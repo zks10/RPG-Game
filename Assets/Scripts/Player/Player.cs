@@ -16,6 +16,8 @@ public class Player : Entity
     public float counterAttackDuration = .2f;
     [SerializeField] public float counterAttackCooldown;
     [HideInInspector] public float counterAttackUsageTimer;
+    public event System.Action onCounterAttackSuccess;
+    public bool lastCounterSuccessful { get; private set; }
 
     [Header("Move Info")]
     public float moveSpeed = 8.5f;
@@ -117,7 +119,12 @@ public class Player : Entity
             Inventory.instance.UseTrinket();
         }
     }
-
+    public void MarkCounterSuccess()
+    {
+        lastCounterSuccessful = true;
+        onCounterAttackSuccess?.Invoke();
+    }
+    public void ResetCounterSuccess() => lastCounterSuccessful = false;
     public void AssignNewSword(GameObject _newSword)
     {
         sword = _newSword;

@@ -49,23 +49,8 @@ public class PlayerStats : CharacterStats, ISaveManager
     {
         if (_damage > GetMaxHP() * 0.3f)
         {
-            if (lastDamageSource != null)
-            {
-                // 1 = knock to the right, -1 = knock to the left
-                int _knockDir = transform.position.x > lastDamageSource.position.x ? 1 : -1;
-                Debug.Log(_knockDir);
-                // Start with horizontal knockback via knockDir only
-                Vector2 dir = new Vector2(_knockDir, 0f);
-
-                // Add vertical arc
-                dir.y = 0.6f;
-
-                // Normalize so magnitude stays consistent
-                // dir = dir.normalized;
-
-                float force = 10f;
-                player.SetUpKnockBackPower(dir * force);
-            }
+            player.fx.ScreenShake(player.fx.highDamageShake);
+            player.SetUpKnockBackPower(new Vector2(10, 6));
         }
     }
 
@@ -73,7 +58,7 @@ public class PlayerStats : CharacterStats, ISaveManager
     {
         base.DecreaseHPBy(_damage);
 
-        // GetSiginificantDamage(_damage);
+        GetSiginificantDamage(_damage);
 
         ItemData_Equipment currentArmor = Inventory.instance.GetEquipmentByType(EquipmentType.Armor);
 

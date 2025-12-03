@@ -12,7 +12,10 @@ public class PlayerDeathState : PlayerState
         base.Enter();
         player.anim.updateMode = AnimatorUpdateMode.UnscaledTime;
         if (!player.stats.diedInVoid)
+        {
             GameObject.Find("UI_Manager").GetComponent<UI>().SwitchOnEndScreen();
+            player.fx.ScreenShake(player.fx.deathShake);
+        }
     }
     public override void Exit()
     {
