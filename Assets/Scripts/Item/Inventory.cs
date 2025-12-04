@@ -387,7 +387,7 @@ public class Inventory : MonoBehaviour, ISaveManager
             lastTimeUsedTrinket = Time.time;
         }
         else
-            Debug.Log("Trinket is in cooldown.");
+            PlayerManager.instance.player.fx.CreatePopUpText("Cooldown");
     }
 
     public void ConsumeEdibles(ItemData _item)

@@ -118,6 +118,7 @@ public class Crystal_Skill : Skill
                 return true;
             }
         }
+        player.fx.CreatePopUpText("Cooldown");
         return false;
     }
 

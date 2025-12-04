@@ -15431,6 +15431,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 124a94d6c84fd457180da6944c23fdf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  popUpTextPrefab: {fileID: 6669333069206354503, guid: 84b2450588e1e40d28b96df9c8309aaf, type: 3}
+  catchSwordShake: {x: 0, y: 0, z: 0}
+  highDamageShake: {x: 0, y: 0, z: 0}
+  counterAttackShake: {x: 0, y: 0, z: 0}
+  deathShake: {x: 0, y: 0, z: 0}
+  shakeMultiplier: 1
+  afterImageCooldown: 0
+  afterImagePrefab: {fileID: 0}
+  colorLooseRate: 0
   hitMat: {fileID: 2100000, guid: fe81fd07c3e5340e4b204a5117603416, type: 2}
   freezeColor:
   - {r: 0.3137255, g: 0.6784314, b: 0.99215686, a: 1}
@@ -15447,6 +15456,7 @@ MonoBehaviour:
   hitFXPrefab:
   - {fileID: 3241925214596764580, guid: cf74b1294553d4d9e9bad6f3d9bd26b5, type: 3}
   - {fileID: 1618415174000780705, guid: 5cbdf75e18f404fdc973a4f33fb3d6d5, type: 3}
+  dustFX: {fileID: 0}
 --- !u!114 &540670499546952169
 MonoBehaviour:
   m_ObjectHideFlags: 0

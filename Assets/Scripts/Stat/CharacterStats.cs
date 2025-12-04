@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using TMPro;
 
 public enum StatType
 {
@@ -18,7 +19,12 @@ public enum StatType
     iceDamage,
     lightningDamage
 }
-
+public enum DamageType
+{
+    Physical,
+    Magic,
+    Critical
+}
 public class CharacterStats : MonoBehaviour
 {
     private EntityFx fx;
@@ -145,6 +151,8 @@ public class CharacterStats : MonoBehaviour
         if (isVolunerable)
             _damage = Mathf.RoundToInt(_damage * 1.1f);
         currentHP -= _damage;
+
+
         onHealthChanged?.Invoke();
     }
     public virtual void IncreaseHPBy(int _heal)
@@ -154,19 +162,44 @@ public class CharacterStats : MonoBehaviour
             currentHP = GetMaxHP();
         onHealthChanged?.Invoke();
     }
-    public virtual void TakeDamage(int _damage, Transform _damageSource)
+    public virtual void TakeDamage(int _damage, Transform _damageSource, DamageType type = DamageType.Physical)
     {
         lastDamageSource = _damageSource;
-        TakeDamage(_damage);
+        TakeDamage(_damage, type);
     }
 
-    public virtual void TakeDamage(int _damage)
+    public virtual void TakeDamage(int _damage, DamageType type = DamageType.Physical)
     {
-        if (isInvencible) 
-            return; 
+        if (isInvencible)
+            return;
+
         DecreaseHPBy(_damage);
+
         GetComponent<Entity>().DamageImpact();
         fx.StartCoroutine("FlashFX");
+
+        Color popupColor = Color.white;
+        float sizeMult = 1f;
+        FontStyles style = FontStyles.Normal;
+
+        switch (type)
+        {
+            case DamageType.Physical:
+                popupColor = Color.white;
+                break;
+
+            case DamageType.Magic:
+                popupColor = new Color(0.6f, 0f, 1f); // purple
+                break;
+
+            case DamageType.Critical:
+                popupColor = Color.yellow;
+                sizeMult = 1.5f;           // ✦ Bigger
+                style = FontStyles.Bold;    // ✦ Bold
+                break;
+        }
+
+        fx.CreatePopUpText(_damage.ToString(), popupColor, sizeMult, style);
 
         if (currentHP <= 0 && !isDead)
             Die();
@@ -196,7 +229,8 @@ public class CharacterStats : MonoBehaviour
         int totalMagicalDamage = _fireDamage + _iceDamage + _lightningDamage + intelligence.GetValue();
         totalMagicalDamage = CheckTargetResistence(_targetStats, totalMagicalDamage);
 
-        _targetStats.TakeDamage(totalMagicalDamage, transform);
+        _targetStats.TakeDamage(totalMagicalDamage, transform, DamageType.Magic);
+    
 
         if (Mathf.Max(_fireDamage, _iceDamage, _lightningDamage) <= 0)
             return;
@@ -396,7 +430,10 @@ public class CharacterStats : MonoBehaviour
 
         fx.CreateHitFX(_targetStats.transform, critStrike);
         totalPhysicalDamage = CheckTargetsArmor(_targetStats, totalPhysicalDamage);
-        _targetStats.TakeDamage(totalPhysicalDamage, transform);
+        if (critStrike)
+            _targetStats.TakeDamage(totalPhysicalDamage, transform, DamageType.Critical);
+        else 
+            _targetStats.TakeDamage(totalPhysicalDamage, transform, DamageType.Physical);
     }
 
     #endregion

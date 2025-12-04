@@ -74,9 +74,9 @@ public class EnemyStats : CharacterStats
     {
         base.Update();
     }
-    public override void TakeDamage(int _damage)
+    public override void TakeDamage(int _damage, DamageType type = DamageType.Physical)
     {
-        base.TakeDamage(_damage);
+        base.TakeDamage(_damage, type);
 
         if (enemyType == EnemyType.Skeleton)
         {

@@ -31,17 +31,18 @@ public class PlayerGroundedState : PlayerState
                 player.sword.GetComponent<Sword_Skill_Controller>().ReturnSword();
         }
 
-        if (Input.GetKeyDown(KeyCode.Q) && player.counterAttackUsageTimer < 0 && player.skill.counterAttack.counterAttackUnlocked)
+        if (Input.GetKeyDown(KeyCode.Q) && player.skill.counterAttack.CanUseSkill() && player.skill.counterAttack.counterAttackUnlocked)
         {
-            player.counterAttackUsageTimer = player.counterAttackCooldown;
             stateMachine.ChangeState(player.counterAttackState);
         }
 
-        if (Input.GetKeyDown(KeyCode.E) && player.skill.blackhole.blackholeUnlock)
+        if (Input.GetKeyDown(KeyCode.E) && player.skill.blackhole.blackholeUnlock )
         {
             if (player.skill.blackhole.cooldownTimer > 0)
+            {
+                player.fx.CreatePopUpText("Cooldown");
                 return;
-            
+            }
             stateMachine.ChangeState(player.blackholeState);
         }
             

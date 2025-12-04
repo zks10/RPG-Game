@@ -14,8 +14,6 @@ public class Player : Entity
 
     [Header("Counter Attack Info")]
     public float counterAttackDuration = .2f;
-    [SerializeField] public float counterAttackCooldown;
-    [HideInInspector] public float counterAttackUsageTimer;
     public event System.Action onCounterAttackSuccess;
     public bool lastCounterSuccessful { get; private set; }
 
@@ -107,7 +105,6 @@ public class Player : Entity
             return;
         stateMachine.currentState.Update();
         CheckForDashInput();
-        counterAttackUsageTimer -= Time.deltaTime;
 
         if (Input.GetKeyDown(KeyCode.F) && skill.crystal.crystalUnlocked)
         {

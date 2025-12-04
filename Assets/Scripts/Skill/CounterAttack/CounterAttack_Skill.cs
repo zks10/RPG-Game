@@ -26,10 +26,14 @@ public class CounterAttack_Skill : Skill
             player.stats.IncreaseHPBy(restoreAmount);
         }
     }
+
+    public override bool CanUseSkill()
+    {
+        return base.CanUseSkill();
+    }
     protected override void Start()
     {
         base.Start();
-        cooldown = player.counterAttackCooldown;
         counterAttackUnlockButton.onSkillUnlocked.AddListener(UnlockCoutnerAttack);
         restoreCounterAttackButton.onSkillUnlocked.AddListener(UnlockCoutnerAttackRestore);
         mirageCounterAttackButton.onSkillUnlocked.AddListener(UnlockMirageCoutnerAttack);

@@ -35,7 +35,6 @@ public class PlayerCounterAttackState : PlayerState
                 if (hit.GetComponent<Enemy>().CanBeStunned()) 
                 {
                     stateTimer = 10;
-                    player.counterAttackUsageTimer = 0;
                     player.anim.SetBool("SucessfulCounterAttack", true);
                     player.MarkCounterSuccess();
                     player.fx.ScreenShake(player.fx.counterAttackShake);

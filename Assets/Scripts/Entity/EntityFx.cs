@@ -1,11 +1,14 @@
 using UnityEngine;
 using System.Collections;
 using Cinemachine;
+using TMPro;
 
 public class EntityFx : MonoBehaviour
 {
     private Player player;
     private SpriteRenderer sr;
+    [Header("Pop Up Text FX")]
+    [SerializeField] private GameObject popUpTextPrefab;
     [Header("Screen Shake FX")]
     private CinemachineImpulseSource screenShake;
     public Vector3 catchSwordShake;
@@ -54,6 +57,24 @@ public class EntityFx : MonoBehaviour
         shakeTimer -= Time.deltaTime;
 
     }
+
+    public void CreatePopUpText(string text, Color color = default, float sizeMultiplier = 1f, FontStyles fontStyle = FontStyles.Normal)
+    {
+        if (color == default) color = Color.white;
+
+        Vector3 spawnPos = transform.position + new Vector3(Random.Range(-0.3f, 0.3f), Random.Range(1f, 1.5f), 0);
+        GameObject obj = Instantiate(popUpTextPrefab, spawnPos, Quaternion.identity);
+
+        TextMeshPro tmp = obj.GetComponent<TextMeshPro>();
+        tmp.fontSize *= sizeMultiplier;
+        tmp.fontStyle = fontStyle;
+
+        // MOST IMPORTANT PART:
+        obj.GetComponent<PopUpTextFX>().Setup(text, color);
+    }
+
+
+
 
     public void ScreenShake(Vector3 _shakePower)
     {

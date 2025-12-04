@@ -28,9 +28,9 @@ public class PlayerStats : CharacterStats, ISaveManager
     {
         _data.currentHP = this.currentHP;
     }
-    public override void TakeDamage(int _damage)
+    public override void TakeDamage(int _damage, DamageType type = DamageType.Physical)
     {
-        base.TakeDamage(_damage);
+        base.TakeDamage(_damage, type);
         //int randomIdx = Random.Range(27, 30);
         if (!isInvencible)
             AudioManager.instance.PlaySFX(27, player.transform);
