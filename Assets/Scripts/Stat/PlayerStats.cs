@@ -81,11 +81,17 @@ public class PlayerStats : CharacterStats, ISaveManager
 
         if (_multiplier > 0)
             totalPhysicalDamage = Mathf.RoundToInt(totalPhysicalDamage * _multiplier);
-            
+        bool cloneCrit = false;
         if (CanCrit())
+        {
             totalPhysicalDamage = CalculateCriticalDamage(totalPhysicalDamage);
-
+            cloneCrit = true;
+        }
+        fx.CreateHitFX(_targetStats.transform, cloneCrit);
         totalPhysicalDamage = CheckTargetsArmor(_targetStats, totalPhysicalDamage);
-        _targetStats.TakeDamage(totalPhysicalDamage);
+        if (cloneCrit)
+            _targetStats.TakeDamage(totalPhysicalDamage, DamageType.Critical);
+        else
+            _targetStats.TakeDamage(totalPhysicalDamage);
     }
 }

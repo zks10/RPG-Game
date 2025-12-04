@@ -55,8 +55,11 @@ public class UI_MainMenu : MonoBehaviour
 
     public IEnumerator LoadSceneWithFadeEffect(float _delay)
     {
-        fadeScreen.FadeOut();
-        
+        if (fadeScreen == null)
+            Debug.LogError("FadeScreen reference is missing!");
+        else
+            fadeScreen.FadeOut();
+
         yield return new WaitForSecondsRealtime(_delay);
 
         SceneManager.LoadScene(sceneName);

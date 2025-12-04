@@ -58,19 +58,28 @@ public class EntityFx : MonoBehaviour
 
     }
 
-    public void CreatePopUpText(string text, Color color = default, float sizeMultiplier = 1f, FontStyles fontStyle = FontStyles.Normal)
+    public void CreatePopUpText(
+        string text,
+        Color color = default,
+        float sizeMultiplier = 1f,
+        FontStyles fontStyle = FontStyles.Normal,
+        bool usePunch = false,
+        bool useSquash = false,
+        bool useCurve = false)
     {
         if (color == default) color = Color.white;
 
-        Vector3 spawnPos = transform.position + new Vector3(Random.Range(-0.3f, 0.3f), Random.Range(1f, 1.5f), 0);
+        Vector3 spawnPos = transform.position + 
+                        new Vector3(Random.Range(-0.3f, 0.3f), Random.Range(1f, 1.5f), 0);
+
         GameObject obj = Instantiate(popUpTextPrefab, spawnPos, Quaternion.identity);
 
         TextMeshPro tmp = obj.GetComponent<TextMeshPro>();
         tmp.fontSize *= sizeMultiplier;
         tmp.fontStyle = fontStyle;
 
-        // MOST IMPORTANT PART:
-        obj.GetComponent<PopUpTextFX>().Setup(text, color);
+        obj.GetComponent<PopUpTextFX>()
+        .Setup(text, color, 2f, 2f, usePunch, useSquash, useCurve);
     }
 
 

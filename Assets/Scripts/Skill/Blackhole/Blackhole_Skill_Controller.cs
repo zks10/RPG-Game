@@ -212,6 +212,12 @@ public class Blackhole_Skill_Controller : MonoBehaviour
     private void RemoveInvalidTargets()
     {
         targets.RemoveAll(t => t == null);
+
+        if (targets.Count == 0 && cloneAttackRelease)
+        {
+            // All enemies are gone, finish blackhole
+            FinishBlackholeAbility();
+        }
     }
 
 }

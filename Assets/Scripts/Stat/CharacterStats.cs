@@ -27,7 +27,7 @@ public enum DamageType
 }
 public class CharacterStats : MonoBehaviour
 {
-    private EntityFx fx;
+    protected EntityFx fx;
     [Header("Major Stats")]
     public Stat strength; // ± 1 point => damage ± 1 && crit.damage ± 1%
     public Stat agility; // ± 1 point => evasion ± 1 && crit.rate ± 1%
@@ -179,27 +179,46 @@ public class CharacterStats : MonoBehaviour
         fx.StartCoroutine("FlashFX");
 
         Color popupColor = Color.white;
-        float sizeMult = 1f;
-        FontStyles style = FontStyles.Normal;
 
         switch (type)
         {
             case DamageType.Physical:
-                popupColor = Color.white;
+                fx.CreatePopUpText(
+                    _damage.ToString(),
+                    Color.white,
+                    1f,
+                    FontStyles.Normal,
+                    usePunch: false,
+                    useSquash: false,
+                    useCurve: false
+                );
                 break;
 
             case DamageType.Magic:
-                popupColor = new Color(0.6f, 0f, 1f); // purple
+                fx.CreatePopUpText(
+                    _damage.ToString(),
+                    new Color(0.6f, 0f, 1f),
+                    1f,
+                    FontStyles.Normal,
+                    usePunch: false,
+                    useSquash: true,
+                    useCurve: true
+                );
                 break;
 
             case DamageType.Critical:
-                popupColor = Color.yellow;
-                sizeMult = 1.5f;           // ✦ Bigger
-                style = FontStyles.Bold;    // ✦ Bold
+                fx.CreatePopUpText(
+                    _damage.ToString(),
+                    Color.yellow,
+                    1.5f,
+                    FontStyles.Bold,
+                    usePunch: true,
+                    useSquash: false,
+                    useCurve: true
+                );
                 break;
         }
 
-        fx.CreatePopUpText(_damage.ToString(), popupColor, sizeMult, style);
 
         if (currentHP <= 0 && !isDead)
             Die();

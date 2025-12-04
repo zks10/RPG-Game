@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class UI : MonoBehaviour, ISaveManager
 {
@@ -16,6 +17,9 @@ public class UI : MonoBehaviour, ISaveManager
     [SerializeField] private UI_FadeScreen fadeScreen;
     [SerializeField] private GameObject endText;
     [SerializeField] private GameObject restartButton;
+    [SerializeField] private GameObject saveButton;
+    [SerializeField] private GameObject returnMainMenuButton;
+
 
     private int menuIdx;
     private bool openMenu;
@@ -150,6 +154,13 @@ public class UI : MonoBehaviour, ISaveManager
 
 
     public void RestartGame() => GameManager.instance.RestartScene();
+    public void SaveGame() => SaveManager.instance.SaveGame();
+    public void ReturnMainMenuGame()
+    {
+        SaveManager.instance.SaveGame();
+        GameManager.instance.PauseGame(false);
+        SceneManager.LoadScene("MainMenu");
+    }
 
     public void LoadData(GameData _data)
     {

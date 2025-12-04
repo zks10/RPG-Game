@@ -38,6 +38,7 @@ public class Inventory : MonoBehaviour, ISaveManager
     private float armorCooldown;
 
     [Header("Database")]
+    public List<ItemData> itemDatabase;
     public List<InventoryItem> loadedItems; 
     public List<ItemData_Equipment> loadedEquipment;
     private void Awake()
@@ -48,6 +49,7 @@ public class Inventory : MonoBehaviour, ISaveManager
             Destroy(gameObject);
         
         statSlot = statSlotParent.GetComponentsInChildren<UI_StatSlot>();
+        
     }
 
     private void Start()
@@ -418,7 +420,7 @@ public class Inventory : MonoBehaviour, ISaveManager
     {
         foreach (KeyValuePair<string, int> pair in _data.inventory)
         {
-            foreach (var item in GetItemDataBase())
+            foreach (var item in itemDatabase)
             {
                 if (item != null && item.itemId == pair.Key)
                 {
@@ -445,7 +447,7 @@ public class Inventory : MonoBehaviour, ISaveManager
 
         foreach (string loadedItemId in _data.equipmentId)
         {
-            foreach (var item in GetItemDataBase())
+            foreach (var item in itemDatabase)
             {
                 if (item != null && loadedItemId == item.itemId)
                 {
@@ -490,6 +492,9 @@ public class Inventory : MonoBehaviour, ISaveManager
         } 
     }
 
+#if UNITY_EDITOR
+    [ContextMenu("Fill up item database")]
+    private void FillUpItemDatabase() => itemDatabase = new List<ItemData>(GetItemDataBase());
     private List<ItemData> GetItemDataBase()
     {
         List<ItemData> itemDatabase = new List<ItemData>();
@@ -503,5 +508,6 @@ public class Inventory : MonoBehaviour, ISaveManager
         }
         return itemDatabase;
     }
+#endif
 
 }
