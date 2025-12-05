@@ -52,7 +52,7 @@ public class EnemySkeleton : Enemy
         stateMachine.ChangeState(deadState);
     }
 
-    public void Footstep()
+    public override void Footstep()
     {
         int[] footstepIndexes = { 33, 34, 35, 36 };
         int sfxIndex = footstepIndexes[Random.Range(0, footstepIndexes.Length)];

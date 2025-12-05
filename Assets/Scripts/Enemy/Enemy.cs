@@ -2,7 +2,11 @@
 using UnityEngine;
 using System.Collections;
 
-//[RequireComponent(typeof(Camera))] 
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(CapsuleCollider2D))]
+[RequireComponent(typeof(EnemyStats))]
+[RequireComponent(typeof(EntityFx))]
+[RequireComponent(typeof(ItemDrop))]
 public class Enemy : Entity
 {
 
@@ -116,6 +120,11 @@ public class Enemy : Entity
     public virtual void StartWalking() 
     {
         detectPlayerImage.SetActive(false);
+    }
+
+    public virtual void Footstep()
+    {
+        
     }
 
     public virtual bool CanBeStunned()

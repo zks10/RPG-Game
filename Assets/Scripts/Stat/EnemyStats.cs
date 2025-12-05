@@ -2,7 +2,8 @@ using UnityEngine;
 
 public enum EnemyType
 {
-    Skeleton
+    Skeleton,
+    Slime
 }
 public class EnemyStats : CharacterStats
 {
