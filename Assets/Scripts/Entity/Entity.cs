@@ -18,7 +18,9 @@ public class Entity : MonoBehaviour
     #endregion
     
     [Header("Knockback Info")]
+
     [SerializeField] protected Vector2 knockbackPower;
+    [SerializeField] protected Vector2 knockbackOffset;
     [SerializeField] protected float knockbackDuration;
     protected bool isKnocked;
     public int knockbackDir { get; private set; }
@@ -73,7 +75,9 @@ public class Entity : MonoBehaviour
     public virtual IEnumerator HitKnockBack()
     {
         isKnocked = true;
-        rb.linearVelocity = new Vector2(knockbackPower.x * knockbackDir, knockbackPower.y);
+
+        float xOffset = Random.Range(knockbackOffset.x, knockbackOffset.y);
+        rb.linearVelocity = new Vector2((knockbackPower.x + xOffset) * knockbackDir, knockbackPower.y);
 
         yield return new WaitForSeconds(knockbackDuration);
 

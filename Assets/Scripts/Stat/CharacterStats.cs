@@ -241,6 +241,8 @@ public class CharacterStats : MonoBehaviour
     public void SetShockStrikeDamage(int _damage) => shockStrikeDamage = _damage;
     public virtual void DoMagicalDamage(CharacterStats _targetStats)
     {
+        if (_targetStats.isInvencible)
+            return;
         int _fireDamage = fireDamage.GetValue();
         int _iceDamage = iceDamage.GetValue();
         int _lightningDamage = lightningDamage.GetValue();
@@ -433,6 +435,9 @@ public class CharacterStats : MonoBehaviour
     public virtual void DoPhysicalDamage(CharacterStats _targetStats)
     {
         bool critStrike = false;
+
+        if (_targetStats.isInvencible)
+            return;
 
         if (TargetCanAvoidAttack(_targetStats))
             return;

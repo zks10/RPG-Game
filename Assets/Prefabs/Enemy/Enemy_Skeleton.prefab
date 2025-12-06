@@ -64,7 +64,7 @@ RectTransform:
   m_Father: {fileID: 2248644176926370640}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0.00018310547, y: 1.2100239}
   m_SizeDelta: {x: 0, y: -2.41}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -10280,7 +10280,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5199355593992322371
 Transform:
   m_ObjectHideFlags: 0
@@ -10289,7 +10289,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6639131967846456025}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
   m_ConstrainProportionsScale: 1
@@ -10320,6 +10320,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   facingRight: 1
   knockbackPower: {x: 6, y: 7}
+  knockbackOffset: {x: 0.5, y: 2}
   knockbackDuration: 0.15
   attackCheck: {fileID: 4212975710581830650}
   attackCheckRadius: 1.2
@@ -10345,6 +10346,7 @@ MonoBehaviour:
   battleTime: 4
   attackDistance: 1.86
   attackCooldown: 0.4
+  activateAttackDistance: 2
   viewDistance: 15
   lastTimeAttacked: 0
   detectPlayerImage: {fileID: 9110984033005181503}

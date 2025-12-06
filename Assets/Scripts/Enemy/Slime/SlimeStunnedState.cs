@@ -10,7 +10,6 @@ public class SlimeStunnedState : EnemyState
     public override void Enter()
     {
         base.Enter();
-        enemy.anim.SetTrigger("Stunned");
         enemy.fx.InvokeRepeating("RedColourBlink", 0, 0.1f);
         stateTimer = 1;
         rb.linearVelocity = new Vector2(-enemy.facingDir * enemy.stunDirection.x, enemy.stunDirection.y);
@@ -18,11 +17,18 @@ public class SlimeStunnedState : EnemyState
     public override void Exit()
     {
         base.Exit();
-        enemy.fx.InvokeRepeating("CancelColorChange", 0, 0);
+        enemy.stats.MakeInvencible(false);
     }
     public override void Update()
     {
         base.Update();
+        if (rb.linearVelocity.y < .1f && enemy.IsGroundDectected())
+        {
+            enemy.fx.InvokeRepeating("CancelColorChange", 0, 0);
+            enemy.stats.MakeInvencible(true);
+            enemy.anim.SetTrigger("Stunned");
+        } 
+
         if (stateTimer < 0) {
             stateMachine.ChangeState(enemy.battleState); 
         }
