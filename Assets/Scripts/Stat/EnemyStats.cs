@@ -106,6 +106,8 @@ public class EnemyStats : CharacterStats
     {
         int totalSouls = soulDropAmount.GetValue();
         int coinCount = Random.Range(minCoins, maxCoins + 1);
+        if (coinCount == 0)
+            return;
         int soulsPerCoin = Mathf.Max(1, totalSouls / coinCount);
 
         for (int i = 0; i < coinCount; i++)

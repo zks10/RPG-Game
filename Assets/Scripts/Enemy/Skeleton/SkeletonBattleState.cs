@@ -35,6 +35,7 @@ public class SkeletonBattleState : EnemyState
     {
         base.Update();
 
+       //if (enemy.IsPlayerDectected() && enemy.IsPlayerDectected().distance < enemy.attackDistance - .5f)
         enemy.SetVelocity(enemy.battleMoveSpeed * moveDir, rb.linearVelocity.y);
 
         var detection = enemy.IsPlayerDectected();

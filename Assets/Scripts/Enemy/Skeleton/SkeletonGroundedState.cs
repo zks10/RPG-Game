@@ -24,7 +24,7 @@ public class SkeletonGroundedState : EnemyState
         base.Update();
         if (enemy.IsPlayerDectected())
             stateMachine.ChangeState(enemy.detectPlayerState);
-        else if(Vector2.Distance(player.transform.position, enemy.transform.position) < 2)
+        else if(Vector2.Distance(player.transform.position, enemy.transform.position) < enemy.activateAttackDistance)
             stateMachine.ChangeState(enemy.battleState);
     }
 } 

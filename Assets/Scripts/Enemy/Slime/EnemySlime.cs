@@ -1,5 +1,12 @@
 using UnityEngine;
 
+public enum SlimeType
+{
+    big, 
+    medium,
+    small
+}
+
 public class EnemySlime : Enemy
 {
     # region States
@@ -13,6 +20,12 @@ public class EnemySlime : Enemy
 
     #endregion
 
+    [Header("Slime Specific")]
+    [SerializeField] private SlimeType slimeType;
+    [SerializeField] private int slimeCreate;
+    [SerializeField] private GameObject slimePrefab;
+    [SerializeField] private Vector2 minCreationVelocity;
+    [SerializeField] private Vector2 maxCreationVelocity; 
     public override void Awake()
     {
         base.Awake();
@@ -50,6 +63,11 @@ public class EnemySlime : Enemy
     {
         base.Die();
         stateMachine.ChangeState(deadState);
+
+        if (slimeType == SlimeType.small)
+            return;
+
+        CreateSlime(slimeCreate, slimePrefab);
     }
 
     public override void Footstep()
@@ -60,4 +78,29 @@ public class EnemySlime : Enemy
         AudioManager.instance.PlaySFX(sfxIndex, transform);
     }
 
+    private void CreateSlime(int _amountOfSlimes, GameObject _slimePrefab)
+    {
+        for (int i = 0; i < _amountOfSlimes; i++)
+        {
+            GameObject newSlime = Instantiate(_slimePrefab, transform.position, _slimePrefab.transform.rotation);
+            newSlime.GetComponent<EnemySlime>().SetUpSlime();
+        }
+    }
+
+    public void SetUpSlime()
+    {
+        float xVelocity = Random.Range(minCreationVelocity.x, maxCreationVelocity.x);
+        float yVelocity = Random.Range(minCreationVelocity.y, maxCreationVelocity.y);
+
+        isKnocked = true;
+
+
+        GetComponent<Rigidbody2D>().linearVelocity = new Vector2(xVelocity, yVelocity);
+
+        Invoke(nameof(CancelKnockBack), 1.5f);
+    }
+
+
+
+    private void CancelKnockBack() => isKnocked = false;
 }

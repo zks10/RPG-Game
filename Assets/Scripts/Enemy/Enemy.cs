@@ -33,6 +33,7 @@ public class Enemy : Entity
     [Header("Attack Info")]
     public float attackDistance;
     public float attackCooldown;
+    public float activateAttackDistance = 2;
     // public float minAttackCooldown;
     // public float maxAttackCooldown;
     public float viewDistance;

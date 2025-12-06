@@ -35,7 +35,7 @@ public class SlimeBattleState : EnemyState
     {
         base.Update();
 
-        enemy.SetVelocity(enemy.battleMoveSpeed * moveDir, rb.linearVelocity.y);
+
 
         var detection = enemy.IsPlayerDectected();
 
@@ -63,6 +63,10 @@ public class SlimeBattleState : EnemyState
             moveDir = 1;
         else if (player.position.x < enemy.transform.position.x && !VeryClose() && enemy.IsGroundDectected())
             moveDir = -1;
+
+        if (enemy.IsPlayerDectected() && enemy.IsPlayerDectected().distance < enemy.attackDistance - .5f)
+            return;
+        enemy.SetVelocity(enemy.battleMoveSpeed * moveDir, rb.linearVelocity.y);
     }
 
     private bool CanAttack()
