@@ -6,12 +6,13 @@ public class ArcherJumpState : EnemyState
     public ArcherJumpState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName, EnemyArcher _enemy) : base(_enemyBase, _stateMachine, _animBoolName)
     {
         this.enemy = _enemy;
-        rb.linearVelocity = new Vector2(enemy.jumpVelocity.x * -enemy.facingDir, enemy.jumpVelocity.y);
+        
     }
     public override void Enter()
     {
         base.Enter();
-
+        rb.linearVelocity = new Vector2(enemy.jumpVelocity.x * -enemy.facingDir, enemy.jumpVelocity.y);
+        
     }
     public override void Exit()
     {

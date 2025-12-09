@@ -32,5 +32,7 @@ public class EnemyAnimationTrigger : MonoBehaviour
     private void DetectPlayerImage() => enemy.DetectPlayerImage();
     private void StartWalking() => enemy.StartWalking();
     private void Footstep() => enemy.Footstep();
+    private void SpecialAttackTrigger() => enemy.AnimationSpecialAttackTrigger();
+    
 
 }

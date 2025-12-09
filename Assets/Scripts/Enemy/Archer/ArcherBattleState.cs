@@ -1,18 +1,16 @@
-
 using UnityEngine;
 
 public class ArcherBattleState : EnemyState
 {
-    
     private EnemyArcher enemy;
     private Transform player;
-    private int moveDir;
     private const float veryCloseDistance = 0.2f;
 
-    public ArcherBattleState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName, EnemyArcher _enemy)
+    public ArcherBattleState(
+        Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName, EnemyArcher _enemy)
         : base(_enemyBase, _stateMachine, _animBoolName)
     {
-        this.enemy = _enemy;
+        enemy = _enemy;
     }
 
     public override void Enter()
@@ -21,84 +19,78 @@ public class ArcherBattleState : EnemyState
         player = PlayerManager.instance.player.transform;
 
         if (player.GetComponent<PlayerStats>().isDead)
-        {
             stateMachine.ChangeState(enemy.moveState);
-        }
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
     }
 
     public override void Update()
     {
         base.Update();
 
-       //if (enemy.IsPlayerDectected() && enemy.IsPlayerDectected().distance < enemy.attackDistance - .5f)
-        //enemy.SetVelocity(enemy.battleMoveSpeed * moveDir, rb.linearVelocity.y);
+        RaycastHit2D detection = enemy.IsPlayerDectected();
 
-        var detection = enemy.IsPlayerDectected();
-
+        // Player detected ------------------------------------------------------
         if (detection)
         {
             stateTimer = enemy.battleTime;
 
-            if (enemy.IsPlayerDectected().distance < enemy.safeDistance)
+            float distance = detection.distance;
+
+            // 1. Too close → Jump away
+            if (distance < enemy.safeDistance && CanJump())
             {
-                if (CanJump())
-                {
-                    stateMachine.ChangeState(enemy.jumpState);
-                }
+                stateMachine.ChangeState(enemy.jumpState);
+                return;
             }
 
-            if (detection.distance < enemy.attackDistance)
+            // 2. In attack range → shoot
+            if (distance < enemy.attackDistance && CanAttack())
             {
-                if (CanAttack())
-                {
-                    stateMachine.ChangeState(enemy.attackState);
-                }
+                stateMachine.ChangeState(enemy.attackState);
+                return;
             }
+
+            // 3. Otherwise → circle or reposition
+            //HandleMovement();
         }
         else
         {
-            if (stateTimer < 0 || Vector2.Distance(player.position, enemy.transform.position) > 15)
+            // return to idle after battle timer ends or if player too far
+            if (stateTimer < 0 || Vector2.Distance(player.position, enemy.transform.position) > 15f)
             {
                 stateMachine.ChangeState(enemy.idleState);
+                return;
             }
         }
-
-        // if (player.position.x > enemy.transform.position.x && !VeryClose() && enemy.IsGroundDectected())
-        //     moveDir = 1;
-        // else if (player.position.x < enemy.transform.position.x && !VeryClose() && enemy.IsGroundDectected())
-        //     moveDir = -1;
     }
 
+    // FIXED — Now returns TRUE when you ARE allowed to attack
     private bool CanAttack()
     {
-        // return Time.time >= enemy.lastTimeAttacked + enemy.attackCooldown;
+        // Enemy can attack if cooldown time has passed
         if (Time.time >= enemy.lastTimeAttacked + enemy.attackCooldown)
         {
-            //enemy.attackCooldown = Random.Range(enemy.minAttackCooldown, enemy.maxAttackCooldown); 
             enemy.lastTimeAttacked = Time.time;
-            return false;
+            return true; 
         }
-        return true;
+
+        return false;
     }
 
     private bool VeryClose()
     {
-        return Mathf.Abs(player.position.x - enemy.transform.position.x) < veryCloseDistance ;
+        return Mathf.Abs(player.position.x - enemy.transform.position.x) < veryCloseDistance;
     }
 
     private bool CanJump()
     {
-        if (Time.time >= enemy.lastTimeJumped)
+        if (Time.time >= enemy.lastTimeJumped + enemy.jumpCooldown)
         {
             enemy.lastTimeJumped = Time.time;
             return true;
         }
+
         return false;
     }
+
+
 }
- 

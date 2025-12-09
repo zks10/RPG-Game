@@ -140,6 +140,7 @@ public class Enemy : Entity
     #endregion
 
     public virtual void AnimationFinishTrigger() => stateMachine.currentState.AnimationFinishTrigger();
+    public virtual void AnimationSpecialAttackTrigger() { }
     public virtual RaycastHit2D IsPlayerDectected()
     {
         RaycastHit2D playerHit = Physics2D.Raycast(wallCheck.position, Vector2.right * facingDir, viewDistance, whatIsPlayer);

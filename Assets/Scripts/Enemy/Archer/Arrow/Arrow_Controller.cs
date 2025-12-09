@@ -3,11 +3,12 @@ using UnityEngine;
 public class Arrow_Controller : MonoBehaviour
 {
     [SerializeField] private int damage;
-    [SerializeField] private int xVelocity;
+    [SerializeField] private float xVelocity;
     [SerializeField] private string targetLayerName = "Player";
     [SerializeField] private bool flipped;
     [SerializeField] private bool canMove;
     private Rigidbody2D rb;
+    private CharacterStats myStats;
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -21,7 +22,7 @@ public class Arrow_Controller : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer(targetLayerName))
         {
-            collision.GetComponent<CharacterStats>()?.TakeDamage(damage);
+            myStats.DoPhysicalDamage(collision.GetComponent<CharacterStats>());
             StuckInto(collision);
         }
         else if (collision.gameObject.layer == LayerMask.NameToLayer("Ground")) 
@@ -45,5 +46,12 @@ public class Arrow_Controller : MonoBehaviour
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
         transform.parent = collision.transform;
         Destroy(gameObject, Random.Range(2, 3.5f));
+    }
+
+    public void SetUpArrow(float _speed, CharacterStats _myStats)
+    {
+        xVelocity = _speed;
+        myStats = _myStats;
+        
     }
 }

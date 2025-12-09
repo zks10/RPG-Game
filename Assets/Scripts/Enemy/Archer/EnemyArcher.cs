@@ -4,9 +4,12 @@ public class EnemyArcher : Enemy
 {
     [Header("Archer specific info")]
     public Vector2 jumpVelocity;
-    [SerializeField] private GameObject arrow;
+    [SerializeField] private GameObject arrowPrefab;
+    public float jumpCooldown;
     [HideInInspector] public float lastTimeJumped;
     public float safeDistance;
+    [SerializeField] private float arrowSpeed;
+    private CharacterStats archerStats;
 
     public Vector2 normalAttackOffset = new Vector2(0.4f, 0.43f);
     public Vector2 lowerAttackOffset = new Vector2(0.4f, 0.09f);
@@ -28,9 +31,10 @@ public class EnemyArcher : Enemy
     public override void Awake()
     {
         base.Awake();
+        archerStats = GetComponent<CharacterStats>();
         idleState = new ArcherIdleState(this, stateMachine, "Idle", this);
         moveState = new ArcherMoveState(this, stateMachine, "Move", this);
-        battleState = new ArcherBattleState(this, stateMachine, "Move", this);
+        battleState = new ArcherBattleState(this, stateMachine, "Idle", this); 
         attackState = new ArcherAttackState(this, stateMachine, "Attack", this);
         deadState = new ArcherDeadState(this, stateMachine, "Die", this);
         detectPlayerState = new ArcherDetectPlayerState(this, stateMachine, "Detect", this);
@@ -70,6 +74,12 @@ public class EnemyArcher : Enemy
         // int sfxIndex = footstepIndexes[Random.Range(0, footstepIndexes.Length)];
 
         // AudioManager.instance.PlaySFX(sfxIndex, transform);
+    }
+
+    public override void AnimationSpecialAttackTrigger()
+    {
+        GameObject newArrow = Instantiate(arrowPrefab, attackCheck.transform.position, Quaternion.identity);
+        newArrow.GetComponent<Arrow_Controller>().SetUpArrow(arrowSpeed, archerStats);
     }
 
 }
