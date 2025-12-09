@@ -3,7 +3,8 @@ using UnityEngine;
 public enum EnemyType
 {
     Skeleton,
-    Slime
+    Slime,
+    Archer
 }
 public class EnemyStats : CharacterStats
 {
@@ -27,7 +28,7 @@ public class EnemyStats : CharacterStats
     {
         currentHP = GetMaxHP();
         critDamage.SetDefaultValue(150);
-        soulDropAmount.SetDefaultValue(100);
+        //soulDropAmount.SetDefaultValue(100);
         ApplyLevelModify();
         base.Start();
         enemy = GetComponent<Enemy>();

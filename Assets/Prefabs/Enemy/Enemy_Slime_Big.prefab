@@ -514,7 +514,7 @@ MonoBehaviour:
   percentageModifier: 0.4
   enemyType: 1
   soulDropAmount:
-    baseValue: 30
+    baseValue: 0
     modifiers: 
 --- !u!114 &4697891348665641843
 MonoBehaviour:
