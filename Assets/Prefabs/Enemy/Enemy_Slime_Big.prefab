@@ -293,7 +293,7 @@ RectTransform:
   m_Father: {fileID: 5471828435708485531}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0.00018310547, y: 1.2100239}
   m_SizeDelta: {x: 0, y: -2.41}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -585,6 +585,7 @@ MonoBehaviour:
   knockbackPower: {x: 4, y: 7}
   knockbackOffset: {x: 0.5, y: 2}
   knockbackDuration: 0.15
+  lockKnockbackDir: 0
   attackCheck: {fileID: 7060683557253077101}
   attackCheckRadius: 0.6
   groundCheck: {fileID: 5974736933456163690}
