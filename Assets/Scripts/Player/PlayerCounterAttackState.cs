@@ -31,7 +31,7 @@ public class PlayerCounterAttackState : PlayerState
         foreach (var hit in colliders) {
             if (hit.GetComponent<Arrow_Controller>() != null)
             {
-                hit.GetComponent<Arrow_Controller>().FlipArrow();
+                hit.GetComponent<Arrow_Controller>().FlipArrow("Enemy");
                 SucessfulCounterAttack();
             }
             if (hit.GetComponent<Enemy>() != null) 

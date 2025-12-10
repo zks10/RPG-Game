@@ -13,6 +13,9 @@ public class EnemyArcher : Enemy
 
     public Vector2 normalAttackOffset = new Vector2(0.4f, 0.43f);
     public Vector2 lowerAttackOffset = new Vector2(0.4f, 0.09f);
+    [Header("Additional collision check")]
+    [SerializeField] private Transform groundBehindCheck;
+    [SerializeField] private Vector2 groundBehindCheckSize;
 
 
 
@@ -80,6 +83,17 @@ public class EnemyArcher : Enemy
     {
         GameObject newArrow = Instantiate(arrowPrefab, attackCheck.transform.position, Quaternion.identity);
         newArrow.GetComponent<Arrow_Controller>().SetUpArrow(arrowSpeed, archerStats);
+        if (facingDir == -1)
+            newArrow.GetComponent<Arrow_Controller>().FlipArrow("Player");
     }
 
+    public bool GroundBehindCheck() => Physics2D.BoxCast(groundBehindCheck.position, groundBehindCheckSize, 0, Vector2.zero,0, whatIsGround);
+    public bool WallBehindCheck() => Physics2D.Raycast(wallCheck.position, Vector2.right * -facingDir, wallCheckDistance + 2, whatIsGround);
+
+    public override void OnDrawGizmos()
+    {
+        base.OnDrawGizmos();
+
+        Gizmos.DrawWireCube(groundBehindCheck.position, groundBehindCheckSize);
+    }
 }

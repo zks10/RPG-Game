@@ -4,6 +4,7 @@ public class Arrow_Controller : MonoBehaviour
 {
     [SerializeField] private int damage;
     [SerializeField] private float xVelocity;
+
     [SerializeField] private string targetLayerName = "Player";
     [SerializeField] private bool flipped;
     [SerializeField] private bool canMove;
@@ -17,25 +18,36 @@ public class Arrow_Controller : MonoBehaviour
     {  
         if (canMove)
             rb.linearVelocity = new Vector2(xVelocity, rb.linearVelocity.y);
+
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer(targetLayerName))
         {
-            myStats.DoPhysicalDamage(collision.GetComponent<CharacterStats>());
+            if (collision.TryGetComponent<Entity>(out var entity))
+            {
+                entity.SetUpKnockBackDir(transform);
+                entity.lockKnockbackDir = true;
+                if (!collision.GetComponent<CharacterStats>().isDead)
+                    myStats.DoPhysicalDamage(collision.GetComponent<CharacterStats>());
+            }
+
             StuckInto(collision);
         }
-        else if (collision.gameObject.layer == LayerMask.NameToLayer("Ground")) 
+        else if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
             StuckInto(collision);
+        }
     }
-    public void FlipArrow()
+
+    public void FlipArrow(string _targetLayerName = "Enemy")
     {
-        if (flipped)
-            return;
         xVelocity *= -1;
-        flipped = true;
         transform.Rotate(0, 180, 0);
-        targetLayerName = "Enemy";
+        canMove = true;
+        transform.position += new Vector3(Mathf.Sign(xVelocity) * 0.2f, 0, 0);
+        rb.linearVelocity = new Vector2(xVelocity, 0);
+        targetLayerName = _targetLayerName;
     }
     public void StuckInto(Collider2D collision)
     {

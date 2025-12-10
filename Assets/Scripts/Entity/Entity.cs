@@ -24,6 +24,9 @@ public class Entity : MonoBehaviour
     [SerializeField] protected float knockbackDuration;
     protected bool isKnocked;
     public int knockbackDir { get; private set; }
+    public bool lockKnockbackDir = false;
+
+
 
     [Header("Collision Info")]
     public Transform attackCheck;
@@ -75,6 +78,7 @@ public class Entity : MonoBehaviour
     public virtual IEnumerator HitKnockBack()
     {
         isKnocked = true;
+        lockKnockbackDir = false;
 
         float xOffset = Random.Range(knockbackOffset.x, knockbackOffset.y);
         rb.linearVelocity = new Vector2((knockbackPower.x + xOffset) * knockbackDir, knockbackPower.y);
@@ -87,6 +91,8 @@ public class Entity : MonoBehaviour
 
     public virtual void SetUpKnockBackDir(Transform _damageDir)
     {
+        if (lockKnockbackDir)
+            return;
         if (_damageDir.position.x > transform.position.x )
             knockbackDir = -1;
         else 
@@ -148,7 +154,8 @@ public class Entity : MonoBehaviour
     }
     #endregion
 
-    public virtual void Die()
-    {
-    }
+    public virtual void Die() { }
+
+
+
 }

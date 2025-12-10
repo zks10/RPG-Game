@@ -10,6 +10,7 @@ public class ArcherDetectPlayerState : EnemyState
     public override void Enter()
     {
         base.Enter();
+        stateTimer = 0.3f;
     }
     public override void Exit()
     {
@@ -20,9 +21,8 @@ public class ArcherDetectPlayerState : EnemyState
         base.Update();
         enemy.ZeroVelocity();
 
-        if (triggerCalled)
+        if (triggerCalled || stateTimer <= 0)
         {
-            enemy.ZeroVelocity();
             stateMachine.ChangeState(enemy.battleState);
         }
     }

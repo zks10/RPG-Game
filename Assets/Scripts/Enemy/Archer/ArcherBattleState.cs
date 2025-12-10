@@ -49,18 +49,20 @@ public class ArcherBattleState : EnemyState
                 return;
             }
 
-            // 3. Otherwise → circle or reposition
-            //HandleMovement();
         }
         else
         {
-            // return to idle after battle timer ends or if player too far
             if (stateTimer < 0 || Vector2.Distance(player.position, enemy.transform.position) > 15f)
             {
                 stateMachine.ChangeState(enemy.idleState);
                 return;
             }
         }
+
+        if (player.position.x > enemy.transform.position.x && !VeryClose() && enemy.facingDir == -1)
+            enemy.Flip();
+        else if (player.position.x < enemy.transform.position.x && !VeryClose() && enemy.facingDir == 1)
+            enemy.Flip();
     }
 
     // FIXED — Now returns TRUE when you ARE allowed to attack
@@ -83,6 +85,8 @@ public class ArcherBattleState : EnemyState
 
     private bool CanJump()
     {
+        if (enemy.GroundBehindCheck() == false || enemy.WallBehindCheck() == true)
+            return false;
         if (Time.time >= enemy.lastTimeJumped + enemy.jumpCooldown)
         {
             enemy.lastTimeJumped = Time.time;

@@ -451,7 +451,6 @@ public class CharacterStats : MonoBehaviour
             totalPhysicalDamage = CalculateCriticalDamage(totalPhysicalDamage);
             critStrike = true;
         }
-
         fx.CreateHitFX(_targetStats.transform, critStrike);
         totalPhysicalDamage = CheckTargetsArmor(_targetStats, totalPhysicalDamage);
         if (critStrike)

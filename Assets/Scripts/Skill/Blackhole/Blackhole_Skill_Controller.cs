@@ -119,7 +119,7 @@ public class Blackhole_Skill_Controller : MonoBehaviour
         cloneAttackTimer = cloneAttackCooldown;
 
         int randomIndex = Random.Range(0, targets.Count);
-        float xOffset = Random.Range(0, 100) > 50 ? 2 : -2;
+        float xOffset = Random.Range(0, 100) > 50 ? 1.3f : -1.3f;
 
         if (SkillManager.instance.clone.crystalInsteadOfClone)
         {
