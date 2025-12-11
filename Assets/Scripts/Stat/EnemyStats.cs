@@ -4,7 +4,8 @@ public enum EnemyType
 {
     Skeleton,
     Slime,
-    Archer
+    Archer,
+    Shady
 }
 public class EnemyStats : CharacterStats
 {
