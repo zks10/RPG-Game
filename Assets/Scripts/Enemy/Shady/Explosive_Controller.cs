@@ -38,9 +38,9 @@ public class Explosive_Controller : MonoBehaviour
 
         foreach (var hit in colliders)
         {
-            if (hit.GetComponent<Player>() != null)
+            if (hit.GetComponent<CharacterStats>() != null)
             {
-                if (hit.GetComponent<PlayerStats>().isDead) continue;
+                if (hit.GetComponent<CharacterStats>().isDead) continue;
                 myStats.DoMagicalDamage(hit.GetComponent<CharacterStats>());
                 hit.GetComponent<Entity>().SetUpKnockBackDir(transform);
 

@@ -108,7 +108,7 @@ RectTransform:
   m_Father: {fileID: 4760683007278913524}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0.00018310547, y: 1.2100239}
   m_SizeDelta: {x: 0, y: -2.41}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -238,7 +238,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2469462655050377187
 Transform:
   m_ObjectHideFlags: 0
@@ -473,7 +473,7 @@ MonoBehaviour:
   groundCheck: {fileID: 5723170749198630053}
   groundCheckDistance: 0.18
   wallCheck: {fileID: 483531247205294698}
-  wallCheckDistance: 1.05
+  wallCheckDistance: 0.63
   whatIsGround:
     serializedVersion: 2
     m_Bits: 8

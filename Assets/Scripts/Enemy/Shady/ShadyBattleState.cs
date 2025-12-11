@@ -25,7 +25,7 @@ public class ShadyBattleState : EnemyState
         {
             stateMachine.ChangeState(enemy.moveState);
         }
-        if (enemy.attackCounter >= 3)
+        if (enemy.attackCounter >= 2)
         {
             stateMachine.ChangeState(enemy.explodeState);
         }
