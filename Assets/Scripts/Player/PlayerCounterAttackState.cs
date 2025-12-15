@@ -67,5 +67,6 @@ public class PlayerCounterAttackState : PlayerState
         player.MarkCounterSuccess();
         player.fx.ScreenShake(player.fx.counterAttackShake);
         AudioManager.instance.PlaySFX(0);
+        player.skill.counterAttack.cooldownTimer = -1;
     }
 }
