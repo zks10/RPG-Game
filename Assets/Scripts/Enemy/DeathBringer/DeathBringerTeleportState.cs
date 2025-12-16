@@ -10,19 +10,25 @@ public class DeathBringerTeleportState : EnemyState
     public override void Enter()
     {
         base.Enter();
-        enemy.FindPosition();
-        stateTimer = 1;
+        //enemy.SetHPBarStatus(false);
+        enemy.stats.MakeInvencible(true);
+
     }
     public override void Exit()
     {
         base.Exit();
+        enemy.stats.MakeInvencible(false);
+
     }
     public override void Update()
     {
         base.Update();
-        if (stateTimer < 0)
+
+        if (triggerCalled)
         {
-            stateMachine.ChangeState(enemy.idleState);
+            // enemy.FindPosition();
+            // enemy.SetHPBarStatus(true);
+            stateMachine.ChangeState(enemy.battleState);
         }
 
     }

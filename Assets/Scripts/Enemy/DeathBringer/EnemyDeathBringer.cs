@@ -3,6 +3,9 @@ using System.Collections;
 
 public class EnemyDeathBringer : Enemy
 {
+    [Header("Spell Cast Details")]
+    [SerializeField] private GameObject spellPrefab;
+    private float lastTimeCast;
     # region States
     public DeathBringerIdleState idleState { get; private set; }
     public DeathBringerMoveState moveState { get; private set; }
@@ -14,9 +17,12 @@ public class EnemyDeathBringer : Enemy
     public DeathBringerSpellCastState spellCastState { get; private set; }
     public DeathBringerStunnedState stunnedState { get; private set; }
 
+
     [Header("Teleport Details")]
     [SerializeField] private BoxCollider2D arena;
     [SerializeField] private Vector2 surroundingCheckSize;
+    private float chanceToTeleport;
+    public float defaultChanceToTeleport = 25;
 
     #endregion
 
@@ -36,6 +42,7 @@ public class EnemyDeathBringer : Enemy
     public override void Start()
     {
         base.Start();
+        chanceToTeleport = defaultChanceToTeleport;
         stateMachine.InitializeState(idleState); 
     }
     
@@ -71,7 +78,6 @@ public class EnemyDeathBringer : Enemy
         
         if (!GroundBelow() || SomethingIsAround())
         {
-            Debug.Log("Looking for new pos");
             FindPosition();
         }
     }
@@ -93,4 +99,21 @@ public class EnemyDeathBringer : Enemy
         Gizmos.DrawLine(transform.position, new Vector3(transform.position.x, transform.position.y - GroundBelow().distance));  
         Gizmos.DrawWireCube(transform.position, surroundingCheckSize);
     }
+
+    public void ModifyChanceToTeleport(int _val) => chanceToTeleport += _val;
+    public bool CanTeleport()
+    {
+        if (Random.Range(0, 100) <= chanceToTeleport)
+        {
+            chanceToTeleport = defaultChanceToTeleport;
+            return true;
+        }
+        return false;
+    }
+
+    public bool CanDoSpellCast()
+    {
+        
+    }
+
 }

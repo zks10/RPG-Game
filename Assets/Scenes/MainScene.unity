@@ -344,7 +344,7 @@ GameObject:
   - component: {fileID: 18897678}
   - component: {fileID: 18897681}
   - component: {fileID: 18897680}
-  - component: {fileID: 18897679}
+  - component: {fileID: 18897682}
   m_Layer: 0
   m_Name: Animator
   m_TagString: Untagged
@@ -367,18 +367,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2055130954}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &18897679
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 18897677}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cdc8e1049b41d41f7a6cabbcfa9094e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &18897680
 Animator:
   serializedVersion: 7
@@ -456,6 +444,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &18897682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 18897677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b8aab1300f174234b80c11e3a9ebb75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &21499599
 GameObject:
   m_ObjectHideFlags: 0
@@ -50619,6 +50619,84 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3760688654461288623, guid: a76d62919410a475ab88bff5340bf239, type: 3}
   m_PrefabInstance: {fileID: 1476211632}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1360592041
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1360592043}
+  - component: {fileID: 1360592042}
+  m_Layer: 0
+  m_Name: ArenaCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!61 &1360592042
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1360592041}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -3.811522, y: 2.402914}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 19.229004, y: 14.091736}
+  m_EdgeRadius: 0
+--- !u!4 &1360592043
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1360592041}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -8.053119, y: -2.951467, z: 0.06019801}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &1361547042 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8650549872664324218, guid: d74c528b660b24aff9772f4d6262ec90, type: 3}
@@ -51448,7 +51526,7 @@ MonoBehaviour:
   multipleCloneUnlockButton: {fileID: 307532471}
   multipleCloneAttackMultiplier: 0.3
   canDuplicateClone: 0
-  chanceToDuplicate: 100
+  chanceToDuplicate: 30
   crystalInsteadUnlockButton: {fileID: 253931683}
 --- !u!114 &1394310102
 MonoBehaviour:
@@ -69085,12 +69163,12 @@ Transform:
   - {fileID: 782676012}
   - {fileID: 1363955464}
   - {fileID: 1901505324}
-  - {fileID: 1181951068}
   - {fileID: 98923681}
   - {fileID: 1035728469}
   - {fileID: 1308390524}
   - {fileID: 1897558933}
   - {fileID: 230880329}
+  - {fileID: 1181951068}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &2055130955
@@ -69138,8 +69216,9 @@ MonoBehaviour:
   viewDistance: 9
   lastTimeAttacked: 0
   detectPlayerImage: {fileID: 98923680}
-  arena: {fileID: 0}
+  arena: {fileID: 1360592042}
   surroundingCheckSize: {x: 3, y: 3}
+  defaultChanceToTeleport: 25
 --- !u!114 &2055130956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72683,3 +72762,4 @@ SceneRoots:
   - {fileID: 1576583410}
   - {fileID: 1349698756}
   - {fileID: 2055130954}
+  - {fileID: 1360592043}

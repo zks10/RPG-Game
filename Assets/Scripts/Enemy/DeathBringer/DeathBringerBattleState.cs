@@ -18,6 +18,7 @@ public class DeathBringerBattleState : EnemyState
     public override void Enter()
     {
         base.Enter();
+        enemy.ZeroVelocity();
         player = PlayerManager.instance.player.transform;
 
         if (player.GetComponent<PlayerStats>().isDead)
@@ -35,9 +36,6 @@ public class DeathBringerBattleState : EnemyState
     {
         base.Update();
 
-       //if (enemy.IsPlayerDectected() && enemy.IsPlayerDectected().distance < enemy.attackDistance - .5f)
-        enemy.SetVelocity(enemy.battleMoveSpeed * moveDir, rb.linearVelocity.y);
-
         var detection = enemy.IsPlayerDectected();
 
         if (detection)
@@ -52,18 +50,22 @@ public class DeathBringerBattleState : EnemyState
                 }
             }
         }
-        else
-        {
-            if (stateTimer < 0 || Vector2.Distance(player.position, enemy.transform.position) > 15)
-            {
-                stateMachine.ChangeState(enemy.idleState);
-            }
-        }
+        // else
+        // {
+        //     if (stateTimer < 0 || Vector2.Distance(player.position, enemy.transform.position) > 15)
+        //     {
+        //         stateMachine.ChangeState(enemy.idleState);
+        //     }
+        // }
 
         if (player.position.x > enemy.transform.position.x && !VeryClose() && enemy.IsGroundDectected())
             moveDir = 1;
         else if (player.position.x < enemy.transform.position.x && !VeryClose() && enemy.IsGroundDectected())
             moveDir = -1;
+        
+        if (enemy.IsPlayerDectected() && enemy.IsPlayerDectected().distance < enemy.attackDistance - 1f)
+            return;
+        enemy.SetVelocity(enemy.battleMoveSpeed * moveDir, rb.linearVelocity.y);
     }
 
     private bool CanAttack()

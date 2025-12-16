@@ -44,12 +44,14 @@ public class EntityFx : MonoBehaviour
     [Space]
     
     [SerializeField] private ParticleSystem dustFX;
+    private GameObject myHealthBar;
     private void Start()
     {
         sr = GetComponentInChildren<SpriteRenderer>();
         originalMat = sr.material;
         player = PlayerManager.instance.player;
         screenShake = GetComponent<CinemachineImpulseSource>(); 
+        myHealthBar = GetComponentInChildren<HealthBarUI>(true)?.gameObject;
     }
     private void Update()
     {
@@ -114,9 +116,15 @@ public class EntityFx : MonoBehaviour
     public void MakeTransparent(bool _transparent)
     {
         if (_transparent)
+        {
+            //myHealthBar.SetActive(false);
             sr.color = Color.clear;
+        }
         else
+        {
+            //myHealthBar.SetActive(true);
             sr.color = Color.white;
+        }
     }
     private IEnumerator FlashFX()
     {
@@ -219,4 +227,6 @@ public class EntityFx : MonoBehaviour
         if (dustFX != null) 
             dustFX.Play();
     }
+
+
 }
