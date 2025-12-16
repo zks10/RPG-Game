@@ -41,8 +41,8 @@ public class Explosive_Controller : MonoBehaviour
             if (hit.GetComponent<CharacterStats>() != null)
             {
                 if (hit.GetComponent<CharacterStats>().isDead) continue;
-                myStats.DoMagicalDamage(hit.GetComponent<CharacterStats>());
                 hit.GetComponent<Entity>().SetUpKnockBackDir(transform);
+                myStats.DoMagicalDamage(hit.GetComponent<CharacterStats>());
 
                 
             }

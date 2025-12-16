@@ -115,6 +115,12 @@ public class Player : Entity
         {
             Inventory.instance.UseTrinket();
         }
+
+        if (swordOut && sword == null)
+        {
+            swordOut = false;
+        }
+
     }
     public void MarkCounterSuccess()
     {

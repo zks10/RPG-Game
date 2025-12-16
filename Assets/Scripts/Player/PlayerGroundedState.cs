@@ -27,8 +27,14 @@ public class PlayerGroundedState : PlayerState
         {
             if (!player.swordOut && player.skill.sword.swordUnlock)
                 stateMachine.ChangeState(player.aimSwordState);
-            else if (player.swordOut)
-                player.sword.GetComponent<Sword_Skill_Controller>().ReturnSword();
+            else if (player.swordOut && player.sword != null)
+            {
+                Sword_Skill_Controller swordCtrl =
+                    player.sword.GetComponent<Sword_Skill_Controller>();
+
+                if (swordCtrl != null)
+                    swordCtrl.ReturnSword();
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Q) && player.skill.counterAttack.CanUseSkill() && player.skill.counterAttack.counterAttackUnlocked)

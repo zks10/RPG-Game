@@ -36,8 +36,14 @@ public class Sword_Skill_Controller : MonoBehaviour
     private Vector2 launchDirection;
     private bool spinSoundPlaying;
 
-
     private float destorySwordDistance = 20;
+    private EnemyStats stuckEnemy;
+    private bool isStuck;
+    private bool isDropped;
+    private bool hasBounced = false;
+
+
+
 
     private void Awake()
     {
@@ -180,18 +186,50 @@ public class Sword_Skill_Controller : MonoBehaviour
 
     public void ReturnSword()
     {
-        rb.constraints = RigidbodyConstraints2D.FreezeAll;
-        transform.parent = null;
-        isReturn = true;
-        firstHit = false;
-        spinSoundPlaying = false;
-        AudioManager.instance.StopSFX(23);
+        if (this == null || player == null)
+                return;
+
+            DetachFromEnemy();
+
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            isReturn = true;
+            firstHit = false;
+            spinSoundPlaying = false;
+            AudioManager.instance.StopSFX(23);
 
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (isDropped && collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+            if (!hasBounced)
+            {
+                // Apply a small upward bounce velocity
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, 5f);
+                hasBounced = true;
+
+                // Optional: play a bounce sound or particle effect here
+            }
+            else
+            {
+                // After bounce, freeze sword in place
+                rb.bodyType = RigidbodyType2D.Kinematic;
+                rb.linearVelocity = Vector2.zero;
+                rb.angularVelocity = 0f;
+                rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            }
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (isReturn)
             return;
+        if (isDropped || isStuck)
+            return;
+
+
 
         if (collision.GetComponent<Enemy>() != null)
         {
@@ -231,6 +269,7 @@ public class Sword_Skill_Controller : MonoBehaviour
             pierceAmount--;
             return;
         }
+
         if (isSpinning)
         {
             if (!firstHit)
@@ -241,16 +280,27 @@ public class Sword_Skill_Controller : MonoBehaviour
             return;
         }
 
+        isStuck = true;
         canRotate = false;
         cd.enabled = false;
+
         rb.bodyType = RigidbodyType2D.Kinematic;
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
+
         GetComponentInChildren<ParticleSystem>().Play();
-        if (isBouncing && enemyTarget.Count > 0)
-            return;
         anim.SetBool("Rotation", false);
-        transform.parent = collision.transform;
+
+        EnemyStats enemyStats = collision.GetComponent<EnemyStats>();
+        if (enemyStats != null)
+        {   
+            stuckEnemy = enemyStats;
+            if (stuckEnemy.isDead) 
+                DropSword();
+
+        }
+        
     }
+
 
     private void StopWhenSpinning()
     {
@@ -279,4 +329,46 @@ public class Sword_Skill_Controller : MonoBehaviour
         if (equipAmulet != null)
             equipAmulet.ItemEffect(enemy.transform);
     }
+
+    private void DetachFromEnemy()
+    {
+        if (transform.parent != null)
+            transform.SetParent(null);
+    }
+
+    private void OnDestroy()
+    {
+        if (player != null && player.sword == gameObject)
+        {
+            player.sword = null;
+            player.swordOut = false;
+        }
+    }
+
+    private void DropSword()
+    {
+        isDropped = true;
+        isStuck = false;
+
+        isBouncing = false;
+        isSpinning = false;
+        isReturn = false;
+
+        rb.bodyType = RigidbodyType2D.Dynamic;
+
+        rb.constraints = RigidbodyConstraints2D.None;
+
+        rb.gravityScale = 3;
+
+        float randomSpin = Random.Range(-100f, 100f);  
+        rb.angularVelocity = randomSpin;
+
+        cd.enabled = true;
+        cd.isTrigger = false;
+    }
+
+
+
+
+
 }

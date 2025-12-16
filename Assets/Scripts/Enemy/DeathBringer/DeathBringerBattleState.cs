@@ -70,7 +70,6 @@ public class DeathBringerBattleState : EnemyState
 
     private bool CanAttack()
     {
-        // return Time.time >= enemy.lastTimeAttacked + enemy.attackCooldown;
         if (Time.time >= enemy.lastTimeAttacked + enemy.attackCooldown)
         {
             //enemy.attackCooldown = Random.Range(enemy.minAttackCooldown, enemy.maxAttackCooldown); 

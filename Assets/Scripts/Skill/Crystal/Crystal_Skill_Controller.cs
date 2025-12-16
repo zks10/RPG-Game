@@ -69,8 +69,8 @@ public class Crystal_Skill_Controller : MonoBehaviour
             if (hit.GetComponent<Enemy>() != null)
             {
                 if (hit.GetComponent<EnemyStats>().isDead) continue;
-                player.stats.DoMagicalDamage(hit.GetComponent<CharacterStats>());
                 hit.GetComponent<Entity>().SetUpKnockBackDir(transform);
+                player.stats.DoMagicalDamage(hit.GetComponent<CharacterStats>());
 
                 ItemData_Equipment equipAmulet = Inventory.instance.GetEquipmentByType(EquipmentType.Amulet);
                 if (equipAmulet != null)

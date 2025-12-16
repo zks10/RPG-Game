@@ -1,12 +1,15 @@
 using UnityEngine;
-using System.Collections;
 
 public class EnemyDeathBringer : Enemy
 {
     [Header("Spell Cast Details")]
     [SerializeField] private GameObject spellPrefab;
+    [SerializeField] private float spellCastStateCooldown;
+    public int amountOfSpells;
+    public float spellCooldown;
     private float lastTimeCast;
-    # region States
+    
+    # region States 
     public DeathBringerIdleState idleState { get; private set; }
     public DeathBringerMoveState moveState { get; private set; }
     public DeathBringerBattleState battleState { get; private set; }
@@ -68,6 +71,20 @@ public class EnemyDeathBringer : Enemy
         stateMachine.ChangeState(deadState);
     }
 
+    public void CastSpell()
+    {
+        Player player = PlayerManager.instance.player;
+        float xOffset = player.facingDir * 0.18f;
+
+        if  (player.rb.linearVelocity.x == 0)
+            xOffset = player.facingDir * 2f;
+    
+        Vector3 spellPosition = new Vector3(player.transform.position.x + xOffset, player.transform.position.y + 1.52f);
+
+        GameObject newSpell = Instantiate(spellPrefab, spellPosition, Quaternion.identity);
+        newSpell.GetComponent<HandSpell_Controller>().SetUpSpell(stats);
+    }
+
     public void FindPosition()
     {
         float x = Random.Range(arena.bounds.min.x + 3, arena.bounds.max.x - 3);
@@ -113,7 +130,12 @@ public class EnemyDeathBringer : Enemy
 
     public bool CanDoSpellCast()
     {
-        
+        if (Time.time >= lastTimeCast + spellCastStateCooldown)
+        {
+            lastTimeCast = Time.time;
+            return false;
+        }
+        return true;
     }
 
 }

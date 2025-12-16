@@ -26,9 +26,10 @@ public class DeathBringerTeleportState : EnemyState
 
         if (triggerCalled)
         {
-            // enemy.FindPosition();
-            // enemy.SetHPBarStatus(true);
-            stateMachine.ChangeState(enemy.battleState);
+            if (enemy.CanDoSpellCast()) 
+                stateMachine.ChangeState(enemy.spellCastState);
+            else
+                stateMachine.ChangeState(enemy.battleState);
         }
 
     }

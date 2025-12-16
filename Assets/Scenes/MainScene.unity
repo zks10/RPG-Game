@@ -69216,6 +69216,10 @@ MonoBehaviour:
   viewDistance: 9
   lastTimeAttacked: 0
   detectPlayerImage: {fileID: 98923680}
+  spellPrefab: {fileID: 2928600029149074670, guid: 2ea9c25381d75484ab8a5c5e4212de9d, type: 3}
+  spellCastStateCooldown: 0
+  amountOfSpells: 0
+  spellCooldown: 0
   arena: {fileID: 1360592042}
   surroundingCheckSize: {x: 3, y: 3}
   defaultChanceToTeleport: 25
