@@ -143,17 +143,16 @@ public class Enemy : Entity
     public virtual void AnimationSpecialAttackTrigger() { }
     public virtual RaycastHit2D IsPlayerDectected()
     {
-        RaycastHit2D playerHit = Physics2D.Raycast(wallCheck.position, Vector2.right * facingDir, viewDistance, whatIsPlayer);
+        RaycastHit2D playerHit =
+            Physics2D.Raycast(wallCheck.position, Vector2.right * facingDir, viewDistance, whatIsPlayer);
 
-        if (playerHit)
-        {
-            RaycastHit2D wallHit = Physics2D.Raycast(wallCheck.position, Vector2.right * facingDir, playerHit.distance, whatIsWall);
+        if (!playerHit)
+            return default;
 
-            if (!wallHit)
-                return playerHit;
-        }
+        RaycastHit2D wallHit =
+            Physics2D.Raycast(wallCheck.position, Vector2.right * facingDir, playerHit.distance, whatIsGround);
 
-        return default;
+        return wallHit ? default : playerHit;
     }
     public override void OnDrawGizmos()
     {

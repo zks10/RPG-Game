@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class ItemDrop : MonoBehaviour
 {
-    [SerializeField] private int possibleAmountOfItem;
+    [SerializeField] private int maxAmountItemsToDrop;
     [SerializeField] private ItemData[] possibleDrops;
     // private List<ItemData> dropList = new List<ItemData>();
     [SerializeField] private GameObject dropPrefab;
@@ -26,7 +26,7 @@ public class ItemDrop : MonoBehaviour
     //     if (dropList.Count == 0)
     //         return;
 
-    //     for (int i = 0; i < possibleAmountOfItem; i++)
+    //     for (int i = 0; i < maxAmountItemsToDrop; i++)
     //     {
     //         if (dropList.Count == 0)
     //             break; 
@@ -44,7 +44,7 @@ public class ItemDrop : MonoBehaviour
         if (possibleDrops == null || possibleDrops.Length == 0)
             return;
 
-        for (int i = 0; i < possibleAmountOfItem; i++)
+        for (int i = 0; i < maxAmountItemsToDrop; i++)
         {
             ItemData droppedItem = RollForItem();
             if (droppedItem != null)
