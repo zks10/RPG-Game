@@ -73,6 +73,7 @@ public class Player : Entity
         defaultDashSpeed = dashSpeed;
         defaultRunSpeed = runSpeed;
         isDead = false;
+        isSkillActive = false;
 
         idleState = new PlayerIdleState(this, stateMachine, "Idle");
         moveState = new PlayerMoveState(this, stateMachine, "Move");
@@ -96,6 +97,7 @@ public class Player : Entity
         base.Start();
         skill = SkillManager.instance;
         stateMachine.Initialize(idleState);
+
     }
 
     public override void Update()

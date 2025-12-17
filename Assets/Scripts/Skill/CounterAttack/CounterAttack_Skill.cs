@@ -38,7 +38,7 @@ public class CounterAttack_Skill : Skill
         restoreCounterAttackButton.onSkillUnlocked.AddListener(UnlockCoutnerAttackRestore);
         mirageCounterAttackButton.onSkillUnlocked.AddListener(UnlockMirageCoutnerAttack);
 
-        PlayerManager.instance.player.SetSkillActive(false);
+        //PlayerManager.instance.player.SetSkillActive(false);
     }
     protected override void CheckUnlock()
     {

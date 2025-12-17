@@ -36,8 +36,8 @@ public class PlayerGroundedState : PlayerState
                     swordCtrl.ReturnSword();
             }
         }
-
-        if (Input.GetKeyDown(KeyCode.Q) && player.skill.counterAttack.CanUseSkill() && player.skill.counterAttack.counterAttackUnlocked)
+        //Debug.Log(player.skill.counterAttack.CanUseSkill());
+        if (Input.GetKeyDown(KeyCode.Q) && player.skill.counterAttack.counterAttackUnlocked && player.skill.counterAttack.CanUseSkill() )
         {
             stateMachine.ChangeState(player.counterAttackState);
         }
