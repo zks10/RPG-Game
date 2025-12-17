@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections;
+
 
 public class Clone_Skill_Controller : MonoBehaviour
 {
@@ -14,11 +16,15 @@ public class Clone_Skill_Controller : MonoBehaviour
     private float chanceToDuplicate;
     private Player player;
     private float attackMultiplier;
+    [Space]
+    [SerializeField] private LayerMask whatIsEnemy;
+    [SerializeField] private float closestEnemyRadiusCheck = 25;
 
     private void Awake() 
     {
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        StartCoroutine(FaceClosetTarget());
     }
     private void Update() 
     {
@@ -33,19 +39,18 @@ public class Clone_Skill_Controller : MonoBehaviour
             }
         }
     }
-    public void SetUpClone(Transform newTransform, float cloneDuration, bool canAttack, Vector3 _offset, Transform _closestEnemy, bool _canDuplicateClone, float _chanceToDuplicate, Player _player, float _attackMultiplier)  
+    public void SetUpClone(Transform newTransform, float cloneDuration, bool canAttack, Vector3 _offset, bool _canDuplicateClone, float _chanceToDuplicate, Player _player, float _attackMultiplier)  
     {
         if (canAttack) 
             anim.SetInteger("AttackNumber", Random.Range(1, 3));
         transform.position = newTransform.position + _offset;
         cloneTimer = cloneDuration;
-        closestEnemy = _closestEnemy;
         canDuplicateClone = _canDuplicateClone;
         chanceToDuplicate = _chanceToDuplicate;
         player = _player;
         attackMultiplier = _attackMultiplier;
 
-        FaceClosetTarget();
+
     }
 
     private void AnimationTrigger()
@@ -88,15 +93,38 @@ public class Clone_Skill_Controller : MonoBehaviour
         }
     }
 
-    private void FaceClosetTarget() 
+    private IEnumerator FaceClosetTarget() 
     {
-        if (closestEnemy == null) 
-            return;
+        yield return null;
 
-        if (transform.position.x > closestEnemy.position.x)
+        FindClosestEnemy();
+
+        if (closestEnemy != null) 
         {
-            facingDir = -1;
-            transform.rotation = Quaternion.Euler(0, 180, 0);
+            if (transform.position.x > closestEnemy.position.x)
+            {
+                facingDir = -1;
+                transform.rotation = Quaternion.Euler(0, 180, 0);
+            }
+        }
+    }
+    private void FindClosestEnemy()
+    {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, closestEnemyRadiusCheck, whatIsEnemy);
+
+        float closestDist = Mathf.Infinity;
+
+        foreach (var hit in colliders)
+        {
+            if (hit.GetComponent<EnemyStats>().isDead) continue;
+            float distToEnemy = Vector2.Distance(transform.position, hit.transform.position);
+
+            if (distToEnemy < closestDist)
+            {
+                closestDist = distToEnemy;
+                closestEnemy = hit.transform;
+            }
+            
         }
     }
 
