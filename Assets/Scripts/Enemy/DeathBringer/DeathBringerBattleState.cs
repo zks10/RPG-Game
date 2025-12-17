@@ -45,18 +45,13 @@ public class DeathBringerBattleState : EnemyState
             if (detection.distance < enemy.attackDistance)
             {
                 if (CanAttack())
-                {
                     stateMachine.ChangeState(enemy.attackState);
-                }
+                // else 
+                //     stateMachine.ChangeState(enemy.idleState);
+
             }
         }
-        // else
-        // {
-        //     if (stateTimer < 0 || Vector2.Distance(player.position, enemy.transform.position) > 15)
-        //     {
-        //         stateMachine.ChangeState(enemy.idleState);
-        //     }
-        // }
+
 
         if (player.position.x > enemy.transform.position.x && !VeryClose() && enemy.IsGroundDectected())
             moveDir = 1;
@@ -72,7 +67,6 @@ public class DeathBringerBattleState : EnemyState
     {
         if (Time.time >= enemy.lastTimeAttacked + enemy.attackCooldown)
         {
-            //enemy.attackCooldown = Random.Range(enemy.minAttackCooldown, enemy.maxAttackCooldown); 
             enemy.lastTimeAttacked = Time.time;
             return false;
         }

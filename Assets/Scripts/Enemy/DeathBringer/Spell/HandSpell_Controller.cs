@@ -16,11 +16,9 @@ public class HandSpell_Controller : MonoBehaviour
         {
             if (hit.GetComponent<Player>() != null)
             {
-                // if (hit.GetComponent<Player>().isDead) continue;
-                // hit.GetComponent<Entity>().SetUpKnockBackDir(transform);
-                // myStats.DoMagicalDamage(hit.GetComponent<Player>());
-                Debug.Log("do damage");
-
+                if (hit.GetComponent<Player>().isDead) continue;
+                hit.GetComponent<Entity>().SetUpKnockBackDir(transform);
+                myStats.DoMagicalDamage(hit.GetComponent<CharacterStats>());
                 
             }
         }

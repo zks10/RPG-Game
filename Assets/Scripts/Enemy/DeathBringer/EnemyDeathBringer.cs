@@ -2,12 +2,15 @@ using UnityEngine;
 
 public class EnemyDeathBringer : Enemy
 {
+    public bool bossFightBegun;
+
+
     [Header("Spell Cast Details")]
     [SerializeField] private GameObject spellPrefab;
     [SerializeField] private float spellCastStateCooldown;
     public int amountOfSpells;
     public float spellCooldown;
-    private float lastTimeCast;
+    public float lastTimeCast;
     
     # region States 
     public DeathBringerIdleState idleState { get; private set; }
@@ -132,10 +135,9 @@ public class EnemyDeathBringer : Enemy
     {
         if (Time.time >= lastTimeCast + spellCastStateCooldown)
         {
-            lastTimeCast = Time.time;
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
 }

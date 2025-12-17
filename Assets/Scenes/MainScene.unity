@@ -69216,13 +69216,15 @@ MonoBehaviour:
   viewDistance: 9
   lastTimeAttacked: 0
   detectPlayerImage: {fileID: 98923680}
+  bossFightBegun: 0
   spellPrefab: {fileID: 2928600029149074670, guid: 2ea9c25381d75484ab8a5c5e4212de9d, type: 3}
-  spellCastStateCooldown: 0
-  amountOfSpells: 0
-  spellCooldown: 0
+  spellCastStateCooldown: 15
+  amountOfSpells: 5
+  spellCooldown: 2
+  lastTimeCast: 0
   arena: {fileID: 1360592042}
   surroundingCheckSize: {x: 3, y: 3}
-  defaultChanceToTeleport: 25
+  defaultChanceToTeleport: 100
 --- !u!114 &2055130956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69301,7 +69303,7 @@ MonoBehaviour:
     baseValue: 0
     modifiers: 
   maxHP:
-    baseValue: 500
+    baseValue: 400
     modifiers: 
   currentHP: 0
   armor:
@@ -69320,7 +69322,7 @@ MonoBehaviour:
     baseValue: 0
     modifiers: 
   damage:
-    baseValue: 40
+    baseValue: 0
     modifiers: 
   fireDamage:
     baseValue: 0
@@ -69341,7 +69343,7 @@ MonoBehaviour:
   maxCoins: 12
   level: 1
   percentageModifier: 0.4
-  enemyType: 0
+  enemyType: 4
   soulDropAmount:
     baseValue: 400
     modifiers: 
