@@ -17,7 +17,7 @@ public class EnemyAnimationTrigger : MonoBehaviour
             {
                 PlayerStats _target = hit.GetComponent<PlayerStats>();
                 if (_target != null)
-                    enemy.stats.DoPhysicalDamage(_target);
+                    enemy.stats.DoDamageToPlayer(_target);
 
                 var armor = Inventory.instance.GetEquipmentByType(EquipmentType.Armor);
                 if (armor == null)

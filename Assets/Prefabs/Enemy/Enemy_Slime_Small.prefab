@@ -140,8 +140,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1.2704785, y: 0.85174334}
+  m_Offset: {x: 0.0680857, y: 0.02042581}
+  m_Size: {x: 1.4066523, y: 0.8925963}
   m_Direction: 1
 --- !u!114 &1469045739192528369
 MonoBehaviour:
@@ -159,26 +159,26 @@ MonoBehaviour:
     baseValue: 0
     modifiers: 
   agility:
-    baseValue: 0
+    baseValue: 3
     modifiers: 
   intelligence:
-    baseValue: 0
+    baseValue: 2
     modifiers: 
   vitality:
-    baseValue: 0
+    baseValue: 3
     modifiers: 
   maxHP:
-    baseValue: 150
+    baseValue: 20
     modifiers: 
   currentHP: 0
   armor:
     baseValue: 0
     modifiers: 
   evasion:
-    baseValue: 0
+    baseValue: 3
     modifiers: 
   magicResistence:
-    baseValue: 0
+    baseValue: 1
     modifiers: 
   critRate:
     baseValue: 0
@@ -187,16 +187,16 @@ MonoBehaviour:
     baseValue: 0
     modifiers: 
   damage:
-    baseValue: 20
+    baseValue: 0
     modifiers: 
   fireDamage:
-    baseValue: 5
+    baseValue: 1
     modifiers: 
   iceDamage:
-    baseValue: 25
+    baseValue: 3
     modifiers: 
   lightningDamage:
-    baseValue: 5
+    baseValue: 1
     modifiers: 
   ailmentDuration: 3
   isIgnited: 0
@@ -207,10 +207,10 @@ MonoBehaviour:
   minCoins: 2
   maxCoins: 3
   level: 1
-  percentageModifier: 0.4
+  percentageModifier: 0.25
   enemyType: 1
   soulDropAmount:
-    baseValue: 30
+    baseValue: 15
     modifiers: 
 --- !u!114 &8441352699817659909
 MonoBehaviour:
@@ -262,7 +262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 180f714ff1e9649178ce694069e15efb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  possibleAmountOfItem: 3
+  maxAmountItemsToDrop: 2
   possibleDrops:
   - {fileID: 11400000, guid: 1655064a8c0cc46c7beb8343629b3ee0, type: 2}
   - {fileID: 11400000, guid: 91562c4df498d41af947656df9500456, type: 2}
@@ -283,6 +283,7 @@ MonoBehaviour:
   knockbackPower: {x: 7, y: 7}
   knockbackOffset: {x: 0.5, y: 2}
   knockbackDuration: 0.15
+  lockKnockbackDir: 0
   attackCheck: {fileID: 7152562959748128343}
   attackCheckRadius: 0.51
   groundCheck: {fileID: 6389704683618174208}
@@ -295,9 +296,6 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 64
-  whatIsWall:
-    serializedVersion: 2
-    m_Bits: 8
   stunDuration: 1
   stunDirection: {x: 7, y: 12}
   counterImage: {fileID: 8286931280642898643}

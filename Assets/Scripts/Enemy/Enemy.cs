@@ -11,14 +11,13 @@ public class Enemy : Entity
 {
 
     [SerializeField] protected LayerMask whatIsPlayer;
-    [SerializeField] protected LayerMask whatIsWall;
 
     private Transform player; 
 
     [Header("Stunned Info")]
     public float stunDuration;
     public Vector2 stunDirection;
-    protected bool canBeStunned;
+    public bool canBeStunned { get; private set; }
     [SerializeField] protected GameObject counterImage;
 
     [Header("Move Info")]

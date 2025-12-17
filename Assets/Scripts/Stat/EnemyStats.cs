@@ -16,7 +16,7 @@ public class EnemyStats : CharacterStats
 
     [Header("Level Details")]
     [SerializeField] private int level = 1; 
-    [Range(0f, 1f)]
+    [Range(0, 1f)]
     [SerializeField] private float percentageModifier = .4f;
 
     [Header("Enemy Type")]
@@ -130,5 +130,12 @@ public class EnemyStats : CharacterStats
         }
     }
 
+    public override void DoDamageToPlayer(PlayerStats _target)
+    {
+        if (enemyType == EnemyType.Slime) 
+            DoMagicalDamage(_target);
+        else 
+            DoPhysicalDamage(_target);
+    }
 
 }

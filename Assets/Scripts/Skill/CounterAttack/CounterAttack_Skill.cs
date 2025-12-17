@@ -20,11 +20,6 @@ public class CounterAttack_Skill : Skill
     public override void UseSkill()
     {
         base.UseSkill();
-        if (restoreCounterAttackUnlocked)
-        {
-            int restoreAmount = Mathf.RoundToInt(player.stats.GetMaxHP() * restoreHPAmountPercentage);
-            player.stats.IncreaseHPBy(restoreAmount);
-        }
     }
 
     public override bool CanUseSkill()
@@ -70,5 +65,13 @@ public class CounterAttack_Skill : Skill
             SkillManager.instance.clone.CreateCloneWithDelay(_respawnTransform);
     }
 
+    public void SucessfulCounterRestore()
+    {
+        if (restoreCounterAttackUnlocked)
+        {
+            int restoreAmount = Mathf.RoundToInt(player.stats.GetMaxHP() * restoreHPAmountPercentage);
+            player.stats.IncreaseHPBy(restoreAmount);
+        }
+    }
 
 }

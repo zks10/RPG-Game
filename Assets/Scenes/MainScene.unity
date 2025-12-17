@@ -29613,7 +29613,7 @@ MonoBehaviour:
   knockbackDuration: 0
   lockKnockbackDir: 0
   attackCheck: {fileID: 627904830}
-  attackCheckRadius: 1.01
+  attackCheckRadius: 1.1
   groundCheck: {fileID: 305051327}
   groundCheckDistance: 0.18
   wallCheck: {fileID: 1526845759}
@@ -29777,47 +29777,47 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   strength:
-    baseValue: 0
+    baseValue: 2
     modifiers: 
   agility:
-    baseValue: 0
+    baseValue: 2
     modifiers: 
   intelligence:
-    baseValue: 0
+    baseValue: 2
     modifiers: 
   vitality:
-    baseValue: 0
+    baseValue: 2
     modifiers: 
   maxHP:
-    baseValue: 500
+    baseValue: 200
     modifiers: 
   currentHP: 0
   armor:
-    baseValue: 0
+    baseValue: 6
     modifiers: 
   evasion:
-    baseValue: 0
+    baseValue: 6
     modifiers: 
   magicResistence:
-    baseValue: 0
+    baseValue: 6
     modifiers: 
   critRate:
-    baseValue: 50
+    baseValue: 10
     modifiers: 
   critDamage:
     baseValue: 0
-    modifiers: 
+    modifiers: 0a000000
   damage:
-    baseValue: 30
+    baseValue: 16
     modifiers: 
   fireDamage:
-    baseValue: 10
+    baseValue: 6
     modifiers: 
   iceDamage:
-    baseValue: 20
+    baseValue: 4
     modifiers: 
   lightningDamage:
-    baseValue: 0
+    baseValue: 5
     modifiers: 
   ailmentDuration: 4
   isIgnited: 0
@@ -56272,7 +56272,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6639131967846456025, guid: 5ae17f18e138545bab58575c370b144d, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7898557078454493481, guid: 5ae17f18e138545bab58575c370b144d, type: 3}
       propertyPath: maxAmountItemsToDrop
@@ -56280,11 +56280,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8946808217273187989, guid: 5ae17f18e138545bab58575c370b144d, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8946808217273187989, guid: 5ae17f18e138545bab58575c370b144d, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -56668,7 +56668,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6218879008557534488, guid: f700e65bad8b64d49a09da15589932da, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7579654201860417913, guid: f700e65bad8b64d49a09da15589932da, type: 3}
       propertyPath: m_LocalPosition.x
@@ -56712,11 +56712,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8658984781827382839, guid: f700e65bad8b64d49a09da15589932da, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8658984781827382839, guid: f700e65bad8b64d49a09da15589932da, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

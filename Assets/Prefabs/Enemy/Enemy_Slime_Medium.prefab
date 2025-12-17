@@ -530,26 +530,26 @@ MonoBehaviour:
     baseValue: 0
     modifiers: 
   agility:
-    baseValue: 0
+    baseValue: 2
     modifiers: 
   intelligence:
-    baseValue: 0
+    baseValue: 3
     modifiers: 
   vitality:
-    baseValue: 0
+    baseValue: 7
     modifiers: 
   maxHP:
-    baseValue: 150
+    baseValue: 55
     modifiers: 
   currentHP: 0
   armor:
-    baseValue: 0
+    baseValue: 1
     modifiers: 
   evasion:
-    baseValue: 0
+    baseValue: 1
     modifiers: 
   magicResistence:
-    baseValue: 0
+    baseValue: 2
     modifiers: 
   critRate:
     baseValue: 0
@@ -561,13 +561,13 @@ MonoBehaviour:
     baseValue: 20
     modifiers: 
   fireDamage:
-    baseValue: 5
+    baseValue: 3
     modifiers: 
   iceDamage:
-    baseValue: 25
+    baseValue: 6
     modifiers: 
   lightningDamage:
-    baseValue: 5
+    baseValue: 3
     modifiers: 
   ailmentDuration: 3
   isIgnited: 0
@@ -578,7 +578,7 @@ MonoBehaviour:
   minCoins: 0
   maxCoins: 0
   level: 1
-  percentageModifier: 0.4
+  percentageModifier: 0.25
   enemyType: 1
   soulDropAmount:
     baseValue: 0
@@ -633,7 +633,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 180f714ff1e9649178ce694069e15efb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  possibleAmountOfItem: 0
+  maxAmountItemsToDrop: 0
   possibleDrops: []
   dropPrefab: {fileID: 6894516071049348714, guid: c1d58cb01d668405eaaf4ac261bf987e, type: 3}
 --- !u!114 &1151290821557499347
@@ -652,6 +652,7 @@ MonoBehaviour:
   knockbackPower: {x: 6, y: 7}
   knockbackOffset: {x: 0.5, y: 2}
   knockbackDuration: 0.15
+  lockKnockbackDir: 0
   attackCheck: {fileID: 4519565982596519968}
   attackCheckRadius: 0.6
   groundCheck: {fileID: 8128751664057523832}
@@ -664,9 +665,6 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 64
-  whatIsWall:
-    serializedVersion: 2
-    m_Bits: 8
   stunDuration: 1
   stunDirection: {x: 7, y: 12}
   counterImage: {fileID: 6552095335792155282}

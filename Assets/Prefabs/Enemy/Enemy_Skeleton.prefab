@@ -10335,9 +10335,6 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 64
-  whatIsWall:
-    serializedVersion: 2
-    m_Bits: 8
   stunDuration: 1
   stunDirection: {x: 7, y: 12}
   counterImage: {fileID: 8316919177232135702}
@@ -10429,41 +10426,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   strength:
-    baseValue: 0
+    baseValue: 6
     modifiers: 
   agility:
-    baseValue: 0
+    baseValue: 4
     modifiers: 
   intelligence:
     baseValue: 0
     modifiers: 
   vitality:
-    baseValue: 0
+    baseValue: 6
     modifiers: 
   maxHP:
-    baseValue: 500
+    baseValue: 45
     modifiers: 
   currentHP: 0
   armor:
-    baseValue: 0
+    baseValue: 3
     modifiers: 
   evasion:
-    baseValue: 0
+    baseValue: 4
     modifiers: 
   magicResistence:
     baseValue: 0
     modifiers: 
   critRate:
-    baseValue: 50
+    baseValue: 5
     modifiers: 
   critDamage:
     baseValue: 0
     modifiers: 
   damage:
-    baseValue: 30
+    baseValue: 8
     modifiers: 
   fireDamage:
-    baseValue: 5
+    baseValue: 0
     modifiers: 
   iceDamage:
     baseValue: 0
@@ -10479,11 +10476,11 @@ MonoBehaviour:
   soulOrbPrefab: {fileID: 6157043534711417490, guid: 576118fde0fa440cc8e292e9f8fb0de6, type: 3}
   minCoins: 3
   maxCoins: 5
-  level: 6
-  percentageModifier: 0
+  level: 1
+  percentageModifier: 0.25
   enemyType: 0
   soulDropAmount:
-    baseValue: 100
+    baseValue: 50
     modifiers: 
 --- !u!70 &4896472633630078823
 CapsuleCollider2D:
@@ -10534,11 +10531,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 180f714ff1e9649178ce694069e15efb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  possibleAmountOfItem: 4
+  maxAmountItemsToDrop: 3
   possibleDrops:
-  - {fileID: 11400000, guid: f80aabeb1e41a4c11b4569c070f9dc17, type: 2}
-  - {fileID: 11400000, guid: 98d5f23689c5742c594336a16bde7b7d, type: 2}
   - {fileID: 11400000, guid: 3bdd76181297d41969d43f6faa3d578f, type: 2}
+  - {fileID: 11400000, guid: 77a55a3fab3fc4c09854b776da73e2c2, type: 2}
+  - {fileID: 11400000, guid: 98d5f23689c5742c594336a16bde7b7d, type: 2}
+  - {fileID: 11400000, guid: f80aabeb1e41a4c11b4569c070f9dc17, type: 2}
+  - {fileID: 11400000, guid: 03841b9581d584816ac91c3fc32494a4, type: 2}
   dropPrefab: {fileID: 6894516071049348714, guid: c1d58cb01d668405eaaf4ac261bf987e, type: 3}
 --- !u!1 &6799325193592651934
 GameObject:

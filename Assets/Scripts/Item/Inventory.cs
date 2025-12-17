@@ -373,7 +373,6 @@ public class Inventory : MonoBehaviour, ISaveManager
         if (canUseTrinket)
         {
             trinketCooldown = currentTrinket.itemCooldown;
-            Debug.Log(trinketCooldown);
             currentTrinket.ItemEffect(null);
             lastTimeUsedTrinket = Time.time;
         }

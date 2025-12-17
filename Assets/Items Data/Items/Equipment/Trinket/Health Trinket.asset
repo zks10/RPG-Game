@@ -15,9 +15,10 @@ MonoBehaviour:
   itemType: 1
   itemName: Health Trinket
   icon: {fileID: -770765129, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
+  itemId: bd3c85cc6d7bd44678cb705a1711b476
   dropRate: 0
   slotType: 3
-  itemCooldown: 20
+  itemCooldown: 0
   itemEffects:
   - {fileID: 11400000, guid: 4b677aa796d404e6a949f8a6a9c727cb, type: 2}
   itemEffectDescription: Heals 20% of Health. Cooldown 20s.

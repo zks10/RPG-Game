@@ -342,38 +342,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   strength:
-    baseValue: 0
+    baseValue: 7
     modifiers: 
   agility:
-    baseValue: 0
+    baseValue: 8
     modifiers: 
   intelligence:
     baseValue: 0
     modifiers: 
   vitality:
-    baseValue: 0
+    baseValue: 4
     modifiers: 
   maxHP:
-    baseValue: 200
+    baseValue: 50
     modifiers: 
   currentHP: 0
   armor:
-    baseValue: 0
+    baseValue: 1
     modifiers: 
   evasion:
-    baseValue: 0
+    baseValue: 7
     modifiers: 
   magicResistence:
     baseValue: 0
     modifiers: 
   critRate:
-    baseValue: 0
+    baseValue: 10
     modifiers: 
   critDamage:
     baseValue: 0
     modifiers: 
   damage:
-    baseValue: 25
+    baseValue: 14
     modifiers: 
   fireDamage:
     baseValue: 0
@@ -393,7 +393,7 @@ MonoBehaviour:
   minCoins: 4
   maxCoins: 7
   level: 1
-  percentageModifier: 0.4
+  percentageModifier: 0.25
   enemyType: 2
   soulDropAmount:
     baseValue: 150
@@ -448,7 +448,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 180f714ff1e9649178ce694069e15efb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  possibleAmountOfItem: 0
+  maxAmountItemsToDrop: 0
   possibleDrops: []
   dropPrefab: {fileID: 0}
 --- !u!114 &5381766806559343964
@@ -480,9 +480,6 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 64
-  whatIsWall:
-    serializedVersion: 2
-    m_Bits: 8
   stunDuration: 0
   stunDirection: {x: 0, y: 0}
   counterImage: {fileID: 4255190770078254168}

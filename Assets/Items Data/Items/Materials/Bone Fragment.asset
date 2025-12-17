@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f28880d3fb3d84a1cb610821d34a950c, type: 3}
+  m_Name: Bone Fragment
+  m_EditorClassIdentifier: 
+  itemType: 0
+  itemName: Skeleton Bone
+  icon: {fileID: 1900874589, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
+  itemId: 3bdd76181297d41969d43f6faa3d578f
+  dropRate: 75

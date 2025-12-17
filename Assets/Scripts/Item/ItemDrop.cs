@@ -8,37 +8,6 @@ public class ItemDrop : MonoBehaviour
     // private List<ItemData> dropList = new List<ItemData>();
     [SerializeField] private GameObject dropPrefab;
 
-    // public virtual void OldGenerateDrops()
-    // {
-    //     if (possibleDrops == null || possibleDrops.Length == 0)
-    //         return;
-
-    //     // dropList.Clear();
-
-    //     for (int i = 0; i < possibleDrops.Length; i++)
-    //     {
-    //         if (Random.Range(0, 100) <= possibleDrops[i].dropRate)
-    //         {
-    //             dropList.Add(possibleDrops[i]);
-    //         }
-    //     }
-
-    //     if (dropList.Count == 0)
-    //         return;
-
-    //     for (int i = 0; i < maxAmountItemsToDrop; i++)
-    //     {
-    //         if (dropList.Count == 0)
-    //             break; 
-
-    //         int randomIndex = Random.Range(0, dropList.Count);
-    //         ItemData randomItem = dropList[randomIndex];
-
-    //         //dropList.RemoveAt(randomIndex); comment this line will allow multiple drops
-    //         DropItem(randomItem);
-    //     }
-    // }
-
     public virtual void GenerateDrops()
     {
         if (possibleDrops == null || possibleDrops.Length == 0)

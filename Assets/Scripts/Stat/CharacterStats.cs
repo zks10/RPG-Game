@@ -197,11 +197,11 @@ public class CharacterStats : MonoBehaviour
             case DamageType.Magic:
                 fx.CreatePopUpText(
                     _damage.ToString(),
-                    new Color(0.6f, 0f, 1f),
+                    new Color(0.85f, 0.45f, 1f),
                     1f,
                     FontStyles.Normal,
                     usePunch: false,
-                    useSquash: true,
+                    useSquash: false,
                     useCurve: true
                 );
                 break;
@@ -287,7 +287,7 @@ public class CharacterStats : MonoBehaviour
 
         }
         if (canApplyIgnite)
-            _targetStats.SetIgniteDamage(Mathf.RoundToInt(_fireDamage * .2f));
+            _targetStats.SetIgniteDamage(Mathf.RoundToInt(_fireDamage * .1f));
 
         if (canApplyShock)
             _targetStats.SetShockStrikeDamage(Mathf.RoundToInt(_lightningDamage * .2f));
@@ -522,7 +522,6 @@ public class CharacterStats : MonoBehaviour
         attacker.TakeDamage(reflectedDamage);
 
     }
-
-   
+    public virtual void DoDamageToPlayer(PlayerStats _target) { }
 
 }

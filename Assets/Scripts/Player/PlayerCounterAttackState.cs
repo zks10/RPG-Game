@@ -28,7 +28,8 @@ public class PlayerCounterAttackState : PlayerState
         
         Collider2D [] colliders = Physics2D.OverlapCircleAll(player.attackCheck.position, player.attackCheckRadius);
 
-        foreach (var hit in colliders) {
+        foreach (var hit in colliders) 
+        {
             if (hit.GetComponent<Arrow_Controller>() != null)
             {
                 hit.GetComponent<Arrow_Controller>().FlipArrow("Enemy");
@@ -41,13 +42,7 @@ public class PlayerCounterAttackState : PlayerState
                 {
                     SucessfulCounterAttack();
 
-                    player.skill.counterAttack.UseSkill();
-                    // If only one counter clone
-                    // if (canCreateClone)
-                    // {
-                    //     canCreateClone = false;
-                    //     player.skill.coounterAttack.MakeMirageOnCounterAttack(hit.transform);
-                    // }
+
                     if (player.skill.counterAttack.mirageCounterAttackUnlocked)
                         player.skill.clone.CreateCloneWithDelay(hit.transform);
                 } 
@@ -68,5 +63,6 @@ public class PlayerCounterAttackState : PlayerState
         player.fx.ScreenShake(player.fx.counterAttackShake);
         AudioManager.instance.PlaySFX(0);
         player.skill.counterAttack.cooldownTimer = -1;
+        player.skill.counterAttack.SucessfulCounterRestore();
     }
 }

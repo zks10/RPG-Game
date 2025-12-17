@@ -23,7 +23,7 @@ public class PlayerAnimationTrigger : MonoBehaviour
 
                 ItemData_Equipment weapon = Inventory.instance.GetEquipmentByType(EquipmentType.Weapon);
                 if (weapon == null)
-                    return; 
+                    continue; 
                 weapon.ItemEffect(_target.transform);
 
             }
