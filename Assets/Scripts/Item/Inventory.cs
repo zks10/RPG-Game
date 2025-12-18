@@ -373,7 +373,13 @@ public class Inventory : MonoBehaviour, ISaveManager
         if (canUseTrinket)
         {
             trinketCooldown = currentTrinket.itemCooldown;
-            currentTrinket.ItemEffect(null);
+            currentTrinket.ItemEffect(new EffectContext
+            {
+                trigger = ItemTrigger.OnUse,
+                user = PlayerManager.instance.player.transform,
+                target = null
+            });
+
             lastTimeUsedTrinket = Time.time;
         }
         else
@@ -386,7 +392,7 @@ public class Inventory : MonoBehaviour, ISaveManager
             return;
 
         ItemData_Edible newEdible = _item as ItemData_Edible;
-        newEdible.ItemEffect(null);
+        newEdible.Use();
         RemoveItem(_item);
         UpdateSlotUI();
     }

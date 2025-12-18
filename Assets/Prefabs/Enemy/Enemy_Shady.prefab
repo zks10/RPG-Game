@@ -5655,7 +5655,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3c010b99932ad4cce80dc4a1b8fdb5b8, type: 2}
   - {fileID: 11400000, guid: 38f0617affbd5404b99be7c06b5a1f40, type: 2}
   - {fileID: 11400000, guid: f045db69001394f5e9960387f22d9aa9, type: 2}
+  - {fileID: 11400000, guid: 4e77ab55df5b0452f8832b50b7b9f5d2, type: 2}
   - {fileID: 11400000, guid: 615ed435d3ed84a24b34f22fb5c9e6b7, type: 2}
+  - {fileID: 11400000, guid: b9e9a96ae33d04de299711a6a273106d, type: 2}
   - {fileID: 11400000, guid: bf5bcc96ed5ff456782a8a107a0415e5, type: 2}
   dropPrefab: {fileID: 6894516071049348714, guid: c1d58cb01d668405eaaf4ac261bf987e, type: 3}
 --- !u!114 &6972411109215030361

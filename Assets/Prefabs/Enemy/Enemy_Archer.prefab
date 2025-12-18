@@ -452,6 +452,7 @@ MonoBehaviour:
   possibleDrops:
   - {fileID: 11400000, guid: 4e77ab55df5b0452f8832b50b7b9f5d2, type: 2}
   - {fileID: 11400000, guid: 98d5f23689c5742c594336a16bde7b7d, type: 2}
+  - {fileID: 11400000, guid: 2cc294ff53c14435499e375c09d13933, type: 2}
   - {fileID: 11400000, guid: ec577760f358b4e40815fb0a120fd6ce, type: 2}
   - {fileID: 11400000, guid: db5501fda091a40fdbf3e513835df473, type: 2}
   dropPrefab: {fileID: 6894516071049348714, guid: c1d58cb01d668405eaaf4ac261bf987e, type: 3}

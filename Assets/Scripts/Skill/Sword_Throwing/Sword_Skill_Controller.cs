@@ -327,7 +327,15 @@ public class Sword_Skill_Controller : MonoBehaviour
 
         ItemData_Equipment equipAmulet = Inventory.instance.GetEquipmentByType(EquipmentType.Amulet);
         if (equipAmulet != null)
-            equipAmulet.ItemEffect(enemy.transform);
+        {
+            equipAmulet.ItemEffect(new EffectContext
+            {
+                trigger = ItemTrigger.OnHitEnemy,   
+                user = player.transform,
+                target = enemy.transform
+            });
+        }
+            
     }
 
     private void DetachFromEnemy()

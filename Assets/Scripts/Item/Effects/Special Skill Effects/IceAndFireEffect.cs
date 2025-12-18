@@ -5,18 +5,23 @@ public class IceAndFireEffect : ItemEffect
 {
     [SerializeField] private GameObject iceAndFirePrefab;
     [SerializeField] private Vector2 newVelocity;
-    public override void ExecuteEffect(Transform _respawnPosition)
+
+    public override void ExecuteEffect(EffectContext ctx)
     {
-        Player player = PlayerManager.instance.player;
+        if (ctx.user == null || ctx.target == null) return;
+
+        Player player = ctx.user.GetComponent<Player>();
+        if (player == null) return;
 
         bool thirdAttack = (player.primaryAttackState.comboCounter == 2);
-        if (thirdAttack)
-        {
-            GameObject newIceAndFire = Instantiate(iceAndFirePrefab, _respawnPosition.position, player.transform.rotation);
-            newIceAndFire.GetComponent<Rigidbody2D>().linearVelocity = newVelocity * player.facingDir;
+        if (!thirdAttack) return;
 
-            Destroy(newIceAndFire, 6);
-        }
-        
+        GameObject obj = Instantiate(iceAndFirePrefab, ctx.target.position, player.transform.rotation);
+
+        Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
+        if (rb != null)
+            rb.linearVelocity = newVelocity * player.facingDir;
+
+        Destroy(obj, 6f);
     }
 }

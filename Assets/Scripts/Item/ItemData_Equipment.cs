@@ -51,9 +51,26 @@ public class ItemData_Equipment : ItemData
     {
         foreach (var item in itemEffects)
         {
-            item.ExecuteEffect(_enemyPosition);
+            Debug.Log("hoooi");
+            //item.ExecuteEffect(_enemyPosition);
         }
     }
+
+    public void ItemEffect(EffectContext ctx)
+    {
+        if (itemEffects == null) return;
+
+        foreach (var effect in itemEffects)
+        {
+            if (effect == null) continue;
+
+            if (effect.trigger != ItemTrigger.None && effect.trigger != ctx.trigger)
+                continue;
+
+            effect.ExecuteEffect(ctx);
+        }
+    }
+
 
     public void AddModifiers()
     {

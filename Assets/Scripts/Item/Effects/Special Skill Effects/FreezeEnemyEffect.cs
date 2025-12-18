@@ -6,24 +6,26 @@ public class FreezeEnemyEffect : ItemEffect
     [SerializeField] private float duration;
     [SerializeField] private float freezeRadius;
 
-    public override void ExecuteEffect(Transform _transform)
+    public override void ExecuteEffect(EffectContext ctx)
     {
-        PlayerStats stats = PlayerManager.instance.player.GetComponent<PlayerStats>();
+        if (ctx.user == null) return;
 
-        if (stats.currentHP > stats.GetMaxHP() * .1f)
+        PlayerStats stats = ctx.user.GetComponent<PlayerStats>();
+        if (stats == null) return;
+
+        if (stats.currentHP > stats.GetMaxHP() * 0.1f)
             return;
+
         if (!Inventory.instance.CanUseArmor())
             return;
-            
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(_transform.position, freezeRadius);
+
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(ctx.user.position, freezeRadius);
 
         foreach (var hit in colliders)
         {
-            if (hit.GetComponent<Enemy>() != null)
-            {
-                hit.GetComponent<Enemy>().FreezeTimeFor(duration);
-            }
-        } 
+            Enemy e = hit.GetComponent<Enemy>();
+            if (e != null)
+                e.FreezeTimeFor(duration);
+        }
     }
-
 }

@@ -10537,7 +10537,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 77a55a3fab3fc4c09854b776da73e2c2, type: 2}
   - {fileID: 11400000, guid: 98d5f23689c5742c594336a16bde7b7d, type: 2}
   - {fileID: 11400000, guid: f80aabeb1e41a4c11b4569c070f9dc17, type: 2}
-  - {fileID: 11400000, guid: 03841b9581d584816ac91c3fc32494a4, type: 2}
+  - {fileID: 11400000, guid: b9e9a96ae33d04de299711a6a273106d, type: 2}
   dropPrefab: {fileID: 6894516071049348714, guid: c1d58cb01d668405eaaf4ac261bf987e, type: 3}
 --- !u!1 &6799325193592651934
 GameObject:

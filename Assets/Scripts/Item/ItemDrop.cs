@@ -13,15 +13,32 @@ public class ItemDrop : MonoBehaviour
         if (possibleDrops == null || possibleDrops.Length == 0)
             return;
 
-        for (int i = 0; i < maxAmountItemsToDrop; i++)
+        int droppedCount = 0;
+        int index = 0;
+
+        int safety = 0;
+        int maxIterations = maxAmountItemsToDrop * possibleDrops.Length * 5;
+
+        while (droppedCount < maxAmountItemsToDrop && safety < maxIterations)
         {
-            ItemData droppedItem = RollForItem();
-            if (droppedItem != null)
+            safety++;
+
+            ItemData item = possibleDrops[index];
+
+            if (Random.Range(0f, 100f) < item.dropRate)
             {
-                DropItem(droppedItem);
+                DropItem(item);
+                droppedCount++;
             }
+
+            index++;
+
+            if (index >= possibleDrops.Length)
+                index = 0;
         }
     }
+
+
 
     private ItemData RollForItem()
     {

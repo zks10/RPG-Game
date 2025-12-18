@@ -38,11 +38,27 @@ public class ItemData_Edible : ItemData
     [Header("Craft Requirements")]
     public List<InventoryItem> craftingMaterials;
 
-    public void ItemEffect(Transform _enemyPosition)
+    public void Use()
     {
-        foreach (var item in itemEffects)
+        if (itemEffects == null) return;
+
+        Transform user = PlayerManager.instance.player.transform;
+
+        EffectContext ctx = new EffectContext
         {
-            item.ExecuteEffect(PlayerManager.instance.player.transform);
+            trigger = ItemTrigger.OnUse,
+            user = user,
+            target = null
+        };
+
+        foreach (var effect in itemEffects)
+        {
+            if (effect == null) continue;
+
+            if (effect.trigger != ItemTrigger.None && effect.trigger != ctx.trigger)
+                continue;
+
+            effect.ExecuteEffect(ctx);
         }
     }
 

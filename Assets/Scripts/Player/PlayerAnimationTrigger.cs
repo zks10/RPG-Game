@@ -24,8 +24,12 @@ public class PlayerAnimationTrigger : MonoBehaviour
                 ItemData_Equipment weapon = Inventory.instance.GetEquipmentByType(EquipmentType.Weapon);
                 if (weapon == null)
                     continue; 
-                weapon.ItemEffect(_target.transform);
-
+                weapon.ItemEffect(new EffectContext 
+                {
+                    trigger = ItemTrigger.OnHitEnemy,
+                    user = player.transform,
+                    target = _target.transform
+                });
             }
 
             

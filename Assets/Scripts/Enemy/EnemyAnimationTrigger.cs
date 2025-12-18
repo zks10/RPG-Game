@@ -19,10 +19,15 @@ public class EnemyAnimationTrigger : MonoBehaviour
                 if (_target != null)
                     enemy.stats.DoDamageToPlayer(_target);
 
-                var armor = Inventory.instance.GetEquipmentByType(EquipmentType.Armor);
+                ItemData_Equipment armor = Inventory.instance.GetEquipmentByType(EquipmentType.Armor);
                 if (armor == null)
-                    return; 
-                armor.ItemEffect(enemy.transform);
+                    continue;
+                armor.ItemEffect(new EffectContext
+                {
+                    trigger = ItemTrigger.OnTakeDamage,
+                    user = hit.transform,       // player
+                    target = enemy.transform    // enemy attacker
+                });
             }
         }
     }

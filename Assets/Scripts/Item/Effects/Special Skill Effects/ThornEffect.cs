@@ -6,19 +6,16 @@ public class ThornEffect : ItemEffect
     [Range(0f, 1f)]
     [SerializeField] private float reflectPercentage = 0.5f;
 
-    public override void ExecuteEffect(Transform _enemyTransform)
+    public override void ExecuteEffect(EffectContext ctx)
     {
-        if (_enemyTransform == null)
-            return;
-        EnemyStats stats = _enemyTransform.GetComponent<EnemyStats>();
+        if (ctx.target == null) return;
 
-        if (stats == null)
-            return;
+        EnemyStats attackerStats = ctx.target.GetComponent<EnemyStats>();
+        if (attackerStats == null || attackerStats.isDead) return;
 
-        int damageToReflect = Mathf.RoundToInt(stats.GetCalculatedStatValue(StatType.damage) * reflectPercentage);
+        int attackerDamage = attackerStats.GetCalculatedStatValue(StatType.damage);
+        int reflectDamage = Mathf.RoundToInt(attackerDamage * reflectPercentage);
 
-        stats.TakeDamage(damageToReflect);
-            
-
+        attackerStats.TakeDamage(reflectDamage);
     }
 }

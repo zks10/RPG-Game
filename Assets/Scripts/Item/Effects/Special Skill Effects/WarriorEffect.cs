@@ -4,68 +4,28 @@ using UnityEngine;
 public class WarriorEffect : ItemEffect
 {
     [Header("Boost Values")]
-    [SerializeField] private int offensiveBoostValue; 
+    [SerializeField] private int offensiveBoostValue;
     [SerializeField] private int defensiveBoostValue;
     [SerializeField] private float boostDuration = 10f;
 
-    private bool isOffensiveActive;
-    private bool isDefensiveActive;
-
-    public override void ExecuteEffect(Transform _transform)
+    public override void ExecuteEffect(EffectContext ctx)
     {
-        PlayerStats stats = PlayerManager.instance.player.GetComponent<PlayerStats>();
+        if (ctx.user == null) return;
 
-        bool shouldBeOffensive = stats.currentHP > stats.GetMaxHP() * 0.5f;
+        PlayerStats stats = ctx.user.GetComponent<PlayerStats>();
+        if (stats == null) return;
 
-        if (shouldBeOffensive && !isOffensiveActive)
+        bool offensive = stats.currentHP > stats.GetMaxHP() * 0.5f;
+
+        if (offensive)
         {
-            RemoveDefensiveBoost(stats);
-            ApplyOffensiveBoost(stats);
+            stats.IncreaseStatBy(offensiveBoostValue, boostDuration, stats.strength);
+            stats.IncreaseStatBy(offensiveBoostValue, boostDuration, stats.intelligence);
         }
-        else if (!shouldBeOffensive && !isDefensiveActive)
+        else
         {
-            RemoveOffensiveBoost(stats);
-            ApplyDefensiveBoost(stats);
+            stats.IncreaseStatBy(defensiveBoostValue, boostDuration, stats.vitality);
+            stats.IncreaseStatBy(defensiveBoostValue, boostDuration, stats.agility);
         }
-    }
-
-    private void ApplyOffensiveBoost(PlayerStats stats)
-    {
-        isOffensiveActive = true;
-        isDefensiveActive = false;
-
-        stats.IncreaseStatBy(offensiveBoostValue, boostDuration, stats.strength);
-        stats.IncreaseStatBy(offensiveBoostValue, boostDuration, stats.intelligence);
-
-    }
-
-    private void RemoveOffensiveBoost(PlayerStats stats)
-    {
-        if (!isOffensiveActive) return;
-        isOffensiveActive = false;
-
-        stats.strength.RemoveModifier(offensiveBoostValue);
-        stats.intelligence.RemoveModifier(offensiveBoostValue);
-
-    }
-
-    private void ApplyDefensiveBoost(PlayerStats stats)
-    {
-        isDefensiveActive = true;
-        isOffensiveActive = false;
-
-        stats.IncreaseStatBy(defensiveBoostValue, boostDuration, stats.vitality);
-        stats.IncreaseStatBy(defensiveBoostValue, boostDuration, stats.agility);
-
-    }
-
-    private void RemoveDefensiveBoost(PlayerStats stats)
-    {
-        if (!isDefensiveActive) return;
-        isDefensiveActive = false;
-
-        stats.vitality.RemoveModifier(defensiveBoostValue);
-        stats.evasion.RemoveModifier(defensiveBoostValue);
-
     }
 }

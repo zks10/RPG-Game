@@ -8,7 +8,7 @@ public class PlayerStats : CharacterStats, ISaveManager
     {
         base.Start();
         player = GetComponent<Player>();
-        if (currentHP <= 0)
+        if (currentHP <= 0 || currentHP > GetMaxHP() )
             currentHP = GetMaxHP();
         player.stats.diedInVoid = false;
 
@@ -64,7 +64,12 @@ public class PlayerStats : CharacterStats, ISaveManager
 
         if (currentArmor != null)
         {
-            currentArmor.ItemEffect(player.transform);
+            currentArmor.ItemEffect(new EffectContext
+            {
+                trigger = ItemTrigger.OnTakeDamage,
+                user = player.transform,
+                target = null
+            });
         }
     }
 
