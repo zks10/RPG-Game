@@ -610,8 +610,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 180f714ff1e9649178ce694069e15efb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxAmountItemsToDrop: 0
-  possibleDrops: []
+  maxAmountItemsToDrop: 5
+  possibleDrops:
+  - {fileID: 11400000, guid: ce268e80ef0a24264906fcc03ebe6917, type: 2}
+  - {fileID: 11400000, guid: 1528b1915dd124e689b17f0834d21d1d, type: 2}
+  - {fileID: 11400000, guid: f15e117baff444c038cf5764a568e990, type: 2}
+  - {fileID: 11400000, guid: bfd9cb1e75019478d8b0d15762a2db77, type: 2}
+  - {fileID: 11400000, guid: 0faf2fb813af744b181495cffae0aa67, type: 2}
   dropPrefab: {fileID: 6894516071049348714, guid: c1d58cb01d668405eaaf4ac261bf987e, type: 3}
 --- !u!114 &8460071257466938350
 MonoBehaviour:

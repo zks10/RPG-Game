@@ -10,19 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0d620605f89804261b5e018fb4e76874, type: 3}
-  m_Name: Ice and Fire Blade
+  m_Name: Death Panty
   m_EditorClassIdentifier: 
   itemType: 1
-  itemName: Ice and Fire Blade
-  icon: {fileID: 1398721256, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
-  itemId: 3e0e55f7407e54499a860f883b569ec6
+  itemName: Death Panty
+  icon: {fileID: -1226918627, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
+  itemId: 1528b1915dd124e689b17f0834d21d1d
   dropRate: 0
-  slotType: 0
+  slotType: 1
   itemCooldown: 0
-  itemEffects:
-  - {fileID: 11400000, guid: 00e90f19c70e24eb7b306cc5ef1b01f5, type: 2}
+  itemEffects: []
   itemEffectDescription: 
-  strength: 3
+  strength: 0
   agility: 0
   intelligence: 0
   vitality: 0
@@ -32,8 +31,8 @@ MonoBehaviour:
   magicResistence: 0
   critRate: 0
   critDamage: 0
-  damage: 5
-  fireDamage: 10
-  iceDamage: 10
+  damage: 0
+  fireDamage: 0
+  iceDamage: 0
   lightningDamage: 0
   craftingMaterials: []

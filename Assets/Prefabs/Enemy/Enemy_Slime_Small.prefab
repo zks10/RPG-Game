@@ -265,6 +265,7 @@ MonoBehaviour:
   maxAmountItemsToDrop: 2
   possibleDrops:
   - {fileID: 11400000, guid: 1655064a8c0cc46c7beb8343629b3ee0, type: 2}
+  - {fileID: 11400000, guid: 155ab3f8472684917a5ac7317efd19c5, type: 2}
   - {fileID: 11400000, guid: 91562c4df498d41af947656df9500456, type: 2}
   dropPrefab: {fileID: 6894516071049348714, guid: c1d58cb01d668405eaaf4ac261bf987e, type: 3}
 --- !u!114 &5103842330766662135

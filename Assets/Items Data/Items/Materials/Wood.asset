@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f28880d3fb3d84a1cb610821d34a950c, type: 3}
-  m_Name: Slime Gel
+  m_Name: Wood
   m_EditorClassIdentifier: 
   itemType: 0
-  itemName: Slime Gel
-  icon: {fileID: -1523476312, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
-  itemId: 1655064a8c0cc46c7beb8343629b3ee0
-  dropRate: 80
+  itemName: Woods
+  icon: {fileID: 2005540724, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
+  itemId: 4e77ab55df5b0452f8832b50b7b9f5d2
+  dropRate: 65

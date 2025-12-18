@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Skeleton Skull
   m_EditorClassIdentifier: 
   itemType: 0
-  itemName: Tainted Bone
-  icon: {fileID: -1681810636, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
+  itemName: Skeleton Skull
+  icon: {fileID: 996203165, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
   itemId: 03841b9581d584816ac91c3fc32494a4
-  dropRate: 0
+  dropRate: 10

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Tainted Bone
   m_EditorClassIdentifier: 
   itemType: 0
-  itemName: 
-  icon: {fileID: 0}
-  itemId: 
-  dropRate: 0
+  itemName: Tainted Bone
+  icon: {fileID: -1681810636, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
+  itemId: 77a55a3fab3fc4c09854b776da73e2c2
+  dropRate: 40
