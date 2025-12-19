@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: Speed Trinket
   m_EditorClassIdentifier: 
   itemType: 0
-  itemName: 
-  icon: {fileID: 0}
-  itemId: 
-  dropRate: 0
-  slotType: 0
+  itemName: Speed Trinket
+  icon: {fileID: 1073501139, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
+  itemId: bf5bcc96ed5ff456782a8a107a0415e5
+  dropRate: 5
+  slotType: 3
   itemCooldown: 0
   itemEffects: []
-  itemEffectDescription: 
+  itemEffectDescription: Boost speed in short amount of time
   strength: 0
   agility: 0
   intelligence: 0

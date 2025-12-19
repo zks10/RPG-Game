@@ -16,11 +16,11 @@ MonoBehaviour:
   itemName: Death Panty
   icon: {fileID: -1226918627, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
   itemId: 1528b1915dd124e689b17f0834d21d1d
-  dropRate: 0
+  dropRate: 100
   slotType: 1
   itemCooldown: 0
   itemEffects: []
-  itemEffectDescription: 
+  itemEffectDescription: wait to think
   strength: 0
   agility: 0
   intelligence: 0

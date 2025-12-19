@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Feather
   m_EditorClassIdentifier: 
   itemType: 0
-  itemName: 
+  itemName: Feather
   icon: {fileID: 2140525551, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
   itemId: 2cc294ff53c14435499e375c09d13933
-  dropRate: 0
+  dropRate: 55

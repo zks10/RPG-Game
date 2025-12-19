@@ -19,19 +19,20 @@ MonoBehaviour:
   dropRate: 12
   slotType: 0
   itemCooldown: 0
-  itemEffects: []
-  itemEffectDescription: Highly increase the throwing sword damage!
+  itemEffects:
+  - {fileID: 11400000, guid: baa2c098bf13d4ce5aee7fb8612e5786, type: 2}
+  itemEffectDescription: Throwing Sword deals 60% more damage.
   strength: 0
-  agility: 0
+  agility: 3
   intelligence: 0
   vitality: 0
   HP: 0
   armor: 0
-  evasion: 0
+  evasion: 3
   magicResistence: 0
-  critRate: 0
+  critRate: 10
   critDamage: 0
-  damage: 0
+  damage: 12
   fireDamage: 0
   iceDamage: 0
   lightningDamage: 0

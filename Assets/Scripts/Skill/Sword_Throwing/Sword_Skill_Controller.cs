@@ -264,42 +264,77 @@ public class Sword_Skill_Controller : MonoBehaviour
     }
     private void StuckInto(Collider2D collision)
     {
-        if (pierceAmount > 0 && collision.GetComponent<Enemy>() != null)
+        // ===== ENEMY =====
+        Enemy enemy = collision.GetComponent<Enemy>();
+        if (enemy != null)
         {
-            pierceAmount--;
-            return;
-        }
-
-        if (isSpinning)
-        {
-            if (!firstHit)
+            // Pierce logic
+            if (pierceAmount > 0)
             {
-                StopWhenSpinning();
-                firstHit = true;
+                pierceAmount--;
+                return;
             }
+
+            // Spin logic
+            if (isSpinning)
+            {
+                if (!firstHit)
+                {
+                    StopWhenSpinning();
+                    firstHit = true;
+                }
+                return;
+            }
+
+            StickToEnemy(enemy);
             return;
         }
 
+        // ===== ENVIRONMENT (GROUND / WALL) =====
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+            StickToEnvironment();
+        }
+    }
+
+    private void StickToEnemy(Enemy enemy)
+    {
         isStuck = true;
         canRotate = false;
         cd.enabled = false;
 
+        rb.linearVelocity = Vector2.zero;
+        rb.angularVelocity = 0;
         rb.bodyType = RigidbodyType2D.Kinematic;
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
+
+        transform.SetParent(enemy.transform);
 
         GetComponentInChildren<ParticleSystem>().Play();
         anim.SetBool("Rotation", false);
 
-        EnemyStats enemyStats = collision.GetComponent<EnemyStats>();
-        if (enemyStats != null)
-        {   
-            stuckEnemy = enemyStats;
-            if (stuckEnemy.isDead) 
-                DropSword();
-
-        }
-        
+        stuckEnemy = enemy.GetComponent<EnemyStats>();
+        if (stuckEnemy != null && stuckEnemy.isDead)
+            DropSword();
     }
+
+    private void StickToEnvironment()
+    {
+        isStuck = true;
+        canRotate = false;
+        cd.enabled = false;
+
+        rb.linearVelocity = Vector2.zero;
+        rb.angularVelocity = 0;
+        rb.bodyType = RigidbodyType2D.Kinematic;
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
+
+        transform.SetParent(null); // stay in world space
+
+        GetComponentInChildren<ParticleSystem>().Play();
+        anim.SetBool("Rotation", false);
+    }
+
 
 
     private void StopWhenSpinning()
@@ -317,7 +352,23 @@ public class Sword_Skill_Controller : MonoBehaviour
     private void SwordSkillDamage(Enemy enemy)
     {
         EnemyStats enemyStats = enemy.GetComponent<EnemyStats>();
-        player.stats.DoPhysicalDamage(enemyStats);
+        
+        float mult = 1f;
+
+        ItemData_Equipment weapon = Inventory.instance.GetEquipmentByType(EquipmentType.Weapon);
+        if (weapon != null && weapon.itemEffects != null)
+        {
+            foreach (var eff in weapon.itemEffects)
+            {
+                if (eff is SwordThrowDamageBoostEffect boost)
+                {
+                    mult *= boost.GetMultiplier();
+                }
+            }
+        }
+
+        player.stats.DoPhysicalDamage(enemyStats, mult);
+
 
         if (player.skill.sword.timeStopUnlock)
             enemy.FreezeTimeFor(freezeTimeDuration);

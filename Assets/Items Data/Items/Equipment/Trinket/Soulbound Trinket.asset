@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d620605f89804261b5e018fb4e76874, type: 3}
   m_Name: Soulbound Trinket
   m_EditorClassIdentifier: 
-  itemType: 0
-  itemName: 
-  icon: {fileID: 0}
-  itemId: 
-  dropRate: 0
-  slotType: 0
+  itemType: 1
+  itemName: Soulbound Trinket
+  icon: {fileID: 404454020, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
+  itemId: 0faf2fb813af744b181495cffae0aa67
+  dropRate: 20
+  slotType: 3
   itemCooldown: 0
   itemEffects: []
-  itemEffectDescription: 
+  itemEffectDescription: Increase all ability in short amount of time
   strength: 0
   agility: 0
   intelligence: 0

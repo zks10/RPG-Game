@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Death Fragment
   m_EditorClassIdentifier: 
   itemType: 0
-  itemName: 
-  icon: {fileID: 0}
-  itemId: 
-  dropRate: 0
+  itemName: Death Fragment
+  icon: {fileID: 185240797, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
+  itemId: ce268e80ef0a24264906fcc03ebe6917
+  dropRate: 100

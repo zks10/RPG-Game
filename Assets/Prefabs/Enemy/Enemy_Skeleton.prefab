@@ -10451,13 +10451,13 @@ MonoBehaviour:
     baseValue: 0
     modifiers: 
   critRate:
-    baseValue: 5
+    baseValue: 10
     modifiers: 
   critDamage:
     baseValue: 0
     modifiers: 
   damage:
-    baseValue: 8
+    baseValue: 13
     modifiers: 
   fireDamage:
     baseValue: 0

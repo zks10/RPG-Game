@@ -15,11 +15,13 @@ MonoBehaviour:
   itemType: 1
   itemName: Fire Ring
   icon: {fileID: -878758905, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
+  itemId: eeb671af943ab4aaea892d6480849ebc
   dropRate: 0
   slotType: 2
   itemCooldown: 0
   itemEffects:
   - {fileID: 11400000, guid: f1b7f64c6581745378dd3d0951ba9ddc, type: 2}
+  itemEffectDescription: 
   strength: 0
   agility: 0
   intelligence: 3
@@ -31,7 +33,7 @@ MonoBehaviour:
   critRate: 0
   critDamage: 0
   damage: 0
-  fireDamage: 100
+  fireDamage: 20
   iceDamage: 0
   lightningDamage: 0
   craftingMaterials: []

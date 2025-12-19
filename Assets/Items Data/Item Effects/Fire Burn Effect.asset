@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9840332f27cf94bffa4edd87660dfe04, type: 3}
   m_Name: Fire Burn Effect
   m_EditorClassIdentifier: 
+  trigger: 1
   fireBurnPrefab: {fileID: 2180114544075294559, guid: 8ca2f683e2f6647229f92f7d47bede96, type: 3}
+  spawnInterval: 0.7
+  jiggleRadius: 0.1

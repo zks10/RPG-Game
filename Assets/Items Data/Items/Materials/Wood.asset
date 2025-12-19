@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Wood
   m_EditorClassIdentifier: 
   itemType: 0
-  itemName: Woods
+  itemName: Wood
   icon: {fileID: 2005540724, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
   itemId: 4e77ab55df5b0452f8832b50b7b9f5d2
   dropRate: 65

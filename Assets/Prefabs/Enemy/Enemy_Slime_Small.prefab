@@ -168,7 +168,7 @@ MonoBehaviour:
     baseValue: 3
     modifiers: 
   maxHP:
-    baseValue: 20
+    baseValue: 25
     modifiers: 
   currentHP: 0
   armor:
@@ -210,7 +210,7 @@ MonoBehaviour:
   percentageModifier: 0.25
   enemyType: 1
   soulDropAmount:
-    baseValue: 15
+    baseValue: 25
     modifiers: 
 --- !u!114 &8441352699817659909
 MonoBehaviour:

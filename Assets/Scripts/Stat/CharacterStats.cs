@@ -432,7 +432,7 @@ public class CharacterStats : MonoBehaviour
     #endregion
 
     #region Physical Damage
-    public virtual void DoPhysicalDamage(CharacterStats _targetStats)
+    public virtual void DoPhysicalDamage(CharacterStats _targetStats, float damageMultiplier = 1f)
     {
         bool critStrike = false;
 
@@ -453,6 +453,7 @@ public class CharacterStats : MonoBehaviour
         }
         fx.CreateHitFX(_targetStats.transform, critStrike);
         totalPhysicalDamage = CheckTargetsArmor(_targetStats, totalPhysicalDamage);
+        totalPhysicalDamage = Mathf.RoundToInt(totalPhysicalDamage * damageMultiplier);
         if (critStrike)
             _targetStats.TakeDamage(totalPhysicalDamage, transform, DamageType.Critical);
         else 

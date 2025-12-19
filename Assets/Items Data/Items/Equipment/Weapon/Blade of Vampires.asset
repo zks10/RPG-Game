@@ -15,22 +15,25 @@ MonoBehaviour:
   itemType: 1
   itemName: Blade of Vampaire
   icon: {fileID: -243781901, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
+  itemId: aa96984aaeafe461f93cd167f82c7056
   dropRate: 0
-  strength: 0
-  agility: 0
-  intelligence: 0
-  vitality: 5
-  HP: 20
-  armor: 3
-  evasion: 3
-  magicResistence: 3
-  critRate: 0
-  critDamage: 0
-  damage: 18
-  fireDamage: 0
-  iceDamage: 0
-  lightingDamage: 0
   slotType: 0
+  itemCooldown: 0
   itemEffects:
   - {fileID: 11400000, guid: cdd350cd3a6b84b7cb59f23c2dd4ebfd, type: 2}
+  itemEffectDescription: Restore 5% of Max HP on hit.
+  strength: 2
+  agility: 0
+  intelligence: 0
+  vitality: 3
+  HP: 10
+  armor: 0
+  evasion: 0
+  magicResistence: 0
+  critRate: 0
+  critDamage: 0
+  damage: 14
+  fireDamage: 0
+  iceDamage: 0
+  lightningDamage: 0
   craftingMaterials: []

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2aacdedbe4a6d4c2ba1b0a27b064f456, type: 3}
   m_Name: HP Buff
   m_EditorClassIdentifier: 
+  trigger: 3
   buffType: 7
   buffAmount: 100
   buffDuration: 20

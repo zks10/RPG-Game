@@ -543,7 +543,7 @@ MonoBehaviour:
     modifiers: 
   currentHP: 0
   armor:
-    baseValue: 1
+    baseValue: 0
     modifiers: 
   evasion:
     baseValue: 1
@@ -558,7 +558,7 @@ MonoBehaviour:
     baseValue: 0
     modifiers: 
   damage:
-    baseValue: 20
+    baseValue: 0
     modifiers: 
   fireDamage:
     baseValue: 3

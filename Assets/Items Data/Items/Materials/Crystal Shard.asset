@@ -16,4 +16,4 @@ MonoBehaviour:
   itemName: Crystal Shard
   icon: {fileID: 925843482, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
   itemId: d3ac87a3479954081ae8539088db7e67
-  dropRate: 8
+  dropRate: 25

@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 928974b7683604eb9b6dce998539b73e, type: 3}
-  m_Name: Thorn Effect
+  m_Script: {fileID: 11500000, guid: b128a7c464eda438193a18cf41d54d2f, type: 3}
+  m_Name: Sword Throw Damage Boost
   m_EditorClassIdentifier: 
-  trigger: 2
-  reflectPercentage: 0.5
+  trigger: 1
+  bonusMultiplier: 0.4

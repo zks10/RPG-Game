@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3a9d39e951774001b7bed6c5290165c, type: 3}
   m_Name: Thunder Strike Effect
   m_EditorClassIdentifier: 
+  trigger: 1
   thunderStrikePrefab: {fileID: 8486333691585040726, guid: 2cafad8cfb49440479784f7bdbcf3db1, type: 3}

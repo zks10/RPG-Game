@@ -16,4 +16,4 @@ MonoBehaviour:
   itemName: Mysterious Heart
   icon: {fileID: -2010164176, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
   itemId: f045db69001394f5e9960387f22d9aa9
-  dropRate: 0
+  dropRate: 30

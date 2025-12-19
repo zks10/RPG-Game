@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Cursed Eye
   m_EditorClassIdentifier: 
   itemType: 0
-  itemName: 
-  icon: {fileID: 0}
-  itemId: 
-  dropRate: 0
+  itemName: Cursed Eye
+  icon: {fileID: -586606622, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
+  itemId: f15e117baff444c038cf5764a568e990
+  dropRate: 80

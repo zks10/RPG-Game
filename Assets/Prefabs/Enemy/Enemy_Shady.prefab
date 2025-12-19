@@ -5569,7 +5569,7 @@ MonoBehaviour:
     baseValue: 3
     modifiers: 
   critRate:
-    baseValue: 12
+    baseValue: 25
     modifiers: 
   critDamage:
     baseValue: 0
@@ -5595,10 +5595,10 @@ MonoBehaviour:
   minCoins: 3
   maxCoins: 5
   level: 1
-  percentageModifier: 0.4
+  percentageModifier: 0.25
   enemyType: 3
   soulDropAmount:
-    baseValue: 80
+    baseValue: 200
     modifiers: 
 --- !u!114 &5447396291175176032
 MonoBehaviour:
@@ -5650,7 +5650,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 180f714ff1e9649178ce694069e15efb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxAmountItemsToDrop: 5
+  maxAmountItemsToDrop: 4
   possibleDrops:
   - {fileID: 11400000, guid: 3c010b99932ad4cce80dc4a1b8fdb5b8, type: 2}
   - {fileID: 11400000, guid: 38f0617affbd5404b99be7c06b5a1f40, type: 2}

@@ -535,7 +535,7 @@ MonoBehaviour:
     baseValue: 0
     modifiers: 28000000
   damage:
-    baseValue: 18
+    baseValue: 24
     modifiers: 
   fireDamage:
     baseValue: 10
@@ -558,7 +558,7 @@ MonoBehaviour:
   percentageModifier: 0.25
   enemyType: 4
   soulDropAmount:
-    baseValue: 400
+    baseValue: 500
     modifiers: 
 --- !u!114 &1040934278003134942
 MonoBehaviour:

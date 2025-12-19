@@ -10,15 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0d620605f89804261b5e018fb4e76874, type: 3}
-  m_Name: Thunder Claw
+  m_Name: Storm Fang
   m_EditorClassIdentifier: 
   itemType: 1
-  itemName: Thunder Claw
-  icon: {fileID: 367297872, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
+  itemName: Storm Fang
+  icon: {fileID: 710820568, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
+  itemId: 97d6eb244210d48179fa6d0953d81d4f
   dropRate: 0
-  strength: 2
-  agility: 0
-  intelligence: 0
+  slotType: 0
+  itemCooldown: 0
+  itemEffects:
+  - {fileID: 11400000, guid: 85b94c131f5bb4961835e0d3e00d5952, type: 2}
+  itemEffectDescription: Calls down lightning on hit.
+  strength: 0
+  agility: 3
+  intelligence: 3
   vitality: 0
   HP: 0
   armor: 0
@@ -26,11 +32,8 @@ MonoBehaviour:
   magicResistence: 0
   critRate: 0
   critDamage: 0
-  damage: 10
+  damage: 5
   fireDamage: 0
   iceDamage: 0
-  lightingDamage: 15
-  slotType: 0
-  itemEffects:
-  - {fileID: 11400000, guid: 85b94c131f5bb4961835e0d3e00d5952, type: 2}
+  lightningDamage: 20
   craftingMaterials: []

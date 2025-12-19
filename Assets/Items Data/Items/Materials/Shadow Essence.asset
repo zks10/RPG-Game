@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Shadow Essence
   m_EditorClassIdentifier: 
   itemType: 0
-  itemName: 
-  icon: {fileID: 0}
-  itemId: 
-  dropRate: 0
+  itemName: Shadow Essence
+  icon: {fileID: 1180571360, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
+  itemId: 38f0617affbd5404b99be7c06b5a1f40
+  dropRate: 40

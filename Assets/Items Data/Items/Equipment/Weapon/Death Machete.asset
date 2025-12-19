@@ -16,7 +16,7 @@ MonoBehaviour:
   itemName: Death Machete
   icon: {fileID: 1724600912, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
   itemId: bfd9cb1e75019478d8b0d15762a2db77
-  dropRate: 0
+  dropRate: 30
   slotType: 0
   itemCooldown: 0
   itemEffects: []

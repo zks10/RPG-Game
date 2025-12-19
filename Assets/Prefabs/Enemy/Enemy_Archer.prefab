@@ -348,13 +348,13 @@ MonoBehaviour:
     baseValue: 8
     modifiers: 
   intelligence:
-    baseValue: 0
+    baseValue: 2
     modifiers: 
   vitality:
-    baseValue: 4
+    baseValue: 2
     modifiers: 
   maxHP:
-    baseValue: 50
+    baseValue: 55
     modifiers: 
   currentHP: 0
   armor:
@@ -364,25 +364,25 @@ MonoBehaviour:
     baseValue: 7
     modifiers: 
   magicResistence:
-    baseValue: 0
+    baseValue: 1
     modifiers: 
   critRate:
-    baseValue: 10
+    baseValue: 15
     modifiers: 
   critDamage:
     baseValue: 0
     modifiers: 
   damage:
-    baseValue: 14
+    baseValue: 15
     modifiers: 
   fireDamage:
-    baseValue: 0
+    baseValue: 5
     modifiers: 
   iceDamage:
-    baseValue: 0
+    baseValue: 5
     modifiers: 
   lightningDamage:
-    baseValue: 0
+    baseValue: 10
     modifiers: 
   ailmentDuration: 3
   isIgnited: 0
@@ -491,7 +491,7 @@ MonoBehaviour:
   moveSpeed: 4
   battleMoveSpeed: 4
   idleTime: 1.3
-  battleTime: 4
+  battleTime: 1.5
   attackDistance: 13
   attackCooldown: 1
   activateAttackDistance: 2

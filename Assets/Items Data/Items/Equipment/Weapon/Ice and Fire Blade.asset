@@ -14,17 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 1
   itemName: Ice and Fire Blade
-  icon: {fileID: 1398721256, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
+  icon: {fileID: 1429250478, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
   itemId: 3e0e55f7407e54499a860f883b569ec6
   dropRate: 0
   slotType: 0
   itemCooldown: 0
   itemEffects:
   - {fileID: 11400000, guid: 00e90f19c70e24eb7b306cc5ef1b01f5, type: 2}
-  itemEffectDescription: 
-  strength: 3
+  itemEffectDescription: 'Every 3rd attack releases an Ice & Fire wave.
+
+'
+  strength: 0
   agility: 0
-  intelligence: 0
+  intelligence: 3
   vitality: 0
   HP: 0
   armor: 0
@@ -32,8 +34,8 @@ MonoBehaviour:
   magicResistence: 0
   critRate: 0
   critDamage: 0
-  damage: 5
-  fireDamage: 10
-  iceDamage: 10
+  damage: 12
+  fireDamage: 6
+  iceDamage: 6
   lightningDamage: 0
   craftingMaterials: []

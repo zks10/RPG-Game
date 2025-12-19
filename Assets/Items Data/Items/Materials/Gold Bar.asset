@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Gold Bar
   m_EditorClassIdentifier: 
   itemType: 0
-  itemName: 
-  icon: {fileID: 0}
-  itemId: 
-  dropRate: 0
+  itemName: Gold Bar
+  icon: {fileID: -957751355, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
+  itemId: b9e9a96ae33d04de299711a6a273106d
+  dropRate: 15

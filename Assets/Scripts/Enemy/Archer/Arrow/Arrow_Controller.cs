@@ -29,7 +29,10 @@ public class Arrow_Controller : MonoBehaviour
                 entity.SetUpKnockBackDir(transform);
                 entity.lockKnockbackDir = true;
                 if (!collision.GetComponent<CharacterStats>().isDead)
+                {
                     myStats.DoPhysicalDamage(collision.GetComponent<CharacterStats>());
+                    myStats.DoMagicalDamage(collision.GetComponent<CharacterStats>());
+                }
             }
 
             StuckInto(collision);
