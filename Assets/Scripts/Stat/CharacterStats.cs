@@ -239,7 +239,7 @@ public class CharacterStats : MonoBehaviour
         }
     }
     public void SetShockStrikeDamage(int _damage) => shockStrikeDamage = _damage;
-    public virtual void DoMagicalDamage(CharacterStats _targetStats)
+    public virtual void DoMagicalDamage(CharacterStats _targetStats, float multiplier = 1f)
     {
         if (_targetStats.isInvencible)
             return;
@@ -249,7 +249,7 @@ public class CharacterStats : MonoBehaviour
 
         int totalMagicalDamage = _fireDamage + _iceDamage + _lightningDamage + intelligence.GetValue();
         totalMagicalDamage = CheckTargetResistence(_targetStats, totalMagicalDamage);
-
+        totalMagicalDamage = Mathf.RoundToInt(totalMagicalDamage * multiplier);
         _targetStats.TakeDamage(totalMagicalDamage, transform, DamageType.Magic);
     
 

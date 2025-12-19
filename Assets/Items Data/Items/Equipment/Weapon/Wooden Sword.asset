@@ -15,19 +15,23 @@ MonoBehaviour:
   itemType: 1
   itemName: Wooden Sword
   icon: {fileID: 1025091068, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
+  itemId: 2c3175f3a279740d098c63e04f80b3aa
   dropRate: 0
   slotType: 0
   itemCooldown: 0
   itemEffects: []
-  strength: 0
+  itemEffectDescription: 'A simple wooden sword ...
+
+'
+  strength: 1
   agility: 0
   intelligence: 0
   vitality: 0
   HP: 0
-  armor: 1
-  evasion: 3
-  magicResistence: 1
-  critRate: 0
+  armor: 0
+  evasion: 0
+  magicResistence: 0
+  critRate: 2
   critDamage: 0
   damage: 4
   fireDamage: 0

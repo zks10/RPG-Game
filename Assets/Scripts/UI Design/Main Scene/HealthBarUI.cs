@@ -3,42 +3,66 @@ using UnityEngine.UI;
 
 public class HealthBarUI : MonoBehaviour
 {
-    private Entity entity => GetComponentInParent<Entity>();
+    private Entity entity;
+    private CharacterStats myStats;
     private RectTransform myTransform;
     private Slider slider;
-    private CharacterStats myStats => GetComponentInParent<CharacterStats>();
+
+    private void Awake()
+    {
+        entity = GetComponentInParent<Entity>();
+        myStats = GetComponentInParent<CharacterStats>();
+        myTransform = GetComponent<RectTransform>();
+        slider = GetComponentInChildren<Slider>();
+    }
 
     private void Start()
     {
-        myTransform = GetComponent<RectTransform>();
-        slider = GetComponentInChildren<Slider>();
-        myStats.onDeath += DisableHealthBar;
-        slider.maxValue = myStats.GetMaxHP();
+        if (myStats == null || slider == null)
+        {
+            Debug.LogError("HealthBarUI missing references", this);
+            enabled = false;
+            return;
+        }
 
+        slider.maxValue = myStats.GetMaxHP();
         UpdateHealthUI();
+
+        myStats.onDeath += DisableHealthBar;
     }
+
     private void UpdateHealthUI()
     {
-        slider.value = myStats.currentHP;
+        if (myStats == null || slider == null)
+            return;
+
         slider.maxValue = myStats.GetMaxHP();
+        slider.value = myStats.currentHP;
     }
+
     private void FlipUI() => myTransform.Rotate(0, 180, 0);
 
     private void OnEnable()
     {
-        entity.onFlipped += FlipUI;
-        myStats.onHealthChanged += UpdateHealthUI;
+        if (entity != null)
+            entity.onFlipped += FlipUI;
+
+        if (myStats != null)
+            myStats.onHealthChanged += UpdateHealthUI;
     }
+
     private void OnDisable()
     {
         if (entity != null)
             entity.onFlipped -= FlipUI;
-        
-        if (myStats == null)
-            return;
-        myStats.onHealthChanged -= UpdateHealthUI;
-        myStats.onDeath -= DisableHealthBar;
+
+        if (myStats != null)
+        {
+            myStats.onHealthChanged -= UpdateHealthUI;
+            myStats.onDeath -= DisableHealthBar;
+        }
     }
+
     private void DisableHealthBar()
     {
         gameObject.SetActive(false); 

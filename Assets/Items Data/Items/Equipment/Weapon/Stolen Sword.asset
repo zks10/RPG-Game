@@ -19,18 +19,21 @@ MonoBehaviour:
   dropRate: 15
   slotType: 0
   itemCooldown: 0
-  itemEffects: []
-  itemEffectDescription: 
-  strength: 0
-  agility: 5
+  itemEffects:
+  - {fileID: 11400000, guid: c85105b6896324257836f85b1beded06, type: 2}
+  itemEffectDescription: '20% chance to deal bonus damage on hit.
+
+'
+  strength: 2
+  agility: 1
   intelligence: 0
   vitality: 0
   HP: 0
   armor: 0
   evasion: 0
   magicResistence: 0
-  critRate: 7
-  critDamage: 20
+  critRate: 0
+  critDamage: 0
   damage: 12
   fireDamage: 0
   iceDamage: 0

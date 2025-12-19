@@ -12,15 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d620605f89804261b5e018fb4e76874, type: 3}
   m_Name: Death Machete
   m_EditorClassIdentifier: 
-  itemType: 0
+  itemType: 1
   itemName: Death Machete
   icon: {fileID: 1724600912, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
   itemId: bfd9cb1e75019478d8b0d15762a2db77
   dropRate: 30
   slotType: 0
   itemCooldown: 0
-  itemEffects: []
-  itemEffectDescription: 
+  itemEffects:
+  - {fileID: 11400000, guid: 1dc9f3faf12ca43eaa7575ab61208496, type: 2}
+  itemEffectDescription: 'Every 3 hits summons a hand to strike a nearby enemy.
+
+'
   strength: 0
   agility: 0
   intelligence: 0
