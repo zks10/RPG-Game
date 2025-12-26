@@ -20,6 +20,7 @@ public class WeaponChargeController : MonoBehaviour
         }
         if (effect == null) return;
 
+        if (Time.timeScale == 0) return;
         if (Input.GetMouseButtonDown(0))
         {
             float time = Time.time;

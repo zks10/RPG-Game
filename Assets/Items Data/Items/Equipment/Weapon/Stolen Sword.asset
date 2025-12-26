@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 1
   itemName: Stolen Sword
-  icon: {fileID: 1526008332, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
+  icon: {fileID: -671158514, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
   itemId: f80aabeb1e41a4c11b4569c070f9dc17
   dropRate: 15
   slotType: 0
@@ -32,7 +32,7 @@ MonoBehaviour:
   armor: 0
   evasion: 0
   magicResistence: 0
-  critRate: 0
+  critRate: 3
   critDamage: 0
   damage: 12
   fireDamage: 0

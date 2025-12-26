@@ -4,6 +4,7 @@ public class PlayerStats : CharacterStats, ISaveManager
 {
     private Player player;
 
+
     protected override void Start()
     {
         base.Start();

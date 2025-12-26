@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 186a822382ad646a48a9a7e900347332, type: 3}
   m_Name: Void Grasp Effect
   m_EditorClassIdentifier: 
-  trigger: 1
-  hitsRequired: 3
-  range: 4.5
+  trigger: 3
+  holdSeconds: 1.5
+  cooldownSeconds: 0
+  targets: 4
+  range: 8
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 128
-  handPrefab: {fileID: 2928600029149074670, guid: 2ea9c25381d75484ab8a5c5e4212de9d, type: 3}
-  spawnOffset: {x: 0, y: 1.2}
+  handPrefab: {fileID: 2247215578630409500, guid: 4b542782189a54280a7f655f82de934e, type: 3}
+  spawnOffset: {x: 0, y: 1.26}

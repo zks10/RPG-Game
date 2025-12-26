@@ -13,34 +13,31 @@ public class PlayerPrimaryAttackState : PlayerState
     public override void Enter()
     {
         base.Enter();
+
         if (comboCounter > 2 || Time.time >= lastTimeAttacked + comboWindow)
             comboCounter = 0;
-        if (comboCounter == 0)
-        {
-            AudioManager.instance.PlaySFX(1);// attack sound effect
-        } 
-        else
-        {
-            AudioManager.instance.PlaySFX(2); 
-        }
+
+        AudioManager.instance.PlaySFX(comboCounter == 0 ? 1 : 2);
+
         xInput = 0;
-
-
-
         player.anim.SetInteger("ComboCounter", comboCounter);
 
         float attackDir = player.facingDir;
-        if (xInput != 0)
-            attackDir = xInput;
-        
-        // player.anim.speed = 1.1f; // could decrease the speed if holding heavy sword or potion
-        player.SetVelocity(player.attactMovement[comboCounter].x * attackDir, player.attactMovement[comboCounter].y);
+
+        // ✅ Attack speed from weapon
+        ItemData_Equipment weapon = Inventory.instance.GetEquipmentByType(EquipmentType.Weapon);
+        float speedMult = weapon != null ? weapon.GetAttackSpeedMultiplier() : 1f;
+        player.anim.speed = speedMult;
+
+        player.SetVelocity(player.attactMovement[comboCounter].x * attackDir,
+                        player.attactMovement[comboCounter].y);
 
         stateTimer = .15f;
     }
     public override void Exit()
     {
         base.Exit();
+        player.anim.speed = 1f;
         // player.anim.speed = 1;
         // player.StartCoroutine("BusyFor", .15f); freeze the character while attacking
         comboCounter++;

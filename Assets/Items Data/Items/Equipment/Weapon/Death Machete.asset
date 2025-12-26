@@ -18,24 +18,24 @@ MonoBehaviour:
   itemId: bfd9cb1e75019478d8b0d15762a2db77
   dropRate: 30
   slotType: 0
-  itemCooldown: 0
+  itemCooldown: 2
   itemEffects:
   - {fileID: 11400000, guid: 1dc9f3faf12ca43eaa7575ab61208496, type: 2}
-  itemEffectDescription: 'Every 3 hits summons a hand to strike a nearby enemy.
+  itemEffectDescription: 'Double clicks summons a hand to strike a nearby enemy.
 
 '
   strength: 0
   agility: 0
-  intelligence: 0
+  intelligence: 4
   vitality: 0
   HP: 0
   armor: 0
   evasion: 0
   magicResistence: 0
-  critRate: 0
+  critRate: 15
   critDamage: 0
-  damage: 0
+  damage: 14
   fireDamage: 0
   iceDamage: 0
-  lightningDamage: 0
+  lightningDamage: 15
   craftingMaterials: []

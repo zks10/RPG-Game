@@ -27,7 +27,7 @@ MonoBehaviour:
   agility: 0
   intelligence: 0
   vitality: 0
-  HP: 0
+  HP: 5
   armor: 0
   evasion: 0
   magicResistence: 0

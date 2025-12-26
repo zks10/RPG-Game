@@ -70,6 +70,19 @@ public class ItemData_Equipment : ItemData
             effect.ExecuteEffect(ctx);
         }
     }
+    public float GetAttackSpeedMultiplier()
+    {
+        if (itemEffects == null) return 1f;
+
+        foreach (var effect in itemEffects)
+        {
+            if (effect is AttackSpeedEffect speedEffect)
+                return speedEffect.attackSpeedMultiplier;
+        }
+
+        return 1f;
+    }
+
 
 
     public void AddModifiers()

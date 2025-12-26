@@ -10,29 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0d620605f89804261b5e018fb4e76874, type: 3}
-  m_Name: Blade of Vampires
+  m_Name: Bloodrush
   m_EditorClassIdentifier: 
   itemType: 1
-  itemName: Blade of Vampaire
-  icon: {fileID: -243781901, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
-  itemId: aa96984aaeafe461f93cd167f82c7056
+  itemName: Bloodrush
+  icon: {fileID: 1013403796, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
+  itemId: de151bc4f9a364310bd18b58d7d1eadd
   dropRate: 0
   slotType: 0
   itemCooldown: 0
   itemEffects:
-  - {fileID: 11400000, guid: cdd350cd3a6b84b7cb59f23c2dd4ebfd, type: 2}
-  itemEffectDescription: Restore 5% of Max HP on hit.
-  strength: 2
+  - {fileID: 0}
+  itemEffectDescription: Greatly increases attack speed.
+  strength: 0
   agility: 0
   intelligence: 0
-  vitality: 3
-  HP: 10
+  vitality: 0
+  HP: 0
   armor: 0
   evasion: 0
   magicResistence: 0
   critRate: 0
   critDamage: 0
-  damage: 12
+  damage: 0
   fireDamage: 0
   iceDamage: 0
   lightningDamage: 0

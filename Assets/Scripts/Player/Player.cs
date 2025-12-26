@@ -10,6 +10,7 @@ public class Player : Entity
 
     [Header("Attack Info")]
     public Vector2[] attactMovement;
+    public float attackSpeedMultiplier = 1f;
     public bool isBusy { get; private set; }
 
     [Header("Counter Attack Info")]

@@ -27,6 +27,8 @@ public enum DamageType
 }
 public class CharacterStats : MonoBehaviour
 {
+
+
     protected EntityFx fx;
     [Header("Major Stats")]
     public Stat strength; // ± 1 point => damage ± 1 && crit.damage ± 1%
@@ -47,6 +49,7 @@ public class CharacterStats : MonoBehaviour
     public Stat critRate;
     public Stat critDamage;
     public Stat damage;
+    public Stat attackSpeed;
 
     [Header("Magic Stats")]
     public Stat fireDamage;
