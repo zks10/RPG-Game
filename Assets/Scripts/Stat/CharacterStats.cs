@@ -177,9 +177,8 @@ public class CharacterStats : MonoBehaviour
             return;
 
         DecreaseHPBy(_damage);
-
         GetComponent<Entity>().DamageImpact();
-        fx.StartCoroutine("FlashFX");
+        //fx.StartCoroutine("FlashFX");
 
         Color popupColor = Color.white;
 

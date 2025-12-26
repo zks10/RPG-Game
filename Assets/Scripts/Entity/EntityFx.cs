@@ -28,6 +28,7 @@ public class EntityFx : MonoBehaviour
     [Header("Flash FX")]
     [SerializeField] private Material hitMat;
     private Material originalMat;
+    
 
     [Header("Ailment Colors")]
     [SerializeField] private Color[] freezeColor;
@@ -41,6 +42,7 @@ public class EntityFx : MonoBehaviour
 
     [Header("Hit FX")]
     [SerializeField] private GameObject[] hitFXPrefab;
+    
     [Space]
     
     [SerializeField] private ParticleSystem dustFX;

@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d620605f89804261b5e018fb4e76874, type: 3}
+  m_Name: Abyssal Gyreblade
+  m_EditorClassIdentifier: 
+  itemType: 1
+  itemName: Abyssal Gyreblade
+  icon: {fileID: -999494607, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
+  itemId: db4d933c75f594584b4be2e61d1d7c03
+  dropRate: 0
+  slotType: 0
+  itemCooldown: 0
+  itemEffects:
+  - {fileID: 11400000, guid: 4942c3892b16547e6b265f6707c8b193, type: 2}
+  itemEffectDescription: Spinning throws pull enemies inward.
+  strength: 4
+  agility: 5
+  intelligence: 0
+  vitality: 0
+  HP: 0
+  armor: 0
+  evasion: 0
+  magicResistence: 0
+  critRate: 7
+  critDamage: 0
+  damage: 7
+  fireDamage: 0
+  iceDamage: 0
+  lightningDamage: 0
+  craftingMaterials: []

@@ -10459,6 +10459,9 @@ MonoBehaviour:
   damage:
     baseValue: 13
     modifiers: 
+  attackSpeed:
+    baseValue: 0
+    modifiers: 
   fireDamage:
     baseValue: 0
     modifiers: 

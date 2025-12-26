@@ -161,26 +161,42 @@ public class Sword_Skill_Controller : MonoBehaviour
                 {
                     isReturn = true;
                     isSpinning = false;
-                    AudioManager.instance.StopSFX(23); 
+                    AudioManager.instance.StopSFX(23);
+                    return;
                 }
 
-                hitTimer -= Time.deltaTime;
+                // ✅ APPLY PULL EVERY FRAME (separate from damage ticks)
+                ItemData_Equipment weapon = Inventory.instance.GetEquipmentByType(EquipmentType.Weapon);
+                if (weapon != null)
+                {
+                    weapon.ItemEffect(new EffectContext
+                    {
+                        trigger = ItemTrigger.OnSwordSpinTick,
+                        user = transform,
+                        target = null
+                    });
+                }
 
+                // Damage tick remains on cooldown
+                hitTimer -= Time.deltaTime;
                 if (hitTimer < 0)
                 {
                     hitTimer = hitCooldown;
-                    Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 1);
 
+                    Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 1);
                     foreach (var hit in colliders)
                     {
-                        if (hit.GetComponent<Enemy>() != null)
-                        {
-                            if (hit.GetComponent<EnemyStats>().isDead) continue;
-                            SwordSkillDamage(hit.GetComponent<Enemy>());
-                        }
+                        Enemy e = hit.GetComponent<Enemy>();
+                        if (e == null) continue;
+
+                        EnemyStats es = hit.GetComponent<EnemyStats>();
+                        if (es != null && es.isDead) continue;
+
+                        SwordSkillDamage(e);
                     }
                 }
             }
+
         }
     }
 
@@ -228,8 +244,8 @@ public class Sword_Skill_Controller : MonoBehaviour
             return;
         if (isDropped || isStuck)
             return;
-
-
+        if (isSpinning && wasStopped)
+            return;
 
         if (collision.GetComponent<Enemy>() != null)
         {
@@ -268,14 +284,12 @@ public class Sword_Skill_Controller : MonoBehaviour
         Enemy enemy = collision.GetComponent<Enemy>();
         if (enemy != null)
         {
-            // Pierce logic
             if (pierceAmount > 0)
             {
                 pierceAmount--;
                 return;
             }
 
-            // Spin logic
             if (isSpinning)
             {
                 if (!firstHit)
@@ -290,12 +304,17 @@ public class Sword_Skill_Controller : MonoBehaviour
             return;
         }
 
-        // ===== ENVIRONMENT (GROUND / WALL) =====
+        // ===== ENVIRONMENT =====
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
+            // 🔑 DO NOT stick while spinning
+            if (isSpinning)
+                return;
+
             StickToEnvironment();
         }
-    }
+}
+
 
     private void StickToEnemy(Enemy enemy)
     {
@@ -370,8 +389,8 @@ public class Sword_Skill_Controller : MonoBehaviour
         player.stats.DoPhysicalDamage(enemyStats, mult);
 
 
-        if (player.skill.sword.timeStopUnlock)
-            enemy.FreezeTimeFor(freezeTimeDuration);
+        //if (player.skill.sword.timeStopUnlock)
+            //enemy.FreezeTimeFor(freezeTimeDuration);
 
         if (player.skill.sword.volunerableUnlock)
             enemyStats.MakeVolunerableFor(freezeTimeDuration); 
