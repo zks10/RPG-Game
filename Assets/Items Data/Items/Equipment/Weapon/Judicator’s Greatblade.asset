@@ -10,30 +10,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0d620605f89804261b5e018fb4e76874, type: 3}
-  m_Name: Bloodrush
+  m_Name: "Judicator\u2019s Greatblade"
   m_EditorClassIdentifier: 
   itemType: 1
-  itemName: Bloodrush
-  icon: {fileID: 1013403796, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
-  itemId: de151bc4f9a364310bd18b58d7d1eadd
+  itemName: "Judicator\u2019s Greatblade"
+  icon: {fileID: -378631908, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
+  itemId: 55e9b41e89b3c4628850d2dcc29457f9
   dropRate: 0
   slotType: 0
   itemCooldown: 0
   itemEffects:
-  - {fileID: 11400000, guid: 698001c99c1c04cf9bb267be4db566fb, type: 2}
-  itemEffectDescription: Greatly increases attack speed.
+  - {fileID: 11400000, guid: 3b356fa2660c54f54a8b33a132d84d55, type: 2}
+  - {fileID: 11400000, guid: 2efd7b508898d48c0a4a32d1ba2bc797, type: 2}
+  itemEffectDescription: On successful counter, release a lightning shockwave.
   strength: 0
-  agility: 4
-  intelligence: 0
+  agility: 0
+  intelligence: 2
   vitality: 0
   HP: 0
   armor: 0
-  evasion: 5
+  evasion: -5
   magicResistence: 0
-  critRate: 8
+  critRate: 0
   critDamage: 0
-  damage: 6
+  damage: 12
   fireDamage: 0
   iceDamage: 0
-  lightningDamage: 0
+  lightningDamage: 10
   craftingMaterials: []

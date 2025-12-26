@@ -9,7 +9,6 @@ public class SpecialSkillController : MonoBehaviour
         if (collision.GetComponent<Enemy>() != null)
         {
             playerStats = PlayerManager.instance.player.GetComponent<PlayerStats>();
-            Debug.Log("hi");
             playerStats.DoMagicalDamage(collision.GetComponent<EnemyStats>());
         }
     }

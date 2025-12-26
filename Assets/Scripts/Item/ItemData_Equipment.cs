@@ -186,6 +186,8 @@ public class ItemData_Equipment : ItemData
                 sb.AppendLine();
             if (_value > 0)
                 sb.AppendLine($"+ {_value } {_name}");
+            if (_value < 0)
+                sb.AppendLine($"- {Mathf.Abs(_value)} {_name}");
 
             minDescriptionLength++;
         }

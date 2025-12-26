@@ -4,7 +4,8 @@ public enum ItemTrigger
     None,
     OnHitEnemy,
     OnTakeDamage,
-    OnUse
+    OnUse,
+    OnCounter
 }
 
 public struct EffectContext

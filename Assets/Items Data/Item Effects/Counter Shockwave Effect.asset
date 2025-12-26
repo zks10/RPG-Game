@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d54a9459fbf64a0cb8f991cc69f1427, type: 3}
-  m_Name: Attack Speed Effect
+  m_Script: {fileID: 11500000, guid: 3c71d7b9f9833428887137b9822e45a6, type: 3}
+  m_Name: Counter Shockwave Effect
   m_EditorClassIdentifier: 
-  trigger: 3
-  attackSpeedMultiplier: 1.35
+  trigger: 4
+  shockwavePrefab: {fileID: 8486333691585040726, guid: 2cafad8cfb49440479784f7bdbcf3db1, type: 3}
+  offsetFacingRight: {x: 1.60386, y: -0.421283}
+  lifeTime: 0.7

@@ -64,5 +64,17 @@ public class PlayerCounterAttackState : PlayerState
         AudioManager.instance.PlaySFX(0);
         player.skill.counterAttack.cooldownTimer = -1;
         player.skill.counterAttack.SucessfulCounterRestore();
+
+        ItemData_Equipment weapon = Inventory.instance.GetEquipmentByType(EquipmentType.Weapon);
+        if (weapon != null)
+        {
+            weapon.ItemEffect(new EffectContext
+            {
+                trigger = ItemTrigger.OnCounter,
+                user = player.transform,
+                target = null
+            });
+        }
+
     }
 }

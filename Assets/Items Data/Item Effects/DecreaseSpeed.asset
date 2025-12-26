@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3d54a9459fbf64a0cb8f991cc69f1427, type: 3}
-  m_Name: Attack Speed Effect
+  m_Name: DecreaseSpeed
   m_EditorClassIdentifier: 
   trigger: 3
-  attackSpeedMultiplier: 1.35
+  attackSpeedMultiplier: 0.7
