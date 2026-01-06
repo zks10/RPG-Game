@@ -70,7 +70,23 @@ public class Crystal_Skill_Controller : MonoBehaviour
             {
                 if (hit.GetComponent<EnemyStats>().isDead) continue;
                 hit.GetComponent<Entity>().SetUpKnockBackDir(transform);
-                player.stats.DoMagicalDamage(hit.GetComponent<CharacterStats>());
+
+
+                ItemData_Equipment weapon = Inventory.instance.GetEquipmentByType(EquipmentType.Weapon);
+                if (weapon != null)
+                {
+                    weapon.ItemEffect(new EffectContext
+                    {
+                        trigger = ItemTrigger.OnEquip,
+                        user = PlayerManager.instance.player.transform
+                    });
+                } else
+                {
+                    player.skill.crystal.SetExplosionMultiplier(0);
+                }
+                float mult = SkillManager.instance.crystal.GetFinalExplosionMultiplier();
+                player.stats.DoMagicalDamage(hit.GetComponent<CharacterStats>(), mult);
+
 
                 ItemData_Equipment equipAmulet = Inventory.instance.GetEquipmentByType(EquipmentType.Amulet);
                 if (equipAmulet != null)

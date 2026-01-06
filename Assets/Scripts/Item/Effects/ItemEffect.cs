@@ -6,7 +6,9 @@ public enum ItemTrigger
     OnTakeDamage,
     OnUse,
     OnCounter,
-    OnSwordSpinTick
+    OnSwordSpinTick,
+    OnEquip,
+    OnQueryCrystalMaxStack 
 }
 
 public struct EffectContext

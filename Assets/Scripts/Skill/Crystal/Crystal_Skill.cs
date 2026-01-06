@@ -36,6 +36,10 @@ public class Crystal_Skill : Skill
     [SerializeField] private float useTimeWindow;
     [SerializeField] private List<GameObject> crystalLeft = new List<GameObject>();
 
+    [Header("Item Modifiers")]
+    public float explosionMultiplierFromItem = 0f; 
+    public int extraStacksFromItem = 0;
+
     protected override void Start()
     {
         base.Start();
@@ -126,7 +130,7 @@ public class Crystal_Skill : Skill
     {
         //base.UseSkill();
 
-        if (canUseMultiCrystal())
+        if (CanUseMultiCrystal())
             return;
 
         if (currentCrystal == null)
@@ -179,13 +183,13 @@ public class Crystal_Skill : Skill
 
     public void CurrentCrystalChooseRandomTarget() => currentCrystal.GetComponent<Crystal_Skill_Controller>().ChooseRandomEnemy();
 
-    private bool canUseMultiCrystal()
+    private bool CanUseMultiCrystal()
     {
         if (canUseMultiStacks)
         {
             if (crystalLeft.Count > 0)
             {
-                if (crystalLeft.Count == amountOfStacks)
+                if (crystalLeft.Count == GetFinalMaxStacks())
                     Invoke("ResetAbility", useTimeWindow);
                     
                 cooldown = 0;
@@ -209,11 +213,11 @@ public class Crystal_Skill : Skill
 
     private void RefillCrystal()
     {
-        int amount = amountOfStacks - crystalLeft.Count;
+        int finalStacks = GetFinalMaxStacks();
+        int amount = finalStacks - crystalLeft.Count;
+
         for (int i = 0; i < amount; i++)
-        {
             crystalLeft.Add(crystalPrefab);
-        }
     }
 
     private void ResetAbility()
@@ -224,6 +228,31 @@ public class Crystal_Skill : Skill
         cooldownTimer = multiStackCooldown;
 
         RefillCrystal();
+    }
+
+    public float GetFinalExplosionMultiplier()
+    {
+        return 1f + explosionMultiplierFromItem;
+    }
+
+    public int GetFinalMaxStacks()
+    {
+        if (!canUseMultiStacks)
+            return amountOfStacks;
+
+        return Mathf.Clamp(amountOfStacks + extraStacksFromItem, amountOfStacks, 10);
+    }
+
+    public void SetExplosionMultiplier(float _val)
+    {
+        explosionMultiplierFromItem = _val;
+
+    }
+    public void SetExtraStacksFromItem(int _val)
+    {
+        extraStacksFromItem = _val;
+        if (canUseMultiStacks)
+            RefillCrystal();
     }
 
 
