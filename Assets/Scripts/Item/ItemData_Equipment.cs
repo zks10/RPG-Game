@@ -20,6 +20,8 @@ public class ItemData_Equipment : ItemData
     [TextArea]
     [SerializeField] public string itemEffectDescription;
 
+    [Header("Weapon Settings")]
+    public float attackSpeedMultiplier = 1f;
     [Header("Major stats")]
     public int strength;
     public int agility;
@@ -70,18 +72,24 @@ public class ItemData_Equipment : ItemData
             effect.ExecuteEffect(ctx);
         }
     }
+    // public float GetAttackSpeedMultiplier()
+    // {
+    //     if (itemEffects == null) return 1f;
+
+    //     foreach (var effect in itemEffects)
+    //     {
+    //         if (effect is AttackSpeedEffect speedEffect)
+    //             return speedEffect.attackSpeedMultiplier;
+    //     }
+
+    //     return 1f;
+    // }
+
     public float GetAttackSpeedMultiplier()
     {
-        if (itemEffects == null) return 1f;
-
-        foreach (var effect in itemEffects)
-        {
-            if (effect is AttackSpeedEffect speedEffect)
-                return speedEffect.attackSpeedMultiplier;
-        }
-
-        return 1f;
+        return attackSpeedMultiplier;
     }
+
 
 
 
